@@ -1,8 +1,7 @@
 package com.mindhub.ecommerce.models.users;
 
 
-import com.mindhub.ecommerce.enums.UserRol;
-import org.hibernate.annotations.GenericGenerator;
+import com.mindhub.ecommerce.enums.UserRole;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,17 +23,17 @@ public abstract class User  implements Serializable {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private UserRol userRol;
+    private UserRole userRole;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, UserRol userRol) {
+    public User(String firstName, String lastName, String email, String password, UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.userRol = userRol;
+        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -77,11 +76,11 @@ public abstract class User  implements Serializable {
         this.password = password;
     }
 
-    public UserRol getUserRol() {
-        return userRol;
+    public UserRole getUserRol() {
+        return userRole;
     }
 
-    public void setUserRol(UserRol userRol) {
-        this.userRol = userRol;
+    public void setUserRol(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

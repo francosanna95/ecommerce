@@ -1,6 +1,6 @@
 package com.mindhub.ecommerce;
 
-import com.mindhub.ecommerce.enums.UserRol;
+import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
 import com.mindhub.ecommerce.repositories.AgencyRepository;
@@ -29,7 +29,7 @@ public class EcommerceApplication {
 			client.setLastName("Morel");
 			client.setEmail("melba@mindhub.com");
 			client.setPassword("hola123");
-			client.setUserRol(UserRol.CLIENT);
+			client.setUserRol(UserRole.CLIENT);
 
 			clientRepo.save(client);
 			userRepo.save(client);
@@ -40,7 +40,7 @@ public class EcommerceApplication {
 			agency.setAddress("Avenida Siempre Viva 123");
 			agency.setEmail("travel@agency.com");
 			agency.setPassword("agency123");
-			agency.setUserRol(UserRol.AGENCY);
+			agency.setUserRol(UserRole.AGENCY);
 
 			agencyRepo.save(agency);
 			userRepo.save(agency);

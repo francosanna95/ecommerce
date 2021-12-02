@@ -1,6 +1,6 @@
 package com.mindhub.ecommerce.models.users;
 
-import com.mindhub.ecommerce.enums.UserRol;
+import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.products.Product;
 import javax.persistence.*;
 import java.util.List;
@@ -17,8 +17,8 @@ public class Agency extends User {
     public Agency() {
     }
 
-    public Agency(String firstName, String lastName, String email, String password, UserRol userRol, String address, List<Product> availableProducts) {
-        super(firstName, lastName, email, password, userRol);
+    public Agency(String firstName, String lastName, String email, String password, UserRole userRole, String address, List<Product> availableProducts) {
+        super(firstName, lastName, email, password, userRole);
         this.address = address;
         this.availableProducts = availableProducts;
     }
