@@ -9,26 +9,40 @@ import java.util.List;
 @Table(name = "clients")
 public class Client extends User {
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private List<Product> cart;
+    private String firstName;
+    private String lastName;
+
 
     public Client() {
     }
 
-    public Client(List<Product> cart) {
-        this.cart = cart;
+    public Client(String email, String password, UserRole userRole, String firstName, String lastName) {
+        super(email, password, userRole);
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public Client(String firstName, String lastName, String email, String password, UserRole userRole, List<Product> cart) {
-        super(firstName, lastName, email, password, userRole);
-        this.cart = cart;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public List<Product> getCart() {
-        return cart;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setCart(List<Product> cart) {
-        this.cart = cart;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

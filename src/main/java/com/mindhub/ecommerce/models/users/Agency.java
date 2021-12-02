@@ -2,25 +2,37 @@ package com.mindhub.ecommerce.models.users;
 
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.products.Product;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.*;
 
 
 @Entity
-@Table(name="agencies")
+@Table(name = "agencies")
 public class Agency extends User {
 
+    private String fantasyName;
     private String address;
+
     @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER)
-    private List<Product> availableProducts;
+    private Set<Product> availableProducts = new HashSet();
 
     public Agency() {
     }
 
-    public Agency(String firstName, String lastName, String email, String password, UserRole userRole, String address, List<Product> availableProducts) {
-        super(firstName, lastName, email, password, userRole);
+    public Agency(String email, String password, UserRole userRole, String fantasyName, String address) {
+        super(email, password, userRole);
+        this.fantasyName = fantasyName;
         this.address = address;
-        this.availableProducts = availableProducts;
+    }
+
+    public String getFantasyName() {
+        return fantasyName;
+    }
+
+    public void setFantasyName(String fantasyName) {
+        this.fantasyName = fantasyName;
     }
 
     public String getAddress() {
@@ -31,11 +43,19 @@ public class Agency extends User {
         this.address = address;
     }
 
-    public List<Product> getAvailableProducts() {
+    public Set<Product> getAvailableProducts() {
         return availableProducts;
     }
 
-    public void setAvailableProducts(List<Product> availableProducts) {
+    public void setAvailableProducts(Set<Product> availableProducts) {
         this.availableProducts = availableProducts;
+    }
+
+    @Override
+    public String toString() {
+        return "Agency{" +
+                "fantasyName='" + fantasyName + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
