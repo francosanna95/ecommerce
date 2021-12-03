@@ -1,6 +1,6 @@
 package com.mindhub.ecommerce.enums;
 
-public enum UserRol {
+public enum UserRole {
     ADMIN,
     AGENCY,
     CLIENT

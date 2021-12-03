@@ -1,70 +1,57 @@
 package com.mindhub.ecommerce.models.users;
 
 
-import com.mindhub.ecommerce.enums.UserRol;
+import com.mindhub.ecommerce.enums.UserRole;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class User  implements Serializable {
+public class User {
 
     @Id
-    @GeneratedValue (strategy=GenerationType.TABLE , generator= "idsGenerator" )
-    @TableGenerator (name= "idsGenerator" , table= "IdsGenerator" ,
-            pkColumnName= "id" , pkColumnValue= "User" , valueColumnName= "employeeIds" )
-    @Column (name =  "id" , unique = true  , nullable = false  )
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
+    private String address;
+    private String bankAccountNumber;
+    private String firstName;
+    private String lastName;
+    private String imgUrl;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<ClientProducts> cart = new HashSet<>();
+    private String fantasyName;
+    //   @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    //   private Set<ClientProducts> historyCart = new HashSet();
 
     @Enumerated(EnumType.STRING)
-    private UserRol userRol;
+    private UserRole userRole;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(String firstName, String lastName, String email, String password, UserRol userRol) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String firstName, String lastName,String email, String password, UserRole userRole) {
         this.email = email;
         this.password = password;
-        this.userRol = userRol;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userRole = userRole;
     }
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -72,16 +59,53 @@ public abstract class User  implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public UserRol getUserRol() {
-        return userRol;
+    public UserRole getUserRole() {
+        return userRole;
+    }
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
-    public void setUserRol(UserRol userRol) {
-        this.userRol = userRol;
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
+    }
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
+    }
+
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public String getLastName() {return lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
+
+    public String getImgUrl() {return imgUrl;}
+    public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
+
+    public Set<ClientProducts> getCart() {return cart;}
+    public void setCart(Set<ClientProducts> cart) {this.cart = cart;}
+
+    public String getFantasyName() {return fantasyName;}
+    public void setFantasyName(String fantasyName) {this.fantasyName = fantasyName;}
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userRole=" + userRole +
+                '}';
     }
 }
