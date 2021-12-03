@@ -1,9 +1,7 @@
 package com.mindhub.ecommerce.models.products;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mindhub.ecommerce.models.users.Agency;
-import com.mindhub.ecommerce.models.users.Client;
 import com.mindhub.ecommerce.models.users.ClientProducts;
+import com.mindhub.ecommerce.models.users.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -42,7 +40,7 @@ public abstract class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Integer points, Double price, String disscountCode, String address, Agency agency, String name) {
+    public Product(Integer points, Double price, String disscountCode, String address, User agency, String name) {
         this.points = points;
         this.price = price;
         this.disscountCode = disscountCode;

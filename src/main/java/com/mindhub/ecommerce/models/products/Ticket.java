@@ -1,7 +1,7 @@
 package com.mindhub.ecommerce.models.products;
 
 import com.mindhub.ecommerce.enums.Clase;
-import com.mindhub.ecommerce.models.users.Agency;
+import com.mindhub.ecommerce.models.users.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -23,7 +23,7 @@ public class Ticket extends Product{
     public Ticket() {
     }
 
-    public Ticket(Integer points, Double price, String disscountCode, String address, Agency agency, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation, String airport, Clase clase, String asiento,String name) {
+    public Ticket(Integer points, Double price, String disscountCode, String address, User agency, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation, String airport, Clase clase, String asiento, String name) {
         super(points, price, disscountCode, address, agency, name);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;

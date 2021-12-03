@@ -1,13 +1,12 @@
 package com.mindhub.ecommerce.dtos;
 
-import com.mindhub.ecommerce.models.products.Product;
-import com.mindhub.ecommerce.models.users.Client;
 import com.mindhub.ecommerce.models.users.ClientProducts;
+import com.mindhub.ecommerce.models.users.User;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ClientDTO {
+public class UserDTO {
     private String firstName;
     private String lastName;
     private String imgUrl;
@@ -20,8 +19,8 @@ public class ClientDTO {
     private String bankAccountNumber;
 
 
-    public ClientDTO() {}
-    public ClientDTO(Client client) {
+    public UserDTO() {}
+    public UserDTO(User client) {
         this.firstName=client.getFirstName();
         this.lastName=client.getLastName();
         this.imgUrl=client.getImgUrl();

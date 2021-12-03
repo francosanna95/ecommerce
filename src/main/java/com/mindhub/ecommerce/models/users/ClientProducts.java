@@ -13,23 +13,25 @@ public class ClientProducts {
     long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="client_id")
-    private  Client client;
+    @JoinColumn(name="user_id")
+    private  User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="product_id")
     private Product product;
 
     public ClientProducts() {}
-    public ClientProducts(Client client, Product product) {
-        this.client=client;
+    public ClientProducts(User user, Product product) {
+        this.user=user;
         this.product=product;
     }
 
     public long getId() {return id;}
 
-    public Client getClient() {return client;}
-    public void setClient(Client client) {this.client = client;}
+    public User getUser() {return user;}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Product getProduct() {return product;}
     public void setProduct(Product product) {this.product = product;}

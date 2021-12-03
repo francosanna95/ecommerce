@@ -1,6 +1,6 @@
 package com.mindhub.ecommerce.models.products;
 
-import com.mindhub.ecommerce.models.users.Agency;
+import com.mindhub.ecommerce.models.users.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ public class Event extends Product {
     public Event() {
     }
 
-    public Event(Integer points, Double price, String disscountCode, String address, Agency agency, String artist, Integer maxCapacity, boolean vip,String name) {
+    public Event(Integer points, Double price, String disscountCode, String address, User agency, String artist, Integer maxCapacity, boolean vip, String name) {
         super(points, price, disscountCode, address, agency, name);
         this.artist = artist;
         this.maxCapacity = maxCapacity;

@@ -2,7 +2,9 @@ package com.mindhub.ecommerce.controllers;
 
 
 import com.mindhub.ecommerce.dtos.AgencyDTO;
+import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.enums.UserRole;
+import com.mindhub.ecommerce.models.users.User;
 import com.mindhub.ecommerce.repositories.UserRepository;
 import com.mindhub.ecommerce.services.AgencyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class UserController {
 
 
     @GetMapping("/agencies")
-    public Set<AgencyDTO> getAgencies() {
+    public Set<UserDTO> getAgencies() {
         return userRepo.findAll().stream().filter(user -> user.getUserRole().equals(UserRole.AGENCY)).map(UserDTO::new).collect(Collectors.toSet());
     }
 

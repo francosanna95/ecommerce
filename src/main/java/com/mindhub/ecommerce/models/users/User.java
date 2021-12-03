@@ -2,17 +2,19 @@ package com.mindhub.ecommerce.models.users;
 
 
 import com.mindhub.ecommerce.enums.UserRole;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
-public abstract class User {
+public class User {
 
     @Id
-    @GeneratedValue (strategy=GenerationType.TABLE , generator= "idsGenerator" )
-    @TableGenerator (name= "idsGenerator.users" , table= "UserIdsGenerator" ,
-            pkColumnName= "id" , pkColumnValue= "User" , valueColumnName= "userIds" )
-    @Column (name =  "id" , unique = true  , nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String email;
     private String password;
@@ -22,31 +24,27 @@ public abstract class User {
     private String lastName;
     private String imgUrl;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<ClientProducts> cart = new HashSet();
+    private Set<ClientProducts> cart = new HashSet<>();
     private String fantasyName;
     //   @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     //   private Set<ClientProducts> historyCart = new HashSet();
 
-
-
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(String email, String password, UserRole userRole,String address,String bankAccountNumber, String firstName,String lastName,String imgUrl) {
+    public User(String firstName, String lastName,String email, String password, UserRole userRole) {
         this.email = email;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.userRole = userRole;
-        this.address = address;
-        this.bankAccountNumber = bankAccountNumber;
     }
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,7 +52,6 @@ public abstract class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -62,7 +59,6 @@ public abstract class User {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -70,7 +66,6 @@ public abstract class User {
     public UserRole getUserRole() {
         return userRole;
     }
-
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
@@ -78,7 +73,6 @@ public abstract class User {
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
@@ -86,10 +80,24 @@ public abstract class User {
     public String getBankAccountNumber() {
         return bankAccountNumber;
     }
-
     public void setBankAccountNumber(String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
     }
+
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public String getLastName() {return lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
+
+    public String getImgUrl() {return imgUrl;}
+    public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
+
+    public Set<ClientProducts> getCart() {return cart;}
+    public void setCart(Set<ClientProducts> cart) {this.cart = cart;}
+
+    public String getFantasyName() {return fantasyName;}
+    public void setFantasyName(String fantasyName) {this.fantasyName = fantasyName;}
 
     @Override
     public String toString() {

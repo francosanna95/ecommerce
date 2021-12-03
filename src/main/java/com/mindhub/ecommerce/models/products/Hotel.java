@@ -1,7 +1,7 @@
 package com.mindhub.ecommerce.models.products;
 
 import com.mindhub.ecommerce.enums.Pension;
-import com.mindhub.ecommerce.models.users.Agency;
+import com.mindhub.ecommerce.models.users.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -23,7 +23,7 @@ public class Hotel extends Product{
     public Hotel() {
     }
 
-    public Hotel(Integer points, Double price, String discountCode, String address, Agency agency, Integer nights, Integer passengers, String room, Pension pension, LocalDateTime arrivalDate, LocalDateTime departureDate, String name) {
+    public Hotel(Integer points, Double price, String discountCode, String address, User agency, Integer nights, Integer passengers, String room, Pension pension, LocalDateTime arrivalDate, LocalDateTime departureDate, String name) {
         super(points, price, discountCode, address, agency, name);
         this.nights = nights;
         this.passengers = passengers;

@@ -1,10 +1,5 @@
 package com.mindhub.ecommerce.dtos;
 
-import com.mindhub.ecommerce.models.products.Event;
-import com.mindhub.ecommerce.models.products.Hotel;
-import com.mindhub.ecommerce.models.products.Product;
-import com.mindhub.ecommerce.models.products.Ticket;
-import com.mindhub.ecommerce.models.users.Client;
 import com.mindhub.ecommerce.models.users.ClientProducts;
 
 public class ClientProductDTO {

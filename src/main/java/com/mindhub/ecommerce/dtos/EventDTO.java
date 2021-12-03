@@ -1,8 +1,6 @@
 package com.mindhub.ecommerce.dtos;
 
 import com.mindhub.ecommerce.models.products.Event;
-import com.mindhub.ecommerce.models.users.Agency;
-import com.mindhub.ecommerce.models.users.Client;
 import com.mindhub.ecommerce.models.users.ClientProducts;
 
 import java.util.HashSet;
@@ -14,7 +12,7 @@ public class EventDTO {
     private Double price;
     private String disscountCode;
     private String address;
-    private Agency agency;
+    private AgencyDTO agency;
     private Set<ClientProducts> clientProducts = new HashSet();
     private String artist;
     private Integer maxCapacity;
@@ -49,8 +47,8 @@ public class EventDTO {
     public String getAddress() {return address;}
     public void setAddress(String address) {this.address = address;}
 
-    public Agency getAgency() {return agency;}
-    public void setAgency(Agency agency) {this.agency = agency;}
+    public AgencyDTO getAgency() {return agency;}
+    public void setAgency(AgencyDTO agency) {this.agency = agency;}
 
     public Set<ClientProducts> getClientProducts() {return clientProducts;}
     public void setClientProducts(Set<ClientProducts> clientProducts) {this.clientProducts = clientProducts;}
