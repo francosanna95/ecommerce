@@ -3,6 +3,10 @@ package com.mindhub.ecommerce.dtos;
 import com.mindhub.ecommerce.models.products.Event;
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
+import com.mindhub.ecommerce.models.users.ClientProducts;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class EventDTO {
     private Long productId;
@@ -11,7 +15,7 @@ public class EventDTO {
     private String disscountCode;
     private String address;
     private Agency agency;
-    private Client client;
+    private Set<ClientProducts> clientProducts = new HashSet();
     private String artist;
     private Integer maxCapacity;
     private boolean vip;
@@ -23,8 +27,8 @@ public class EventDTO {
         this.price=event.getPrice();
         this.disscountCode=event.getDisscountCode();
         this.address=event.getAddress();
-        this.agency=event.getAgency();
-        this.client=event.getClient();
+  //      this.agency=event.getAgency();
+        this.clientProducts=event.getClientProducts();
         this.artist=event.getArtist();
         this.maxCapacity=event.getMaxCapacity();
         this.vip=event.isVip();
@@ -48,8 +52,8 @@ public class EventDTO {
     public Agency getAgency() {return agency;}
     public void setAgency(Agency agency) {this.agency = agency;}
 
-    public Client getClient() {return client;}
-    public void setClient(Client client) {this.client = client;}
+    public Set<ClientProducts> getClientProducts() {return clientProducts;}
+    public void setClientProducts(Set<ClientProducts> clientProducts) {this.clientProducts = clientProducts;}
 
     public String getArtist() {return artist;}
     public void setArtist(String artist) {this.artist = artist;}

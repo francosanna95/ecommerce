@@ -18,8 +18,8 @@ public class Event extends Product {
     public Event() {
     }
 
-    public Event(Integer points, Double price, String disscountCode, String address, Agency agency, String artist, Integer maxCapacity, boolean vip) {
-        super(points, price, disscountCode, address, agency);
+    public Event(Integer points, Double price, String disscountCode, String address, Agency agency, String artist, Integer maxCapacity, boolean vip,String name) {
+        super(points, price, disscountCode, address, agency, name);
         this.artist = artist;
         this.maxCapacity = maxCapacity;
         this.vip = vip;

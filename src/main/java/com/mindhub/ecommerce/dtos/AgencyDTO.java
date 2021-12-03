@@ -23,7 +23,7 @@ public class AgencyDTO {
         this.password=agency.getPassword();
         this.address=agency.getAddress();
         this.bankAccountNumber=agency.getBankAccountNumber();
-        this.availableProducts=agency.getAvailableProducts();
+      //  this.availableProducts=agency.getAvailableProducts();
         this.fantasyName=agency.getFantasyName();
     }
 

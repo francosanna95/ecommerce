@@ -4,8 +4,11 @@ import com.mindhub.ecommerce.enums.Clase;
 import com.mindhub.ecommerce.models.products.Ticket;
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
+import com.mindhub.ecommerce.models.users.ClientProducts;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TicketDTO {
     private Long productId;
@@ -14,7 +17,7 @@ public class TicketDTO {
     private String disscountCode;
     private String address;
     private Agency agency;
-    private Client client;
+    private Set<ClientProducts> clientProducts = new HashSet();
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private String departureLocation;
@@ -30,8 +33,8 @@ public class TicketDTO {
         this.price=ticket.getPrice();
         this.disscountCode=ticket.getDisscountCode();
         this.address=ticket.getAddress();
-        this.agency=ticket.getAgency();
-        this.client=ticket.getClient();
+   //     this.agency=ticket.getAgency();
+        this.clientProducts=ticket.getClientProducts();
         this.departureLocation=ticket.getDepartureLocation();
         this.arrivalLocation=ticket.getArrivalLocation();
         this.airport=ticket.getAirport();
@@ -57,8 +60,8 @@ public class TicketDTO {
     public Agency getAgency() {return agency;}
     public void setAgency(Agency agency) {this.agency = agency;}
 
-    public Client getClient() {return client;}
-    public void setClient(Client client) {this.client = client;}
+    public Set<ClientProducts> getClientProducts() {return clientProducts;}
+    public void setClientProducts(Set<ClientProducts> clientProducts) {this.clientProducts = clientProducts;}
 
     public LocalDateTime getDepartureTime() {return departureTime;}
     public void setDepartureTime(LocalDateTime departureTime) {this.departureTime = departureTime;}

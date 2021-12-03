@@ -46,7 +46,7 @@ public class EcommerceApplication {
             Event concierto = new Event();
             Hotel hospedaje = new Hotel();
 
-            concierto.setAgency(agency);
+        //    concierto.setAgency(agency);
             concierto.setDisscountCode("NONE");
             concierto.setPrice(2500D);
             concierto.setPoints(100);
@@ -57,15 +57,15 @@ public class EcommerceApplication {
             hospedaje.setPassengers(3);
             hospedaje.setNights(5);
             hospedaje.setPrice(3500D);
-            hospedaje.setAgency(agency);
+       //     hospedaje.setAgency(agency);
             hospedaje.setDisscountCode("HOLIDAYS2020");
 
             eventRepo.save(concierto);
             hotelRepo.save(hospedaje);
 
-            agency.getAvailableProducts().add(concierto);
-            agency.getAvailableProducts().add(hospedaje);
-            agencyRepo.save(agency);
+     //       agency.getAvailableProducts().add(concierto);
+     //       agency.getAvailableProducts().add(hospedaje);
+     //       agencyRepo.save(agency);
         };
     }
 }

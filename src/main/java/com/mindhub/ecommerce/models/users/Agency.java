@@ -13,8 +13,8 @@ import java.util.*;
 public class Agency extends User {
 
     private String fantasyName;
-    @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER)
-    private Set<Product> availableProducts = new HashSet();
+//    @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER)
+//    private Set<Product> availableProducts = new HashSet();
 
     public Agency() {
     }
@@ -34,13 +34,13 @@ public class Agency extends User {
 
 
 
-    public Set<Product> getAvailableProducts() {
-        return availableProducts;
-    }
+ //   public Set<Product> getAvailableProducts() {
+ //       return availableProducts;
+ //   }
 
-    public void setAvailableProducts(Set<Product> availableProducts) {
-        this.availableProducts = availableProducts;
-    }
+ //   public void setAvailableProducts(Set<Product> availableProducts) {
+ //       this.availableProducts = availableProducts;
+ //   }
 
     @Override
     public String toString() {

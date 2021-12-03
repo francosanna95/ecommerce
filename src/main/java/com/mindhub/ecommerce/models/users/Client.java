@@ -15,10 +15,10 @@ public class Client extends User {
     private String lastName;
     private String imgUrl;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private Set<Product> cart = new HashSet();
+    private Set<ClientProducts> cart = new HashSet();
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private Set<Product> historyCart = new HashSet();
+ //   @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+ //   private Set<ClientProducts> historyCart = new HashSet();
 
     public Client() {
     }
@@ -54,21 +54,21 @@ public class Client extends User {
         this.imgUrl = imgUrl;
     }
 
-    public Set<Product> getCart() {
+    public Set<ClientProducts> getCart() {
         return cart;
     }
 
-    public void setCart(Set<Product> cart) {
+    public void setCart(Set<ClientProducts> cart) {
         this.cart = cart;
     }
 
-    public Set<Product> getHistoryCart() {
-        return historyCart;
-    }
+  //  public Set<ClientProducts> getHistoryCart() {
+  //      return historyCart;
+  //  }
 
-    public void setHistoryCart(Set<Product> historyCart) {
-        this.historyCart = historyCart;
-    }
+  //  public void setHistoryCart(Set<ClientProducts> historyCart) {
+  //      this.historyCart = historyCart;
+  //  }
 
     @Override
     public String toString() {

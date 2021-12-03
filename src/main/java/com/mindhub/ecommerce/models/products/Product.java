@@ -2,9 +2,12 @@ package com.mindhub.ecommerce.models.products;
 
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
+import com.mindhub.ecommerce.models.users.ClientProducts;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -20,14 +23,14 @@ public abstract class Product implements Serializable {
     private Double price;
     private String disscountCode;
     private String address;
+    private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "agency_id")
-    private Agency agency;
+ //   @ManyToOne(fetch = FetchType.EAGER)
+ //   @JoinColumn(name = "agency_id")
+ //   private Agency agency;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @OneToMany(mappedBy ="product")
+    private Set<ClientProducts> clientProducts = new HashSet();
 
     //TODO:Revisar si nos conviene hacer una tabla intermedia productClient por la relación ManyToMany
 //    @ManyToOne(fetch = FetchType.EAGER)
@@ -38,12 +41,21 @@ public abstract class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Integer points, Double price, String disscountCode, String address, Agency agency) {
+    public Product(Integer points, Double price, String disscountCode, String address, Agency agency, String name) {
         this.points = points;
         this.price = price;
         this.disscountCode = disscountCode;
         this.address = address;
-        this.agency = agency;
+ //       this.agency = agency;
+        this.name=name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getProductId() {
@@ -86,20 +98,20 @@ public abstract class Product implements Serializable {
         this.address = address;
     }
 
-    public Agency getAgency() {
-        return agency;
+ //   public Agency getAgency() {
+ //       return agency;
+ //   }
+
+ //   public void setAgency(Agency agency) {
+ //       this.agency = agency;
+ //   }
+
+    public Set<ClientProducts> getClientProducts() {
+        return clientProducts;
     }
 
-    public void setAgency(Agency agency) {
-        this.agency = agency;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientProducts(Set<ClientProducts> clientProducts) {
+        this.clientProducts = clientProducts;
     }
 
     @Override

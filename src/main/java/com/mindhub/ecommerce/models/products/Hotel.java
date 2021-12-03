@@ -23,8 +23,8 @@ public class Hotel extends Product{
     public Hotel() {
     }
 
-    public Hotel(Integer points, Double price, String discountCode, String address, Agency agency, Integer nights, Integer passengers, String room, Pension pension, LocalDateTime arrivalDate, LocalDateTime departureDate) {
-        super(points, price, discountCode, address, agency);
+    public Hotel(Integer points, Double price, String discountCode, String address, Agency agency, Integer nights, Integer passengers, String room, Pension pension, LocalDateTime arrivalDate, LocalDateTime departureDate, String name) {
+        super(points, price, discountCode, address, agency, name);
         this.nights = nights;
         this.passengers = passengers;
         this.room = room;

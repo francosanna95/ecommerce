@@ -4,8 +4,11 @@ import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.models.products.Hotel;
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
+import com.mindhub.ecommerce.models.users.ClientProducts;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HotelDTO {
     private Long productId;
@@ -20,7 +23,7 @@ public class HotelDTO {
     private LocalDateTime arrivalDate;
     private LocalDateTime departureDate;
     private Agency agency;
-    private Client client;
+    private Set<ClientProducts> clientProducts = new HashSet();
 
     public HotelDTO() {}
     public HotelDTO(Hotel hotel) {
@@ -29,8 +32,8 @@ public class HotelDTO {
         this.price=hotel.getPrice();
         this.disscountCode=hotel.getDisscountCode();
         this.address=hotel.getAddress();
-        this.agency=hotel.getAgency();
-        this.client=hotel.getClient();
+  //      this.agency=hotel.getAgency();
+        this.clientProducts=hotel.getClientProducts();
         this.nights=hotel.getNights();
         this.passengers=hotel.getPassengers();
         this.room=hotel.getRoom();
@@ -75,6 +78,6 @@ public class HotelDTO {
     public Agency getAgency() {return agency;}
     public void setAgency(Agency agency){this.agency=agency;}
 
-    public Client getClient() {return client;}
-    public void setClient(Client client) {this.client = client;}
+    public Set<ClientProducts> getClientProducts() {return clientProducts;}
+    public void setClientProducts(Set<ClientProducts> clientProducts) {this.clientProducts = clientProducts;}
 }
