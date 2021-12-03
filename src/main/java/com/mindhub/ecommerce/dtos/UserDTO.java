@@ -1,7 +1,7 @@
 package com.mindhub.ecommerce.dtos;
 
-import com.mindhub.ecommerce.models.users.ClientProducts;
-import com.mindhub.ecommerce.models.users.User;
+import com.mindhub.ecommerce.models.ClientProduct;
+import com.mindhub.ecommerce.models.User;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,8 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String imgUrl;
-    private Set<ClientProducts> cart = new HashSet();
-    private Set<ClientProducts> historyCart = new HashSet();
+    private Set<ClientProduct> cart = new HashSet();
+    private Set<ClientProduct> historyCart = new HashSet();
     private Long id;
     private String email;
     private String password;
@@ -20,6 +20,7 @@ public class UserDTO {
 
 
     public UserDTO() {}
+
     public UserDTO(User client) {
         this.firstName=client.getFirstName();
         this.lastName=client.getLastName();
@@ -57,9 +58,9 @@ public class UserDTO {
     public String getImgUrl() {return imgUrl;}
     public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
 
-    public Set<ClientProducts> getCart() {return cart;}
-    public void setCart(Set<ClientProducts> cart) {this.cart = cart;}
+    public Set<ClientProduct> getCart() {return cart;}
+    public void setCart(Set<ClientProduct> cart) {this.cart = cart;}
 
-    public Set<ClientProducts> getHistoryCart() {return historyCart;}
-    public void setHistoryCart(Set<ClientProducts> historyCart) {this.historyCart = historyCart;}
+    public Set<ClientProduct> getHistoryCart() {return historyCart;}
+    public void setHistoryCart(Set<ClientProduct> historyCart) {this.historyCart = historyCart;}
 }

@@ -1,13 +1,14 @@
 package com.mindhub.ecommerce.models.products;
 
-import com.mindhub.ecommerce.models.users.User;
+import com.mindhub.ecommerce.models.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "events")
-public class Event extends Product {
+public class Event extends Product  implements Serializable {
 
     private String artist;
     private Integer maxCapacity;

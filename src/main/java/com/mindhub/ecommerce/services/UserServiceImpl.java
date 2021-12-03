@@ -1,6 +1,6 @@
 package com.mindhub.ecommerce.services;
 
-import com.mindhub.ecommerce.models.users.User;
+import com.mindhub.ecommerce.models.User;
 import org.springframework.stereotype.Service;
 
 @Service

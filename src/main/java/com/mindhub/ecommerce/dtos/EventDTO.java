@@ -1,57 +1,31 @@
 package com.mindhub.ecommerce.dtos;
 
 import com.mindhub.ecommerce.models.products.Event;
-import com.mindhub.ecommerce.models.users.ClientProducts;
+import com.mindhub.ecommerce.models.ClientProduct;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class EventDTO {
-    private Long productId;
-    private Integer points;
-    private Double price;
-    private String disscountCode;
-    private String address;
-    private AgencyDTO agency;
-    private Set<ClientProducts> clientProducts = new HashSet();
+
+
+    private Set<ClientProduct> clientProducts = new HashSet();
     private String artist;
     private Integer maxCapacity;
     private boolean vip;
 
-    public EventDTO() {}
+    public EventDTO() {
+    }
     public EventDTO(Event event) {
-        this.productId=event.getProductId();
-        this.points=event.getPoints();
-        this.price=event.getPrice();
-        this.disscountCode=event.getDisscountCode();
-        this.address=event.getAddress();
-  //      this.agency=event.getAgency();
+
         this.clientProducts=event.getClientProducts();
         this.artist=event.getArtist();
         this.maxCapacity=event.getMaxCapacity();
         this.vip=event.isVip();
     }
 
-    public Long getProductId() {return productId;}
-    public void setProductId(Long productId) {this.productId = productId;}
-
-    public Integer getPoints() {return points;}
-    public void setPoints(Integer points) {this.points = points;}
-
-    public Double getPrice() {return price;}
-    public void setPrice(Double price) {this.price = price;}
-
-    public String getDisscountCode() {return disscountCode;}
-    public void setDisscountCode(String disscountCode) {this.disscountCode = disscountCode;}
-
-    public String getAddress() {return address;}
-    public void setAddress(String address) {this.address = address;}
-
-    public AgencyDTO getAgency() {return agency;}
-    public void setAgency(AgencyDTO agency) {this.agency = agency;}
-
-    public Set<ClientProducts> getClientProducts() {return clientProducts;}
-    public void setClientProducts(Set<ClientProducts> clientProducts) {this.clientProducts = clientProducts;}
+    public Set<ClientProduct> getClientProducts() {return clientProducts;}
+    public void setClientProducts(Set<ClientProduct> clientProducts) {this.clientProducts = clientProducts;}
 
     public String getArtist() {return artist;}
     public void setArtist(String artist) {this.artist = artist;}

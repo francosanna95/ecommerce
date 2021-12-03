@@ -2,20 +2,15 @@ package com.mindhub.ecommerce.dtos;
 
 import com.mindhub.ecommerce.enums.Clase;
 import com.mindhub.ecommerce.models.products.Ticket;
-import com.mindhub.ecommerce.models.users.ClientProducts;
+import com.mindhub.ecommerce.models.ClientProduct;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 public class TicketDTO {
-    private Long productId;
-    private Integer points;
-    private Double price;
-    private String disscountCode;
-    private String address;
-    private AgencyDTO agency;
-    private Set<ClientProducts> clientProducts = new HashSet();
+
+    private Set<ClientProduct> clientProducts = new HashSet();
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private String departureLocation;
@@ -26,12 +21,7 @@ public class TicketDTO {
 
     public TicketDTO() {}
     public TicketDTO(Ticket ticket) {
-        this.productId=ticket.getProductId();
-        this.points=ticket.getPoints();
-        this.price=ticket.getPrice();
-        this.disscountCode=ticket.getDisscountCode();
-        this.address=ticket.getAddress();
-   //     this.agency=ticket.getAgency();
+
         this.clientProducts=ticket.getClientProducts();
         this.departureLocation=ticket.getDepartureLocation();
         this.arrivalLocation=ticket.getArrivalLocation();
@@ -40,26 +30,8 @@ public class TicketDTO {
         this.seat=ticket.getAsiento();
     }
 
-    public Long getProductId() {return productId;}
-    public void setProductId(Long productId) {this.productId = productId;}
-
-    public Integer getPoints() {return points;}
-    public void setPoints(Integer points) {this.points = points;}
-
-    public Double getPrice() {return price;}
-    public void setPrice(Double price) {this.price = price;}
-
-    public String getDisscountCode() {return disscountCode;}
-    public void setDisscountCode(String disscountCode) {this.disscountCode = disscountCode;}
-
-    public String getAddress() {return address;}
-    public void setAddress(String address) {this.address = address;}
-
-    public AgencyDTO getAgency() {return agency;}
-    public void setAgency(AgencyDTO agency) {this.agency = agency;}
-
-    public Set<ClientProducts> getClientProducts() {return clientProducts;}
-    public void setClientProducts(Set<ClientProducts> clientProducts) {this.clientProducts = clientProducts;}
+    public Set<ClientProduct> getClientProducts() {return clientProducts;}
+    public void setClientProducts(Set<ClientProduct> clientProducts) {this.clientProducts = clientProducts;}
 
     public LocalDateTime getDepartureTime() {return departureTime;}
     public void setDepartureTime(LocalDateTime departureTime) {this.departureTime = departureTime;}

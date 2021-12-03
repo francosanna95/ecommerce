@@ -1,7 +1,8 @@
-package com.mindhub.ecommerce.models.users;
+package com.mindhub.ecommerce.models;
 
 
 import com.mindhub.ecommerce.enums.UserRole;
+import com.mindhub.ecommerce.models.ClientProduct;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -23,11 +24,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String imgUrl;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<ClientProducts> cart = new HashSet<>();
+    private Set<ClientProduct> cart = new HashSet<>();
+
     private String fantasyName;
     //   @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    //   private Set<ClientProducts> historyCart = new HashSet();
+    //   private Set<ClientProduct> historyCart = new HashSet();
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -40,6 +43,10 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userRole = userRole;
+    }
+
+    public void addClientProduct(ClientProduct clientProduct){
+        this.cart.add(clientProduct);
     }
 
     public Long getId() {
@@ -93,8 +100,8 @@ public class User {
     public String getImgUrl() {return imgUrl;}
     public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
 
-    public Set<ClientProducts> getCart() {return cart;}
-    public void setCart(Set<ClientProducts> cart) {this.cart = cart;}
+    public Set<ClientProduct> getCart() {return cart;}
+    public void setCart(Set<ClientProduct> cart) {this.cart = cart;}
 
     public String getFantasyName() {return fantasyName;}
     public void setFantasyName(String fantasyName) {this.fantasyName = fantasyName;}

@@ -1,7 +1,7 @@
 package com.mindhub.ecommerce.models.products;
 
 import com.mindhub.ecommerce.enums.Clase;
-import com.mindhub.ecommerce.models.users.User;
+import com.mindhub.ecommerce.models.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

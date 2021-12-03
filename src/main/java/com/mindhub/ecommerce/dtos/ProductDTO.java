@@ -4,30 +4,28 @@ import com.mindhub.ecommerce.models.products.Event;
 import com.mindhub.ecommerce.models.products.Hotel;
 import com.mindhub.ecommerce.models.products.Product;
 import com.mindhub.ecommerce.models.products.Ticket;
-import com.mindhub.ecommerce.models.ClientProduct;
 
-public class ClientProductDTO {
-    private long id;
-    private String productName;
-    private double productPrice;
+public class ProductDTO {
+    private Long productId;
     private Integer points;
+    private Double price;
     private String disscountCode;
     private String address;
+    private UserDTO agency;
     private EventDTO eventDTO;
     private HotelDTO hotelDTO;
     private TicketDTO ticketDTO;
 
+    public ProductDTO() {
+    }
 
-    public ClientProductDTO() {}
-    public ClientProductDTO(ClientProduct clientProduct) {
-        Product product = clientProduct.getProduct();
-
-        this.id= product.getProductId();
-        this.productName=product.getName();
-        this.productPrice=product.getPrice();
+    public ProductDTO(Product product) {
+        this.productId = product.getProductId();
         this.points = product.getPoints();
+        this.price = product.getPrice();
         this.disscountCode = product.getDisscountCode();
         this.address = product.getAddress();
+        this.agency = new UserDTO(product.getAgency());
 
         if (product instanceof Event){
             this.eventDTO = new EventDTO((Event) product);
@@ -36,6 +34,5 @@ public class ClientProductDTO {
         } else if (product instanceof Ticket){
             this.ticketDTO = new TicketDTO((Ticket) product);
         }
-
     }
 }

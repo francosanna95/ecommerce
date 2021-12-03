@@ -1,7 +1,8 @@
 package com.mindhub.ecommerce.models.products;
 
-import com.mindhub.ecommerce.models.users.ClientProducts;
-import com.mindhub.ecommerce.models.users.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mindhub.ecommerce.models.ClientProduct;
+import com.mindhub.ecommerce.models.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,12 +11,12 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Product implements Serializable {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "idsGenerator")
-    @TableGenerator(name = "idsGenerator.product", table = "ProducstIdsGenerator",
-            pkColumnName = "id", pkColumnValue = "Product", valueColumnName = "productsIds")
+//    @TableGenerator(name = "idsGenerator.product", table = "ProducstIdsGenerator",
+//            pkColumnName = "id", pkColumnValue = "Product", valueColumnName = "productsIds")
     @Column(name = "id", unique = true, nullable = false)
     private Long productId;
     private Integer points;
@@ -24,12 +25,13 @@ public abstract class Product implements Serializable {
     private String address;
     private String name;
 
- //   @ManyToOne(fetch = FetchType.EAGER)
- //   @JoinColumn(name = "agency_id")
- //   private Agency agency;
 
-    @OneToMany(mappedBy ="product")
-    private Set<ClientProducts> clientProducts = new HashSet();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "agency_id")
+    private User agency;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ClientProduct> clientProducts = new HashSet();
 
     //TODO:Revisar si nos conviene hacer una tabla intermedia productClient por la relación ManyToMany
 //    @ManyToOne(fetch = FetchType.EAGER)
@@ -45,8 +47,8 @@ public abstract class Product implements Serializable {
         this.price = price;
         this.disscountCode = disscountCode;
         this.address = address;
- //       this.agency = agency;
-        this.name=name;
+        this.agency = agency;
+        this.name = name;
     }
 
     public String getName() {
@@ -97,23 +99,21 @@ public abstract class Product implements Serializable {
         this.address = address;
     }
 
- //   @JsonIgnore
-//    public Agency getAgency() {
-//        return agency;
-//    }
- //   public Agency getAgency() {
- //       return agency;
- //   }
+    @JsonIgnore
+    public User getAgency() {
+        return agency;
+    }
 
- //   public void setAgency(Agency agency) {
- //       this.agency = agency;
- //   }
 
-    public Set<ClientProducts> getClientProducts() {
+    public void setAgency(User agency) {
+        this.agency = agency;
+    }
+
+    public Set<ClientProduct> getClientProducts() {
         return clientProducts;
     }
 
-    public void setClientProducts(Set<ClientProducts> clientProducts) {
+    public void setClientProducts(Set<ClientProduct> clientProducts) {
         this.clientProducts = clientProducts;
     }
 
