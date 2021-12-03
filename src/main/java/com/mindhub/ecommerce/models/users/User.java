@@ -12,7 +12,7 @@ public abstract class User {
     @GeneratedValue (strategy=GenerationType.TABLE , generator= "idsGenerator" )
     @TableGenerator (name= "idsGenerator.users" , table= "UserIdsGenerator" ,
             pkColumnName= "id" , pkColumnValue= "User" , valueColumnName= "userIds" )
-    @Column (name =  "id" , unique = true  , nullable = false  )
+    @Column (name =  "id" , unique = true  , nullable = false)
     private Long id;
     private String email;
     private String password;
