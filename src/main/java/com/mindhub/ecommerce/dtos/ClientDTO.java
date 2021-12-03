@@ -1,4 +1,39 @@
 package com.mindhub.ecommerce.dtos;
 
+import com.mindhub.ecommerce.models.products.Product;
+import com.mindhub.ecommerce.models.users.Client;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class ClientDTO {
+    private String firstName;
+    private String lastName;
+    private String imgUrl;
+    private Set<Product> cart = new HashSet();
+    private Set<Product> historyCart = new HashSet();
+
+    public ClientDTO() {}
+    public ClientDTO(Client client) {
+        this.firstName=client.getFirstName();
+        this.lastName=client.getLastName();
+        this.imgUrl=client.getImgUrl();
+        this.cart=client.getCart();
+        this.historyCart=client.getHistoryCart();
+    }
+
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public String getLastName() {return lastName;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
+
+    public String getImgUrl() {return imgUrl;}
+    public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
+
+    public Set<Product> getCart() {return cart;}
+    public void setCart(Set<Product> cart) {this.cart = cart;}
+
+    public Set<Product> getHistoryCart() {return historyCart;}
+    public void setHistoryCart(Set<Product> historyCart) {this.historyCart = historyCart;}
 }
