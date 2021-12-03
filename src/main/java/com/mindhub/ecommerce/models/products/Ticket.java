@@ -1,5 +1,6 @@
 package com.mindhub.ecommerce.models.products;
 
+import com.mindhub.ecommerce.enums.Clase;
 import com.mindhub.ecommerce.models.users.Agency;
 
 import javax.persistence.Entity;
@@ -15,17 +16,22 @@ public class Ticket extends Product{
     private String departureLocation;
     private String arrivalLocation;
     private String airport;
+    private Clase clase; // contador para poner limite a cantidad d pasajeros por clase
+    private String asiento;
+
 
     public Ticket() {
     }
 
-    public Ticket(Integer points, double price, String disscountCode, Agency agency, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation, String airport) {
+    public Ticket(Integer points, double price, String disscountCode, Agency agency, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation, String airport, Clase clase, String asiento) {
         super(points, price, disscountCode, agency);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
         this.airport = airport;
+        this.clase = clase;
+        this.asiento = asiento;
     }
 
     public LocalDateTime getDepartureTime() {
@@ -66,6 +72,22 @@ public class Ticket extends Product{
 
     public void setAirport(String airport) {
         this.airport = airport;
+    }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
+    }
+
+    public String getAsiento() {
+        return asiento;
+    }
+
+    public void setAsiento(String asiento) {
+        this.asiento = asiento;
     }
 
     @Override

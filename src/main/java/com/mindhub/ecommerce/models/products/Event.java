@@ -10,20 +10,19 @@ import javax.persistence.Table;
 public class Event extends Product {
 
     private String artist;
-    private String location;
+    private Integer maxCapacity;
+    private boolean vip;
+
+
 
     public Event() {
     }
 
-    public Event(String artist, String location) {
-        this.artist = artist;
-        this.location = location;
-    }
-
-    public Event(Integer points, double price, String disscountCode, Agency agency, String artist, String location) {
+    public Event(Integer points, double price, String disscountCode, Agency agency, String artist, Integer maxCapacity, boolean vip) {
         super(points, price, disscountCode, agency);
         this.artist = artist;
-        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.vip = vip;
     }
 
     public String getArtist() {
@@ -34,11 +33,37 @@ public class Event extends Product {
         this.artist = artist;
     }
 
-    public String getLocation() {
-        return location;
+    public Integer getMaxCapacity() {
+        return maxCapacity;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setMaxCapacity(Integer maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
+    }
+
+    @Override
+    public void setPrice(double price) {
+        if (this.vip){
+            super.setPrice(price *.5); /// ver que se le aumenta si es vip
+        }else {
+            super.setPrice(price);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "artist='" + artist + '\'' +
+                ", maxCapacity=" + maxCapacity +
+                ", vip=" + vip +
+                '}';
     }
 }

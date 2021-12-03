@@ -9,22 +9,19 @@ import java.util.*;
 
 
 @Entity
-@Table(name = "agencies")
+//@Table(name = "agencies")
 public class Agency extends User {
 
     private String fantasyName;
-    private String address;
-
     @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER)
     private Set<Product> availableProducts = new HashSet();
 
     public Agency() {
     }
 
-    public Agency(String email, String password, UserRole userRole, String fantasyName, String address) {
-        super(email, password, userRole);
+    public Agency(String email, String password, UserRole userRole, String fantasyName, String address, String bankAccountNumber) {
+        super(email, password, userRole,address,bankAccountNumber);
         this.fantasyName = fantasyName;
-        this.address = address;
     }
 
     public String getFantasyName() {
@@ -35,13 +32,7 @@ public class Agency extends User {
         this.fantasyName = fantasyName;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public Set<Product> getAvailableProducts() {
         return availableProducts;
@@ -55,7 +46,6 @@ public class Agency extends User {
     public String toString() {
         return "Agency{" +
                 "fantasyName='" + fantasyName + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 }

@@ -7,5 +7,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @NoRepositoryBean
-public interface ProductRepository<T extends Product, L extends Number> extends JpaRepository<Product, Long> {
+public interface ProductRepository<T extends Product, Long> extends JpaRepository<Product, Long> {
 }

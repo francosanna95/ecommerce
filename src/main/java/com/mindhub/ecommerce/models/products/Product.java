@@ -1,10 +1,6 @@
 package com.mindhub.ecommerce.models.products;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mindhub.ecommerce.models.users.Agency;
-import com.mindhub.ecommerce.models.users.Client;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,13 +10,14 @@ public abstract class Product implements Serializable {
 
     @Id
     @GeneratedValue (strategy=GenerationType.TABLE , generator= "idsGenerator" )
-    @TableGenerator (name= "idsGenerator" , table= "IdsGenerator" ,
-            pkColumnName= "id" , pkColumnValue= "Product" , valueColumnName= "employeeIds" )
+    @TableGenerator (name= "idsGenerator.product" , table= "ProducstIdsGenerator" ,
+            pkColumnName= "id" , pkColumnValue= "Product" , valueColumnName= "productsIds" )
     @Column (name =  "id" , unique = true  , nullable = false  )
     private Long productId;
     private Integer points;
-    private double price;
+    private Double price;
     private String disscountCode;
+    private String address;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "agency_id")

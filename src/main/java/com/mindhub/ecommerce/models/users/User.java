@@ -16,12 +16,15 @@ public abstract class User  implements Serializable {
 
     @Id
     @GeneratedValue (strategy=GenerationType.TABLE , generator= "idsGenerator" )
-    @TableGenerator (name= "idsGenerator" , table= "IdsGenerator" ,
-            pkColumnName= "id" , pkColumnValue= "User" , valueColumnName= "employeeIds" )
+    @TableGenerator (name= "idsGenerator.users" , table= "UserIdsGenerator" ,
+            pkColumnName= "id" , pkColumnValue= "User" , valueColumnName= "userIds" )
     @Column (name =  "id" , unique = true  , nullable = false  )
     private Long id;
     private String email;
     private String password;
+    private String address;
+    private String bankAccountNumber;
+
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -29,10 +32,12 @@ public abstract class User  implements Serializable {
     public User() {
     }
 
-    public User(String email, String password, UserRole userRole) {
+    public User(String email, String password, UserRole userRole,String address,String bankAccountNumber) {
         this.email = email;
         this.password = password;
         this.userRole = userRole;
+        this.address = address;
+        this.bankAccountNumber = bankAccountNumber;
     }
 
     public Long getId() {
@@ -65,6 +70,22 @@ public abstract class User  implements Serializable {
 
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
+    }
+
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
     }
 
     @Override

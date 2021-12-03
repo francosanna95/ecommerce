@@ -7,6 +7,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 
-public interface UserRepository<T extends User, L extends Number> extends JpaRepository<User, Long> {
+public interface UserRepository<T extends User, Long> extends JpaRepository<User, Long> {
 
 }
