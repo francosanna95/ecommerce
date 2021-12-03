@@ -3,18 +3,13 @@ package com.mindhub.ecommerce;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.products.Event;
 import com.mindhub.ecommerce.models.products.Hotel;
-import com.mindhub.ecommerce.models.products.Product;
-import com.mindhub.ecommerce.models.products.Ticket;
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
-import com.mindhub.ecommerce.models.users.User;
 import com.mindhub.ecommerce.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.*;
 
 @SpringBootApplication
 public class EcommerceApplication {
@@ -56,12 +51,12 @@ public class EcommerceApplication {
             concierto.setPrice(2500D);
             concierto.setPoints(100);
             concierto.setArtist("MALUMA");
-            concierto.setLocation("MIAMI");
+            concierto.setAddress("MIAMI");
 
             hospedaje.setPoints(50);
-            hospedaje.setPassangers(3);
+            hospedaje.setPassengers(3);
             hospedaje.setNights(5);
-            hospedaje.setPrice(3500);
+            hospedaje.setPrice(3500D);
             hospedaje.setAgency(agency);
             hospedaje.setDisscountCode("HOLIDAYS2020");
 

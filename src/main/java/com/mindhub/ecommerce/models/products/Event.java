@@ -18,8 +18,8 @@ public class Event extends Product {
     public Event() {
     }
 
-    public Event(Integer points, double price, String disscountCode, Agency agency, String artist, Integer maxCapacity, boolean vip) {
-        super(points, price, disscountCode, agency);
+    public Event(Integer points, Double price, String disscountCode, String address, Agency agency, String artist, Integer maxCapacity, boolean vip) {
+        super(points, price, disscountCode, address, agency);
         this.artist = artist;
         this.maxCapacity = maxCapacity;
         this.vip = vip;
@@ -50,7 +50,7 @@ public class Event extends Product {
     }
 
     @Override
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         if (this.vip){
             super.setPrice(price *.5); /// ver que se le aumenta si es vip
         }else {

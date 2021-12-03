@@ -6,14 +6,13 @@ import com.mindhub.ecommerce.models.users.Agency;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "hotels")
 public class Hotel extends Product{
 
     private Integer nights;
-    private Integer passangers;
+    private Integer passengers;
     private String room;
     private Pension pension;
     private LocalDateTime arrivalDate;
@@ -24,10 +23,10 @@ public class Hotel extends Product{
     public Hotel() {
     }
 
-    public Hotel(Integer points, double price, String disscountCode, Agency agency, Integer nights, Integer passangers, String room, Pension pension, LocalDateTime arrivalDate, LocalDateTime departureDate) {
-        super(points, price, disscountCode, agency);
+    public Hotel(Integer points, Double price, String discountCode, String address, Agency agency, Integer nights, Integer passengers, String room, Pension pension, LocalDateTime arrivalDate, LocalDateTime departureDate) {
+        super(points, price, discountCode, address, agency);
         this.nights = nights;
-        this.passangers = passangers;
+        this.passengers = passengers;
         this.room = room;
         this.pension = pension;
         this.arrivalDate = arrivalDate;
@@ -42,12 +41,12 @@ public class Hotel extends Product{
         this.nights = nights;
     }
 
-    public Integer getPassangers() {
-        return passangers;
+    public Integer getPassengers() {
+        return passengers;
     }
 
-    public void setPassangers(Integer passangers) {
-        this.passangers = passangers;
+    public void setPassengers(Integer passengers) {
+        this.passengers = passengers;
     }
 
     public String getRoom() {
@@ -83,15 +82,15 @@ public class Hotel extends Product{
     }
 
     @Override
-    public void setPrice(double price) {
-        super.setPrice(price * this.nights * this.passangers);
+    public void setPrice(Double price) {
+        super.setPrice(price * this.nights * this.passengers);
     }
 
     @Override
     public String toString() {
         return "Hotel{" +
                 "nights=" + nights +
-                ", passangers=" + passangers +
+                ", passengers=" + passengers +
                 ", room='" + room + '\'' +
                 ", pension=" + pension +
                 ", arrivalDate=" + arrivalDate +
