@@ -1,0 +1,116 @@
+:root {
+    --font-color-w: #D2D3D9;
+    --font-color-b: #0D0D0D;
+    --main-bg-color: #A3B2BF;
+    --form-bg-color: #7B95A6;
+    --header-bg-color: #435c8f;
+    --extra-color: #731425;
+}
+
+
+/*generals*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.mainDiv {
+    background-color: var(--main-bg-color);
+}
+a, i {
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.5rem;
+    color: var(--font-color-w);
+}
+h2 {
+    color: var(--font-color-b);
+    font-family: 'Poppins', sans-serif;
+}
+h5 {
+    color: #fff;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.3rem;
+}
+.linkCursor {
+    cursor: pointer;
+}
+.btn-warning {
+    padding: .5rem;
+    border-radius: 10%;
+    font-family: 'Poppins', sans-serif;
+    color: var(--font-color-b);
+}
+.fa-search-location {
+    color: var(--font-color-b);
+}
+/*header*/
+.logo {
+    width: 145px;
+    height: 145px;
+}
+.headerAccess {
+    background-color: var(--header-bg-color);
+    width: 100%;
+}
+.headerInfo {
+    background-color: var(--header-bg-color);
+    width: 100%;
+    border-radius: 15px;
+}
+.headerForm {
+    background-color: var(--main-bg-color);
+}
+.formDiv {
+    padding: 1rem;
+    background-color: var(--font-color-w);
+    border-radius: 15px;
+}
+/*main*/
+
+/*footer*/
+footer {
+    background-color: var(--header-bg-color);
+}
+.fa-facebook-square {
+    color: #6772e5;
+}
+.fa-instagram {
+    color: #e85c6f;
+}
+.fa-twitter {
+    color: #1d9bf0;
+}
+.fa-linkedin-in {
+    color: #0a66c2;
+}
+/*Animation*/
+.go-top-container {
+    position: fixed;
+    bottom: 3rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    z-index: -1;
+}
+.go-top-button {
+    width: 0rem;
+    height: 0rem;
+    background-color: #696969;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+.go-top-button i {
+    position: absolute;
+    font-size: 1.7rem;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: cornsilk;
+    transition: .2s;
+}
