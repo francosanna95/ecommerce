@@ -6,7 +6,9 @@ import com.mindhub.ecommerce.models.products.Product;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -24,6 +26,15 @@ public abstract class User  implements Serializable {
     private String password;
     private String address;
     private String bankAccountNumber;
+    private String firstName;
+    private String lastName;
+    private String imgUrl;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<ClientProducts> cart = new HashSet();
+    private String fantasyName;
+    //   @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    //   private Set<ClientProducts> historyCart = new HashSet();
+
 
 
     @Enumerated(EnumType.STRING)
@@ -32,7 +43,7 @@ public abstract class User  implements Serializable {
     public User() {
     }
 
-    public User(String email, String password, UserRole userRole,String address,String bankAccountNumber) {
+    public User(String email, String password, UserRole userRole,String address,String bankAccountNumber, String firstName,String lastName,String imgUrl) {
         this.email = email;
         this.password = password;
         this.userRole = userRole;

@@ -12,7 +12,7 @@ import java.util.*;
 //@Table(name = "agencies")
 public class Agency extends User {
 
-    private String fantasyName;
+
 //    @OneToMany(mappedBy = "agency", fetch = FetchType.EAGER)
 //    private Set<Product> availableProducts = new HashSet();
 
