@@ -2,17 +2,11 @@ package com.mindhub.ecommerce.models.users;
 
 
 import com.mindhub.ecommerce.enums.UserRole;
-import com.mindhub.ecommerce.models.products.Product;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-//Single Table crea una tabla Users con todos los elementos, TABLE_PER_CLASS crea una tabla compartida
-//Podes ver la diferencia en H2-Console entre como se comporta la persistencia en User y en Products
-public abstract class User  implements Serializable {
+public abstract class User {
 
     @Id
     @GeneratedValue (strategy=GenerationType.TABLE , generator= "idsGenerator" )
