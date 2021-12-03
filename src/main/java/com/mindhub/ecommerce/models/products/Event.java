@@ -13,8 +13,6 @@ public class Event extends Product {
     private Integer maxCapacity;
     private boolean vip;
 
-
-
     public Event() {
     }
 

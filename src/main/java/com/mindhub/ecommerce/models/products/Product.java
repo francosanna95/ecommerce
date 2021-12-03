@@ -1,5 +1,6 @@
 package com.mindhub.ecommerce.models.products;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mindhub.ecommerce.models.users.Agency;
 import com.mindhub.ecommerce.models.users.Client;
 import com.mindhub.ecommerce.models.users.ClientProducts;
@@ -98,6 +99,10 @@ public abstract class Product implements Serializable {
         this.address = address;
     }
 
+ //   @JsonIgnore
+//    public Agency getAgency() {
+//        return agency;
+//    }
  //   public Agency getAgency() {
  //       return agency;
  //   }

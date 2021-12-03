@@ -12,7 +12,6 @@ public class ClientProducts {
     @GenericGenerator(name = "native", strategy = "native")
     long id;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private  Client client;

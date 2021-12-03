@@ -20,7 +20,7 @@ public class EcommerceApplication {
 
 
     @Bean
-    public CommandLineRunner initData(UserRepository userRepo,
+    public CommandLineRunner initData(UserRepository clientRepo,
                                       AgencyRepository agencyRepo,
                                       EventRepository eventRepo,
                                       HotelRepository hotelRepo) {
@@ -33,7 +33,7 @@ public class EcommerceApplication {
             client.setPassword("hola123");
             client.setUserRole(UserRole.CLIENT);
 
-            userRepo.save(client);
+            clientRepo.save(client);
             Agency agency = new Agency();
             agency.setFantasyName("Travel Rock");
             agency.setAddress("Avenida Siempre Viva 123");
@@ -41,7 +41,7 @@ public class EcommerceApplication {
             agency.setPassword("agency123");
             agency.setUserRole(UserRole.AGENCY);
 
-            userRepo.save(agency);
+            agencyRepo.save(agency);
 
             Event concierto = new Event();
             Hotel hospedaje = new Hotel();
