@@ -35,7 +35,7 @@ h5 {
 .linkCursor {
     cursor: pointer;
 }
-.btn-warning {
+.btnSearch {
     padding: .5rem;
     border-radius: 10%;
     font-family: 'Poppins', sans-serif;
@@ -66,7 +66,12 @@ h5 {
     background-color: var(--font-color-w);
     border-radius: 15px;
 }
-
+.modal-header, .modal-footer {
+    background-color: var(--header-bg-color);
+}
+.modal-body {
+    background-color: var(--form-bg-color);
+}
 /*Card publicidad*/
 
 .containerPadre {
@@ -124,7 +129,6 @@ h5 {
 }
 
 .containerHijo .card3 {
-
     background-image: url(../assets/maleta.jpg);
 }
 
@@ -238,7 +242,7 @@ footer {
 .go-top-button {
     width: 0rem;
     height: 0rem;
-    background-color: #696969;
+    background-color: var(--extra-color);
     border-radius: 50%;
     cursor: pointer;
     transition: .2s;
@@ -253,6 +257,18 @@ footer {
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    color: cornsilk;
+    color: var(--font-color-w);
     transition: .2s;
+}
+.showButton {
+    z-index: 10;
+}
+.showButton .go-top-button {
+    animation: popup .3s ease-in-out;
+    width: 3rem;
+    height: 3rem;
+    z-index: 11;
+}
+.showButton i {
+    transform: translate(-50%, -50%) scale(1);
 }
