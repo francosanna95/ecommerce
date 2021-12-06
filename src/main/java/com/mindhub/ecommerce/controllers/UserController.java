@@ -4,7 +4,6 @@ package com.mindhub.ecommerce.controllers;
 import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.repositories.UserRepository;
-import com.mindhub.ecommerce.services.AgencyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
