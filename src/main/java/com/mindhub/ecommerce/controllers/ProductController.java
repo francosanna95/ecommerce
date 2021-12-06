@@ -57,14 +57,13 @@ public class ProductController {
     @PostMapping("/ticket")
     public ResponseEntity<String> addTicket(@RequestBody TicketDTO ticketDTO, @RequestParam String agencyName) {
 
-        User agency = userRepo.findByFirstName(agencyName).orElse(null);
 
+        User agency = userRepo.findByFirstName(agencyName).orElse(null);
         Ticket ticket = new Ticket(ticketDTO);
         ticket.setUser(agency);
-
-
-
         productRepo.save(ticket);
+
+
         return new ResponseEntity<>("Todo bien", HttpStatus.ACCEPTED);
     }
 }
