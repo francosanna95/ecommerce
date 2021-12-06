@@ -6,9 +6,6 @@ import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
-//import com.mindhub.ecommerce.repositories.sales.ClientEventRepository;
-//import com.mindhub.ecommerce.repositories.sales.ClientHotelRepository;
-//import com.mindhub.ecommerce.repositories.sales.ClientTicketRepository;
 import com.mindhub.ecommerce.repositories.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -42,7 +39,7 @@ public class EcommerceApplication {
             userRepo.save(admin);
 
             //Creación de agencia
-            User agencyAndamio = new User("Andiamo Viajes", "Andiamo Viajes", "travel@agency.com", "123456", UserRole.AGENCY);
+            User agencyAndamio = new User("Andiamo Viajes", "Andiamo Viajes", "travel@agency.com", passwordEncoder.encode("12345678"), UserRole.AGENCY);
             agencyAndamio.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638710245/Ecommerce/profile_pics/andamio_AG.jpg");
             agencyAndamio.setBankAccountNumber("VIN-005");
 
@@ -67,7 +64,7 @@ public class EcommerceApplication {
             salesRepos.save(offeredProduct2);
 
             ////Creación de Agencia
-            User agencyBabel = new User("Babel", "Viajes", "babel@agency.com", "1234567", UserRole.AGENCY);
+            User agencyBabel = new User("Babel", "Viajes", "babel@agency.com", passwordEncoder.encode("12345678"), UserRole.AGENCY);
             agencyBabel.setBankAccountNumber("VIN-007");
             agencyBabel.setAddress("San Martín 1136 (Pasaje San Martín) Local 33, Mendoza");
             agencyBabel.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713829/Ecommerce/profile_pics/babel_AG.jpg");
@@ -87,12 +84,12 @@ public class EcommerceApplication {
             productRepo.save(hospedaje2);
             salesRepos.save(offeredProduct4);
 
-            User clientMelba = new User("Melba", "Morel", "melba@mindhub.com", "melba123", UserRole.CLIENT);
+            User clientMelba = new User("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("melba123!"), UserRole.CLIENT);
             clientMelba.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713199/Ecommerce/profile_pics/melba_CL.jpg");
             clientMelba.setBankAccountNumber("VIN-003");
             userRepo.save(clientMelba);
 
-            User clientRicardo = new User("Ricardo", "Morel", "ricardo@mindhub.com", "ricardo123", UserRole.CLIENT);
+            User clientRicardo = new User("Ricardo", "Morel", "ricardo@mindhub.com", passwordEncoder.encode("ricardo123!"), UserRole.CLIENT);
             clientRicardo.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713630/Ecommerce/profile_pics/ricardoM_CL.jpg");
             clientRicardo.setBankAccountNumber("VIN-003");
             userRepo.save(clientRicardo);
@@ -101,7 +98,7 @@ public class EcommerceApplication {
             ClientHotel melbaHotel = new ClientHotel(clientMelba, hospedaje, LocalDateTime.now(), LocalDateTime.now().plusDays(5), 5, 2);
             melbaHotel.setPension(Pension.BREAKFAST_BUFFET);
 
-            Ticket ticket = new Ticket(2000, 20000D, "ALMUNDO", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", 200, 100, "URL-IMAGEN", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Barcelona", "Madrid", "BCN", Clase.PRIMERA);
+            Ticket ticket = new Ticket(2000, 20000D, "ALMUNDO", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", 200, 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638817782/Services/Flies/Machu_Picchu_Per%C3%BA_xker0x.jpg", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Barcelona", "Madrid", "BCN", Clase.PRIMERA);
             productRepo.save(ticket);
             ClientTicket cl = new ClientTicket(clientMelba, ticket, Clase.PRIMERA, 2);
 

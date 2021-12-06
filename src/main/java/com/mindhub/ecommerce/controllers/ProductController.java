@@ -106,7 +106,7 @@ public class ProductController {
         if (hotelDTO.getAvailableRooms()<0){
             return new ResponseEntity<>("Can't have negative rooms",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (hotelDTO.getAddress().isEmpty()){
+        if (hotelDTO.getAddress().isBlank()){
             return new ResponseEntity<>("Please set address",HttpStatus.NOT_ACCEPTABLE);
         }
         if (hotelDTO.getPrice()<0){
@@ -119,7 +119,7 @@ public class ProductController {
             return new ResponseEntity<>("The name can't be blank",HttpStatus.NOT_ACCEPTABLE);
         }
         if (productService.createHotel(hotelDTO,agencyName)){
-         return new ResponseEntity<>("Hotel agregado",HttpStatus.ACCEPTED);
+         return new ResponseEntity<>("Hotel creation successful",HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("Hotel creation error",HttpStatus.NOT_ACCEPTABLE);
      }

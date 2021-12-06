@@ -31,6 +31,7 @@ const app = Vue.createApp({
       axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
         .then(response => {
          console.log(response)
+         window.location.href = "./index.html"
         })
         .catch(error => {
          console.log(error.response.status)
