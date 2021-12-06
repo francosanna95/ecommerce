@@ -56,15 +56,20 @@ public class ProductController {
 
     @PostMapping("/ticket")
     public ResponseEntity<String> addTicket(@RequestBody TicketDTO ticketDTO, @RequestParam String agencyName) {
-
         User agency = userRepo.findByFirstName(agencyName).orElse(null);
 
         Ticket ticket = new Ticket(ticketDTO);
         ticket.setUser(agency);
 
-
-
         productRepo.save(ticket);
         return new ResponseEntity<>("Todo bien", HttpStatus.ACCEPTED);
     }
+    @PostMapping("/hotels")
+     public ResponseEntity<String> addHotel(@RequestBody HotelDTO hotelDTO, @RequestParam String agencyName) {
+         User agency = userRepo.findByFirstName(agencyName).orElse(null);
+         Hotel hotel=new Hotel(hotelDTO);
+         hotel.setUser(agency);
+         productRepo.save(hotel);
+         return new ResponseEntity<>("Hotel agregado",HttpStatus.ACCEPTED);
+     }
 }

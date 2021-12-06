@@ -17,6 +17,7 @@ public class TicketDTO extends ProductDTO{
     private String seat;
 
     public TicketDTO() {}
+
     public TicketDTO(Product product) {
         super(product);
         Ticket ticket = (Ticket) product;
