@@ -56,10 +56,10 @@ h5 {
 .headerInfo {
     background-color: var(--header-bg-color);
     width: 100%;
-    border-radius: 15px;
 }
 .headerForm {
     background-color: var(--main-bg-color);
+    margin: 80px;
 }
 .formDiv {
     padding: 1rem;
