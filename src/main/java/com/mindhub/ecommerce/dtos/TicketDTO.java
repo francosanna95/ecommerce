@@ -1,37 +1,30 @@
 package com.mindhub.ecommerce.dtos;
 
 import com.mindhub.ecommerce.enums.Clase;
-import com.mindhub.ecommerce.models.products.Ticket;
-import com.mindhub.ecommerce.models.ClientProduct;
+import com.mindhub.ecommerce.models.Product;
+import com.mindhub.ecommerce.models.Ticket;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
-public class TicketDTO {
+public class TicketDTO extends ProductDTO{
 
-    private Set<ClientProduct> clientProducts = new HashSet();
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private String departureLocation;
     private String arrivalLocation;
     private String airport;
-    private Clase clase; // contador para poner limite a cantidad d pasajeros por clase
+    private Clase clase;
     private String seat;
 
     public TicketDTO() {}
-    public TicketDTO(Ticket ticket) {
-
-        this.clientProducts=ticket.getClientProducts();
+    public TicketDTO(Product product) {
+        super(product);
+        Ticket ticket = (Ticket) product;
         this.departureLocation=ticket.getDepartureLocation();
         this.arrivalLocation=ticket.getArrivalLocation();
         this.airport=ticket.getAirport();
         this.clase=ticket.getClase();
-        this.seat=ticket.getAsiento();
     }
-
-    public Set<ClientProduct> getClientProducts() {return clientProducts;}
-    public void setClientProducts(Set<ClientProduct> clientProducts) {this.clientProducts = clientProducts;}
 
     public LocalDateTime getDepartureTime() {return departureTime;}
     public void setDepartureTime(LocalDateTime departureTime) {this.departureTime = departureTime;}

@@ -2,12 +2,11 @@ package com.mindhub.ecommerce.models;
 
 
 import com.mindhub.ecommerce.enums.UserRole;
-import com.mindhub.ecommerce.models.ClientProduct;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @Entity
@@ -24,13 +23,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String imgUrl;
+    private String fantasyName;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<ClientProduct> cart = new HashSet<>();
+    private List<UserProduct> currentCart = new LinkedList<>();
 
-    private String fantasyName;
-    //   @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    //   private Set<ClientProduct> historyCart = new HashSet();
+    @OneToMany(mappedBy = "userHistory", fetch = FetchType.EAGER)
+    private List<UserProduct> historyCart = new LinkedList<>();
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -45,13 +44,33 @@ public class User {
         this.userRole = userRole;
     }
 
-    public void addClientProduct(ClientProduct clientProduct){
-        this.cart.add(clientProduct);
+    public User(String email, String password, String address, String bankAccountNumber, String firstName, String lastName, String imgUrl, String fantasyName, UserRole userRole) {
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.bankAccountNumber = bankAccountNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.imgUrl = imgUrl;
+        this.fantasyName = fantasyName;
+        this.userRole = userRole;
     }
+
+    public void addClientProductToCurrentCart(UserProduct userProduct){
+        userProduct.setUser(this);
+        this.currentCart.add(userProduct);
+    }
+
+    public void addClientProductToHistoryCart(UserProduct userProduct){
+        userProduct.setUserHistory(this);
+        this.historyCart.add(userProduct);
+    }
+
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -59,6 +78,7 @@ public class User {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -66,20 +86,15 @@ public class User {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserRole getUserRole() {
-        return userRole;
-    }
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
     }
 
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -87,24 +102,66 @@ public class User {
     public String getBankAccountNumber() {
         return bankAccountNumber;
     }
+
     public void setBankAccountNumber(String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
     }
 
-    public String getFirstName() {return firstName;}
-    public void setFirstName(String firstName) {this.firstName = firstName;}
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public String getLastName() {return lastName;}
-    public void setLastName(String lastName) {this.lastName = lastName;}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getImgUrl() {return imgUrl;}
-    public void setImgUrl(String imgUrl) {this.imgUrl = imgUrl;}
+    public String getLastName() {
+        return lastName;
+    }
 
-    public Set<ClientProduct> getCart() {return cart;}
-    public void setCart(Set<ClientProduct> cart) {this.cart = cart;}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    public String getFantasyName() {return fantasyName;}
-    public void setFantasyName(String fantasyName) {this.fantasyName = fantasyName;}
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getFantasyName() {
+        return fantasyName;
+    }
+
+    public void setFantasyName(String fantasyName) {
+        this.fantasyName = fantasyName;
+    }
+
+    public List<UserProduct> getCurrentCart() {
+        return currentCart;
+    }
+
+    public void setCurrentCart(List<UserProduct> currentCart) {
+        this.currentCart = currentCart;
+    }
+
+    public List<UserProduct> getHistoryCart() {
+        return historyCart;
+    }
+
+    public void setHistoryCart(List<UserProduct> historyCart) {
+        this.historyCart = historyCart;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
 
     @Override
     public String toString() {

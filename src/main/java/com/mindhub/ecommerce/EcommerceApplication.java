@@ -1,15 +1,21 @@
 package com.mindhub.ecommerce;
 
+import com.mindhub.ecommerce.enums.Clase;
+import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.enums.UserRole;
-import com.mindhub.ecommerce.models.products.Event;
-import com.mindhub.ecommerce.models.products.Hotel;
-import com.mindhub.ecommerce.models.ClientProduct;
-import com.mindhub.ecommerce.models.User;
+import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.*;
+import com.mindhub.ecommerce.repositories.ProductRepository;
+//import com.mindhub.ecommerce.repositories.sales.ClientEventRepository;
+//import com.mindhub.ecommerce.repositories.sales.ClientHotelRepository;
+//import com.mindhub.ecommerce.repositories.sales.ClientTicketRepository;
+import com.mindhub.ecommerce.repositories.SalesRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class EcommerceApplication {
@@ -21,53 +27,94 @@ public class EcommerceApplication {
 
     @Bean
     public CommandLineRunner initData(UserRepository userRepo,
-                                      EventRepository eventRepo,
-                                      HotelRepository hotelRepo) {
+                                      ProductRepository productRepo,
+                                      SalesRepository salesRepos){
         return (args) -> {
 
-            User client = new User();
-            client.setFirstName("Melba");
-            client.setLastName("Morel");
-            client.setEmail("melba@mindhub.com");
-            client.setPassword("hola123");
-            client.setUserRole(UserRole.CLIENT);
 
-            userRepo.save(client);
-            User agency = new User();
-            agency.setFantasyName("Travel Rock");
-            agency.setAddress("Avenida Siempre Viva 123");
-            agency.setEmail("travel@agency.com");
-            agency.setPassword("agency123");
-            agency.setUserRole(UserRole.AGENCY);
+            //Creación de agencia
+            User agencyAndamio = new User("Andiamo Viajes", "Andiamo Viajes", "travel@agency.com", "123456", UserRole.AGENCY);
+            agencyAndamio.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638710245/Ecommerce/profile_pics/andamio_AG.jpg");
+            agencyAndamio.setBankAccountNumber("VIN-005");
 
-            userRepo.save(agency);
+            //Creación de producto ofrecido por Agencia Número 1
+            Event concierto = new Event(100, 2500D, "CODE003", "601 Biscayne Blvd, Miami, FL, Estados Unidos",agencyAndamio, "Maluma", 10000, 1000, "IMG-URL", "Maluma Fire Tour",true);
+            concierto.setUser(agencyAndamio);
+
+            UserProduct offeredProduct = new UserProduct(); //Al instanciarlos como UserProduct se persisten también en la tabla User_Product,
+            // sino, si lo instanciamos como ClientEvent o ClientTicket o HotelTicket se guardan en las tablas de SoldEvents,SoldHotels o SoldTickets
+            offeredProduct.setProduct(concierto);
+            offeredProduct.setUser(agencyAndamio);
+
+            userRepo.save(agencyAndamio);
+            productRepo.save(concierto);
+            salesRepos.save(offeredProduct);
+
+            //Creación de producto ofrecido por agencia Número 2
+            Hotel hotel2 = new Hotel(100, 2500D, "CODE-005", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", 500, 500,"IMG-URL",true, true, 200, null);
+            UserProduct offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+
+            productRepo.save(hotel2);
+            salesRepos.save(offeredProduct2);
+
+            ////Creación de Agencia
+            User agencyBabel = new User("Babel", "Viajes", "babel@agency.com", "1234567", UserRole.AGENCY);
+            agencyBabel.setBankAccountNumber("VIN-007");
+            agencyBabel.setAddress("San Martín 1136 (Pasaje San Martín) Local 33, Mendoza");
+            agencyBabel.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713829/Ecommerce/profile_pics/babel_AG.jpg");
+            userRepo.save(agencyBabel);
 
 
-            Event concierto = new Event();
-            Hotel hospedaje = new Hotel();
+            Hotel hospedaje = new Hotel(500, 3500D, "CODE-23", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition",500, 500,"IMG-URL",true, true, 200, null);
+            UserProduct offeredProduct3 = new UserProduct(agencyBabel, hospedaje);
 
-           // concierto.setAgency(agency);
-            concierto.setDisscountCode("NONE");
-            concierto.setPrice(2500D);
-            concierto.setPoints(100);
-            concierto.setArtist("MALUMA");
-            concierto.setAddress("MIAMI");
+            productRepo.save(hospedaje);
+            salesRepos.save(offeredProduct3);
 
-            hospedaje.setPoints(50);
-            hospedaje.setPassengers(3);
-            hospedaje.setNights(5);
-            hospedaje.setPrice(3500D);
-          //hospedaje.setAgency(agency);
-            hospedaje.setDisscountCode("HOLIDAYS2020");
 
-            eventRepo.save(concierto);
-            hotelRepo.save(hospedaje);
+            Hotel hospedaje2 = new Hotel(150, 1500D, "NONE", "Av. Arístides Villanueva 385, M5500EOW Mendoza", agencyBabel, "Chill Inn Hostel", 500, 500,"IMG-URL",false, false, 200, Pension.BREAKFAST_BUFFET);
+            UserProduct offeredProduct4 = new UserProduct(agencyBabel, hospedaje2);
 
-            ClientProduct clientProduct = new ClientProduct(agency,hospedaje);
-            agency.addClientProduct(clientProduct);
-            ClientProduct clientProduct1 = new ClientProduct(agency,concierto);
-            agency.addClientProduct(clientProduct1);
-            userRepo.save(agency);
+            productRepo.save(hospedaje2);
+            salesRepos.save(offeredProduct4);
+
+            User clientMelba = new User("Melba", "Morel", "melba@mindhub.com", "melba123", UserRole.CLIENT);
+            clientMelba.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713199/Ecommerce/profile_pics/melba_CL.jpg");
+            clientMelba.setBankAccountNumber("VIN-003");
+            userRepo.save(clientMelba);
+
+            User clientRicardo = new User("Ricardo", "Morel", "ricardo@mindhub.com", "ricardo123", UserRole.CLIENT);
+            clientRicardo.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713630/Ecommerce/profile_pics/ricardoM_CL.jpg");
+            clientRicardo.setBankAccountNumber("VIN-003");
+            userRepo.save(clientRicardo);
+
+
+            ClientHotel melbaHotel = new ClientHotel(clientMelba, hospedaje, LocalDateTime.now(), LocalDateTime.now().plusDays(5), 5, 2);
+            melbaHotel.setPension(Pension.BREAKFAST_BUFFET);
+
+            Ticket ticket = new Ticket(2000, 20000D, "ALMUNDO", "08820 El Prat de Llobregat, Barcelona, España",agencyAndamio, "Vuelo Barcelona - Madrid",200,100,"URL-IMAGEN",LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Barcelona", "Madrid", "BCN", Clase.PRIMERA);
+            productRepo.save(ticket);
+            ClientTicket cl = new ClientTicket(clientMelba, ticket, Clase.PRIMERA, 2);
+
+            // cl.setUser(clientMelba);
+            cl.setUserHistory(clientMelba);
+            salesRepos.save(cl);
+            salesRepos.save(melbaHotel);
+
+            ClientEvent melbaConcert = new ClientEvent(clientMelba, concierto, true, 2);
+
+            //melbaConcert.setUser(clientMelba);
+            melbaConcert.setUserHistory(clientMelba);
+            salesRepos.save(melbaConcert);
+
+            ClientHotel ricardoHotel = new ClientHotel(clientRicardo, hospedaje2, LocalDateTime.now().plusDays(5), LocalDateTime.now().plusDays(7), 2, 1);
+            ricardoHotel.setPension(Pension.BREAKFAST_BUFFET);
+            salesRepos.save(ricardoHotel);
+
+            userRepo.save(clientMelba);
+            userRepo.save(clientRicardo);
+            userRepo.save(agencyAndamio);
+            userRepo.save(agencyBabel);
 
 
         };

@@ -1,33 +1,35 @@
-package com.mindhub.ecommerce.models.products;
+package com.mindhub.ecommerce.models;
 
-import com.mindhub.ecommerce.models.User;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "events")
 public class Event extends Product  implements Serializable {
 
+
     private String artist;
-    private Integer maxCapacity;
     private boolean vip;
 
-    public Event() {
+    public Event(){
+        super();
     }
 
-    public Event(Integer points, Double price, String disscountCode, String address, User agency, String artist, Integer maxCapacity, boolean vip, String name) {
-        super(points, price, disscountCode, address, agency, name);
+    public Event(Integer points, Double price, String disscountCode, String address, String productName, Integer maxCapacity, Integer stock, String imgUrl, String artist, boolean vip) {
+        super(points, price, disscountCode, address, productName, maxCapacity, stock, imgUrl);
         this.artist = artist;
-        this.maxCapacity = maxCapacity;
+        this.vip = vip;
+    }
+
+    public Event(Integer points, Double price, String disscountCode, String address, User user, String name, Integer maxCapacity, Integer stock, String imgUrl, String artist, boolean vip) {
+        super(points, price, disscountCode, address, user, name, maxCapacity, stock, imgUrl);
+        this.artist = artist;
         this.vip = vip;
     }
 
     public String getArtist() {
         return artist;
     }
-
     public void setArtist(String artist) {
         this.artist = artist;
     }
@@ -35,7 +37,6 @@ public class Event extends Product  implements Serializable {
     public Integer getMaxCapacity() {
         return maxCapacity;
     }
-
     public void setMaxCapacity(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
@@ -43,7 +44,6 @@ public class Event extends Product  implements Serializable {
     public boolean isVip() {
         return vip;
     }
-
     public void setVip(boolean vip) {
         this.vip = vip;
     }
@@ -59,7 +59,8 @@ public class Event extends Product  implements Serializable {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return super.toString()+
+                "'\'Event{" +
                 "artist='" + artist + '\'' +
                 ", maxCapacity=" + maxCapacity +
                 ", vip=" + vip +

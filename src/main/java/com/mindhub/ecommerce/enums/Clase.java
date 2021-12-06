@@ -1,6 +1,9 @@
 package com.mindhub.ecommerce.enums;
 
+import javax.persistence.Entity;
+
 public enum Clase {
-    PRIMERA,
+    FIRST,
+    PRIMERA
 
 }
