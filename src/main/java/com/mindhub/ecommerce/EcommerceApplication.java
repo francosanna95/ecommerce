@@ -10,10 +10,12 @@ import com.mindhub.ecommerce.repositories.ProductRepository;
 //import com.mindhub.ecommerce.repositories.sales.ClientHotelRepository;
 //import com.mindhub.ecommerce.repositories.sales.ClientTicketRepository;
 import com.mindhub.ecommerce.repositories.SalesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -24,13 +26,20 @@ public class EcommerceApplication {
         SpringApplication.run(EcommerceApplication.class, args);
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public CommandLineRunner initData(UserRepository userRepo,
                                       ProductRepository productRepo,
-                                      SalesRepository salesRepos){
+                                      SalesRepository salesRepos) {
         return (args) -> {
 
+            User admin = new User();
+            admin.setUserRole(UserRole.ADMIN);
+            admin.setEmail("melbas.trips@gmail.com");
+            admin.setPassword(passwordEncoder.encode("teamparis123"));
+            userRepo.save(admin);
 
             //Creación de agencia
             User agencyAndamio = new User("Andiamo Viajes", "Andiamo Viajes", "travel@agency.com", "123456", UserRole.AGENCY);
@@ -38,7 +47,7 @@ public class EcommerceApplication {
             agencyAndamio.setBankAccountNumber("VIN-005");
 
             //Creación de producto ofrecido por Agencia Número 1
-            Event concierto = new Event(100, 2500D, "CODE003", "601 Biscayne Blvd, Miami, FL, Estados Unidos",agencyAndamio, "Maluma", 10000, 1000, "IMG-URL", "Maluma Fire Tour",true);
+            Event concierto = new Event(100, 2500D, "CODE003", "601 Biscayne Blvd, Miami, FL, Estados Unidos", agencyAndamio, "Maluma", 10000, 1000, "IMG-URL", "Maluma Fire Tour", true);
             concierto.setUser(agencyAndamio);
 
             UserProduct offeredProduct = new UserProduct(); //Al instanciarlos como UserProduct se persisten también en la tabla User_Product,
@@ -51,7 +60,7 @@ public class EcommerceApplication {
             salesRepos.save(offeredProduct);
 
             //Creación de producto ofrecido por agencia Número 2
-            Hotel hotel2 = new Hotel(100, 2500D, "CODE-005", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", 500, 500,"IMG-URL",true, true, 200, null);
+            Hotel hotel2 = new Hotel(100, 2500D, "CODE-005", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", 500, 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
 
             productRepo.save(hotel2);
@@ -65,14 +74,14 @@ public class EcommerceApplication {
             userRepo.save(agencyBabel);
 
 
-            Hotel hospedaje = new Hotel(500, 3500D, "CODE-23", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition",500, 500,"IMG-URL",true, true, 200, null);
+            Hotel hospedaje = new Hotel(500, 3500D, "CODE-23", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", 500, 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct3 = new UserProduct(agencyBabel, hospedaje);
 
             productRepo.save(hospedaje);
             salesRepos.save(offeredProduct3);
 
 
-            Hotel hospedaje2 = new Hotel(150, 1500D, "NONE", "Av. Arístides Villanueva 385, M5500EOW Mendoza", agencyBabel, "Chill Inn Hostel", 500, 500,"IMG-URL",false, false, 200, Pension.BREAKFAST_BUFFET);
+            Hotel hospedaje2 = new Hotel(150, 1500D, "NONE", "Av. Arístides Villanueva 385, M5500EOW Mendoza", agencyBabel, "Chill Inn Hostel", 500, 500, "IMG-URL", false, false, 200, Pension.BREAKFAST_BUFFET);
             UserProduct offeredProduct4 = new UserProduct(agencyBabel, hospedaje2);
 
             productRepo.save(hospedaje2);
@@ -92,7 +101,7 @@ public class EcommerceApplication {
             ClientHotel melbaHotel = new ClientHotel(clientMelba, hospedaje, LocalDateTime.now(), LocalDateTime.now().plusDays(5), 5, 2);
             melbaHotel.setPension(Pension.BREAKFAST_BUFFET);
 
-            Ticket ticket = new Ticket(2000, 20000D, "ALMUNDO", "08820 El Prat de Llobregat, Barcelona, España",agencyAndamio, "Vuelo Barcelona - Madrid",200,100,"URL-IMAGEN",LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Barcelona", "Madrid", "BCN", Clase.PRIMERA);
+            Ticket ticket = new Ticket(2000, 20000D, "ALMUNDO", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", 200, 100, "URL-IMAGEN", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Barcelona", "Madrid", "BCN", Clase.PRIMERA);
             productRepo.save(ticket);
             ClientTicket cl = new ClientTicket(clientMelba, ticket, Clase.PRIMERA, 2);
 
