@@ -10,7 +10,9 @@ import com.mindhub.ecommerce.models.User;
 import com.mindhub.ecommerce.repositories.ProductRepository;
 import com.mindhub.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepo;
@@ -49,9 +51,6 @@ public class ProductServiceImpl implements ProductService{
         hotel.setUser(agency);
 
         productRepo.save(hotel);
-        if (productRepo.existsById(hotelDTO.getProductId())) {
             return true;
-        }
-        return false;
     }
 }

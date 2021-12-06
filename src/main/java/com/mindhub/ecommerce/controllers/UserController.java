@@ -19,8 +19,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    @Autowired
-    private AgencyServiceImpl agencyService;
 
     @GetMapping("/agencies")
     public Set<UserDTO> getAgencies() {
