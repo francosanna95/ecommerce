@@ -35,7 +35,7 @@ h5 {
 .linkCursor {
     cursor: pointer;
 }
-.btn-warning {
+.btnSearch {
     padding: .5rem;
     border-radius: 10%;
     font-family: 'Poppins', sans-serif;
@@ -56,17 +56,163 @@ h5 {
 .headerInfo {
     background-color: var(--header-bg-color);
     width: 100%;
-    border-radius: 15px;
 }
 .headerForm {
     background-color: var(--main-bg-color);
+    margin: 80px;
 }
 .formDiv {
     padding: 1rem;
     background-color: var(--font-color-w);
     border-radius: 15px;
 }
+.modal-header, .modal-footer {
+    background-color: var(--header-bg-color);
+}
+.modal-body {
+    background-color: var(--form-bg-color);
+}
+/*Card publicidad*/
+
+.containerPadre {
+    width: 1200px;
+}
+.containerHijo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.containerHijo .card1 {
+    position: relative;
+    width: 450px;
+    height: 250px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-image: url(../assets/vuelo.jpg);
+    background-repeat: no-repeat;
+    background-size: 450px 250px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+}
+
+@media (max-width: 500px) {
+    .containerHijo .card1 {
+        width: 300px;
+        background-size: 300px 250px;
+    }
+ }
+
+
+.containerHijo .card2 {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    background-image: url(../assets/hotel.jpg);
+    background-position: center;
+    background-size: 250px 250px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.containerHijo .card3 {
+    background-image: url(../assets/maleta.jpg);
+}
+
+
+.containerHijo .card .content .contentBx h3 {
+    color: #ffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0 15px;
+    line-height: 1.1em;
+}
+
+/*card imagen completa destino*/
+
+.containerPadre {
+    width: 1200px;
+}
+.containerDestino {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.containerDestinoHijo .cardDestino {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.containerDestinoHijo .cardDestino .content {
+    position: absolute;
+    bottom: -160px;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    flex-direction: column;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: bottom 0.5;
+}
+
+.containerDestinoHijo .cardDestino:hover .content {
+    bottom: 0px;
+}
+
+.containerDestinoHijo .cardDestino .content .contentBx h3 {
+    color: #ffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0 15px;
+    line-height: 1.1em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(0px);
+}
+
+.containerDestinoHijo .cardDestino:hover .content .contentBx h3 {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
 /*main*/
+
+/*Card Publicidad*/
 
 /*footer*/
 footer {
@@ -96,7 +242,7 @@ footer {
 .go-top-button {
     width: 0rem;
     height: 0rem;
-    background-color: #696969;
+    background-color: var(--extra-color);
     border-radius: 50%;
     cursor: pointer;
     transition: .2s;
@@ -111,6 +257,18 @@ footer {
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    color: cornsilk;
+    color: var(--font-color-w);
     transition: .2s;
+}
+.showButton {
+    z-index: 10;
+}
+.showButton .go-top-button {
+    animation: popup .3s ease-in-out;
+    width: 3rem;
+    height: 3rem;
+    z-index: 11;
+}
+.showButton i {
+    transform: translate(-50%, -50%) scale(1);
 }
