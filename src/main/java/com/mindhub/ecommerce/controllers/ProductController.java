@@ -51,9 +51,9 @@ public class ProductController {
     }
 
     @PostMapping("/events")
-    public ResponseEntity<String> addEvent(@RequestBody EventDTO eventDTO, @RequestParam String agencyName) {
-        if (eventDTO.getArtist().isBlank()){
-            return new ResponseEntity<>("Please set Artist name",HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<String> addEvent(@RequestBody EventDTO eventDTO) {
+        if (eventDTO.getDescription().isBlank()){
+            return new ResponseEntity<>("Please set Event Description",HttpStatus.NOT_ACCEPTABLE);
         }
         if (eventDTO.getProductName().isBlank()) {
             return new ResponseEntity<>("The name can't be blank", HttpStatus.NOT_ACCEPTABLE);
@@ -61,64 +61,61 @@ public class ProductController {
         if (eventDTO.getPrice()<0){
             return new ResponseEntity<>("The price should be higher tan 0",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productRepo.existsById(eventDTO.getProductId())){
-            return new ResponseEntity<>("Can't have 2 products with one id",HttpStatus.NOT_ACCEPTABLE);
+        if (eventDTO.getAddress().isBlank()){
+            return new ResponseEntity<>("Address can't be null",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (userRepo.findByFirstName(agencyName).isEmpty()){
+
+        if (eventDTO.getStock()<0){
+            return new ResponseEntity<>("Stock should be higher tan 0",HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        if (userRepo.findByFirstName(eventDTO.getAgencyName()).isEmpty()){
             return new ResponseEntity<>("Invalid agency name",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productService.createEvent(eventDTO,agencyName)){
+        if (productService.createEvent(eventDTO,eventDTO.getAgencyName())){
             return new ResponseEntity<>("Evento creado", HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<>("Something go wrong",HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Something went wrong",HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/ticket")
-    public ResponseEntity<String> addTicket(@RequestBody TicketDTO ticketDTO, @RequestParam String agencyName) {
-        if (userRepo.findByFirstName(agencyName).isEmpty()){
+    @PostMapping("/tickets")
+    public ResponseEntity<String> addTicket(@RequestBody TicketDTO ticketDTO) {
+        if (userRepo.findByFirstName(ticketDTO.getAgencyName()).isEmpty()){
             return new ResponseEntity<>("Invalid agency name",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productRepo.existsById(ticketDTO.getProductId())){
-            return new ResponseEntity<>("Can't have 2 products with one id",HttpStatus.NOT_ACCEPTABLE);
-        }
+
         if (ticketDTO.getProductName().isBlank()) {
             return new ResponseEntity<>("The name can't be blank", HttpStatus.NOT_ACCEPTABLE);
         }
         if (ticketDTO.getPrice()<0){
             return new ResponseEntity<>("The price should be positive numbers",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (ticketDTO.getAirport().isBlank()){
-            return new ResponseEntity<>("Set an airport name",HttpStatus.NOT_ACCEPTABLE);
-        }
+
         if (ticketDTO.getStock()<0){
             return new ResponseEntity<>("You can't have negative stock",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productService.createTicket(ticketDTO,agencyName)) {
+
+        if (productService.createTicket(ticketDTO,ticketDTO.getAgencyName())) {
             return new ResponseEntity<>("Ticked creado", HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<>("Creation ticket error",HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>("Creation ticket error, please contact our Help Desk",HttpStatus.NOT_ACCEPTABLE);
     }
     @PostMapping("/hotels")
-     public ResponseEntity<String> addHotel(@RequestBody HotelDTO hotelDTO, @RequestParam String agencyName) {
-        if (productRepo.existsById(hotelDTO.getProductId())){
-            return new ResponseEntity<>("Can't have 2 products with one id",HttpStatus.NOT_ACCEPTABLE);
-        }
-        if (hotelDTO.getAvailableRooms()<0){
-            return new ResponseEntity<>("Can't have negative rooms",HttpStatus.NOT_ACCEPTABLE);
-        }
+     public ResponseEntity<String> addHotel(@RequestBody HotelDTO hotelDTO) {
+
         if (hotelDTO.getAddress().isBlank()){
             return new ResponseEntity<>("Please set address",HttpStatus.NOT_ACCEPTABLE);
         }
         if (hotelDTO.getPrice()<0){
             return new ResponseEntity<>("The price should be positive numbers",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (userRepo.findByFirstName(agencyName).isEmpty()){
+        if (userRepo.findByFirstName(hotelDTO.getAgencyName()).isEmpty()){
             return new ResponseEntity<>("Invalid Agency",HttpStatus.NOT_ACCEPTABLE);
         }
         if (hotelDTO.getProductName().isBlank()){
             return new ResponseEntity<>("The name can't be blank",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productService.createHotel(hotelDTO,agencyName)){
+        if (productService.createHotel(hotelDTO,hotelDTO.getAgencyName())){
          return new ResponseEntity<>("Hotel creation successful",HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("Hotel creation error",HttpStatus.NOT_ACCEPTABLE);

@@ -18,13 +18,13 @@ public class Event extends Product  implements Serializable {
     }
 
     public Event(EventDTO eventDTO) {
-        super(eventDTO.getPoints(),eventDTO.getPrice(),eventDTO.getDisscountCode(),eventDTO.getAddress(),eventDTO.getProductName(),eventDTO.getMaxCapacity(), eventDTO.getStock(), eventDTO.getImgUrl());
+        super(eventDTO.getPoints(),eventDTO.getPrice(),eventDTO.getDisscountCode(),eventDTO.getAddress(),eventDTO.getProductName(),eventDTO.getDescription(), eventDTO.getStock(), eventDTO.getImgUrl());
         this.artist =eventDTO.getArtist();
         this.vip = eventDTO.isVip();
     }
 
-    public Event(Integer points, Double price, String disscountCode, String address, User user, String name, Integer maxCapacity, Integer stock, String imgUrl, String artist, boolean vip) {
-        super(points, price, disscountCode, address, user, name, maxCapacity, stock, imgUrl);
+    public Event(Integer points, Double price, String disscountCode, String address, User user, String name, String description, Integer stock, String imgUrl, String artist, boolean vip) {
+        super(points, price, disscountCode, address, user, name, description, stock, imgUrl);
         this.artist = artist;
         this.vip = vip;
     }
@@ -34,13 +34,6 @@ public class Event extends Product  implements Serializable {
     }
     public void setArtist(String artist) {
         this.artist = artist;
-    }
-
-    public Integer getMaxCapacity() {
-        return maxCapacity;
-    }
-    public void setMaxCapacity(Integer maxCapacity) {
-        this.maxCapacity = maxCapacity;
     }
 
     public boolean isVip() {
@@ -59,13 +52,5 @@ public class Event extends Product  implements Serializable {
         }
     }
 
-    @Override
-    public String toString() {
-        return super.toString()+
-                "'\'Event{" +
-                "artist='" + artist + '\'' +
-                ", maxCapacity=" + maxCapacity +
-                ", vip=" + vip +
-                '}';
-    }
+
 }

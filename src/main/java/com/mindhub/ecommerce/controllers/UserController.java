@@ -41,7 +41,7 @@ public class UserController {
         }
 
         if (userService.createAgency(fantasyName, email, password, imgUrl, address)) {
-            return new ResponseEntity<String>("Client created succesfully", HttpStatus.CREATED);
+            return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
 
         }
         return new ResponseEntity<>("Something went wrong, please contact our help desk", HttpStatus.CONFLICT);
@@ -50,7 +50,7 @@ public class UserController {
 
     @PostMapping("/clients/new")
     public ResponseEntity<String> createClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
-        //TODO Agregar CAPA de Servicio
+        //TODO Chequear que el mail no exista en la base de datos
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank()) {
             return new ResponseEntity<>("No parameter can be blank", HttpStatus.FORBIDDEN);
         }

@@ -22,52 +22,64 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean createEvent(EventDTO eventDTO, String agencyName) {
         //TODO cambiar agencyName por Authentication auth, y de ahi obtener el email de la agencia q esta queriendo crear el producto
+        try {
         User agency = userRepo.findByFirstName(agencyName).orElse(null);
         Event event = new Event(eventDTO);
 
         UserProduct offeredEvent = new UserProduct();
         offeredEvent.setProduct(event);
         offeredEvent.setUser(agency);
-
-        salesRepos.save(offeredEvent);
-        userRepo.save(agency);
         productRepo.save(event);
+        userRepo.save(agency);
+        salesRepos.save(offeredEvent);
 
-        if (productRepo.existsById(event.getProductId())) {
-            return true;
+
+        return true;
+
+
+        } catch (Exception e) {
+            return false;
+
         }
 
-
-        return false;
     }
 
     @Override
     public boolean createTicket(TicketDTO ticketDTO, String agencyName) {
         //TODO cambiar agencyName por Authentication auth, y de ahi obtener el email de la agencia q esta queriendo crear el producto
+        try {
+            User agency = userRepo.findByFirstName(agencyName).orElse(null);
+            Ticket ticket = new Ticket(ticketDTO);
 
-        User agency = userRepo.findByFirstName(agencyName).orElse(null);
-        Ticket ticket = new Ticket(ticketDTO);
-        ticket.setUser(agency);
-
-        productRepo.save(ticket);
-        if (productRepo.existsById(ticketDTO.getProductId())) {
+            UserProduct offeredEvent = new UserProduct();
+            offeredEvent.setProduct(ticket);
+            offeredEvent.setUser(agency);
+            ticket.setUser(agency);
+            productRepo.save(ticket);
             return true;
+        } catch (Exception e) {
+            return false;
+
         }
-        return false;
+
     }
 
     @Override
     public boolean createHotel(HotelDTO hotelDTO, String agencyName) {
 
         //TODO cambiar agencyName por Authentication auth, y de ahi obtener el email de la agencia q esta queriendo crear el producto
-        User agency = userRepo.findByFirstName(agencyName).orElse(null);
-        Hotel hotel = new Hotel(hotelDTO);
-        hotel.setUser(agency);
+        try {
+            User agency = userRepo.findByFirstName(agencyName).orElse(null);
+            Hotel hotel = new Hotel(hotelDTO);
+            UserProduct offeredEvent = new UserProduct();
+            offeredEvent.setProduct(hotel);
+            offeredEvent.setUser(agency);
 
-        productRepo.save(hotel);
-        if (productRepo.existsById(hotelDTO.getProductId())) {
+            hotel.setUser(agency);
+            productRepo.save(hotel);
             return true;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
 }

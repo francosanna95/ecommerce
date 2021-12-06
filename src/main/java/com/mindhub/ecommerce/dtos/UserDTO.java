@@ -25,7 +25,7 @@ public class UserDTO {
     }
 
     public UserDTO(User client) {
-        this.fantasyName = client.getFantasyName();
+        this.fantasyName = client.getFirstName();
         this.firstName = client.getFirstName();
         this.lastName = client.getLastName();
         this.imgUrl = client.getImgUrl();

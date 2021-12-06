@@ -19,9 +19,10 @@ public abstract class Product {
     protected String disscountCode;
     protected String address;
     protected String name;
-    protected Integer maxCapacity;
-    protected Integer stock; //TODO Agregar
+    protected String description;
+    protected Integer stock;
     protected String imgUrl;
+
 
 
 
@@ -38,25 +39,25 @@ public abstract class Product {
     public Product(){
 
     }
-    public Product(Integer points, Double price, String disscountCode, String address, String productName, Integer maxCapacity, Integer stock, String imgUrl) {
+    public Product(Integer points, Double price, String disscountCode, String address, String productName, String description, Integer stock, String imgUrl) {
         this.points = points;
         this.price = price;
         this.disscountCode = disscountCode;
         this.address = address;
         this.name = productName;
-        this.maxCapacity = maxCapacity;
+        this.description = description;
         this.stock = stock;
         this.imgUrl = imgUrl;
     }
 
-    public Product(Integer points, Double price, String disscountCode, String address, User user, String name, Integer maxCapacity, Integer stock, String imgUrl) {
+    public Product(Integer points, Double price, String disscountCode, String address, User user, String name, String description, Integer stock, String imgUrl) {
         this.points = points;
         this.price = price;
         this.disscountCode = disscountCode;
         this.address = address;
         this.user = user;
         this.name = name;
-        this.maxCapacity = maxCapacity;
+        this.description = description;
         this.stock = stock;
         this.imgUrl = imgUrl;
     }
@@ -125,11 +126,11 @@ public abstract class Product {
         this.allProducts = allProducts;
     }
 
-    public Integer getMaxCapacity() {
-        return maxCapacity;
+    public String getDescription() {
+        return description;
     }
-    public void setMaxCapacity(Integer maxCapacity) {
-        this.maxCapacity = maxCapacity;
+    public void getDescription(String description) {
+        this.description = description;
     }
 
 
