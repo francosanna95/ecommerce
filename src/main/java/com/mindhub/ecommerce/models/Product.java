@@ -39,6 +39,14 @@ public abstract class Product {
 
     }
     public Product(Integer points, Double price, String disscountCode, String address, String productName, Integer maxCapacity, Integer stock, String imgUrl) {
+        this.points = points;
+        this.price = price;
+        this.disscountCode = disscountCode;
+        this.address = address;
+        this.name = productName;
+        this.maxCapacity = maxCapacity;
+        this.stock = stock;
+        this.imgUrl = imgUrl;
     }
 
     public Product(Integer points, Double price, String disscountCode, String address, User user, String name, Integer maxCapacity, Integer stock, String imgUrl) {
