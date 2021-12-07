@@ -128,6 +128,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public boolean removeProductFromCart(User user, UserProduct toDelete) {
+        return false;
+    }
 
 
 }
