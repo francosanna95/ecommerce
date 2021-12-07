@@ -120,11 +120,11 @@
                             <form class="d-flex justify-content-center align-items-center">
                                 <fieldset>
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com">
+                                        <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com" v-model="email">
                                         <label for="floatingInputLogIn">Email Address</label>
                                       </div>
                                     <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password">
+                                        <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password" v-model="password">
                                         <label for="floatingPasswordLogIn">Password</label>
                                     </div>
                                 </fieldset>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="modal-footer justify-content-center align-items-center">
                           <button class="btn btn-warning" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Register</button>
-                          <button type="button" class="btn btn-info">Log In</button>
+                          <button type="button" class="btn btn-info" @click="login">Log In</button>
                         </div>
                       </div>
                     </div>

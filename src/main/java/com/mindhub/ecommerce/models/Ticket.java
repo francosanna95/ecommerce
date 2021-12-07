@@ -1,37 +1,42 @@
-package com.mindhub.ecommerce.models.products;
+package com.mindhub.ecommerce.models;
 
+import com.mindhub.ecommerce.dtos.TicketDTO;
 import com.mindhub.ecommerce.enums.Clase;
-import com.mindhub.ecommerce.models.users.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "tickets")
-public class Ticket extends Product{
+public class Ticket extends Product {
 
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private String departureLocation;
     private String arrivalLocation;
-    private String airport;
-    private Clase clase; // contador para poner limite a cantidad d pasajeros por clase
-    private String asiento;
-
 
     public Ticket() {
+
     }
 
-    public Ticket(Integer points, Double price, String disscountCode, String address, User agency, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation, String airport, Clase clase, String asiento, String name) {
-        super(points, price, disscountCode, address, agency, name);
+    public Ticket(Integer points, Double price, String disscountCode, String address, User user, String name, String description, Integer stock, String imgUrl, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation) {
+        super(points, price, disscountCode, address, user, name, description, stock, imgUrl);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
-        this.airport = airport;
-        this.clase = clase;
-        this.asiento = asiento;
+    }
+
+
+    //Constructor para generar un Producto a partir del Controlador con el RequestBody viniendo desde el Front y recibiendolo como DTO
+    public Ticket(TicketDTO ticketDTO) {
+        super(ticketDTO.getPoints(), ticketDTO.getPrice(), ticketDTO.getDisscountCode(), ticketDTO.getAddress(), ticketDTO.getProductName(), ticketDTO.getDescription(), ticketDTO.getStock(), ticketDTO.getImgUrl());
+        this.departureTime = LocalDateTime.parse(ticketDTO.getDepartureTime(), DateTimeFormatter.ISO_DATE_TIME);
+        this.arrivalTime = LocalDateTime.parse(ticketDTO.getArrivalTime(), DateTimeFormatter.ISO_DATE_TIME);
+        this.departureLocation = ticketDTO.getDepartureLocation();
+        this.arrivalLocation = ticketDTO.getArrivalLocation();
     }
 
     public LocalDateTime getDepartureTime() {
@@ -66,29 +71,6 @@ public class Ticket extends Product{
         this.arrivalLocation = arrivalLocation;
     }
 
-    public String getAirport() {
-        return airport;
-    }
-
-    public void setAirport(String airport) {
-        this.airport = airport;
-    }
-
-    public Clase getClase() {
-        return clase;
-    }
-
-    public void setClase(Clase clase) {
-        this.clase = clase;
-    }
-
-    public String getAsiento() {
-        return asiento;
-    }
-
-    public void setAsiento(String asiento) {
-        this.asiento = asiento;
-    }
 
     @Override
     public String toString() {
@@ -97,7 +79,6 @@ public class Ticket extends Product{
                 ", arrivalTime=" + arrivalTime +
                 ", departureLocation='" + departureLocation + '\'' +
                 ", arrivalLocation='" + arrivalLocation + '\'' +
-                ", airport='" + airport + '\'' +
                 '}';
     }
 }
