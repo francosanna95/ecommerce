@@ -25,6 +25,7 @@ public class ProductController {
     private UserRepository userRepo;
     @Autowired
     private ProductRepository productRepo;
+
     @Autowired
     private ProductServiceImpl productService;
 
