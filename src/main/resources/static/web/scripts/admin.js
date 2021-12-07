@@ -3,17 +3,24 @@ const app = Vue.createApp({
   data() {
     return {
         service:"",
-        price:0,
-        discount:0,
-        address:"",
-        name:"",
-        stock:"",
-        origin:"",
-        destination:"",
-        imgUrl:"",
-        agencyName:"prueba",
+        price: 0,
+        discountCode: "",
+        address: "",
+        productName: "",
+        description: "",
+        stock: "",
+        imgUrl: "",
+        agencyName:"",
+
+        departureLocation:"",
+        arrivalLocation:"",
+        departureDate:"",
         arrivalDate:"",
-        departureDate:""
+
+        parking: false,
+        concierge: false,
+
+        vip: false
 
     }
   },
@@ -23,11 +30,11 @@ const app = Vue.createApp({
     newTicket(){
         axios({
             method:'POST',
-            url:`/api/products/tickets?agencyName=Babel`,
+            url:`/api/products/tickets`,
             data:{
-                     "price":1500,
-                     "disscountCode":"asd123",
-                     "productId":15,
+                     "price": this.price,
+                     "discountCode": this.discountCode,
+                     "productId": asd,
                      "points":200,
                      "address":"Av. siempreviva 123",
                      "name":"Los Simpson Hotel",

@@ -142,76 +142,64 @@
                       </h2>
                       <!-- AQUI FORM TICKET (O VUELO) -->
                       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+                        <div v-on="newTicket" class="accordion-body">
                             <fieldset class="p-3">
-                                Select a Service Type
-                                  <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
-                                    <optgroup label="Select a type">
-                                      <option :value="ticket">Ticket</option>
-                                      <option :value="hotel">Hotel</option>
-                                      <option :value="event">Event</option>
-                                    </optgroup>
-                                  </select>
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckCheckedTicket">Ticket </label>
+                                    <input v-model="service" class="form-check-input" type="checkbox" id="flexCheckCheckedTicket" checked>
+                                  </div>
                                   <div>
                                     <label for="flyPrice">Select a price</label>
-                                    <input type="number" class="form-control" id="flyPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
+                                    <input v-model="price" type="number" class="form-control" id="flyPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
                                   </div>
                                   <div>
                                     <label for="flyDiscount">Select a discount code</label>
-                                    <input type="number" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required>
-                                    <label for="flyDiscount">Select a discount</label>
-                                    <input type="number" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required v-model="discount">
-                                  </div>
-                                  <div>
-                                    <label for="flyDescription">Select a description</label>
-                                    <input type="text" class="form-control" id="flyDescription" placeholder="description" minlength="3" maxlength="100" required>
-                                    <label for="flyAddress">Select an address</label>
-                                    <input type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required v-model="address">
+                                    <input v-model="discountCode" type="text" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required>
                                   </div>
                                   <div>
                                     <label for="flyName">Select a product name</label>
-                                    <input type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required>
-                                  </div>
-                                    <label for="flyName">Select a name</label>
-                                    <input type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required v-model="name">
-                                  </div>
+                                    <input v-model="productName" type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required>
                                   <div>
-                                    <label for="flyStock">Select a stock</label>
-                                    <input type="number" class="form-control" id="flyStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
-                                  </div>
                                   <div>
-                                    <label for="imgUrlTicket">Ingrese la URL del destino</label>
-                                    <input type="text"class="form-control" id="imgUrlTicket" placeholder="url" required  v-model="imgURL">
+                                    <label for="flyDescription">Select a description</label>
+                                    <input v-model="description" type="text" class="form-control" id="flyDescription" placeholder="description" minlength="3" maxlength="100" required>
                                   </div>
                                   <div>
                                     <label for="flyAddress">Select an address</label>
-                                    <input type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required>
+                                    <input v-model="address" type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required v-model="address">
+                                  </div>
+                                    <label for="flyStock">Select a stock</label>
+                                    <input v-model="stock" type="number" class="form-control" id="flyStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
                                   </div>
                                   <div>
-                                    <label for="departureDate">Departure Date</label>
-                                    <input type="date" class="form-control" id="departureDate" placeholder="Start">
-                                  </div>
-                                  <div>
-                                    <label for="arrivalDate">Arrival Date</label>
-                                    <input type="date" class="form-control" id="arrivalDate" placeholder="End">
-                                  </div>
-                                  <div>
-                                    <label for="departureLocation">Departure Location</label>
-                                    <input type="date" class="form-control" id="departureLocation" placeholder="Start">
-                                  </div>
-                                  <div>
-                                    <label for="arrivalLocation">Arrival Location</label>
-                                    <input type="date" class="form-control" id="arrivalLocation" placeholder="End" v-model="destination">
+                                    <label for="imgUrlTicket">Ingrese la URL del destino</label>
+                                    <input v-model="imgUrl" type="text"class="form-control" id="imgUrlTicket" placeholder="url" required  v-model="imgURL">
                                   </div>
                                   <div>
                                     <label for="agencyName">Agency Name</label>
-                                    <input type="text" class="form-control" id="agencyName" placeholder="End">
+                                    <input v-model="agencyName" type="text" class="form-control" id="agencyName" placeholder="End">
+                                  </div>
+                                  <div>
+                                    <label for="departureDate">Departure Date</label>
+                                    <input v-model="departureDate" type="date" class="form-control" id="departureDate" placeholder="Start">
+                                  </div>
+                                  <div>
+                                    <label for="arrivalDate">Arrival Date</label>
+                                    <input v-model="arrivalDate" type="date" class="form-control" id="arrivalDate" placeholder="End">
+                                  </div>
+                                  <div>
+                                    <label for="departureLocation">Departure Location</label>
+                                    <input v-model="departureLocation" type="date" class="form-control" id="departureLocation" placeholder="Start">
+                                  </div>
+                                  <div>
+                                    <label for="arrivalLocation">Arrival Location</label>
+                                    <input v-model="arrivalLocation" type="date" class="form-control" id="arrivalLocation" placeholder="End" v-model="destination">
                                   </div>
                                 <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
                                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3" @click="newTicket()">Accept</button>
                                 </div>
-                              </fieldset>
+                            </fieldset>
                         </div>
                       </div>
                     </div>
@@ -224,14 +212,10 @@
                       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                           <fieldset class="p-3">
-                            Select a Service Type
-                              <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
-                                <optgroup label="Select a type">
-                                  <option :value="ticket">Ticket</option>
-                                  <option :value="hotel">Hotel</option>
-                                  <option :value="event">Event</option>
-                                </optgroup>
-                              </select>
+                            <div>
+                              <label class="form-check-label" for="flexCheckCheckedLodging">Lodging </label>
+                              <input class="form-check-input" type="checkbox" id="flexCheckCheckedLodging" checked>
+                            </div>
                               <div>
                                 <label for="lodgingPrice">Select a price</label>
                                 <input type="number" class="form-control" id="lodgingPrice" placeholder="price" minlength="3" maxlength="25" required>
@@ -303,14 +287,10 @@
                       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                           <fieldset class="p-3">
-                            Select a Service Type
-                              <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
-                                <optgroup label="Select a type">
-                                  <option :value="ticket">Ticket</option>
-                                  <option :value="hotel">Hotel</option>
-                                  <option :value="event">Event</option>
-                                </optgroup>
-                              </select>
+                            <div>
+                              <label class="form-check-label" for="flexCheckCheckedActivity">Activity </label>
+                              <input class="form-check-input" type="checkbox" id="flexCheckCheckedActivity" checked>
+                            </div>
                               <div>
                                 <label for="eventName">Select a product name</label>
                                 <input type="text" class="form-control" id="eventName" placeholder="name" minlength="3" maxlength="25" required>
