@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
         User agency = userRepo.findByFirstName(agencyName).orElse(null);
         Event event = new Event(eventDTO);
         event.setUser(agency);
-        
+
         UserProduct offeredEvent = new UserProduct();
         offeredEvent.setProduct(event);
         offeredEvent.setUser(agency);
