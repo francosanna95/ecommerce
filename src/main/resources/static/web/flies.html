@@ -170,12 +170,13 @@
                                     <h4 class="spanRojo">${{ticket.price}}</h4>
                                 </div>
                                 <div class="btn-buy">
-                                    <a @click.prevent="addToChart(ticket)"href="">Add</a>
+                                    <a @click.prevent="addToCart(ticket)"href="">Add</a>
                                 </div> 
                             </div>
                             <div class="oferta">
                                 <img src="./assets/descuentoCincuenta.png" alt="">
                             </div>
+                            <a @click.prevent="deleteCartObject(ticket)"href="">Add</a>
                         </div>
                     </div>
                 </div>

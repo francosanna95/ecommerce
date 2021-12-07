@@ -3,7 +3,7 @@ const app = Vue.createApp({
     data() {
         return {
             tickets: [],
-            chart:[],
+            cart:[],
         }
     },
 
@@ -22,29 +22,39 @@ const app = Vue.createApp({
     mounted() {
             if (sessionStorage.getItem('cart')) {
                 try {
-                    this.chart = JSON.parse(sessionStorage.getItem('cart'));
+                    this.cart = JSON.parse(sessionStorage.getItem('cart'));
                 } catch (e) {
                     sessionStorage.removeItem('cart');
                 }
-                console.log(this.chart)
+                console.log(this.cart)
             };
         },
     methods: {
-        addToChart(ticket){
+        addToCart(ticket){
         if(ticket.stock<=0){
             alert("No stock");}
         else{
             ticket.stock--;
-            if(this.chart.some(prod=>prod.productId==ticket.productId)){
+            if(this.cart.some(prod=>prod.productId==ticket.productId)){
             ticket.quantity++;}
             else{ticket.quantity=1;
-            this.chart.push(ticket);}
-            console.log(this.chart);
-            this.savingChart();
+            this.cart.push(ticket);}
+            console.log(this.cart);
+            this.savingCart();
         };
         },
-        savingChart(){
-            const parsed = JSON.stringify(this.chart);
+        deleteCartObject(ticket){
+            if(this.cart.some(prod=>prod.productId==ticket.productId)){
+                let id=this.cart.findIndex(prod => prod.productId == ticket.productId);
+                if(this.cart[id].stock>=1){
+                ticket.stock=ticket.stock+this.cart[id].quantity;
+                this.cart[id].quantity=0;}
+                this.cart.splice(id,1);
+                this.savingCart();
+                console.log(ticket);
+                }},
+        savingCart(){
+            const parsed = JSON.stringify(this.cart);
             sessionStorage.setItem('cart', parsed);
         },
     }, 
