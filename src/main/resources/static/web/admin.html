@@ -144,10 +144,10 @@
                       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div v-on="newTicket" class="accordion-body">
                             <fieldset class="p-3">
-                                  <div>
-                                    <label class="form-check-label" for="flexCheckCheckedTicket">Ticket </label>
-                                    <input v-model="service" class="form-check-input" type="checkbox" id="flexCheckCheckedTicket" checked>
-                                  </div>
+                              <div>
+                                <label for="flyType">Select a service type</label>
+                                <input v-model="service" type="text" class="form-control" id="flyType" placeholder="type" minlength="3" maxlength="25" required>
+                              </div>
                                   <div>
                                     <label for="flyPrice">Select a price</label>
                                     <input v-model="price" type="number" class="form-control" id="flyPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
@@ -166,7 +166,7 @@
                                   </div>
                                   <div>
                                     <label for="flyAddress">Select an address</label>
-                                    <input v-model="address" type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required v-model="address">
+                                    <input v-model="address" type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="50" required v-model="address">
                                   </div>
                                     <label for="flyStock">Select a stock</label>
                                     <input v-model="stock" type="number" class="form-control" id="flyStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
@@ -189,11 +189,11 @@
                                   </div>
                                   <div>
                                     <label for="departureLocation">Departure Location</label>
-                                    <input v-model="departureLocation" type="date" class="form-control" id="departureLocation" placeholder="Start">
+                                    <input v-model="departureLocation" type="text" class="form-control" id="departureLocation" placeholder="Start">
                                   </div>
                                   <div>
                                     <label for="arrivalLocation">Arrival Location</label>
-                                    <input v-model="arrivalLocation" type="date" class="form-control" id="arrivalLocation" placeholder="End" v-model="destination">
+                                    <input v-model="arrivalLocation" type="text" class="form-control" id="arrivalLocation" placeholder="End" v-model="destination">
                                   </div>
                                 <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
                                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>

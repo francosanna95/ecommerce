@@ -2,7 +2,7 @@
 const app = Vue.createApp({
   data() {
     return {
-        service:"",
+        service: "",
         price: 0,
         discountCode: "",
         address: "",
@@ -28,22 +28,36 @@ const app = Vue.createApp({
   },
   methods: {
     newTicket(){
+        console.log(this.service)
+        console.log(this.price)
+        console.log(this.discountCode)
+        console.log(this.productName)
+        console.log(this.description)
+        console.log(this.stock)
+        console.log(this.imgUrl)
+        console.log(this.address)
+        console.log(this.departureDate)
+        console.log(this.arrivalDate)
+        console.log(this.departureLocation)
+        console.log(this.arrivalLocation)
+        console.log(this.agencyName)
+
         axios({
             method:'POST',
             url:`/api/products/tickets`,
             data:{
                      "price": this.price,
                      "discountCode": this.discountCode,
-                     "description" : "This is a great ticket, the one you need",
-                     "productName":"El mejor vuelo",
-                     "stock":250,
-                     "imgUrl":"IMG url",
-                     "address":"Aeropuerto Internacional de Ezeiza",
-                     "departureTime": "2015-08-04T10:11:30",
-                     "arrivalTime" : "2015-08-04T10:11:30",
-                     "departureLocation" : "Buenos Aires",
-                     "arrivalLocation" : "Bariloche",
-                     "agencyName" : "Babel"
+                     "productName": this.productName,
+                     "description" : this.description,
+                     "stock": this.stock,
+                     "imgUrl": this.imgUrl,
+                     "address": this.address,
+                     "departureTime": this.departureDate,
+                     "arrivalTime" : this.arrivalDate,
+                     "departureLocation" : this.departureLocation,
+                     "arrivalLocation" : this.arrivalLocation,
+                     "agencyName" : this.agencyName
             }
         })
     },
