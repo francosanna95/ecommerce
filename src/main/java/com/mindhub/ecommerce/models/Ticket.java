@@ -1,7 +1,6 @@
 package com.mindhub.ecommerce.models;
 
 import com.mindhub.ecommerce.dtos.TicketDTO;
-import com.mindhub.ecommerce.enums.Clase;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

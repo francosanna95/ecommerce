@@ -21,6 +21,7 @@ public class ClientEvent extends UserProduct {
         super(user, product);
         this.isVip = isVip;
         this.attendants = attendants;
+        this.quantity = attendants;
     }
 
     public Boolean getVip() {
@@ -35,5 +36,13 @@ public class ClientEvent extends UserProduct {
     }
     public void setAttendants(Integer attendants) {
         this.attendants = attendants;
+    }
+
+    @Override
+    public void setFinalPrice(Double finalPrice) {
+        if (this.isVip){
+            super.setFinalPrice(finalPrice*1.2*attendants); // si es vip tiene un recargo del 20%
+        } else super.setFinalPrice(finalPrice);
+
     }
 }

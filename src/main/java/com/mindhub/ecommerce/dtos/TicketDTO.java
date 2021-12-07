@@ -1,10 +1,7 @@
 package com.mindhub.ecommerce.dtos;
 
-import com.mindhub.ecommerce.enums.Clase;
 import com.mindhub.ecommerce.models.Product;
 import com.mindhub.ecommerce.models.Ticket;
-
-import java.time.LocalDateTime;
 
 public class TicketDTO extends ProductDTO{
 
