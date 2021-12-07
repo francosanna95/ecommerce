@@ -2,17 +2,17 @@ const app = Vue.createApp({
 
     data() {
         return {
-            tickets: [],
+            hotels: [],
         }
     },
 
     created() {
 
-        axios.get('/api/products/tickets')
+        axios.get('/api/products/hotels')
         
         .then(response => {
             console.log(response.data)
-            this.tickets = response.data
+            this.hotels= response.data
         })
         .catch(error => {
             return error.message;
