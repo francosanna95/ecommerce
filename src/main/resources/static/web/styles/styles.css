@@ -59,9 +59,10 @@ h5 {
 }
 .headerForm {
     background-color: var(--main-bg-color);
-    margin: 80px;
+    margin: 40px;
 }
 .formDiv {
+    margin: 1rem;
     padding: 1rem;
     background-color: var(--font-color-w);
     border-radius: 15px;
