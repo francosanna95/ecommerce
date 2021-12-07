@@ -144,54 +144,55 @@
                         <div class="accordion-body">
                             <fieldset>
                                 Select a Service Type
-                                  <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
+                                  <select v-model="service" name="selectServiceType" id="selectServiceType" class="mb-3">
                                     <optgroup label="Select a type">
-                                      <option :value="ticket">Ticket</option>
-                                      <option :value="hotel">Hotel</option>
-                                      <option :value="event">Event</option>
+                                      <option value="ticket">Ticket</option>
+                                      <option value="hotel">Hotel</option>
+                                      <option value="event">Event</option>
                                     </optgroup>
                                   </select>
                                   <div class="input-group m-2">
                                     <span class="input-group-text">Dates</span>
-                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
-                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start" v-model="departureDate">
+                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End" v-model="arrivalDate">
                                     </div>
                                   <div>
                                     <label for="flyPrice">Select a price</label>
-                                    <input type="number" class="form-control" id="flyPrice" placeholder="price" minlength="3" maxlength="25" required>
+                                    <input type="number" class="form-control" id="flyPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
                                   </div>
+                                {{price}}
                                   <div>
                                     <label for="flyDiscount">Select a discount</label>
-                                    <input type="number" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required>
+                                    <input type="number" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required v-model="discount">
                                   </div>
                                   <div>
                                     <label for="flyAddress">Select an address</label>
-                                    <input type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required>
+                                    <input type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required v-model="address">
                                   </div>
                                   <div>
                                     <label for="flyName">Select a name</label>
-                                    <input type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required>
+                                    <input type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required v-model="name">
                                   </div>
                                   <div>
                                     <label for="flyStock">Select a stock</label>
-                                    <input type="number" class="form-control" id="flyStock" placeholder="stock" minlength="3" maxlength="25" required>
+                                    <input type="number" class="form-control" id="flyStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
                                   </div>
                                 <div>
                                     <label for="originName">origin</label>
-                                    <input type="text" class="form-control" id="originName" placeholder="origin" minlength="3" maxlength="25" required>
+                                    <input type="text" class="form-control" id="originName" placeholder="origin" minlength="3" maxlength="25" required v-model="origin">
                                 </div>
                                 <div>
                                     <label for="destinationName">destination</label>
-                                    <input type="text" class="form-control" id="destinationName" placeholder="destination" minlength="3" maxlength="25" required>
+                                    <input type="text" class="form-control" id="destinationName" placeholder="destination" minlength="3" maxlength="25" required v-model="destination">
                                 </div>
                                 <div>
                                     <label for="imgUrlTicket">Ingrese la URL del destino</label>
-                                    <input type="text"class="form-control" id="urlImg" placeholder="url" required>
+                                    <input type="text"class="form-control" id="imgUrlTicket" placeholder="url" required v-model="imgURL">
                                 </div>
 
                                 <div class="modal-footer divForm  d-flex align-self-center justify-content-center ">
                                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3">Accept</button>
+                                  <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3" @click="newTicket()">Accept</button>
                                 </div>
                               </fieldset>
                         </div>
@@ -321,6 +322,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="./scripts/animation.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/admin.js"></script>
 </body>
 </html>

@@ -87,9 +87,9 @@ public class ProductController {
         if (ticketDTO.getPrice()<0){
             return new ResponseEntity<>("The price should be positive numbers",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (ticketDTO.getAirport().isBlank()){
-            return new ResponseEntity<>("Set an airport name",HttpStatus.NOT_ACCEPTABLE);
-        }
+ //       if (ticketDTO.getAirport().isBlank()){
+ //           return new ResponseEntity<>("Set an airport name",HttpStatus.NOT_ACCEPTABLE);
+ //       }
         if (ticketDTO.getStock()<0){
             return new ResponseEntity<>("You can't have negative stock",HttpStatus.NOT_ACCEPTABLE);
         }
@@ -115,9 +115,9 @@ public class ProductController {
         if (userRepo.findByFirstName(agencyName).isEmpty()){
             return new ResponseEntity<>("Invalid Agency",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (hotelDTO.getProductName().isBlank()){
-            return new ResponseEntity<>("The name can't be blank",HttpStatus.NOT_ACCEPTABLE);
-        }
+//        if (hotelDTO.getProductName().isBlank()){
+//            return new ResponseEntity<>("The name can't be blank",HttpStatus.NOT_ACCEPTABLE);
+//        }
         if (productService.createHotel(hotelDTO,agencyName)){
          return new ResponseEntity<>("Hotel creation successful",HttpStatus.ACCEPTED);
         }

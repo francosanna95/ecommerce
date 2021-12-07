@@ -65,9 +65,7 @@ public class ProductServiceImpl implements ProductService{
         hotel.setUser(agency);
 
         productRepo.save(hotel);
-        if (productRepo.existsById(hotelDTO.getProductId())) {
             return true;
-        }
-        return false;
+
     }
 }
