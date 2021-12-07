@@ -20,24 +20,22 @@ public class ProductServiceImpl implements ProductService {
     SalesRepository salesRepos;
 
     @Override
-    public boolean createEvent(EventDTO eventDTO, User agency) {
+    public boolean createEvent(EventDTO eventDTO, String agencyName) {
         //TODO cambiar agencyName por Authentication auth, y de ahi obtener el email de la agencia q esta queriendo crear el producto
         try {
-            Event event = new Event(eventDTO);
-    //Si el producto ya existe no lo creo
-            if (productRepo.findByName(event.getName()).isPresent()) {
-                return false;
-            }
-            event.setUser(agency);
-            UserProduct offeredEvent = new UserProduct();
-            offeredEvent.setProduct(event);
-            offeredEvent.setUser(agency);
-            productRepo.save(event);
-            userRepo.save(agency);
-            salesRepos.save(offeredEvent);
+        User agency = userRepo.findByFirstName(agencyName).orElse(null);
+        Event event = new Event(eventDTO);
+        event.setUser(agency);
+
+        UserProduct offeredEvent = new UserProduct();
+        offeredEvent.setProduct(event);
+        offeredEvent.setUser(agency);
+        productRepo.save(event);
+        userRepo.save(agency);
+        salesRepos.save(offeredEvent);
 
 
-            return true;
+        return true;
 
 
         } catch (Exception e) {
@@ -48,15 +46,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean createTicket(TicketDTO ticketDTO, User agency) {
+    public boolean createTicket(TicketDTO ticketDTO, String agencyName) {
         //TODO cambiar agencyName por Authentication auth, y de ahi obtener el email de la agencia q esta queriendo crear el producto
         try {
+            User agency = userRepo.findByFirstName(agencyName).orElse(null);
             Ticket ticket = new Ticket(ticketDTO);
 
-            if (productRepo.findByName(ticket.getName()).isPresent()) {
-                return false;
-            }
-            ticket.setUser(agency);
             UserProduct offeredEvent = new UserProduct();
             offeredEvent.setProduct(ticket);
             offeredEvent.setUser(agency);
@@ -71,22 +66,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean createHotel(HotelDTO hotelDTO, User agency) {
+    public boolean createHotel(HotelDTO hotelDTO, String agencyName) {
 
         //TODO cambiar agencyName por Authentication auth, y de ahi obtener el email de la agencia q esta queriendo crear el producto
         try {
-
+            User agency = userRepo.findByFirstName(agencyName).orElse(null);
             Hotel hotel = new Hotel(hotelDTO);
-
-            if (productRepo.findByName(hotel.getName()).isPresent()) {
-                return false;
-            }
-            hotel.setUser(agency);
-
             UserProduct offeredEvent = new UserProduct();
             offeredEvent.setProduct(hotel);
             offeredEvent.setUser(agency);
 
+            hotel.setUser(agency);
             productRepo.save(hotel);
             return true;
         } catch (Exception e) {

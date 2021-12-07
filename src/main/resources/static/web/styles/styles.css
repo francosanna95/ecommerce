@@ -58,11 +58,13 @@ h5 {
     width: 100%;
 }
 .headerForm {
-    background-color: var(--main-bg-color);
-    margin: 80px;
+    /*background-color: var(--main-bg-color);*/
+    background-image: url("https://res.cloudinary.com/melbastrips/image/upload/v1638901675/samples/Pngtree_color_travel_tourism_vacation_a2nfxv.jpg");
+    
 }
 .formDiv {
-    padding: 1rem;
+    margin: 1rem;
+    padding: 2.5rem;
     background-color: var(--font-color-w);
     border-radius: 15px;
 }
