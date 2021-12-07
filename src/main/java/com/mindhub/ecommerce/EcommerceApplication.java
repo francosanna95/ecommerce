@@ -1,6 +1,6 @@
 package com.mindhub.ecommerce;
 
-import com.mindhub.ecommerce.enums.Clase;
+import com.mindhub.ecommerce.enums.TicketClass;
 import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
@@ -44,7 +44,7 @@ public class EcommerceApplication {
             agencyAndamio.setBankAccountNumber("VIN-005");
 
             //Creación de producto ofrecido por Agencia Número 1
-            Event concierto = new Event(100, 2500D, "CODE003", "601 Biscayne Blvd, Miami, FL, Estados Unidos", agencyAndamio, "Maluma", "El mejor concierto de tu vida", 1000, "IMG-URL", "Maluma Fire Tour", true);
+            Event concierto = new Event(100, 2500D, "5", "601 Biscayne Blvd, Miami, FL, Estados Unidos", agencyAndamio, "Maluma", "El mejor concierto de tu vida", 1000, "IMG-URL", "Maluma Fire Tour", true);
             concierto.setUser(agencyAndamio);
             concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Activities/pexels-tom-fisk-1692695_lwwuxu.jpg");
             UserProduct offeredProduct = new UserProduct(); //Al instanciarlos como UserProduct se persisten también en la tabla User_Product,
@@ -57,7 +57,7 @@ public class EcommerceApplication {
             salesRepos.save(offeredProduct);
 
             //Creación de producto ofrecido por agencia Número 2
-            Hotel hotel2 = new Hotel(100, 2500D, "CODE-005", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", "La mejor estadia en Miami de tu laif", 500, "IMG-URL", true, true, 200, null);
+            Hotel hotel2 = new Hotel(100, 2500D, "5", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", "La mejor estadia en Miami de tu laif", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
             hotel2.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Activities/roberto-nickson-emqnSQwQQDo-unsplash_laca9v.jpg");
             productRepo.save(hotel2);
@@ -71,7 +71,7 @@ public class EcommerceApplication {
             userRepo.save(agencyBabel);
 
 
-            Hotel hospedaje = new Hotel(500, 3500D, "CODE-23", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
+            Hotel hospedaje = new Hotel(500, 3500D, "10", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct3 = new UserProduct(agencyBabel, hospedaje);
             hospedaje.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821036/Services/Activities/valeriia-bugaiova-_pPHgeHz1uk-unsplash_qz1wyt.jpg");
             productRepo.save(hospedaje);
@@ -101,7 +101,7 @@ public class EcommerceApplication {
             Ticket ticket = new Ticket(2000, 20000D, "ALMUNDO", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638817782/Services/Flies/Machu_Picchu_Per%C3%BA_xker0x.jpg", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Barcelona", "Madrid");
             ticket.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821028/Services/Activities/thais-cordeiro-MUDP2jIK0IY-unsplash_f3rurz.jpg");
             productRepo.save(ticket);
-            ClientTicket cl = new ClientTicket(clientMelba, ticket, Clase.PRIMERA, 2);
+            ClientTicket cl = new ClientTicket(clientMelba, ticket, TicketClass.FIRST, 2);
 
             // cl.setUser(clientMelba);
             cl.setUserHistory(clientMelba);

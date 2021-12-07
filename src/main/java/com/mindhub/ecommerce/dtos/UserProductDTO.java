@@ -11,6 +11,7 @@ public class UserProductDTO {
     private String disscountCode;
     private String address;
     private String productType;
+    private Double finalPrice;
 
 
     public UserProductDTO(UserProduct userProduct) {
@@ -22,6 +23,7 @@ public class UserProductDTO {
         this.points = product.getPoints();
         this.disscountCode = product.getDisscountCode();
         this.address = product.getAddress();
+        this.finalPrice = product.getPrice();
 
         if (product instanceof Event) {
             this.productType = "EVENT";
@@ -95,5 +97,13 @@ public class UserProductDTO {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(Double finalPrice) {
+        this.finalPrice = finalPrice;
     }
 }

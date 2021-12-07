@@ -6,6 +6,8 @@ import com.mindhub.ecommerce.dtos.HotelDTO;
 import com.mindhub.ecommerce.dtos.TicketDTO;
 import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.enums.UserRole;
+import com.mindhub.ecommerce.models.*;
+import com.mindhub.ecommerce.repositories.ProductRepository;
 import com.mindhub.ecommerce.repositories.UserRepository;
 import com.mindhub.ecommerce.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private ProductRepository productRepo;
 
     @GetMapping("/agencies")
     public Set<UserDTO> getAgencies() {
@@ -74,21 +78,81 @@ public class UserController {
     }
 
     @PostMapping("/clients/addToCart/event")
-    public ResponseEntity<String> addEventToCart(Authentication auth, EventDTO eventDTO){
+    public ResponseEntity<String> addEventToCart(Authentication auth, @RequestParam Long eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        Product product = productRepo.findById(eventId).orElse(null);
+        if (!(product instanceof Event)) {
+            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+        }
+
+        Event event = (Event) product;
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+
+        }
+
+
+        userService.addEventToClientCart(user, event, isVip, attendants);
+
         //TODO
-        return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
+
+        return new ResponseEntity<String>("Event booked succesfully", HttpStatus.CREATED);
     }
 
     @PostMapping("/clients/addToCart/hotel")
-    public ResponseEntity<String> addHotelToCart(Authentication auth, HotelDTO hotelDTO){
+    public ResponseEntity<String> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam String arrivalDate, @RequestParam String departureDate, @RequestParam Integer nights, @RequestParam Integer passangers, @RequestParam String pension) {
+
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        Product product = productRepo.findById(hotelId).orElse(null);
+        if (!(product instanceof Hotel)) {
+            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+        }
+
+        Hotel hotel = (Hotel) product;
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+
+        }
+        if (hotel == null) {
+            return new ResponseEntity<String>("Event not found", HttpStatus.NOT_FOUND);
+
+        }
         //TODO
-        return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
+        if (userService.addHotelToClientCart(user, hotel, arrivalDate, departureDate, nights, passangers, pension)) {
+            return new ResponseEntity<String>("Hotel booked succesfully", HttpStatus.CREATED);
+        }
+        return new ResponseEntity<String>("Booking unsuccessful", HttpStatus.NOT_ACCEPTABLE);
+
 
     }
+
     @PostMapping("/clients/addToCart/ticket")
-    public ResponseEntity<String> addTicketToCart(Authentication auth, TicketDTO ticketDTO){
+    public ResponseEntity<String> addTicketToCart(Authentication auth, @RequestParam Long ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
+
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        Product product = productRepo.findById(ticketId).orElse(null);
+
+        if (!(product instanceof Ticket)) {
+            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+        }
+
+        Ticket ticket = (Ticket) product;
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+        if (ticket == null) {
+            return new ResponseEntity<String>("Ticket not found", HttpStatus.NOT_FOUND);
+        }
+
+
+        if (userService.addTicketToClientCart(user, ticket, clase, passengers)) {
+            return new ResponseEntity<String>("Ticket booked succesfully", HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<String>("Ticket Booking unsuccesful", HttpStatus.CREATED);
+
         //TODO
-        return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
 
     }
 }
