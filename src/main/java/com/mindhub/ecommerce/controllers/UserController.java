@@ -1,6 +1,9 @@
 package com.mindhub.ecommerce.controllers;
 
 
+import com.mindhub.ecommerce.dtos.EventDTO;
+import com.mindhub.ecommerce.dtos.HotelDTO;
+import com.mindhub.ecommerce.dtos.TicketDTO;
 import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.repositories.UserRepository;
@@ -8,6 +11,7 @@ import com.mindhub.ecommerce.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -69,5 +73,22 @@ public class UserController {
         return userService.getClientById(id);
     }
 
+    @PostMapping("/clients/addToCart/event")
+    public ResponseEntity<String> addEventToCart(Authentication auth, EventDTO eventDTO){
+        //TODO
+        return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
+    }
 
+    @PostMapping("/clients/addToCart/hotel")
+    public ResponseEntity<String> addHotelToCart(Authentication auth, HotelDTO hotelDTO){
+        //TODO
+        return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
+
+    }
+    @PostMapping("/clients/addToCart/ticket")
+    public ResponseEntity<String> addTicketToCart(Authentication auth, TicketDTO ticketDTO){
+        //TODO
+        return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
+
+    }
 }
