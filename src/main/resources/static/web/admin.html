@@ -133,43 +133,45 @@
                     </div>
                   </div>
                 <!-- Main Content -->
-                <div class="accordion" id="accordionExample">
+                <div class="accordion m-3" id="accordionExample">
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Accordion Item #1
+                          New Ticket
                         </button>
                       </h2>
+                      <!-- AQUI FORM TICKET (O VUELO) -->
                       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <fieldset>
+                            <fieldset class="p-3">
                                 Select a Service Type
-                                  <select v-model="service" name="selectServiceType" id="selectServiceType" class="mb-3">
+                                  <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
                                     <optgroup label="Select a type">
-                                      <option value="ticket">Ticket</option>
-                                      <option value="hotel">Hotel</option>
-                                      <option value="event">Event</option>
+                                      <option :value="ticket">Ticket</option>
+                                      <option :value="hotel">Hotel</option>
+                                      <option :value="event">Event</option>
                                     </optgroup>
                                   </select>
-                                  <div class="input-group m-2">
-                                    <span class="input-group-text">Dates</span>
-                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start" v-model="departureDate">
-                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End" v-model="arrivalDate">
-                                    </div>
                                   <div>
                                     <label for="flyPrice">Select a price</label>
                                     <input type="number" class="form-control" id="flyPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
                                   </div>
-                                {{price}}
                                   <div>
+                                    <label for="flyDiscount">Select a discount code</label>
+                                    <input type="number" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required>
                                     <label for="flyDiscount">Select a discount</label>
                                     <input type="number" class="form-control" id="flyDiscount" placeholder="discount" minlength="3" maxlength="25" required v-model="discount">
                                   </div>
                                   <div>
+                                    <label for="flyDescription">Select a description</label>
+                                    <input type="text" class="form-control" id="flyDescription" placeholder="description" minlength="3" maxlength="100" required>
                                     <label for="flyAddress">Select an address</label>
                                     <input type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required v-model="address">
                                   </div>
                                   <div>
+                                    <label for="flyName">Select a product name</label>
+                                    <input type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required>
+                                  </div>
                                     <label for="flyName">Select a name</label>
                                     <input type="text" class="form-control" id="flyName" placeholder="name" minlength="3" maxlength="25" required v-model="name">
                                   </div>
@@ -177,20 +179,35 @@
                                     <label for="flyStock">Select a stock</label>
                                     <input type="number" class="form-control" id="flyStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
                                   </div>
-                                <div>
-                                    <label for="originName">origin</label>
-                                    <input type="text" class="form-control" id="originName" placeholder="origin" minlength="3" maxlength="25" required v-model="origin">
-                                </div>
-                                <div>
-                                    <label for="destinationName">destination</label>
-                                    <input type="text" class="form-control" id="destinationName" placeholder="destination" minlength="3" maxlength="25" required v-model="destination">
-                                </div>
-                                <div>
+                                  <div>
                                     <label for="imgUrlTicket">Ingrese la URL del destino</label>
-                                    <input type="text"class="form-control" id="imgUrlTicket" placeholder="url" required v-model="imgURL">
-                                </div>
-
-                                <div class="modal-footer divForm  d-flex align-self-center justify-content-center ">
+                                    <input type="text"class="form-control" id="imgUrlTicket" placeholder="url" required  v-model="imgURL">
+                                  </div>
+                                  <div>
+                                    <label for="flyAddress">Select an address</label>
+                                    <input type="text" class="form-control" id="flyAddress" placeholder="address" minlength="3" maxlength="25" required>
+                                  </div>
+                                  <div>
+                                    <label for="departureDate">Departure Date</label>
+                                    <input type="date" class="form-control" id="departureDate" placeholder="Start">
+                                  </div>
+                                  <div>
+                                    <label for="arrivalDate">Arrival Date</label>
+                                    <input type="date" class="form-control" id="arrivalDate" placeholder="End">
+                                  </div>
+                                  <div>
+                                    <label for="departureLocation">Departure Location</label>
+                                    <input type="date" class="form-control" id="departureLocation" placeholder="Start">
+                                  </div>
+                                  <div>
+                                    <label for="arrivalLocation">Arrival Location</label>
+                                    <input type="date" class="form-control" id="arrivalLocation" placeholder="End" v-model="destination">
+                                  </div>
+                                  <div>
+                                    <label for="agencyName">Agency Name</label>
+                                    <input type="text" class="form-control" id="agencyName" placeholder="End">
+                                  </div>
+                                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
                                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3" @click="newTicket()">Accept</button>
                                 </div>
@@ -201,67 +218,151 @@
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Accordion Item #2
+                          New Lodging
                         </button>
                       </h2>
                       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <fieldset>
-                                Select a Service Type
-                                  <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
-                                    <optgroup label="Select a type">
-                                      <option :value="ticket">Ticket</option>
-                                      <option :value="hotel">Hotel</option>
-                                      <option :value="event">Event</option>
-                                    </optgroup>
-                                  </select>
-                                  <div>
-                                    <label for="hotelPrice">Select a price</label>
-                                    <input type="number" class="form-control" id="hotelPrice" placeholder="price" minlength="3" maxlength="25" required>
-                                  </div>
-                                  <div>
-                                    <label for="hotelAddress">Select an address</label>
-                                    <input type="text" class="form-control" id="hotelAddress" placeholder="address" minlength="3" maxlength="25" required>
-                                  </div>
-                                  <div>
-                                    <label for="hotelName">Select a name</label>
-                                    <input type="text" class="form-control" id="hotelName" placeholder="name" minlength="3" maxlength="25" required>
-                                  </div>
-                                  <div>
-                                    <label for="hotelStock">Select a stock</label>
-                                    <input type="number" class="form-control" id="hotelStock" placeholder="stock" minlength="3" maxlength="25" required>
-                                  </div>
-                                <div>
-
+                          <fieldset class="p-3">
+                            Select a Service Type
+                              <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
+                                <optgroup label="Select a type">
+                                  <option :value="ticket">Ticket</option>
+                                  <option :value="hotel">Hotel</option>
+                                  <option :value="event">Event</option>
+                                </optgroup>
+                              </select>
+                              <div>
+                                <label for="lodgingPrice">Select a price</label>
+                                <input type="number" class="form-control" id="lodgingPrice" placeholder="price" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="lodgingDiscount">Select a discount code</label>
+                                <input type="number" class="form-control" id="lodgingDiscount" placeholder="discount" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="lodgingDescription">Select a description</label>
+                                <input type="text" class="form-control" id="lodgingDescription" placeholder="description" minlength="3" maxlength="100" required>
+                              </div>
+                              <div>
+                                <label for="lodgingName">Select a product name</label>
+                                <input type="text" class="form-control" id="lodgingName" placeholder="name" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="lodgingStock">Select a stock</label>
+                                <input type="number" class="form-control" id="lodgingStock" placeholder="stock" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="imgUrlLodging">Ingrese la URL del Alojamiento</label>
+                                <input type="text"class="form-control" id="urlImgLodging" placeholder="url" required>
+                              </div>
+                              <div>
+                                <label for="lodgingAddress">Select an address</label>
+                                <input type="text" class="form-control" id="lodgingAddress" placeholder="address" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <p>Parking?</p>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineParkingRadio1" value="true">
+                                  <label class="form-check-label" for="inlineParkingRadio1">Yes</label>
                                 </div>
-                                <div class="mb-2">
-                                  Select the classes
-                                  <select v-model="" class="form-control" name="flyClasses" id="flyClasses">
-                                    <optgroup label="Select a Class">
-                                      <option value="first">First</option>
-                                      <option value="business">Business</option>
-                                      <option value="premium">Premium</option>
-                                      <option value="economic">Economic</option>
-                                    </optgroup>
-                                  </select> 
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineParkingRadio2" value="false">
+                                  <label class="form-check-label" for="inlineParkingRadio2">No</label>
                                 </div>
-                                <div class="modal-footer divForm  d-flex align-self-center justify-content-center ">
-                                  <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3">Accept</button>
+                              </div>
+                              <div>
+                                <p>Concierge?</p>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineConciergeRadio1" value="true">
+                                  <label class="form-check-label" for="inlineConciergeRadio1">Yes</label>
                                 </div>
-                              </fieldset>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineConciergeRadio2" value="false">
+                                  <label class="form-check-label" for="inlineConciergeRadio2">No</label>
+                                </div>
+                              </div>
+                              <div>
+                                <label for="lodgingAgencyName">Agency Name</label>
+                                <input type="text" class="form-control" id="lodgingAgencyName" placeholder="End">
+                              </div>
+                            <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
+                              <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3">Accept</button>
+                            </div>
+                          </fieldset>
                         </div>
                       </div>
                     </div>
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Accordion Item #3
+                          New Activity
                         </button>
                       </h2>
                       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                          <fieldset class="p-3">
+                            Select a Service Type
+                              <select v-model="" name="selectServiceType" id="selectServiceType" class="mb-3">
+                                <optgroup label="Select a type">
+                                  <option :value="ticket">Ticket</option>
+                                  <option :value="hotel">Hotel</option>
+                                  <option :value="event">Event</option>
+                                </optgroup>
+                              </select>
+                              <div>
+                                <label for="eventName">Select a product name</label>
+                                <input type="text" class="form-control" id="eventName" placeholder="name" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="eventPoints">Select points amount</label>
+                                <input type="text" class="form-control" id="eventPoints" placeholder="points" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="eventPrice">Select a price</label>
+                                <input type="number" class="form-control" id="eventPrice" placeholder="price" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="eventDiscount">Select a discount code</label>
+                                <input type="number" class="form-control" id="eventDiscount" placeholder="discount" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="eventAddress">Select an address</label>
+                                <input type="text" class="form-control" id="eventAddress" placeholder="address" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="eventDescription">Select a description</label>
+                                <input type="text" class="form-control" id="eventDescription" placeholder="description" minlength="3" maxlength="100" required>
+                              </div>
+                              <div>
+                                <label for="eventStock">Select a stock</label>
+                                <input type="number" class="form-control" id="eventStock" placeholder="stock" minlength="3" maxlength="25" required>
+                              </div>
+                              <div>
+                                <label for="imgUrlEvent">Ingrese la URL del evento</label>
+                                <input type="text"class="form-control" id="imgUrlEvent" placeholder="url" required>
+                              </div>
+                              <div>
+                                <label for="eventAgencyName">Agency Name</label>
+                                <input type="text" class="form-control" id="eventAgencyName" placeholder="End">
+                              </div>
+                              <div>
+                                <p>VIP?</p>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineVipRadio1" value="true">
+                                  <label class="form-check-label" for="inlineVipRadio1">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineVipRadio2" value="false">
+                                  <label class="form-check-label" for="inlineVipRadio2">No</label>
+                                </div>
+                              </div>
+                            <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
+                              <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3">Accept</button>
+                            </div>
+                          </fieldset>
                         </div>
                       </div>
                     </div>
