@@ -15,7 +15,7 @@ public class ClientHotel extends UserProduct {
     private Integer passangers;
     private Pension pension;
 
-    public ClientHotel(){
+    public ClientHotel() {
     }
 
     public ClientHotel(User user, Product product) {
@@ -28,6 +28,7 @@ public class ClientHotel extends UserProduct {
         this.departureDate = departureDate;
         this.nights = nights;
         this.passangers = passangers;
+        this.quantity = passangers;
     }
 
     public LocalDateTime getArrivalDate() {
@@ -69,4 +70,12 @@ public class ClientHotel extends UserProduct {
     public void setPension(Pension pension) {
         this.pension = pension;
     }
+
+    @Override
+    public void setFinalPrice(Double finalPrice) {
+
+        super.setFinalPrice(finalPrice); // si es vip tiene un recargo del 20%
+    }
+
+
 }

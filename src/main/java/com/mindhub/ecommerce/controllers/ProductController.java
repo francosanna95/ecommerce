@@ -1,6 +1,7 @@
 package com.mindhub.ecommerce.controllers;
 
 import com.mindhub.ecommerce.dtos.*;
+import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.User;
 import com.mindhub.ecommerce.models.Event;
 import com.mindhub.ecommerce.models.Hotel;
@@ -12,6 +13,7 @@ import com.mindhub.ecommerce.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,7 +53,13 @@ public class ProductController {
     }
 
     @PostMapping("/events")
-    public ResponseEntity<String> addEvent(@RequestBody EventDTO eventDTO) {
+    public ResponseEntity<String> addEvent(Authentication auth, @RequestBody EventDTO eventDTO) {
+        User agency = userRepo.findByEmail(auth.getName()).orElse(null);
+
+        if (!agency.getUserRole().equals(UserRole.AGENCY)){
+            return new ResponseEntity<>("We are sorry, you don't have authorization for this action",HttpStatus.UNAUTHORIZED);
+        }
+
         if (eventDTO.getDescription().isBlank()){
             return new ResponseEntity<>("Please set Event Description",HttpStatus.NOT_ACCEPTABLE);
         }
@@ -72,14 +80,20 @@ public class ProductController {
         if (userRepo.findByFirstName(eventDTO.getAgencyName()).isEmpty()){
             return new ResponseEntity<>("Invalid agency name",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productService.createEvent(eventDTO,eventDTO.getAgencyName())){
+        if (productService.createEvent(eventDTO,agency)){
             return new ResponseEntity<>("Evento creado", HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("Something went wrong",HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/tickets")
-    public ResponseEntity<String> addTicket(@RequestBody TicketDTO ticketDTO) {
+    public ResponseEntity<String> addTicket(Authentication auth, @RequestBody TicketDTO ticketDTO) {
+        User agency = userRepo.findByEmail(auth.getName()).orElse(null);
+
+        if (!agency.getUserRole().equals(UserRole.AGENCY)){
+            return new ResponseEntity<>("We are sorry, you don't have authorization for this action",HttpStatus.UNAUTHORIZED);
+        }
+
         if (userRepo.findByFirstName(ticketDTO.getAgencyName()).isEmpty()){
             return new ResponseEntity<>("Invalid agency name",HttpStatus.NOT_ACCEPTABLE);
         }
@@ -95,13 +109,19 @@ public class ProductController {
             return new ResponseEntity<>("You can't have negative stock",HttpStatus.NOT_ACCEPTABLE);
         }
 
-        if (productService.createTicket(ticketDTO,ticketDTO.getAgencyName())) {
+        if (productService.createTicket(ticketDTO,agency)) {
             return new ResponseEntity<>("Ticked creado", HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("Creation ticket error, please contact our Help Desk",HttpStatus.NOT_ACCEPTABLE);
     }
     @PostMapping("/hotels")
-     public ResponseEntity<String> addHotel(@RequestBody HotelDTO hotelDTO) {
+     public ResponseEntity<String> addHotel(Authentication auth, @RequestBody HotelDTO hotelDTO) {
+
+        User agency = userRepo.findByEmail(auth.getName()).orElse(null);
+
+        if (!agency.getUserRole().equals(UserRole.AGENCY)){
+            return new ResponseEntity<>("We are sorry, you don't have authorization for this action",HttpStatus.UNAUTHORIZED);
+        }
 
         if (hotelDTO.getAddress().isBlank()){
             return new ResponseEntity<>("Please set address",HttpStatus.NOT_ACCEPTABLE);
@@ -115,7 +135,7 @@ public class ProductController {
         if (hotelDTO.getProductName().isBlank()){
             return new ResponseEntity<>("The name can't be blank",HttpStatus.NOT_ACCEPTABLE);
         }
-        if (productService.createHotel(hotelDTO,hotelDTO.getAgencyName())){
+        if (productService.createHotel(hotelDTO,agency)){
          return new ResponseEntity<>("Hotel creation successful",HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("Hotel creation error",HttpStatus.NOT_ACCEPTABLE);
