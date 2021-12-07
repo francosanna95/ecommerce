@@ -8,8 +8,6 @@ public class HotelDTO extends ProductDTO{
 
     private Boolean parking;
     private Boolean concierge;
-    private Integer availableRooms;
-    private Pension offeredPension;
 
     public HotelDTO() {}
 
@@ -18,8 +16,7 @@ public class HotelDTO extends ProductDTO{
         Hotel hotel = (Hotel) product;
         this.parking = hotel.getParking();
         this.concierge = hotel.getConcierge();
-        this.availableRooms = hotel.getAvailableRooms();
-        this.offeredPension = hotel.getOfferedPension();
+
     }
 
     public Boolean getParking() {
@@ -38,21 +35,7 @@ public class HotelDTO extends ProductDTO{
         this.concierge = concierge;
     }
 
-    public Integer getAvailableRooms() {
-        return availableRooms;
-    }
 
-    public void setAvailableRooms(Integer availableRooms) {
-        this.availableRooms = availableRooms;
-    }
-
-    public Pension getOfferedPension() {
-        return offeredPension;
-    }
-
-    public void setOfferedPension(Pension offeredPension) {
-        this.offeredPension = offeredPension;
-    }
 
 
 }

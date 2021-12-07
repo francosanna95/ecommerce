@@ -5,8 +5,10 @@ import com.mindhub.ecommerce.models.Product;
 
 public class EventDTO extends ProductDTO {
 
+    //si volamos esta clase? q directamente reciba un ProductoDTO...
+    //la dejo por si las moscas
+
     private String artist;
-    private Integer maxCapacity;
     private boolean vip;
 
 
@@ -17,7 +19,6 @@ public class EventDTO extends ProductDTO {
         super(product);
         Event event = (Event) product;
         this.artist = event.getArtist();
-        this.maxCapacity = event.getMaxCapacity();
         this.vip = event.isVip();
 
     }
@@ -30,13 +31,6 @@ public class EventDTO extends ProductDTO {
         this.artist = artist;
     }
 
-    public Integer getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    public void setMaxCapacity(Integer maxCapacity) {
-        this.maxCapacity = maxCapacity;
-    }
 
     public boolean isVip() {
         return vip;

@@ -12,8 +12,6 @@ public class Hotel extends Product {
 
     private Boolean parking;
     private Boolean concierge;
-    private Integer availableRooms;
-    private Pension offeredPension;
 
     public Hotel(){
         super();
@@ -21,19 +19,17 @@ public class Hotel extends Product {
     }
 
     public Hotel(HotelDTO hotelDTO) {
-        super(hotelDTO.getPoints(),hotelDTO.getPrice(),hotelDTO.getDisscountCode(),hotelDTO.getAddress(),hotelDTO.getProductName(),hotelDTO.getMaxCapacity(),hotelDTO.getStock(),hotelDTO.getImgUrl());
+        super(hotelDTO.getPoints(),hotelDTO.getPrice(),hotelDTO.getDisscountCode(),hotelDTO.getAddress(),hotelDTO.getProductName(),hotelDTO.getDescription(),hotelDTO.getStock(),hotelDTO.getImgUrl());
         this.parking = hotelDTO.getParking();
         this.concierge = hotelDTO.getConcierge();
-        this.availableRooms = hotelDTO.getAvailableRooms();
-        this.offeredPension = hotelDTO.getOfferedPension();
+
     }
 
-    public Hotel(Integer points, Double price, String disscountCode, String address, User user, String name, Integer maxCapacity, Integer stock, String imgUrl, Boolean parking, Boolean concierge, Integer availableRooms, Pension offeredPension) {
-        super(points, price, disscountCode, address, user, name, maxCapacity, stock, imgUrl);
+    public Hotel(Integer points, Double price, String disscountCode, String address, User user, String name, String description, Integer stock, String imgUrl, Boolean parking, Boolean concierge, Integer availableRooms, Pension offeredPension) {
+        super(points, price, disscountCode, address, user, name, description, stock, imgUrl);
         this.parking = parking;
         this.concierge = concierge;
-        this.availableRooms = availableRooms;
-        this.offeredPension = offeredPension;
+
     }
 
     public Boolean getParking() {
@@ -50,24 +46,9 @@ public class Hotel extends Product {
         this.concierge = concierge;
     }
 
-    public Integer getAvailableRooms() {
-        return availableRooms;
-    }
-    public void setAvailableRooms(Integer availableRooms) {
-        this.availableRooms = availableRooms;
-    }
 
-    public Pension getOfferedPension() {
-        return offeredPension;
-    }
-    public void setOfferedPension(Pension offeredPension) {
-        this.offeredPension = offeredPension;
-    }
 
-//    public void addClientHotel(ClientHotel clientHotel){
-//        clientHotel.setProduct(this);
-//        productsOnCart.add(clientHotel);
-//    }
+
 
 
 }

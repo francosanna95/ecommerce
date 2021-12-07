@@ -15,9 +15,10 @@ public class ProductDTO {
     private String disscountCode;
     private String address;
     private UserDTO agency;
-    private Integer maxCapacity;
+    private String description;
     private Integer stock;
     private String imgUrl;
+    private String agencyName;
 
 
     public ProductDTO() {
@@ -33,6 +34,8 @@ public class ProductDTO {
         this.agency = new UserDTO(product.getUser());
         this.stock = product.getStock();
         this.imgUrl = product.getImgUrl();
+        this.description = product.getDescription();
+        this.agencyName = product.getUser().getFirstName();
 
         if (product instanceof Event) {
             this.productType = "EVENT";
@@ -43,12 +46,12 @@ public class ProductDTO {
         }
     }
 
-    public Integer getMaxCapacity() {
-        return maxCapacity;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMaxCapacity(Integer maxCapacity) {
-        this.maxCapacity = maxCapacity;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getStock() {
@@ -130,5 +133,13 @@ public class ProductDTO {
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    public String getAgencyName() {
+        return agencyName;
+    }
+
+    public void setAgencyName(String agencyName) {
+        this.agencyName = agencyName;
     }
 }
