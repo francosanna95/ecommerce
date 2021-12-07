@@ -71,6 +71,8 @@ public class UserServiceImpl implements UserService {
             clientEvent.setVip(isVip);
             clientEvent.setProduct(event);
             clientEvent.setFinalPrice(event.getPrice());
+            int eventStock = event.getStock();
+            event.setStock(eventStock-attendants);
             salesRepo.save(clientEvent);
             userRepo.save(user);
             productRepo.save(event);
@@ -125,6 +127,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
+
 
 
 }

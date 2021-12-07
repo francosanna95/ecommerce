@@ -2,10 +2,7 @@ package com.mindhub.ecommerce.services;
 
 
 import com.mindhub.ecommerce.dtos.UserDTO;
-import com.mindhub.ecommerce.models.Event;
-import com.mindhub.ecommerce.models.Hotel;
-import com.mindhub.ecommerce.models.Ticket;
-import com.mindhub.ecommerce.models.User;
+import com.mindhub.ecommerce.models.*;
 
 import java.util.Set;
 
@@ -26,4 +23,5 @@ public interface UserService {
 
     boolean addHotelToClientCart(User user, Hotel hotel, String arrivalDate, String departureDate, Integer nights, Integer passangers, String pension);
 
+    boolean removeProductFromCart(User user, UserProduct toDelete);
 }

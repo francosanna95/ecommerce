@@ -42,7 +42,7 @@ public class ClientEvent extends UserProduct {
     public void setFinalPrice(Double finalPrice) {
         if (this.isVip){
             super.setFinalPrice(finalPrice*1.2*attendants); // si es vip tiene un recargo del 20%
-        } else super.setFinalPrice(finalPrice);
+        } else super.setFinalPrice(finalPrice*attendants);
 
     }
 }

@@ -8,6 +8,7 @@ import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
+import com.mindhub.ecommerce.repositories.SalesRepository;
 import com.mindhub.ecommerce.repositories.UserRepository;
 import com.mindhub.ecommerce.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class UserController {
 
     @Autowired
     private ProductRepository productRepo;
+
+    @Autowired
+    private SalesRepository salesRepo;
 
     @GetMapping("/agencies")
     public Set<UserDTO> getAgencies() {
@@ -95,11 +99,10 @@ public class UserController {
         userService.addEventToClientCart(user, event, isVip, attendants);
 
         //TODO
-
         return new ResponseEntity<String>("Event booked succesfully", HttpStatus.CREATED);
     }
 
-    @PostMapping("/clients/addToCart/hotel")
+    @PostMapping("/clients/current/addToCart/hotel")
     public ResponseEntity<String> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam String arrivalDate, @RequestParam String departureDate, @RequestParam Integer nights, @RequestParam Integer passangers, @RequestParam String pension) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
@@ -126,7 +129,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/clients/addToCart/ticket")
+    @PostMapping("/clients/current/addToCart/ticket")
     public ResponseEntity<String> addTicketToCart(Authentication auth, @RequestParam Long ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
@@ -155,4 +158,35 @@ public class UserController {
         //TODO
 
     }
+
+    @PostMapping("/clients/current/removeFromCart/ticket")
+    public ResponseEntity<String> removeTicketfromCart(Authentication auth, @RequestParam Long userProductId) {
+
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        UserProduct toDelete = salesRepo.findById(userProductId).orElse(null);
+
+        if (!(toDelete instanceof ClientTicket)) {
+            return new ResponseEntity<>("Invalid ID for Ticket", HttpStatus.BAD_REQUEST);
+        }
+
+        ClientTicket ticketToDelete = (ClientTicket) toDelete;
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+
+
+        if (userService.removeProductFromCart(user, toDelete)) {
+            return new ResponseEntity<String>("Ticket booked succesfully", HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<String>("Ticket Booking unsuccesful", HttpStatus.CREATED);
+
+        //TODO
+
+    }
+
+
+
 }
