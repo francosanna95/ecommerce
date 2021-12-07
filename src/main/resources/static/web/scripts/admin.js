@@ -8,7 +8,7 @@ const app = Vue.createApp({
         address: "",
         productName: "",
         description: "",
-        stock: "",
+        stock: 0,
         imgUrl: "",
         agencyName:"",
 
@@ -28,7 +28,7 @@ const app = Vue.createApp({
   },
   methods: {
     newTicket(){
-        console.log(this.service)
+        /*console.log(this.service)*/
         console.log(this.price)
         console.log(this.discountCode)
         console.log(this.productName)
@@ -46,19 +46,20 @@ const app = Vue.createApp({
             method:'POST',
             url:`/api/products/tickets`,
             data:{
-                     "price": this.price,
-                     "discountCode": this.discountCode,
-                     "productName": this.productName,
-                     "description" : this.description,
-                     "stock": this.stock,
-                     "imgUrl": this.imgUrl,
-                     "address": this.address,
-                     "departureTime": this.departureDate,
-                     "arrivalTime" : this.arrivalDate,
-                     "departureLocation" : this.departureLocation,
-                     "arrivalLocation" : this.arrivalLocation,
-                     "agencyName" : this.agencyName
-            }
+                "price": `${this.price}`,
+                "disscountCode": `${this.discountCode}`,
+                "productName": `${this.productName}`,
+                "description": `${this.description}`,
+                "stock": `${this.stock}`,
+                "imgUrl": `${this.imgUrl}`,
+                "address": `${this.address}`,
+                "departureTime": `${this.departureDate}` + "T10:11:30",
+                "arrivalTime": `${this.arrivalDate}` + "T10:11:30",
+                "departureLocation" : `${this.departureLocation}`,
+                "arrivalLocation" : `${this.arrivalLocation}`,
+                "agencyName": `${this.agencyName}`
+            },
+            headers: {'content-type': 'application/json'}
         })
     },
     newHotel(){
@@ -66,16 +67,16 @@ const app = Vue.createApp({
              method:'POST',
              url:`/api/products/hotels`,
              data:{
-                 "price":1500,
-                 "disscountCode":"asd123",
-                 "description":"the new Franco's inn!",
-                 "productName":"Los Simpson Hotel",
-                 "stock":40,
-                 "imgUrl":"IMG url",
-                 "address":"Av. siempreviva 123",
-                 "parking":false,
-                 "concierge":true,
-                 "agencyName" : "Babel"
+                 "price": `${this.price}`,
+                 "disscountCode": `${this.discountCode}`,
+                 "description": `${this.description}`,
+                 "productName": `${this.productName}`,
+                 "stock": `${this.stock}`,
+                 "imgUrl": `${this.imgUrl}`,
+                 "address": `${this.address}`,
+                 "parking": `${this.parking}`,
+                 "concierge": `${this.concierge}`,
+                 "agencyName": `${this.agencyName}`
              }
         })
     },
@@ -84,16 +85,16 @@ const app = Vue.createApp({
             method:'POST',
             url:`/api/products/events`,
             data:{
-                "price":1500,
-                "disscountCode":"asd123",
-                "description" : "Maluma Baby",
-                "productName":"The new Maluma experience",
-                "stock":250,
-                "imgUrl":"IMG url",
-                "address":"Aeropuerto Internacional de Ezeiza",
-                "agencyName" : "Babel",
-                "artist":"Maluma",
-                "vip":true
+                "price": `${this.price}`,
+                "disscountCode": `${this.discountCode}`,
+                "description": `${this.description}`,
+                "productName": `${this.productName}`,
+                "stock": `${this.stock}`,
+                "imgUrl": `${this.imgUrl}`,
+                "address": `${this.address}`,
+                "agencyName": `${this.agencyName}`,
+                "artist": `${this.artist}`,
+                "vip": `${this.vip}`
             }
         })
     },
