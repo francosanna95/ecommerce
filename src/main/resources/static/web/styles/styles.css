@@ -299,8 +299,58 @@ div .oferta {
 }
 
 /*main*/
+.tableContainer {
+    background-color: var(--font-color-w);
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 15px;
+}
+tr {
+    font-size: 1.5rem;
 
-
+}
+td {
+    font-size: 1.2rem;
+    padding: .5rem;
+    height: 120px;
+}
+.btn-close {
+    font-size: 1rem;
+}
+.btnCart {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+.imgTable {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+}
+.labelCode {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: var(--extra-color);
+    font-size: 1.3rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+#enterDiscountCode {
+    width: 13%;
+    padding: 1rem;
+    margin: 1rem;
+}
+.list-group {
+    border-radius: 10px;
+    width: 50%;
+}
+.list-group-item {
+    background-color: var(--font-color-w);
+    border: none;
+}
+.payButton {
+    font-size: 1.5rem;
+}
 
 /*footer*/
 footer {
