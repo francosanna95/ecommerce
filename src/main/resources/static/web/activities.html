@@ -13,8 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/styles.css">
-    
+    <link rel="stylesheet" href="./styles/styles.css">  
 </head>
 <body id="app">
     <div>
@@ -31,45 +30,43 @@
                           <!--<h1>Melba's Trips</h1>-->
                       </div>
                     <div class="d-flex flex-row">
-                        <div class="m-3">
+                        <div class="m-3 scale">
                             <!-- Button trigger modal log in -->
                             <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLogIn"><i class="fal fa-user"></i> Log In</button>-->
                             <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i class="fal fa-user"></i> Log In</a>
                         </div>
-                        <div class="m-3">
+                        <div class="m-3 scale">
                             <!-- Button trigger modal cart -->
                             <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i> Cart</a>
                         </div>
-                        <div class="m-3">
+                        <div class="m-3 scale">
                             <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
                         </div>
                     </div>
                 </div>
                 <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
-                    <div class="container d-flex ">
-                        <section class="containerPadre">
-                            <div class="containerHijo">
-                                <div class="card1"></div>
-                                <div class="card2"></div>
-                                <div class="card2 card3"></div>
-                            </div>
-                        </section>
+                    <div class="container d-flex justify-content-center">
+                        <div class="containerHijo">
+                            <div class="card1 mt-0 m-md-3"></div>
+                            <div class="card2 mt-0 mb-0"></div>
+                            <div class="card2 card3 m-3 m-md-0"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-bed align-self-center"></i>
-                        <a class="box" href="./lodging.html">Lodging</a>
+                        <a class="box" href="lodging.html">Lodging</a>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-plane-alt align-self-center"></i>
                         <a class="box" href="./flies.html">Flights</a>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-hiking align-self-center"></i>
                         <a class="box" href="#">Activities</a>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-box-full align-self-center"></i>
                         <a class="box" href="./combos.html">Packages</a>
                     </div>
@@ -146,28 +143,27 @@
                 <div>
                     ACA VA EL CARRUSEL DE TARJETAS CON DESTINOS
                 </div>
-                <div class="containerDestinoHijo">
-                    <div class="cardDestino" v-for="activitie in activities">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
+                    <div class="cardDestino" v-for=" event in events">
                             <div class="imgDestino">
-                                <img :src="hotel.imgUrl" alt=""> 
+                                <img :src="event.imgUrl" alt=""> 
                                 <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
-                                    <i class="fa fa-plane" aria-hidden="true"></i>
-                                    <h6 class="m-0 ">roundtrip flight</h6> 
+                                    <i class="fas fa-theater-masks"></i>
+                                    <h6 class="m-0 ">Events</h6> 
                                 </div>
                             </div>
                             <div class="contentDestino">
-                                <h5 class="mt-2">{{hotel.productName}}</h5>
+                                <h5 class="mt-1 mb-1">{{event.artist}}</h5>
                                 <div class="contenido">
-                                    <h6>From</h6>
-                                    <h5 class="text-dark">Buenos Aires</h5>
-                                    <h5 class="text-dark"></h5>
-                                    <p class="">Enjoy the best experience with us</p>
+                                    <h6 class="text-dark">{{event.productName}}</6>
+                                    <p class="m-1">{{event.description}}</p>
+                                    <p class="m-0">{{event.address}}</p> 
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
                                 <div>
-                                    <h6>Starting</h6>
-                                    <h4 class="spanRojo">${{hotel.price}}</h4>
+                                    <h6 class="m-0">Starting</h6>
+                                    <h4 class="spanRojo">${{event.price}}</h4>
                                 </div>
                                 <div class="btn-buy">
                                     <a href="#">Add</a>
@@ -176,63 +172,6 @@
                             <div class="oferta">
                                 <img src="./assets/descuentoCincuenta.png" alt="">
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!--<div class="containerDestino">
-                    <div class="containerDestinoHijo" v-for="hotel in hotels">
-                        <div class="cardDestino">
-                            <div class="imgBx">
-                                <img :src="hotel." alt="">
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
-                                </div>
-                                <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="containerDestinoHijo">
-                        <div class="cardDestino">
-                            <div class="imgBx">
-                                <img src="./assets/playaAltura.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
-                                </div>
-                                <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="containerDestinoHijo">
-                        <div class="cardDestino">
-                            <div class="imgBx">
-                                <img src="./assets/playaAtardecer.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
-                                </div>
-                                <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </main>
@@ -271,7 +210,7 @@
                       <div>
                         <h5><i class="fad fa-calendar-star"></i><strong> Sat:</strong> 10hs to 17hs</h5>
                       </div>
-                </div>-->
+                </div>
                 <div class="footer-box-3 d-flex flex-wrap flex-column justify-content-center align-items-center pt-2 p-2">
                     <div>
                       <h5>© 2021 Melba's Trips | All Rights Reserved</h5>
