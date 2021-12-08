@@ -81,7 +81,7 @@ public class UserController {
         return userService.getClientById(id);
     }
 
-    @PostMapping("/clients/addToCart/event")
+    @PostMapping("/clients/current/addToCart/event")
     public ResponseEntity<String> addEventToCart(Authentication auth, @RequestParam Long eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(eventId).orElse(null);
@@ -136,7 +136,7 @@ public class UserController {
         Product product = productRepo.findById(ticketId).orElse(null);
 
         if (!(product instanceof Ticket)) {
-            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid ID for Ticket", HttpStatus.BAD_REQUEST);
         }
 
         Ticket ticket = (Ticket) product;
@@ -159,26 +159,21 @@ public class UserController {
 
     }
 
-    @PostMapping("/clients/current/removeFromCart/ticket")
-    public ResponseEntity<String> removeTicketfromCart(Authentication auth, @RequestParam Long userProductId) {
+    @PostMapping("/clients/current/removeFromCart")
+    public ResponseEntity<String> removeProductFromCart(Authentication auth, @RequestParam Long userProductId) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
-        UserProduct toDelete = salesRepo.findById(userProductId).orElse(null);
-
-        if (!(toDelete instanceof ClientTicket)) {
-            return new ResponseEntity<>("Invalid ID for Ticket", HttpStatus.BAD_REQUEST);
-        }
-
-        ClientTicket ticketToDelete = (ClientTicket) toDelete;
+        UserProduct productToRemove = salesRepo.findById(userProductId).orElse(null);
 
         if (user == null) {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
+        if (productToRemove == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
 
-
-
-        if (userService.removeProductFromCart(user, toDelete)) {
-            return new ResponseEntity<String>("Ticket booked succesfully", HttpStatus.CREATED);
+        if (userService.removeProductFromCart(user, productToRemove)) {
+            return new ResponseEntity<String>("Product successfully removed", HttpStatus.CREATED);
         }
 
         return new ResponseEntity<String>("Ticket Booking unsuccesful", HttpStatus.CREATED);
