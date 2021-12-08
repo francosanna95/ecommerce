@@ -29,7 +29,7 @@ public class User {
     private List<UserProduct> currentCart = new LinkedList<>();
 
     @OneToMany(mappedBy = "userHistory", fetch = FetchType.EAGER)
-    private List<UserProduct> historyCart = new LinkedList<>();
+    private List<UserProduct> shoppingHistory = new LinkedList<>();
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
@@ -63,7 +63,7 @@ public class User {
 
     public void addClientProductToHistoryCart(UserProduct userProduct){
         userProduct.setUserHistory(this);
-        this.historyCart.add(userProduct);
+        this.shoppingHistory.add(userProduct);
     }
 
 
@@ -147,12 +147,12 @@ public class User {
         this.currentCart = currentCart;
     }
 
-    public List<UserProduct> getHistoryCart() {
-        return historyCart;
+    public List<UserProduct> getShoppingHistory() {
+        return shoppingHistory;
     }
 
-    public void setHistoryCart(List<UserProduct> historyCart) {
-        this.historyCart = historyCart;
+    public void setShoppingHistory(List<UserProduct> shoppingHistory) {
+        this.shoppingHistory = shoppingHistory;
     }
 
     public UserRole getUserRole() {

@@ -7,21 +7,19 @@ import javax.persistence.*;
 public class ClientEvent extends UserProduct {
 
     private Boolean isVip;
-    private Integer attendants; // cantidad de tickets q compra
 
     public ClientEvent(){
 
     }
-    public ClientEvent(Boolean isVip, Integer attendants) {
+    public ClientEvent(Boolean isVip) {
         this.isVip = isVip;
-        this.attendants = attendants;
     }
 
-    public ClientEvent(User user, Product product, Boolean isVip, Integer attendants) {
+    public ClientEvent(User user, Product product, Boolean isVip) {
         super(user, product);
         this.isVip = isVip;
-        this.attendants = attendants;
-        this.quantity = attendants;
+
+
     }
 
     public Boolean getVip() {
@@ -31,18 +29,14 @@ public class ClientEvent extends UserProduct {
         isVip = vip;
     }
 
-    public Integer getAttendants() {
-        return attendants;
-    }
-    public void setAttendants(Integer attendants) {
-        this.attendants = attendants;
-    }
 
     @Override
     public void setFinalPrice(Double finalPrice) {
         if (this.isVip){
-            super.setFinalPrice(finalPrice*1.2*attendants); // si es vip tiene un recargo del 20%
-        } else super.setFinalPrice(finalPrice);
+            super.setFinalPrice(finalPrice*1.2*quantity); // si es vip tiene un recargo del 20%
+        } else {
+            super.setFinalPrice(finalPrice*quantity);
+        }
 
     }
 }

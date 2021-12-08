@@ -4,7 +4,6 @@ import com.mindhub.ecommerce.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class UserDTO {
@@ -30,7 +29,7 @@ public class UserDTO {
         this.lastName = client.getLastName();
         this.imgUrl = client.getImgUrl();
         this.cart = client.getCurrentCart().stream().map(UserProductDTO::new).collect(Collectors.toList());
-        this.historyCart = client.getHistoryCart().stream().map(UserProductDTO::new).collect(Collectors.toList());
+        this.historyCart = client.getShoppingHistory().stream().map(UserProductDTO::new).collect(Collectors.toList());
         this.email = client.getEmail();
         this.id = client.getId();
         this.password = client.getPassword();
