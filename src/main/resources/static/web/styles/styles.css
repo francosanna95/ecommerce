@@ -14,6 +14,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-color: var(--main-bg-color);
+}
+
 .mainDiv {
     background-color: var(--main-bg-color);
 }
@@ -255,6 +260,7 @@ div .imgDestino {
     object-fit: cover;
 }
 
+
 div .imgDestino .idaYvuelta {
     position: absolute;
     top: 0;
@@ -272,7 +278,17 @@ div .imgDestino .idaYvuelta {
     width: 100%;
     height: 40%;
     padding: .5rem;
+    
 }
+
+div .imgDestino:hover img{
+    transition: 1.5s ease;
+    position: absolute;
+    top: 0;
+    height: 80%;
+    z-index: 1;
+}
+
 
 .lineaDiv{
     width: 100%;
@@ -305,13 +321,14 @@ div .imgDestino .idaYvuelta {
 }
 
 div .oferta img {
-    width: 5rem;
+    width: 3.5rem;
 }
 
 div .oferta {
     position: absolute;
     top: 0;
     left: 0;
+    transform: rotate(-35deg);
 }
 
 /*main*/
