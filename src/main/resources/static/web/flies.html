@@ -173,7 +173,7 @@
                                 </div> 
                             </div>
                             <div class="oferta">
-                                <img src="./assets/descuentoCincuenta.png" alt="">
+                                <img :src="'./assets/'+ ticket.disscountCode +'.png'" alt="">
                             </div>
                             <a @click.prevent="deleteCartObject(ticket)"href="">Add</a>
                         </div>
