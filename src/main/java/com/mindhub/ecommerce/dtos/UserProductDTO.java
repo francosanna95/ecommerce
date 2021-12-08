@@ -17,7 +17,7 @@ public class UserProductDTO {
     public UserProductDTO(UserProduct userProduct) {
         Product product = userProduct.getProduct();
         this.quantity = userProduct.getQuantity();
-        this.id = product.getProductId();
+        this.id = userProduct.getId();
         this.productName = product.getName();
         this.productPrice = product.getPrice();
         this.points = product.getPoints();

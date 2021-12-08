@@ -31,45 +31,43 @@
                           <!--<h1>Melba's Trips</h1>-->
                       </div>
                     <div class="d-flex flex-row">
-                        <div class="m-3">
+                        <div class="m-3 scale">
                             <!-- Button trigger modal log in -->
                             <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLogIn"><i class="fal fa-user"></i> Log In</button>-->
                             <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i class="fal fa-user"></i> Log In</a>
                         </div>
-                        <div class="m-3">
+                        <div class="m-3 scale">
                             <!-- Button trigger modal cart -->
                             <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i> Cart</a>
                         </div>
-                        <div class="m-3">
+                        <div class="m-3 scale">
                             <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
                         </div>
                     </div>
                 </div>
                 <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
-                    <div class="container d-flex ">
-                        <section class="containerPadre">
-                            <div class="containerHijo">
-                                <div class="card1"></div>
-                                <div class="card2"></div>
-                                <div class="card2 card3"></div>
-                            </div>
-                        </section>
+                    <div class="container d-flex justify-content-center">
+                        <div class="containerHijo">
+                            <div class="card1 mt-0 m-md-3"></div>
+                            <div class="card2 mt-0 mb-0 "></div>
+                            <div class="card2 card3 m-3 m-md-0"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-bed align-self-center"></i>
                         <a class="box" href="#">Lodging</a>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-plane-alt align-self-center"></i>
                         <a class="box" href="./flies.html">Flights</a>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-hiking align-self-center"></i>
                         <a class="box" href="./activities.html">Activities</a>
                     </div>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column scale">
                         <i class="fal fa-box-full align-self-center"></i>
                         <a class="box" href="./combos.html">Packages</a>
                     </div>
@@ -146,22 +144,21 @@
                 <div>
                     ACA VA EL CARRUSEL DE TARJETAS CON DESTINOS
                 </div>
-                <div class="containerDestinoHijo">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
                     <div class="cardDestino" v-for="hotel in hotels">
                             <div class="imgDestino">
                                 <img :src="hotel.imgUrl" alt=""> 
                                 <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
-                                    <i class="fa fa-plane" aria-hidden="true"></i>
-                                    <h6 class="m-0 ">roundtrip flight</h6> 
+                                    <i class="fas fa-hotel"></i>
+                                    <h6 class="m-0 ">Hotels</h6> 
                                 </div>
                             </div>
                             <div class="contentDestino">
                                 <h5 class="mt-2">{{hotel.productName}}</h5>
                                 <div class="contenido">
-                                    <h6>From</h6>
-                                    <h5 class="text-dark">Buenos Aires</h5>
+                                    <h5 class="text-dark">{{hotel.origin}}</h5>
                                     <h5 class="text-dark"></h5>
-                                    <p class="">Enjoy the best experience with us</p>
+                                    <p class="">{{hotel.description}}</p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
@@ -174,66 +171,10 @@
                                 </div> 
                             </div>
                             <div class="oferta">
-                                <img src="./assets/descuentoCincuenta.png" alt="">
+                                <img :src="'./assets/'+ hotel.disscountCode +'.png'" alt="">
                             </div>
                     </div>
                 </div>
-                <!--<div class="containerDestino">
-                    <div class="containerDestinoHijo" v-for="hotel in hotels">
-                        <div class="cardDestino">
-                            <div class="imgBx">
-                                <img :src="hotel." alt="">
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
-                                </div>
-                                <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="containerDestinoHijo">
-                        <div class="cardDestino">
-                            <div class="imgBx">
-                                <img src="./assets/playaAltura.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
-                                </div>
-                                <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="containerDestinoHijo">
-                        <div class="cardDestino">
-                            <div class="imgBx">
-                                <img src="./assets/playaAtardecer.jpg" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
-                                </div>
-                                <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </main>
             <footer>
                 <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
