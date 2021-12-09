@@ -403,7 +403,7 @@ td {
 #cartBtn {
     position: fixed;
     bottom: 20px;
-    right: 30px;
+    left: 30px;
     cursor: pointer;
     box-shadow: none!important;
 }
@@ -421,6 +421,18 @@ td {
 }
 .offcanvas-body {
     background-color: var(--main-bg-color);
+}
+
+/*cards modals*/
+.modal-title {
+    font-family: 'Poppins', sans-serif;
+}
+
+.modalImg {
+    width: 460px;
+    height: 230px;
+    border: 3px solid var(--extra-color);
+    border-radius: 10px;
 }
 /*footer*/
 footer {
@@ -442,7 +454,7 @@ footer {
 .go-top-container {
     position: fixed;
     bottom: 2rem;
-    left: 5rem;
+    right: 5rem;
     width: 3rem;
     height: 3rem;
     z-index: -1;
