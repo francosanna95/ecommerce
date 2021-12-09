@@ -1,15 +1,15 @@
 package com.mindhub.ecommerce.controllers;
 
 
-import com.mindhub.ecommerce.dtos.EventDTO;
-import com.mindhub.ecommerce.dtos.HotelDTO;
-import com.mindhub.ecommerce.dtos.TicketDTO;
-import com.mindhub.ecommerce.dtos.UserDTO;
+import com.itextpdf.layout.Document;
+import com.mindhub.ecommerce.dtos.*;
+import com.mindhub.ecommerce.email.EmailServiceImpl;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
 import com.mindhub.ecommerce.repositories.SalesRepository;
 import com.mindhub.ecommerce.repositories.UserRepository;
+import com.mindhub.ecommerce.services.PDFServiceImpl;
 import com.mindhub.ecommerce.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private PDFServiceImpl pdfServiceImpl;
 
     @Autowired
     private ProductRepository productRepo;
@@ -182,6 +188,28 @@ public class UserController {
 
     }
 
+    //TODO Pago de compra, envio de invoice
+    @PostMapping("/clients/current/sendInvoice")
+    public ResponseEntity<String> sendInvoice(Authentication auth, HttpServletResponse response) throws IOException {
 
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
 
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        Set<UserProductDTO> shoppingBag = user.getCurrentCart().stream().map(UserProductDTO::new).collect(Collectors.toSet());
+
+        ByteArrayOutputStream outPutStream = pdfServiceImpl.generatePDF(response,user, shoppingBag);
+        byte[] bytes = outPutStream.toByteArray();
+
+        if (userService.sendInvoice(user,bytes)) {
+            return new ResponseEntity<String>("Invoice succesfully sent", HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<String>("Something wrong happened", HttpStatus.BAD_REQUEST);
+
+        //TODO
+
+    }
 }

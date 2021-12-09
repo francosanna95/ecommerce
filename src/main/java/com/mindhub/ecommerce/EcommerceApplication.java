@@ -65,7 +65,7 @@ public class EcommerceApplication {
             salesRepos.save(offeredProduct);
 
             //Creación de producto ofrecido por agencia Número 2
-            Hotel hotel2 = new Hotel(100, 2500D, "5", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", "La mejor estadia en Miami de tu laif", 500, "IMG-URL", true, true, 200, null);
+            Hotel hotel2 = new Hotel(100, 2500D, "5", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", "The Miami Beach EDITION is a boutique, design hotel with modern rooms and luxury amenities", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
             hotel2.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821036/Services/Lodging/valeriia-bugaiova-_pPHgeHz1uk-unsplash_qz1wyt.jpg");
             productRepo.save(hotel2);
@@ -79,21 +79,21 @@ public class EcommerceApplication {
             userRepo.save(agencyBabel);
 
 
-            Hotel hospedaje = new Hotel(500, 3500D, "10", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
+            Hotel hospedaje = new Hotel(500, 3500D, "10", "Av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", "The Barcelona EDITION offers boutique style, personalized service, 5-star luxury hotel amenities and a city center setting for your visit to Spain.", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct3 = new UserProduct(agencyBabel, hospedaje);
-            hospedaje.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Lodging/pexels-arek-soroka-6700863_syfxxm.jpg");
+            hospedaje.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638988475/Services/Lodging/wjssbxpoddizvawrttn4.jpg");
             productRepo.save(hospedaje);
             salesRepos.save(offeredProduct3);
 
-            Hotel hospedaje5 = new Hotel(500, 3500D, "30", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
+            Hotel hospedaje5 = new Hotel(500, 3500D, "30", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Abu Dhabi Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct5 = new UserProduct(agencyBabel, hospedaje5);
             hospedaje5.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Lodging/roberto-nickson-emqnSQwQQDo-unsplash_laca9v.jpg");
             productRepo.save(hospedaje5);
             salesRepos.save(offeredProduct5);
 
-            Hotel hospedaje6 = new Hotel(500, 3500D, "20", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Barcelona Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
+            Hotel hospedaje6 = new Hotel(500, 3500D, "20", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The New York Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct6 = new UserProduct(agencyBabel, hospedaje6);
-            hospedaje5.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Lodging/hotel2_u5hcqv.jpg");
+            hospedaje6.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821029/Services/Lodging/hotel1_qvgxv4.jpg");
             productRepo.save(hospedaje6);
             salesRepos.save(offeredProduct6);
 

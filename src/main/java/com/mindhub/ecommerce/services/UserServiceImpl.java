@@ -1,6 +1,8 @@
 package com.mindhub.ecommerce.services;
 
+import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.UserDTO;
+import com.mindhub.ecommerce.email.EmailServiceImpl;
 import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.enums.TicketClass;
 import com.mindhub.ecommerce.enums.UserRole;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -26,7 +29,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private SalesRepository salesRepo;
-
+    @Autowired
+    private EmailServiceImpl emailServiceImpl;
     @Autowired
     private ProductRepository productRepo;
 
@@ -213,6 +217,13 @@ public class UserServiceImpl implements UserService {
         return false;
 
 
+    }
+
+    @Override
+    public boolean sendInvoice(User user, byte[] bytes) {
+        String email = emailServiceImpl.createEmail(user.getFirstName(), user.getLastName());
+        emailServiceImpl.send(user.getEmail(), email,bytes);
+        return true;
     }
 
 
