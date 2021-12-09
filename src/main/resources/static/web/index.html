@@ -165,10 +165,18 @@
                 <!-- Main Content --> 
                  <div class="container d-flex ">
                     <div class="containerPadre">
-                        <div class="containerHijo">
-                            <div class="card1"></div>
-                            <div class="card2 scale"></div>
-                            <div class="card2 card3 scale"></div>
+                        <div class="containerHijo" v-for="ticket in tickets.slice(1,2)">
+                            <div class="card1">
+                                <video class="video" autoplay muted loop >
+                                  <source src="./assets/videoIndex2.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="card2 scale">
+                                <div class="imgPlublicidad">
+                                    <img :src="ticket.imgUrl" alt="imagen">
+                                    <div class="viajeCliente">Hot Trip</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

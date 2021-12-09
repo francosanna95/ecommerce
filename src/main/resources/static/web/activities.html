@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,141 +16,140 @@
   <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
 </head>
-
 <body id="app">
-  <div>
-    <!--<div class="animation" ref="animation">
+    <div>
+        <!--<div class="animation" ref="animation">
             Animation Div
         </div>-->
-    <div class="mainDiv d-flex flex-column" ref="mainDiv">
-      <!--Main Div-->
-      <header class="d-flex flex-column justify-content-center">
-        <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
-          <div class="d-flex flex-row align-items-center">
-            <a href="./index.html">
-              <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
-            <!--<h1>Melba's Trips</h1>-->
-          </div>
-          <div class="d-flex flex-row">
-            <div class="m-3 scale">
-              <!-- Button trigger modal log in -->
-              <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLogIn"><i class="fal fa-user"></i> Log In</button>-->
-              <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
-                  class="fal fa-user"></i> Log In</a>
-            </div>
-            <div class="m-3 scale">
-              <!-- Button trigger modal cart -->
-              <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i> Cart</a>
-            </div>
-            <div class="m-3 scale">
-              <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
-            </div>
-          </div>
-        </div>
-        <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
-          <div class="container d-flex justify-content-center">
-            <div class="containerHijo">
-              <div class="card1 mt-0 m-md-3"></div>
-              <div class="card2 mt-0 mb-0"></div>
-              <div class="card2 card3 m-3 m-md-0"></div>
-            </div>
-          </div>
-        </div>
-        <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
-          <div class="d-flex flex-column scale">
-            <i class="fal fa-bed align-self-center"></i>
-            <a class="box" href="lodging.html">Lodging</a>
-          </div>
-          <div class="d-flex flex-column scale">
-            <i class="fal fa-plane-alt align-self-center"></i>
-            <a class="box" href="./flights.html">Flights</a>
-          </div>
-          <div class="d-flex flex-column scale">
-            <i class="fal fa-hiking align-self-center"></i>
-            <a class="box" href="#">Activities</a>
-          </div>
-          <div class="d-flex flex-column scale">
-            <i class="fal fa-box-full align-self-center"></i>
-            <a class="box" href="./combos.html">Packages</a>
-          </div>
-        </div>
-      </header>
-      <main class="container">
-        <!-- Modal log in/register -->
-        <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
-          aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <!-- Here a v-model -->
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel">Log In</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form class="d-flex justify-content-center align-items-center">
-                  <fieldset>
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com">
-                      <label for="floatingInputLogIn">Email Address</label>
+        <div class="mainDiv d-flex flex-column" ref="mainDiv">
+            <!--Main Div-->
+            <header class="d-flex flex-column justify-content-center">
+                <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
+                    <div class="d-flex flex-row align-items-center">
+                        <a href="./index.html">
+                          <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
+                          <!--<h1>Melba's Trips</h1>-->
+                      </div>
+                    <div class="d-flex flex-row">
+                        <div class="m-3 scale">
+                            <!-- Button trigger modal log in -->
+                            <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLogIn"><i class="fal fa-user"></i> Log In</button>-->
+                            <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i class="fal fa-user"></i> Log In</a>
+                        </div>
+                        <div class="m-3 scale">
+                            <!-- Button trigger modal cart -->
+                            <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i> Cart</a>
+                        </div>
+                        <div class="m-3 scale">
+                            <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
+                        </div>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password">
-                      <label for="floatingPasswordLogIn">Password</label>
+                </div>
+                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
+                    <div class="container d-flex justify-content-center">
+                        <div class="containerHijo" v-for="event in events.slice(0,1)">
+                            <div class="card1 mt-0 m-md-3">
+                              <div class="video">
+                                <video class="video" autoplay muted loop >
+                                  <source src="./assets/eventoVideo.mp4" type="video/mp4">
+                                </video>
+                              </div>
+                            </div>
+                            <div class="card2 mt-0 mb-0">
+                                <div class="imgPlublicidad">
+                                    <img :src="event.imgUrl" alt="imagen">
+                                    <div class="viajeCliente">Hot Trip</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </fieldset>
-                </form>
-              </div>
-              <div class="modal-footer justify-content-center align-items-center">
-                <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
-                  data-bs-toggle="modal">Register</button>
-                <button type="button" class="btn btn-info">Log In</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-          tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel2">Registration</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form class="d-flex justify-content-center align-items-center">
-                  <fieldset>
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingFirstRegister" placeholder="first_name"
-                        minlength="3" maxlength="25" required>
-                      <label for="floatingFirstRegister">First Name</label>
+                </div>
+                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
+                    <div class="d-flex flex-column scale">
+                        <i class="fal fa-bed align-self-center"></i>
+                        <a class="box" href="lodging.html">Lodging</a>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingLastRegister" placeholder="last_name"
-                        minlength="3" maxlength="25" required>
-                      <label for="floatingLastRegister">Last Name</label>
+                    <div class="d-flex flex-column scale">
+                        <i class="fal fa-plane-alt align-self-center"></i>
+                        <a class="box" href="./flights.html">Flights</a>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="floatingEmailRegister" placeholder="name@example.com"
-                        minlength="7" maxlength="40" required>
-                      <label for="floatingEmailRegister">Email Address</label>
+                    <div class="d-flex flex-column scale">
+                        <i class="fal fa-hiking align-self-center"></i>
+                        <a class="box" href="#">Activities</a>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPasswordRegister" placeholder="password"
-                        minlength="6" maxlength="25" required>
-                      <label for="floatingPasswordRegister">Password</label>
+                    <div class="d-flex flex-column scale">
+                        <i class="fal fa-box-full align-self-center"></i>
+                        <a class="box" href="./combos.html">Packages</a>
                     </div>
-                  </fieldset>
-                </form>
-              </div>
-              <div class="modal-footer justify-content-center align-items-center">
-                <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
-                  In</button>
-                <button type="button" class="btn btn-info">Sign Up</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Main Content -->
+                </div>
+            </header>
+            <main class="container">
+                <!-- Modal log in/register -->
+                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content"><!-- Here a v-model -->
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalToggleLabel">Log In</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="d-flex justify-content-center align-items-center">
+                                <fieldset>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com">
+                                        <label for="floatingInputLogIn">Email Address</label>
+                                      </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password">
+                                        <label for="floatingPasswordLogIn">Password</label>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="modal-footer justify-content-center align-items-center">
+                          <button class="btn btn-warning" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Register</button>
+                          <button type="button" class="btn btn-info">Log In</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalToggleLabel2">Registration</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="d-flex justify-content-center align-items-center">
+                                <fieldset>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingFirstRegister" placeholder="first_name" minlength="3" maxlength="25" required>
+                                        <label for="floatingFirstRegister">First Name</label>
+                                      </div>
+                                      <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingLastRegister" placeholder="last_name" minlength="3" maxlength="25" required>
+                                        <label for="floatingLastRegister">Last Name</label>
+                                      </div>
+                                      <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="floatingEmailRegister" placeholder="name@example.com" minlength="7" maxlength="40" required>
+                                        <label for="floatingEmailRegister">Email Address</label>
+                                      </div>
+                                      <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="floatingPasswordRegister" placeholder="password" minlength="6" maxlength="25" required>
+                                        <label for="floatingPasswordRegister">Password</label>
+                                      </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="modal-footer justify-content-center align-items-center">
+                          <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log In</button>
+                          <button type="button" class="btn btn-info">Sign Up</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- Main Content -->
 
         <div>
           ACA VA EL CARRUSEL DE TARJETAS CON DESTINOS
@@ -272,5 +270,4 @@
   <script src="./scripts/animation.js"></script>
   <script src="./scripts/activities.js"></script>
 </body>
-
 </html>
