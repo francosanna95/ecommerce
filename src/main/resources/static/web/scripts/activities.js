@@ -3,7 +3,8 @@ const app = Vue.createApp({
     data() {
         return {
             events: [],
-            event: true
+            event: true,
+            vip: true
         }
     },
 
@@ -28,6 +29,7 @@ const app = Vue.createApp({
             console.log(product);
         },
         haveVip(event) {
+            console.log(this.vip)
             if (event == true) {
                 return "Yes"
             } else {

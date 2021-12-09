@@ -5,6 +5,8 @@ const app = Vue.createApp({
             tickets: [],
             ticket: true,
             cart:[],
+            clase: "",
+            passengers: 0
         }
     },
 
@@ -42,7 +44,7 @@ const app = Vue.createApp({
 
         addToCart(ticket){
         console.log(ticket.productId);
-            axios.post("/api/clients/current/addToCart/ticket",`ticketId=${ticket.productId}&clase=FIRST&passengers=${1}`)
+            axios.post("/api/clients/current/addToCart/ticket",`ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
             .then(resp=>{
                 if(ticket.stock<=0){
                    alert("No stock");}

@@ -434,6 +434,9 @@ td {
     border: 3px solid var(--extra-color);
     border-radius: 10px;
 }
+.selectClassModal {
+    width: 120px;
+}
 .textDescription {
     display: -webkit-box;
     -webkit-box-orient: vertical;
