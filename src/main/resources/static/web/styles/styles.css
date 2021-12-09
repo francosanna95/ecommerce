@@ -434,6 +434,12 @@ td {
     border: 3px solid var(--extra-color);
     border-radius: 10px;
 }
+.textDescription {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
 /*footer*/
 footer {
     background-color: var(--header-bg-color);

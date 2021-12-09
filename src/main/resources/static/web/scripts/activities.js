@@ -3,6 +3,7 @@ const app = Vue.createApp({
     data() {
         return {
             events: [],
+            event: true
         }
     },
 
@@ -19,7 +20,20 @@ const app = Vue.createApp({
         })
     },
     methods: {
-              
+        productId(numero) {
+            return `#${numero}`
+        },
+        activityShow(product) {
+            this.event = product;
+            console.log(product);
+        },
+        haveVip(event) {
+            if (event == true) {
+                return "Yes"
+            } else {
+                return "No"
+            }
+        }     
     }, 
 
 })
