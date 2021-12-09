@@ -162,16 +162,8 @@
                                 <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}} <button type="button" class="btnCart">+</button></td>
                                 <td>{{prod.agencyName}}</td>
                                 <td>{{prod.subtotal}}</button></td>
-                                <td><button type="button" class="btn-close" aria-label="Close"  @click="deleteCartObject(prod)"></button></td>
-                            </tr> 
-                            <tr>
-                              <td><img class="imgTable" src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg"> Walking</td>
-                              <td>Activity</td>
-                              <td><button type="button" class="btnCart">+</button> 1 <button type="button" class="btnCart">-</button></td>
-                              <td>Wild Travel</td>
-                              <td>$499</button></td>
-                              <td><button type="button" class="btn-close" aria-label="Close"></button></td>
-                          </tr>   
+                                <td><button type="button" class="btn-close" aria-label="Close"  @click="removeAll(prod)"></button></td>
+                            </tr>
                         </tbody>
                       </table>
                       <div class="d-flex justify-content-center">

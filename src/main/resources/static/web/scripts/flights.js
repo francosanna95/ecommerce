@@ -36,7 +36,6 @@ const app = Vue.createApp({
         },
         flyShow(product) {
             this.ticket = product;
-            console.log(product);
         },
 
 
