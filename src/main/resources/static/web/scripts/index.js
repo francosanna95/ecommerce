@@ -2,11 +2,45 @@
 const app = Vue.createApp({
   data() {
     return {
+      hotels: [],
+      tickets: [],
+      events: [],
       email: "",
       password: "",
       isPasswordVisible: false
     }
   },
+  created() {
+
+        axios.get('/api/products/hotels')
+        .then(response => {
+            console.log(response.data)
+            this.hotels= response.data
+        })
+        .catch(error => {
+            return error.message;
+      })
+
+      axios.get('/api/products/tickets')
+        .then(response => {
+            console.log(response.data)
+            this.tickets = response.data
+        })
+        .catch(error => {
+            return error.message;
+
+        })
+
+        axios.get('/api/products/events')
+        .then(response => {
+            console.log(response.data)
+            this.events = response.data
+        })
+        .catch(error => {
+            return error.message;
+        })
+
+},
   computed: {
     showPassword() {
       if (this.isPasswordVisible) {
@@ -17,6 +51,7 @@ const app = Vue.createApp({
     }
   },
   methods: {
+    
     login(e) {
       if (e) {
         e.preventDefault()
