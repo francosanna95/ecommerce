@@ -19,6 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.5.5'
+	implementation 'com.itextpdf:itext7-core:7.1.17'
 
 }
 
@@ -27,5 +29,8 @@ test {
 }
 
 bootRun {
+
 	sourceResources sourceSets.main
+
 }
+

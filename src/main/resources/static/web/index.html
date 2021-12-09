@@ -52,8 +52,8 @@
                         <form class="d-flex flex-column align-items-center">
                             <div class="d-flex flex-row">
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">Destination</span>
-                                    <input type="search" class="form-control" placeholder="From..." v-model="filtradoCiudad">
+                                    <span class="input-group-text">My destination is...</span>
+                                    <input type="search" class="form-control" placeholder="From..." v-model="filtrado">
                                 </div>
                                 <div class="input-group m-2">
                                     <span class="input-group-text">Dates</span>
@@ -61,31 +61,18 @@
                                     <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
                                 </div>
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">Persons</span>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                        <optgroup label="How many people?">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                            <option value="5">Five</option>
+                                    <span class="input-group-text">I'd like to see...</span>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" v-model="productToFilter">
+                                        <optgroup label="The best on...">
+                                            <option value="events">EVENTS</option>
+                                            <option value="tickets">TICKETS</option>
+                                            <option value="activities">ACTIVITIES</option>                                          
                                         </optgroup>
                                     </select>
-                                </div>
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">Class</span>
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                        <optgroup label="What class?">
-                                            <option value="first">First</option>
-                                            <option value="business">Business</option>
-                                            <option value="premium">Premium</option>
-                                            <option value="economic">Economic</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="m-2">
-                                <button type="button" class="btn btn-warning btnSearch" @click="filterByCity"><i class="fas fa-search-location"></i> Search</button>
+                                <a type="button" class="btn btn-warning btnSearch" @click="filter" :href="filteredRef"><i class="fas fa-search-location"></i> Search</a>
                             </div>
                         </form>
                     </div>
@@ -194,7 +181,7 @@
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Best Beaches</h3>
+                                    <h3>Best Destination</h3>
                                     <h4 class="text-white">Travel on vacation</h4>
                                 </div>
                                 <div class="estrellas">
@@ -214,8 +201,8 @@
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Best Beaches</h3>
-                                    <h4 class="text-white">Travel on vacation</h4>
+                                    <h3>Best Event</h3>
+                                    <h4 class="text-white">Fun on vacation</h4>
                                 </div>
                                 <div class="estrellas">
                                     <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
@@ -234,8 +221,8 @@
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Best Beaches</h3>
-                                    <h4 class="text-white">Travel on vacation</h4>
+                                    <h3>Best HOTEL</h3>
+                                    <h4 class="text-white">Luxury and relax</h4>
                                 </div>
                                 <div class="estrellas">
                                     <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
@@ -249,9 +236,9 @@
                     </div>
                 </div>
                 <!--Cards Vuelos-->
-                <h3 class="text-center m-3">The best flights</h3>
+                <h3 class="text-center m-3" id="tickets">The best flights</h3>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
-                    <div class="cardDestino" v-for="ticket in tickets.slice(0, 3)">
+                    <div class="cardDestino" v-for="ticket in filteredTickets">
                         <div class="imgDestino">
                             <img :src="ticket.imgUrl" alt=""> 
                             <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
@@ -283,9 +270,9 @@
                     </div>
                 </div>
                 <!--Cards Events-->
-                <h3 class="text-center m-3">The most desired events</h3>
+                <h3 class="text-center m-3" id="events">The most desired events</h3>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
-                    <div class="cardDestino" v-for=" event in events.slice(0, 3)">
+                    <div class="cardDestino" v-for=" event in filteredEvents">
                         <div class="imgDestino">
                             <img :src="event.imgUrl" alt=""> 
                             <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
@@ -316,9 +303,9 @@
                     </div>
                 </div>
                 <!--Cards lodging-->
-                <h3 class="text-center m-3">The best hotels</h3>
+                <h3 class="text-center m-3" id="hotels">The best hotels</h3>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
-                    <div class="cardDestino" v-for="hotel in hotels.slice(0, 3)">
+                    <div class="cardDestino" v-for="hotel in filteredHotels">
                         <div class="imgDestino">
                             <img :src="hotel.imgUrl" alt="imagen"> 
                             <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
