@@ -6,7 +6,7 @@ const app = Vue.createApp({
             ticket: true,
             cart:[],
             clase: "",
-            passengers: 0
+            passengers: 1
         }
     },
 

@@ -4,7 +4,8 @@ const app = Vue.createApp({
         return {
             events: [],
             event: true,
-            vip: true
+            vip: true,
+            personAmount: 1
         }
     },
 
