@@ -5,22 +5,24 @@ const app = Vue.createApp({
       hotels: [],
       tickets: [],
       events: [],
-      hotelsCantTres: [],
-      ticketsCantTres: [],
-      eventsCantTres: [],
-      filtradoCiudad: 'Miami',
       email: "",
       password: "",
-      isPasswordVisible: false
+      isPasswordVisible: false,
+      cart:[],
     }
   },
   created() {
-
+        axios.get('/api/clients/4')
+            .then(
+                resp=>{
+                console.log(resp.data.cart)
+                this.cart=resp.data.cart;
+                console.log(this.cart)}
+                )
         axios.get('/api/products/hotels')
         .then(response => {
             console.log(response.data)
             this.hotels= response.data
-            filtradoParaCard(response.data)
         })
         .catch(error => {
             return error.message;
@@ -30,7 +32,6 @@ const app = Vue.createApp({
         .then(response => {
             console.log(response.data)
             this.tickets = response.data
-            filtradoParaCard(response.data)
         })
         .catch(error => {
             return error.message;
@@ -41,13 +42,21 @@ const app = Vue.createApp({
         .then(response => {
             console.log(response.data)
             this.events = response.data
-            filtradoParaCard(response.data)
         })
         .catch(error => {
             return error.message;
         })
-
-},
+  },
+  //mounted() {
+  //    if (sessionStorage.getItem('cart')) {
+  //        try {
+  //           this.cart = JSON.parse(sessionStorage.getItem('cart'));
+  //        } catch (e) {
+  //            sessionStorage.removeItem('cart');
+  //          }
+  //        console.log(this.cart)
+  //    };
+  //},
   computed: {
     showPassword() {
       if (this.isPasswordVisible) {
@@ -55,16 +64,10 @@ const app = Vue.createApp({
       } else {
         return "password";
       }
-    },
-
-    filterByCity(){
-      console.log('hola');
-      this.hotels = this.hotels.filter( hotel => hotel.address.includes(this.filtradoCiudad))
-
     }
   },
   methods: {
-    
+
     login(e) {
       if (e) {
         e.preventDefault()
@@ -94,15 +97,6 @@ const app = Vue.createApp({
           console.log('Error', error.message);
         })
     },
-
-    filtradoParaCard(){
-
-        this.hotelsCantTres = this.hotels.slice(0,2)
-       /* this.ticketsCantTres = arrayTypeCard.filter(tickets => tickets.length <= 3)
-        this.eventsCantTres = arrayTypeCard.filter(events => events.length <= 3)*/
-
-      },
-
     validEmail(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);

@@ -1,6 +1,8 @@
 package com.mindhub.ecommerce.services;
 
+import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.UserDTO;
+import com.mindhub.ecommerce.email.EmailServiceImpl;
 import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.enums.TicketClass;
 import com.mindhub.ecommerce.enums.UserRole;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -26,7 +29,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private SalesRepository salesRepo;
-
+    @Autowired
+    private EmailServiceImpl emailServiceImpl;
     @Autowired
     private ProductRepository productRepo;
 
@@ -120,7 +124,7 @@ public class UserServiceImpl implements UserService {
 //sino creo una nueva instancia de esa venta
 
             ClientTicket clientTicket = new ClientTicket();
-            clientTicket.setClase(TicketClass.valueOf(clase.toUpperCase(Locale.ROOT)));
+            clientTicket.setClase(TicketClass.valueOf(clase));
             clientTicket.setUser(user);
             clientTicket.setQuantity(passangers);
             clientTicket.setProduct(ticket);
@@ -189,9 +193,7 @@ public class UserServiceImpl implements UserService {
         for (UserProduct userProduct : user.getCurrentCart()) {
             if (Objects.equals(userProduct.getId(), toDelete.getId())) {
                 if (userProduct.getQuantity() == 1) { // si es el último producto de ese tipo en el carrito
-                    success = user.getCurrentCart().remove(toDelete);
-                    salesRepo.delete(toDelete);
-
+                    success = finalRemoveProductFromCart(user, toDelete);
                 } else {
                     int currentQuantity = userProduct.getQuantity();
                     userProduct.setQuantity(currentQuantity - 1); // actualizo la cantidad
@@ -213,6 +215,19 @@ public class UserServiceImpl implements UserService {
         return false;
 
 
+    }
+
+    public boolean finalRemoveProductFromCart(User user, UserProduct toDelete) {
+        boolean success = user.getCurrentCart().remove(toDelete);
+        salesRepo.delete(toDelete);
+        return success;
+    }
+
+    @Override
+    public boolean sendInvoice(User user, byte[] bytes) {
+        String email = emailServiceImpl.createEmail(user.getFirstName(), user.getLastName());
+        emailServiceImpl.send(user.getEmail(), email, bytes);
+        return true;
     }
 
 

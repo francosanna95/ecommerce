@@ -94,10 +94,6 @@ public class ProductController {
             return new ResponseEntity<>("We are sorry, you don't have authorization for this action",HttpStatus.UNAUTHORIZED);
         }
 
-        if (userRepo.findByFirstName(ticketDTO.getAgencyName()).isEmpty()){
-            return new ResponseEntity<>("Invalid agency name",HttpStatus.NOT_ACCEPTABLE);
-        }
-
         if (ticketDTO.getProductName().isBlank()) {
             return new ResponseEntity<>("The name can't be blank", HttpStatus.NOT_ACCEPTABLE);
         }

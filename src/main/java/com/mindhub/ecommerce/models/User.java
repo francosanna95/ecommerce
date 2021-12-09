@@ -34,9 +34,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String firstName, String lastName,String email, String password, UserRole userRole) {
+    public User(String firstName, String lastName, String email, String password, UserRole userRole) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -56,12 +57,12 @@ public class User {
         this.userRole = userRole;
     }
 
-    public void addClientProductToCurrentCart(UserProduct userProduct){
+    public void addClientProductToCurrentCart(UserProduct userProduct) {
         userProduct.setUser(this);
         this.currentCart.add(userProduct);
     }
 
-    public void addClientProductToHistoryCart(UserProduct userProduct){
+    public void addClientProductToHistoryCart(UserProduct userProduct) {
         userProduct.setUserHistory(this);
         this.shoppingHistory.add(userProduct);
     }
@@ -172,4 +173,9 @@ public class User {
                 ", userRole=" + userRole +
                 '}';
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
+
 }

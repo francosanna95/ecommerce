@@ -31,17 +31,22 @@ const app = Vue.createApp({
         },
     methods: {
         addToCart(ticket){
-        if(ticket.stock<=0){
-            alert("No stock");}
-        else{
-            ticket.stock--;
-            if(this.cart.some(prod=>prod.productId==ticket.productId)){
-            ticket.quantity++;}
-            else{ticket.quantity=1;
-            this.cart.push(ticket);}
-            console.log(this.cart);
-            this.savingCart();
-        };
+        console.log(ticket.productId);
+            axios.post("/api/clients/current/addToCart/ticket",`ticketId=${ticket.productId}&clase=FIRST&passengers=${1}`)
+            .then(resp=>{
+                if(ticket.stock<=0){
+                   alert("No stock");}
+                   else{
+                     ticket.stock--;
+                     if(this.cart.some(prod=>prod.productId==ticket.productId)){
+                       ticket.quantity++;}
+                     else{ticket.quantity=1;
+                     this.cart.push(ticket);}
+                ticket.subtotal=ticket.quantity*ticket.price;
+                console.log(this.cart);
+                this.savingCart();}
+            })
+            .catch(err=> console.log(err));
         },
         deleteCartObject(ticket){
             if(this.cart.some(prod=>prod.productId==ticket.productId)){

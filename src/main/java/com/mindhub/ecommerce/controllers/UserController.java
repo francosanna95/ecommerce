@@ -1,15 +1,15 @@
 package com.mindhub.ecommerce.controllers;
 
 
-import com.mindhub.ecommerce.dtos.EventDTO;
-import com.mindhub.ecommerce.dtos.HotelDTO;
-import com.mindhub.ecommerce.dtos.TicketDTO;
-import com.mindhub.ecommerce.dtos.UserDTO;
+import com.itextpdf.layout.Document;
+import com.mindhub.ecommerce.dtos.*;
+import com.mindhub.ecommerce.email.EmailServiceImpl;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
 import com.mindhub.ecommerce.repositories.SalesRepository;
 import com.mindhub.ecommerce.repositories.UserRepository;
+import com.mindhub.ecommerce.services.PDFServiceImpl;
 import com.mindhub.ecommerce.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private PDFServiceImpl pdfServiceImpl;
 
     @Autowired
     private ProductRepository productRepo;
@@ -63,6 +69,11 @@ public class UserController {
     @PostMapping("/clients/new")
     public ResponseEntity<String> createClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
         //TODO Chequear que el mail no exista en la base de datos
+
+        if (userRepo.existsByEmail(email)) {
+            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+
+        }
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank()) {
             return new ResponseEntity<>("No parameter can be blank", HttpStatus.FORBIDDEN);
         }
@@ -117,14 +128,14 @@ public class UserController {
 
         }
         if (hotel == null) {
-            return new ResponseEntity<String>("Event not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Hotel not found", HttpStatus.NOT_FOUND);
 
         }
         //TODO
         if (userService.addHotelToClientCart(user, hotel, arrivalDate, departureDate, nights, passangers, pension)) {
             return new ResponseEntity<String>("Hotel booked succesfully", HttpStatus.CREATED);
         }
-        return new ResponseEntity<String>("Booking unsuccessful", HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<String>("Hotel Booking unsuccessful", HttpStatus.NOT_ACCEPTABLE);
 
 
     }
@@ -159,7 +170,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/clients/current/removeFromCart")
+    @PostMapping("/clients/current/removeFromCart")  //sirve para eliminar producto de 1 en 1
     public ResponseEntity<String> removeProductFromCart(Authentication auth, @RequestParam Long userProductId) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
@@ -176,12 +187,66 @@ public class UserController {
             return new ResponseEntity<String>("Product successfully removed", HttpStatus.CREATED);
         }
 
-        return new ResponseEntity<String>("Ticket Booking unsuccesful", HttpStatus.CREATED);
+        return new ResponseEntity<String>("Product removal unsuccesful", HttpStatus.CREATED);
+
+
+    }
+
+    @DeleteMapping("/clients/current/finalRemoveFromCart")  //sirve para eliminar definitivamente todo un producto
+    public ResponseEntity<String> finalRemoveFromCart(Authentication auth, @RequestParam Long userProductId) {
+
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        UserProduct productToRemove = salesRepo.findById(userProductId).orElse(null);
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+        if (productToRemove == null) {
+            return new ResponseEntity<String>("Product not found", HttpStatus.NOT_FOUND);
+        }
+
+        if (userService.finalRemoveProductFromCart(user, productToRemove)) {
+            return new ResponseEntity<String>("Product successfully removed", HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<String>("Product removal unsuccesful", HttpStatus.CREATED);
+
+
+    }
+
+    @PostMapping("/clients/current/sendInvoice")
+    public ResponseEntity<String> sendInvoice(Authentication auth, HttpServletResponse response) throws IOException {
+
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        Set<UserProductDTO> shoppingBag = user.getCurrentCart().stream().map(UserProductDTO::new).collect(Collectors.toSet());
+
+        ByteArrayOutputStream outPutStream = pdfServiceImpl.generatePDF(response, user, shoppingBag);
+        byte[] bytes = outPutStream.toByteArray();
+
+        if (userService.sendInvoice(user, bytes)) {
+            return new ResponseEntity<String>("Invoice succesfully sent", HttpStatus.CREATED);
+        }
+
+        return new ResponseEntity<String>("Something wrong happened", HttpStatus.BAD_REQUEST);
 
         //TODO
 
     }
 
+    @PatchMapping("/client/current/modify")
+    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password){
+    //TODO MODIFY CLIENT
 
 
+
+
+
+
+        return new ResponseEntity<String>("XXXXXXXXXXXXXXXXXXXXXXXXXXX", HttpStatus.NOT_FOUND);
+    }
 }
