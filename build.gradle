@@ -34,3 +34,9 @@ bootRun {
 
 }
 
+bootRun {
+
+	sourceResources sourceSets.main
+
+}
+
