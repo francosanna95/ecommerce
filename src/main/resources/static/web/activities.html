@@ -180,7 +180,7 @@
               </div>
               <div>
                 <button class="btn btn-primary btn-buy" data-bs-toggle="modal" data-bs-target="#modalProduct"
-                  @click="activityShow(activity)">More</button>
+                  @click="activityShow(event)">More</button>
               </div>
             </div>
             <div class="oferta">
@@ -197,10 +197,12 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  <h4 class="modal-title">{{hotel.productName}}</h4>
-                  <img v-bind:src="hotel.imgUrl" class="modalImg">
-                  <h5>{{hotel.description}}</h5>
-                  <h5>Price: <span class="text-danger">${{hotel.price}}</span></h5>
+                  <h4 class="modal-title">{{event.productName}}</h4>
+                  <img v-bind:src="event.imgUrl" class="modalImg">
+                  <h5>{{event.description}}</h5>
+                  <h5>Agency: {{event.agencyName}}</h5>
+                  <h5>VIP: {{haveVip(event.vip)}}</h5>
+                  <h5>Price: <span class="text-danger">${{event.price}}</span></h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>

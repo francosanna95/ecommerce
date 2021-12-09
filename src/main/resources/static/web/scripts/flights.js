@@ -3,6 +3,7 @@ const app = Vue.createApp({
     data() {
         return {
             tickets: [],
+            ticket: true,
             cart:[],
         }
     },
@@ -30,6 +31,15 @@ const app = Vue.createApp({
             };
         },
     methods: {
+        productId(numero) {
+            return `#${numero}`
+        },
+        flyShow(product) {
+            this.ticket = product;
+            console.log(product);
+        },
+
+
         addToCart(ticket){
         console.log(ticket.productId);
             axios.post("/api/clients/current/addToCart/ticket",`ticketId=${ticket.productId}&clase=FIRST&passengers=${1}`)
