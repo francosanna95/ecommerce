@@ -334,26 +334,26 @@ div .oferta {
 /*main*/
 .tableContainer {
     background-color: var(--font-color-w);
-    margin: 2rem;
-    padding: 1rem;
+    margin: 1rem;
     border-radius: 15px;
 }
-tr {
-    font-size: 1.5rem;
-
+th {
+    font-size: 1rem;
+    color: var(--extra-color);
+    font-family: 'Dosis', sans-serif;
 }
 td {
-    font-size: 1.2rem;
-    padding: .5rem;
+    font-size: 1.1rem;
+    padding: 5rem;
     height: 120px;
 }
 .btn-close {
     font-size: 1rem;
 }
 .btnCart {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
 }
 .imgTable {
     border-radius: 10px;
@@ -365,26 +365,45 @@ td {
     border-radius: 5px;
     background-color: var(--extra-color);
     font-size: 1.3rem;
-    padding: 1rem;
+    padding: .5rem;
     margin: 1rem;
-}
-#enterDiscountCode {
-    width: 13%;
-    padding: 1rem;
-    margin: 1rem;
-}
-.list-group {
-    border-radius: 10px;
-    width: 50%;
-}
-.list-group-item {
-    background-color: var(--font-color-w);
-    border: none;
 }
 .payButton {
     font-size: 1.5rem;
 }
+.cardInfoContainer {
+    background-color: var(--font-color-w);
+    margin: 1rem;
+    border-radius: 15px;
+}
+.paymentTitle {
+    border-bottom: 1px solid var(--header-bg-color);
+    font-family: 'Dosis', sans-serif;
+}
+/*cart properties*/
 
+#cartBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    cursor: pointer;
+    box-shadow: none!important;
+}
+#cartImg {
+    max-width: 150px;
+    z-index: -2;
+}
+.offcanvas {
+    width: 30%;
+    height: 60%;
+}
+.offcanvas-header {
+    background-color: var(--header-bg-color);
+    color: var(--font-color-w);
+}
+.offcanvas-body {
+    background-color: var(--main-bg-color);
+}
 /*footer*/
 footer {
     background-color: var(--header-bg-color);
@@ -404,8 +423,8 @@ footer {
 /*Animation*/
 .go-top-container {
     position: fixed;
-    bottom: 3rem;
-    right: 2rem;
+    bottom: 2rem;
+    left: 5rem;
     width: 3rem;
     height: 3rem;
     z-index: -1;
