@@ -3,7 +3,8 @@ const app = Vue.createApp({
     data() {
         return {
             hotels: [],
-            hotel: ""
+            hotel: true,
+
         }
     },
 
@@ -26,6 +27,13 @@ const app = Vue.createApp({
         hotelShow(product) {
             this.hotel = product;
             console.log(product);
+        },
+        haveParking(hotel) {
+            if (hotel == true) {
+                return "Yes"
+            } else {
+                return "No"
+            }
         }
     }, 
 
