@@ -156,12 +156,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><img class="imgTable" src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg"> Barcelona</td>
-                                <td>Fly</td>
-                                <td><button type="button" class="btnCart">+</button> 1 <button type="button" class="btnCart">-</button></td>
-                                <td>Despegar</td>
-                                <td>$999</button></td>
+                            <tr v-for="prod in cart">
+                                <td><img class="imgTable" src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">{{prod.productName}}</td>
+                                <td>{{prod.productType}}</td>
+                                <td><button type="button" class="btnCart">-</button> {{prod.quantity}} <button type="button" class="btnCart">+</button></td>
+                                <td>{{prod.agencyName}}</td>
+                                <td>{{prod.subtotal}}</button></td>
                                 <td><button type="button" class="btn-close" aria-label="Close"></button></td>
                             </tr> 
                             <tr>
@@ -279,6 +279,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="./scripts/animation.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/cart.js"></script>
 </body>
 </html>
