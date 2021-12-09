@@ -146,35 +146,35 @@
                 </div>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
                     <div class="cardDestino" v-for="hotel in hotels">
-                            <div class="imgDestino">
-                                <img :src="hotel.imgUrl" alt=""> 
-                                <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
-                                    <i class="fas fa-hotel"></i>
-                                    <h6 class="m-0 ">Hotels</h6> 
-                                </div>
-                            </div>
-                            <div class="contentDestino">
-                                <h5 class="mt-2">{{hotel.productName}}</h5>
-                                <div class="contenido">
-                                    <h5 class="text-dark">{{hotel.origin}}</h5>
-                                    <h5 class="text-dark"></h5>
-                                    <p class="">{{hotel.description}}</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
-                                <div>
-                                    <h6>Price lodging</h6>
-                                    <h4 class="spanRojo">${{hotel.price}}</h4>
-                                </div>
-                                <div class="btn-buy">
-                                    <a href="#">Add</a>
-                                </div> 
-                            </div>
-                            <div class="oferta">
-                                <img :src="'./assets/'+ hotel.disscountCode +'.png'" alt="">
-                            </div>
-                    </div>
-                </div>
+                      <div class="imgDestino">
+                          <img :src="hotel.imgUrl" alt=""> 
+                          <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
+                              <i class="fas fa-hotel"></i>
+                              <h6 class="m-0 ">Hotels</h6> 
+                          </div>
+                      </div>
+                      <div class="contentDestino">
+                          <h5 class="mt-2">{{hotel.productName}}</h5>
+                          <div class="contenido">
+                              <h5 class="text-dark">{{hotel.origin}}</h5>
+                              <h5 class="text-dark"></h5>
+                              <p class="">{{hotel.description}}</p>
+                          </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
+                          <div>
+                              <h6>Price lodging</h6>
+                              <h4 class="spanRojo">${{hotel.price}}</h4>
+                          </div>
+                          <div class="btn-buy">
+                              <a href="#">Add</a>
+                          </div> 
+                      </div>
+                      <div class="oferta">
+                          <img :src="'./assets/'+ hotel.disscountCode +'.png'" alt="">
+                      </div>
+                  </div>
+              </div>
             </main>
             <footer>
                 <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
