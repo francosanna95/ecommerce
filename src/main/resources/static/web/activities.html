@@ -50,10 +50,20 @@
         </div>
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
           <div class="container d-flex justify-content-center">
-            <div class="containerHijo">
-              <div class="card1 mt-0 m-md-3"></div>
-              <div class="card2 mt-0 mb-0"></div>
-              <div class="card2 card3 m-3 m-md-0"></div>
+            <div class="containerHijo" v-for="event in events.slice(0,1)">
+              <div class="card1 mt-0 m-md-3">
+                <div class="video">
+                  <video class="video" autoplay muted loop>
+                    <source src="./assets/eventoVideo.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="card2 mt-0 mb-0">
+                <div class="imgPlublicidad">
+                  <img :src="event.imgUrl" alt="imagen">
+                  <div class="viajeCliente">Hot Trip</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -197,12 +207,41 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  <h4 class="modal-title">{{event.productName}}</h4>
-                  <img v-bind:src="event.imgUrl" class="modalImg">
-                  <h5>{{event.description}}</h5>
-                  <h5>Agency: {{event.agencyName}}</h5>
-                  <h5>VIP: {{haveVip(event.vip)}}</h5>
-                  <h5>Price: <span class="text-danger">${{event.price}}</span></h5>
+                  <div class="d-flex flex-column justify-content-center align-items-center m-2">
+                    <h4 class="modal-title">{{event.productName}}</h4>
+                    <img v-bind:src="event.imgUrl" class="modalImg">
+                    <h5>{{event.description}}</h5>
+                    <h5>Agency: {{event.agencyName}}</h5>
+                  </div>
+                  <div class="d-flex flex-row justify-content-center align-items-center m-2">
+                    <h5>Persons amount</h5>
+                    <select v-model="personAmount" class="form-control form-control-sm selectClassModal m-2"
+                      aria-label="Default select example">
+                      <optgroup label="Amount...">
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="4">Four</option>
+                        <option value="5">Five</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <div v-if="event.vip == true" class="d-flex flex-row justify-content-center align-items-center m-2">
+                    <h5 class="m-2">Do you wish VIP?</h5>
+                    <div class="form-check form-check-inline">
+                      <input v-model="vip" class="form-check-input" type="radio" name="radioOptionsVip" id="radio1Vip"
+                        value="vipTrue">
+                      <label class="form-check-label" for="radio1Vip">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input v-model="vip" class="form-check-input" type="radio" name="radioOptionsVip" id="radio2Vip"
+                        value="vipFalse">
+                      <label class="form-check-label" for="radio2Vip">No</label>
+                    </div>
+                  </div>
+                  <h5 v-if="vip == 'vipTrue'">Price: <span class="text-danger">${{event.price * 1.15 *
+                      personAmount}}</span></h5>
+                  <h5 v-else>Price: <span class="text-danger">${{event.price * personAmount}}</span></h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>

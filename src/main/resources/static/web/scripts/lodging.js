@@ -3,7 +3,8 @@ const app = Vue.createApp({
     data() {
         return {
             hotels: [],
-            hotel: true
+            hotel: true,
+            beds: 1
 
         }
     },
