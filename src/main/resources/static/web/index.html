@@ -53,7 +53,7 @@
                             <div class="d-flex flex-row">
                                 <div class="input-group m-2">
                                     <span class="input-group-text">Destination</span>
-                                    <input type="search" class="form-control" placeholder="From...">
+                                    <input type="search" class="form-control" placeholder="From..." v-model="filtradoCiudad">
                                 </div>
                                 <div class="input-group m-2">
                                     <span class="input-group-text">Dates</span>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="m-2">
-                                <button type="button" class="btn btn-warning btnSearch"><i class="fas fa-search-location"></i> Search</button>
+                                <button type="button" class="btn btn-warning btnSearch" @click="filterByCity"><i class="fas fa-search-location"></i> Search</button>
                             </div>
                         </form>
                     </div>
@@ -175,8 +175,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Main Content -->
-                <div class="container d-flex ">
+                <!-- Main Content --> 
+                 <div class="container d-flex ">
                     <div class="containerPadre">
                         <div class="containerHijo">
                             <div class="card1"></div>
@@ -185,25 +185,24 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    ACA VA EL CARRUSEL DE TARJETAS CON DESTINOS
-                </div>
-                
+                <h3 class="text-center">The best promotions and the best service</h3>
                 <div class="containerDestino">
                     <div class="containerDestinoHijo">
                         <div class="cardDestino">
                             <div class="imgBx">
-                                <img src="./assets/piscina.jpg" alt="">
+                                <img src="./assets/playaAtardecer.jpg" alt="playa">
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
+                                    <h3>Best Beaches</h3>
+                                    <h4 class="text-white">Travel on vacation</h4>
                                 </div>
                                 <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -211,17 +210,19 @@
                     <div class="containerDestinoHijo">
                         <div class="cardDestino">
                             <div class="imgBx">
-                                <img src="./assets/playaAltura.jpg" alt="">
+                                <img src="./assets/concierto.jpg" alt="concierto">
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
+                                    <h3>Best Beaches</h3>
+                                    <h4 class="text-white">Travel on vacation</h4>
                                 </div>
                                 <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -229,24 +230,62 @@
                     <div class="containerDestinoHijo">
                         <div class="cardDestino">
                             <div class="imgBx">
-                                <img src="./assets/playaAtardecer.jpg" alt="">
+                                <img src="./assets/hotel2.jpg" alt="hotel">
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Playas vacaciones</h3>
+                                    <h3>Best Beaches</h3>
+                                    <h4 class="text-white">Travel on vacation</h4>
                                 </div>
                                 <div class="estrellas">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
+                                    <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--Cards Vuelos-->
+                <h3 class="text-center m-3">The best flights</h3>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
-                    <div class="cardDestino" v-for=" event in events">
+                    <div class="cardDestino" v-for="ticket in tickets.slice(0, 3)">
+                        <div class="imgDestino">
+                            <img :src="ticket.imgUrl" alt=""> 
+                            <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
+                                <i class="fa fa-plane" aria-hidden="true"></i>
+                                <h6 class="m-0 ">Roundtrip flight</h6> 
+                            </div>
+                        </div>
+                        <div class="contentDestino">
+                            <h5 class="mt-2 text-dark">{{ticket.arrivalLocation}}, <small>{{ticket.departureLocation}}</small></h5>
+                            <div class="contenido">
+                                <h6>From</h6>
+                                <h6 class="text-dark">Buenos Aires</h6>
+                                <p class="">{{ticket.description}}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
+                            <div>
+                                <h6>Starting</h6>
+                                <h4 class="spanRojo">${{ticket.price}}</h4>
+                            </div>
+                            <div class="btn-buy">
+                                <a @click.prevent="addToCart(ticket)"href="">Add</a>
+                            </div> 
+                        </div>
+                        <div class="oferta">
+                            <img :src="'./assets/'+ ticket.disscountCode +'.png'" alt="">
+                        </div>
+                        <a @click.prevent="deleteCartObject(ticket)"href="">Add</a>
+                    </div>
+                </div>
+                <!--Cards Events-->
+                <h3 class="text-center m-3">The most desired events</h3>
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
+                    <div class="cardDestino" v-for=" event in events.slice(0, 3)">
                         <div class="imgDestino">
                             <img :src="event.imgUrl" alt=""> 
                             <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
@@ -272,10 +311,43 @@
                             </div> 
                         </div>
                         <div class="oferta">
-                            <img :src="'./assets/'+ event.disscountCode +'.png'" alt="">
+                            <img :src="'./assets/'+ event.disscountCode +'.png'" alt="img">
                         </div>
                     </div>
-                </div>        
+                </div>
+                <!--Cards lodging-->
+                <h3 class="text-center m-3">The best hotels</h3>
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
+                    <div class="cardDestino" v-for="hotel in hotels.slice(0, 3)">
+                        <div class="imgDestino">
+                            <img :src="hotel.imgUrl" alt="imagen"> 
+                            <div class="d-flex align-items-center justify-content-around idaYvuelta p-1">
+                                <i class="fas fa-hotel"></i>
+                                <h6 class="m-0 ">Hotels</h6> 
+                            </div>
+                        </div>
+                        <div class="contentDestino">
+                            <h5 class="mt-2">{{hotel.productName}}</h5>
+                            <div class="contenido">
+                                <h5 class="text-dark">{{hotel.origin}}</h5>
+                                <h5 class="text-dark"></h5>
+                                <p class="">{{hotel.description}}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
+                            <div>
+                                <h6>Price lodging</h6>
+                                <h4 class="spanRojo">${{hotel.price}}</h4>
+                            </div>
+                            <div class="btn-buy">
+                                <a href="#">Add</a>
+                            </div> 
+                        </div>
+                        <div class="oferta">
+                            <img :src="'./assets/'+ hotel.disscountCode +'.png'" alt="sale">
+                        </div>
+                    </div>
+                </div>    
             </main>
                 <footer>
                     <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">

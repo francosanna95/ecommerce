@@ -15,10 +15,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: var(--main-bg-color);
-}
-
 .mainDiv {
     background-color: var(--main-bg-color);
 }
@@ -42,10 +38,6 @@ scale: 1.1 (es muy grande)
 pondria una transition ease para el crecimiento del icono
 */
 }
-
-/*a:hover, i:hover {
-    color: yellow;
-}*/
 
 h2 {
     color: var(--font-color-b);
@@ -181,6 +173,17 @@ h5 {
     align-items: center;
     flex-wrap: wrap;
     margin: 40px 0;
+}
+
+div .imgBx{
+    width: 100%;
+    height: 100%;
+}
+
+div .imgBx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .containerDestinoHijo .cardDestino {
