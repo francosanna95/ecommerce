@@ -3,6 +3,7 @@ const app = Vue.createApp({
     data() {
         return {
             hotels: [],
+            hotel: ""
         }
     },
 
@@ -19,7 +20,13 @@ const app = Vue.createApp({
         })
     },
     methods: {
-              
+        productId(numero) {
+            return `#${numero}`
+        },
+        hotelShow(product) {
+            this.hotel = product;
+            console.log(product);
+        }
     }, 
 
 })
