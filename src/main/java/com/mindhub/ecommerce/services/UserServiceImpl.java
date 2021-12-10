@@ -125,7 +125,6 @@ public class UserServiceImpl implements UserService {
                 }
             }
 //sino creo una nueva instancia de esa venta
-
             ClientTicket clientTicket = new ClientTicket(user,ticket,TicketClass.valueOf(clase));
             clientTicket.setQuantity(passangers);
             clientTicket.setFinalPrice(ticket.getPrice());
