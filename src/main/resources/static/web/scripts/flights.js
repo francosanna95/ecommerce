@@ -44,26 +44,25 @@ const app = Vue.createApp({
         console.log(ticket.productId);
             axios.post("/api/clients/current/addToCart/ticket",`ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
                .then(resp => {
-                                ticket = resp.data;
-                                console.log(ticket);
-                                if (ticket.stock <= 0) {
-                                    alert("No stock");
-                                } else {
-                                    ticket.stock--;
-                                    console.log(this.cart);
-                                    if (this.cart.some(prod => prod.id == ticket.id)) {
-                                        let id = this.cart.findIndex(prod => prod.id == ticket.id);
-                                        //actualizar cantidad en ese producto
-
-                                        this.cart[id].quantity= ticket.quantity;
-                                    } else {
-                                        ticket.quantity = this.passengers;
-                                        ticket.clase = this.clase;
-                                        ticket.subtotal = ticket.quantity * ticket.price;
-                                        this.cart.push(ticket);
-                                        console.log(this.cart);
-                                    }
-                                    this.savingCart();
+                     ticket = resp.data;
+                     console.log(ticket);
+                     if (ticket.stock <= 0) {
+                         alert("No stock");
+                     } else {
+                       ticket.stock--;
+                       console.log(this.cart);
+                       if (this.cart.some(prod => prod.id == ticket.id)) {
+                          let id = this.cart.findIndex(prod => prod.id == ticket.id);
+                          //actualizar cantidad en ese producto
+                          this.cart[id].quantity= ticket.quantity;
+                       } else {
+                         ticket.quantity = this.passengers;
+                         ticket.clase = this.clase;
+                         ticket.subtotal = ticket.quantity * ticket.price;
+                         this.cart.push(ticket);
+                         console.log(this.cart);
+                         }
+                     this.savingCart();
             }})
             .catch(err=> console.log(err));
         },

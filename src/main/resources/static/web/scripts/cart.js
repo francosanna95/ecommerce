@@ -63,13 +63,17 @@ const app = Vue.createApp({
         return "password";
       }
     },
-    totalPriceCalc(){
-    this.totalPrice=this.cart.reduce(acumulator,product=> acumulator+= product.quantity*product.finalPrice)
-    return this.cart}
-
   },
-
   methods: {
+    totalPriceCalc() {
+          const array = this.cart
+          function reducer(previous, current, index, array) {
+            const product = array[index];
+            const returns = previous + (product.finalPrice*product.quantity);
+            return returns;
+          }
+          return array.reduce(reducer, 0);
+        },
     savingCart(){
             const parsed = JSON.stringify(this.cart);
             sessionStorage.setItem('cart', parsed);
@@ -148,7 +152,7 @@ const app = Vue.createApp({
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-  }
+  },
 })
 
 app.mount("#app")
