@@ -172,29 +172,31 @@
             <table class="table align-middle text-dark">
               <thead class="table text-success p-2">
                 <tr>
+                  <th scope="col"></th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Service Type</th>
                   <th scope="col">Amount</th>
-                  <th scope="col">Agency Name</th>
+                  <th scope="col">Unit Price</th>
                   <th scope="col">Sub Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="prod in cart">
                   <td><img class="imgTable"
-                      src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">{{prod.productName}}
+                      src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">
                   </td>
+                  <td>{{prod.productName}}</td>
                   <td>{{prod.productType}}</td>
                   <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
-                    <button type="button" class="btnCart">+</button>
+                    <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                   </td>
-                  <td>{{prod.agencyName}}</td>
-                  <td>{{prod.subtotal}}</button></td>
+                  <td>{{prod.finalPrice}}</td>
+                  <td>{{prod.quantity*prod.finalPrice}}</button></td>
                   <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
                 </tr>
               </tbody>
             </table>
-            <h4 class="d-flex align-self-center">Total $1498</h4>
+            <h4 class="d-flex align-self-center">Total {{totalPrice}}</h4>
           </div>
           <div class="cardInfoContainer m-2">
             <form>

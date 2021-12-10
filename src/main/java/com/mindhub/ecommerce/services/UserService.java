@@ -28,5 +28,7 @@ public interface UserService {
 
     boolean removeProductFromCart(User user, UserProduct toDelete);
 
+    boolean add1ProductToCart(User user,UserProduct toAdd);
+
     boolean sendInvoice(User user, byte[] bytes);
 }
