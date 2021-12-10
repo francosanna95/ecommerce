@@ -4,7 +4,10 @@ const app = Vue.createApp({
         return {
             hotels: [],
             hotel: true,
-            beds: 1
+            parking: false,
+            concierge: false,
+            beds: 1,
+            nights: 1
 
         }
     },
