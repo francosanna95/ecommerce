@@ -442,7 +442,6 @@ td {
 
 .offcanvas {
     width: 40%;
-    height: 70%;
 }
 .offcanvas-header {
     background-color: var(--header-bg-color);
@@ -535,7 +534,15 @@ cart-btn-icon
     line-height: 2.5rem;
     font-size: 1.5rem;
 }
-
+/*form posts*/
+.form-admin {
+    margin-left: 1rem;
+    width: 25%;
+}
+.form-admin-extra {
+    margin-left: 1rem;
+    width: 60%;
+}
 /*Animation*/
 html {
     scroll-behavior: smooth;
@@ -564,7 +571,7 @@ html {
 @media all and (max-width: 775px) {
     .offcanvas {
         width: 100%;
-        height: 80%;
+        height: 90%;
     }
     .cart-btn-icon {
         position: fixed;
