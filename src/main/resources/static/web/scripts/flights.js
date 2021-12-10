@@ -51,8 +51,8 @@ const app = Vue.createApp({
                                 } else {
                                     ticket.stock--;
                                     console.log(this.cart);
-                                    if (this.cart.some(prod => prod.productId == ticket.productId)) {
-                                        let id = this.cart.findIndex(prod => prod.productId == ticket.productId);
+                                    if (this.cart.some(prod => prod.id == ticket.id)) {
+                                        let id = this.cart.findIndex(prod => prod.id == ticket.id);
                                         //actualizar cantidad en ese producto
 
                                         this.cart[id].quantity= ticket.quantity;
