@@ -18,6 +18,10 @@
 .mainDiv {
     background-color: var(--main-bg-color);
 }
+h1 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--font-color-w);
+}
 a, i {
     text-decoration: none;
     font-family: 'Dosis', sans-serif;
@@ -378,7 +382,6 @@ div .oferta {
 /*main*/
 .tableContainer {
     background-color: var(--font-color-w);
-    margin: 1rem;
     border-radius: 15px;
 }
 th {
@@ -387,8 +390,7 @@ th {
     font-family: 'Dosis', sans-serif;
 }
 td {
-    font-size: 1.1rem;
-    padding: 5rem;
+    padding: 3rem;
     height: 120px;
 }
 .btn-close {
@@ -417,12 +419,14 @@ td {
 }
 .cardInfoContainer {
     background-color: var(--font-color-w);
-    margin: 1rem;
     border-radius: 15px;
 }
 .paymentTitle {
     border-bottom: 1px solid var(--header-bg-color);
     font-family: 'Dosis', sans-serif;
+}
+.payTitle {
+    color: var(--extra-color);
 }
 /*cart properties*/
 
@@ -488,8 +492,8 @@ footer {
 /*Animation*/
 .go-top-container {
     position: fixed;
-    bottom: 2rem;
-    right: 5rem;
+    bottom: 3rem;
+    right: 2rem;
     width: 3rem;
     height: 3rem;
     z-index: -1;
@@ -512,7 +516,7 @@ footer {
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    color: var(--font-color-w);
+    color: cornsilk;
     transition: .2s;
 }
 .showButton {
@@ -527,7 +531,18 @@ footer {
 .showButton i {
     transform: translate(-50%, -50%) scale(1);
 }
-
-
-
+@keyframes popup {
+    0% {
+        width: 0rem;
+        height: 0rem;
+    }
+    50% {
+        width: 3rem;
+        height: 3rem;
+    }
+    100% {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+}
 
