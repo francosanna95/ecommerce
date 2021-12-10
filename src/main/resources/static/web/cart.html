@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="./styles/styles.css">
 
 </head>
-
 <body id="app">
   <div>
     <!--<div class="animation" ref="animation">
@@ -180,16 +179,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="prod in cart">
+                <tr v-for="prod in backCart">
                   <td><img class="imgTable"
                       src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">{{prod.productName}}
                   </td>
                   <td>{{prod.productType}}</td>
-                  <td><button type="button" class="btnCart">-</button> {{prod.quantity}} <button type="button"
+                  <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}} <button type="button"
                       class="btnCart">+</button></td>
                   <td>{{prod.agencyName}}</td>
                   <td>{{prod.subtotal}}</button></td>
-                  <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                  <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
                 </tr>
                 <tr>
                   <td><img class="imgTable"
@@ -313,5 +312,4 @@
   <script src="./scripts/animation.js"></script>
   <script src="./scripts/cart.js"></script>
 </body>
-
 </html>

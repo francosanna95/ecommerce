@@ -29,7 +29,9 @@ const app = Vue.createApp({
                 } catch (e) {
                     sessionStorage.removeItem('cart');
                 }
+                this.cart=sessionStorage.getItem('cart')
                 console.log(this.cart)
+
             };
         },
     methods: {
@@ -38,7 +40,6 @@ const app = Vue.createApp({
         },
         flyShow(product) {
             this.ticket = product;
-            console.log(product);
         },
 
 

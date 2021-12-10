@@ -9,6 +9,7 @@ const app = Vue.createApp({
       password: "",
       isPasswordVisible: false,
       cart:[],
+      backCart:[],
     }
   },
   created() {
@@ -16,8 +17,8 @@ const app = Vue.createApp({
             .then(
                 resp=>{
                 console.log(resp.data.cart)
-                this.cart=resp.data.cart;
-                console.log(this.cart)}
+                this.backCart=resp.data.cart;
+                console.log(this.backCart)}
                 )
         axios.get('/api/products/hotels')
         .then(response => {
@@ -47,16 +48,16 @@ const app = Vue.createApp({
             return error.message;
         })
   },
-  //mounted() {
-  //    if (sessionStorage.getItem('cart')) {
-  //        try {
-  //           this.cart = JSON.parse(sessionStorage.getItem('cart'));
-  //        } catch (e) {
-  //            sessionStorage.removeItem('cart');
-  //          }
-  //        console.log(this.cart)
-  //    };
-  //},
+  mounted() {
+      if (sessionStorage.getItem('cart')) {
+          try {
+             this.cart = JSON.parse(sessionStorage.getItem('cart'));
+          } catch (e) {
+              sessionStorage.removeItem('cart');
+            }
+          console.log(this.cart)
+      };
+  },
   computed: {
     showPassword() {
       if (this.isPasswordVisible) {
@@ -67,7 +68,10 @@ const app = Vue.createApp({
     }
   },
   methods: {
-
+    savingCart(){
+            const parsed = JSON.stringify(this.cart);
+            sessionStorage.setItem('cart', parsed);
+        },
     login(e) {
       if (e) {
         e.preventDefault()
@@ -89,6 +93,24 @@ const app = Vue.createApp({
          console.log(error.response.data)
         })
     },
+    removeOne(prod){
+        axios.post('/api/clients/current/removeFromCart',`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
+        .then(resp=>{if(this.cart.some(product=>product.productId==prod.id)){
+            let findProd= this.cart.findIndex(product=>product.productId==prod.id);
+            }}).then(resp=>{console.log(this.cart[findProd])//.quantity--;
+                            if(this.cart[this.findProd<=0]){this.cart.splice(this.findProd,1)}
+                            this.savingCart();})
+                            //window.location.reload()})
+   },
+    removeAll(prod){
+        axios.post('clients/current/finalRemoveFromCart',`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
+        .then(resp=>{ if(this.cart.some(product=>product.productId==prod.id)){
+            let id=this.cart.findIndex(product=>product.productId==prod.id);
+            this.cart.splice(id,1);
+            this.savingCart();}
+        })
+},
+
     logout() {
       axios.post('/api/logout')
         .then(response => {
