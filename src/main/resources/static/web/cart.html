@@ -1,284 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Melba's Trips - Cart</title>
-    <link rel="icon" href="./assets/melba-logo-ps.png">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=h1, initial-scale=1.0">
+  <title>Melba's Trips - Cart</title>
+  <link rel="icon" href="./assets/melba-logo-ps.png">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/styles.css">
-    
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
+
 </head>
+
 <body id="app">
-    <div>
-        <!--<div class="animation" ref="animation">
+  <div>
+    <!--<div class="animation" ref="animation">
             Animation Div
         </div>-->
-        <div class="mainDiv d-flex flex-column" ref="mainDiv">
-            <!--Main Div-->
-            <header class="d-flex flex-column justify-content-center">
-                <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
-                    <div class="d-flex flex-row align-items-center">
-                        <a href="./index.html">
-                          <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
-                          <!--<h1>Melba's Trips</h1>-->
-                      </div>
-                    <div class="d-flex flex-row">
-                        <div class="m-3 scale">
-                            <!-- Button trigger modal log in/register -->
-                            <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLogIn"><i class="fal fa-user"></i> Log In</button>-->
-                            <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i class="fal fa-user"></i> Log In</a>
-                        </div>
-                        <div class="m-3 scale">
-                            <a class="linkCursor" href="#"><i class="fal fa-luggage-cart"></i> Cart</a>
-                        </div>
-                        <div class="m-3 scale">
-                            <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
-                    <div class="container d-flex ">
-                        <section class="containerPadre">
-                            <div class="containerHijo">
-                                <div class="card1"></div>
-                                <div class="card2"></div>
-                                <div class="card2 card3"></div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-12 p-4">
-                    <div class="d-flex flex-column scale">
-                        <i class="fal fa-bed align-self-center"></i>
-                        <a class="box" href="./lodging.html">Lodging</a>
-                    </div>
-                    <div class="d-flex flex-column scale">
-                        <i class="fal fa-plane-alt align-self-center"></i>
-                        <a class="box" href="./flies.html">Flights</a>
-                    </div>
-                    <div class="d-flex flex-column scale">
-                        <i class="fal fa-hiking align-self-center"></i>
-                        <a class="box" href="./activities.html">Activities</a>
-                    </div>
-                    <div class="d-flex flex-column scale">
-                        <i class="fal fa-box-full align-self-center"></i>
-                        <a class="box" href="./combos.html">Packages</a>
-                    </div>
-                </div>
-            </header>
-            <main class="container">
-                <!-- Modal log in/register -->
-                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content"><!-- Here a v-model -->
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalToggleLabel">Log In</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="d-flex justify-content-center align-items-center">
-                                <fieldset>
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com">
-                                        <label for="floatingInputLogIn">Email Address</label>
-                                      </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password">
-                                        <label for="floatingPasswordLogIn">Password</label>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="modal-footer justify-content-center align-items-center">
-                          <button class="btn btn-warning" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Register</button>
-                          <button type="button" class="btn btn-info">Log In</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalToggleLabel2">Registration</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="d-flex justify-content-center align-items-center">
-                                <fieldset>
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingFirstRegister" placeholder="first_name" minlength="3" maxlength="25" required>
-                                        <label for="floatingFirstRegister">First Name</label>
-                                      </div>
-                                      <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingLastRegister" placeholder="last_name" minlength="3" maxlength="25" required>
-                                        <label for="floatingLastRegister">Last Name</label>
-                                      </div>
-                                      <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingEmailRegister" placeholder="name@example.com" minlength="7" maxlength="40" required>
-                                        <label for="floatingEmailRegister">Email Address</label>
-                                      </div>
-                                      <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="floatingPasswordRegister" placeholder="password" minlength="6" maxlength="25" required>
-                                        <label for="floatingPasswordRegister">Password</label>
-                                      </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="modal-footer justify-content-center align-items-center">
-                          <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log In</button>
-                          <button type="button" class="btn btn-info">Sign Up</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <!-- Main Content -->
-
-                <!--aca arriba va una prueba-->
-                <div class="cartContainer d-flex flex-row justify-content-evenly align-items-center col-12 p-4">
-                  <div class="tableContainer d-flex- justify-content-evenly align-items-center container col-7">
-                    <table class="table align-middle table-responsive text-dark">
-                        <thead class="table text-success p-2">
-                            <tr>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Service Type</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Agency Name</th>
-                                <th scope="col">Sub Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="prod in cart">
-                                <td><img class="imgTable" src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">{{prod.productName}}</td>
-                                <td>{{prod.productType}}</td>
-                                <td><button type="button" class="btnCart">-</button> {{prod.quantity}} <button type="button" class="btnCart">+</button></td>
-                                <td>{{prod.agencyName}}</td>
-                                <td>{{prod.subtotal}}</button></td>
-                                <td><button type="button" class="btn-close" aria-label="Close"></button></td>
-                            </tr> 
-                            <tr>
-                              <td><img class="imgTable" src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg"> Walking</td>
-                              <td>Activity</td>
-                              <td><button type="button" class="btnCart">+</button> 1 <button type="button" class="btnCart">-</button></td>
-                              <td>Wild Travel</td>
-                              <td>$499</button></td>
-                              <td><button type="button" class="btn-close" aria-label="Close"></button></td>
-                          </tr>   
-                        </tbody>
-                      </table>
-                      <div class="d-flex justify-content-center">
-                        <h4>Total $1498</h4>
-                      </div>
-                    </div>
-                      <div class="d-flex justify-content-center container cardInfoContainer col-5">
-                        <form>
-                          <fieldset class="cardPaymentInfo">
-                            <div class="m-3 text-primary paymentTitle">
-                              <h4>Payment Information</h4>
-                            </div>
-                            <div class="d-flex flex-row">
-                              <div class="form-floating m-3 col-6">
-                                <input type="number" class="form-control" id="floatingInputCard" placeholder="cardNumber">
-                                <label for="floatingInputCard">Card Number</label>
-                              </div>
-                              <div class="form-floating m-3 col-4">
-                                <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration">
-                                <label for="floatingInputExpiration">Expiration Date</label>
-                              </div>
-                            </div>
-                            <div class="d-flex flex-row">
-                              <div class="form-floating m-3 col-8">
-                                <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname">
-                                <label for="floatingInputFullname">Cardholder Name</label>
-                              </div>
-                              <div class="form-floating m-3 col-2">
-                                <input type="number" class="form-control" id="floatingInputCvv" placeholder="cardCvv">
-                                <label for="floatingInputCvv">Cvv</label>
-                              </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                              <button class="labelCode text-light p-4 pt-2 pb-2" type="button">Pay</button>
-                            </div>
-                          </fieldset>
-                        </form>
-                      </div>
-                </div>
-            </main>
-            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn">
-            <img src="./assets/carrito-viajes.png" id="cartImg">
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-              <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="mainDiv d-flex flex-column" ref="mainDiv">
+      <!--Main Div-->
+      <header class="d-flex flex-column justify-content-center">
+        <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
+          <div class="d-flex flex-row align-items-center">
+            <a href="#">
+            <img src="./assets/melba-logo-ps.png" class="logo
+            d-flex d-none d-sm-block" alt="melba-logo"></a>
+            <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
+        </div>
+          <div class="d-flex flex-row">
+            <div class="m-3 scale">
+              <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i> Home</a>
+            </div>
+            <div class="m-3 scale">
+              <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
+                  class="fal fa-user"></i> Log In</a>
+            </div>
+            <div class="m-3 scale">
+              <a class="linkCursor" href="#"><i class="fal fa-luggage-cart"></i> Cart</a>
+            </div>
+            <div class="m-3 scale">
+              <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
+            </div>
+          </div>
+        </div>
+        <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
+          <div class="container d-flex ">
+            <section class="containerPadre">
+              <div class="containerHijo">
+                <div class="card1"></div>
+                <div class="card2"></div>
+                <div class="card2 card3"></div>
               </div>
-              <div class="offcanvas-body">
-                ...
+            </section>
+          </div>
+        </div>
+        <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-12 p-4">
+          <div class="d-flex flex-column scale">
+            <i class="fal fa-bed align-self-center"></i>
+            <a class="box" href="./lodging.html">Lodging</a>
+          </div>
+          <div class="d-flex flex-column scale">
+            <i class="fal fa-plane-alt align-self-center"></i>
+            <a class="box" href="./flies.html">Flights</a>
+          </div>
+          <div class="d-flex flex-column scale">
+            <i class="fal fa-hiking align-self-center"></i>
+            <a class="box" href="./activities.html">Activities</a>
+          </div>
+          <div class="d-flex flex-column scale">
+            <i class="fal fa-box-full align-self-center"></i>
+            <a class="box" href="./combos.html">Packages</a>
+          </div>
+        </div>
+      </header>
+      <main class="container">
+        <!-- Modal log in/register -->
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <!-- Here a v-model -->
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Log In</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="d-flex justify-content-center align-items-center">
+                  <fieldset>
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com">
+                      <label for="floatingInputLogIn">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password">
+                      <label for="floatingPasswordLogIn">Password</label>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-footer justify-content-center align-items-center">
+                <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal">Register</button>
+                <button type="button" class="btn btn-info">Log In</button>
               </div>
             </div>
-            <footer>
-                <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
-                    <div>
-                      <h5>About Us</h5>
-                      <h6><a class="box" href="#">Who are we?</a></h6>
-                      <h6><a class="box" href="#">Banking promo</a></h6>
-                    </div>
-                    <div>
-                      <h5>Safe and Secure</h5>
-                      <h6><a class="box" href="#">Terms and conditions</a></h6>
-                      <h6><a class="box" href="#">Privacy policy</a></h6>
-                      <h6><a class="box" href="#">FAQs</a></h6>
-                    </div>
-                    <div>
-                      <h5>Contact</h5>
-                      <h6><a class="box" href="#">Help</a></h6>
-                      <h6><a class="box" href="#">Contact Form</a></h6>
-                    </div>
-                </div>
-                <div class="footer-box-2 d-flex flex-wrap flex-column justify-content-center align-items-center pt-2 p-2 border-bottom">
-                        <div class="d-flex justify-content-center" id="socialShare">
-                            <a class="facebook m-2" href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
-                            <a class="instagram m-2" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                            <a class="twitter m-2" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="linkedin m-2" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                      <div>
-                        <h5><i class="fal fa-phone-volume"></i><strong> Call Center:</strong> 0810-220-1309</h5>
-                      </div>
-                      <div>
-                        <h5><i class="fad fa-calendar-alt"></i><strong> Mon to Fri:</strong> 9hs to 19hs</h5>
-                      </div>
-                      <div>
-                        <h5><i class="fad fa-calendar-star"></i><strong> Sat:</strong> 10hs to 17hs</h5>
-                      </div>
-                </div>
-                <div class="footer-box-3 d-flex flex-wrap flex-column justify-content-center align-items-center pt-2 p-2">
-                    <div>
-                      <h5>© 2021 Melba's Trips | All Rights Reserved</h5>
-                    </div>
-                </div>
-            </footer>
+          </div>
         </div>
-    </div>
-    <!-- Go to top animation -->
-    <div class="go-top-container">
-        <div class="go-top-button">
-            <i class="fas fa-chevron-up"></i>
+        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+          tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel2">Registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="d-flex justify-content-center align-items-center">
+                  <fieldset>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingFirstRegister" placeholder="first_name"
+                        minlength="3" maxlength="25" required>
+                      <label for="floatingFirstRegister">First Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingLastRegister" placeholder="last_name"
+                        minlength="3" maxlength="25" required>
+                      <label for="floatingLastRegister">Last Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingEmailRegister" placeholder="name@example.com"
+                        minlength="7" maxlength="40" required>
+                      <label for="floatingEmailRegister">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPasswordRegister" placeholder="password"
+                        minlength="6" maxlength="25" required>
+                      <label for="floatingPasswordRegister">Password</label>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-footer justify-content-center align-items-center">
+                <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
+                  In</button>
+                <button type="button" class="btn btn-info">Sign Up</button>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- Main Content -->
+
+        <!--propiedades div de abajo container d-flex flex-row flex-wrap justify-content-evenly align-items-center-->
+        <div class="cartContainer p-2">
+          <div class="tableContainer d-flex flex-column justify-content-center">
+            <table class="table align-middle text-dark">
+              <thead class="table text-success p-2">
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Service Type</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Agency Name</th>
+                  <th scope="col">Sub Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="prod in cart">
+                  <td><img class="imgTable"
+                      src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">{{prod.productName}}
+                  </td>
+                  <td>{{prod.productType}}</td>
+                  <td><button type="button" class="btnCart">-</button> {{prod.quantity}} <button type="button"
+                      class="btnCart">+</button></td>
+                  <td>{{prod.agencyName}}</td>
+                  <td>{{prod.subtotal}}</button></td>
+                  <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                </tr>
+                <tr>
+                  <td><img class="imgTable"
+                      src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg">
+                    Walking</td>
+                  <td>Activity</td>
+                  <td><button type="button" class="btnCart">-</button> 1 <button type="button"
+                      class="btnCart">+</button></td>
+                  <td>Wild Travel</td>
+                  <td>$499</button></td>
+                  <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                </tr>
+              </tbody>
+            </table>
+            <h4 class="d-flex align-self-center">Total $1498</h4>
+          </div>
+          <div class="cardInfoContainer m-2">
+            <form>
+              <fieldset class="cardPaymentInfo">
+                <div class="m-3 text-primary paymentTitle">
+                  <h4 class="payTitle d-flex justify-content-center">Payment Information</h4>
+                </div>
+                <div class="d-flex flex-row">
+                  <div class="form-floating m-3 col-6">
+                    <input type="number" class="form-control" id="floatingInputCard" placeholder="cardNumber">
+                    <label for="floatingInputCard">Card Number</label>
+                  </div>
+                  <div class="form-floating m-3 col-4">
+                    <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration">
+                    <label for="floatingInputExpiration">Expiration</label>
+                  </div>
+                </div>
+                <div class="d-flex flex-row">
+                  <div class="form-floating m-3 col-6">
+                    <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname">
+                    <label for="floatingInputFullname">Cardholder Name</label>
+                  </div>
+                  <div class="form-floating m-3 col-4">
+                    <input type="number" class="form-control" id="floatingInputCvv" placeholder="cardCvv">
+                    <label for="floatingInputCvv">Cvv</label>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button class="labelCode text-light p-4 pt-2 pb-2" type="button">Pay</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </main>
+      <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight" id="cartBtn">
+        <img src="./assets/carrito-viajes.png" id="cartImg">
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          ...
+        </div>
+      </div>
+      <footer>
+        <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
+          <div>
+            <h5>About Us</h5>
+            <h6><a class="box" href="#">Who are we?</a></h6>
+            <h6><a class="box" href="#">Banking promo</a></h6>
+          </div>
+          <div>
+            <h5>Safe and Secure</h5>
+            <h6><a class="box" href="#">Terms and conditions</a></h6>
+            <h6><a class="box" href="#">Privacy policy</a></h6>
+            <h6><a class="box" href="#">FAQs</a></h6>
+          </div>
+          <div>
+            <h5>Contact</h5>
+            <h6><a class="box" href="#">Help</a></h6>
+            <h6><a class="box" href="#">Contact Form</a></h6>
+          </div>
+        </div>
+        <div
+          class="footer-box-2 d-flex flex-wrap flex-column justify-content-center align-items-center pt-2 p-2 border-bottom">
+          <div class="d-flex justify-content-center" id="socialShare">
+            <a class="facebook m-2" href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
+            <a class="instagram m-2" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a class="twitter m-2" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+            <a class="linkedin m-2" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <div>
+            <h5><i class="fal fa-phone-volume"></i><strong> Call Center:</strong> 0810-220-1309</h5>
+          </div>
+          <div>
+            <h5><i class="fad fa-calendar-alt"></i><strong> Mon to Fri:</strong> 9hs to 19hs</h5>
+          </div>
+          <div>
+            <h5><i class="fad fa-calendar-star"></i><strong> Sat:</strong> 10hs to 17hs</h5>
+          </div>
+        </div>
+        <div class="footer-box-3 d-flex flex-wrap flex-column justify-content-center align-items-center pt-2 p-2">
+          <div>
+            <h5>© 2021 Melba's Trips | All Rights Reserved</h5>
+          </div>
+        </div>
+      </footer>
     </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="./scripts/animation.js"></script>
-    <script src="./scripts/cart.js"></script>
+  </div>
+  <!-- Go to top animation -->
+  <div class="go-top-container">
+    <div class="go-top-button">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="./scripts/animation.js"></script>
+  <script src="./scripts/cart.js"></script>
 </body>
+
 </html>
