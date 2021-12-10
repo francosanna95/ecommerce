@@ -19,22 +19,21 @@ const app = Vue.createApp({
         })
         .catch(error => {
             return error.message;
-
         })
-    },
-    mounted() {
-            if (sessionStorage.getItem('cart')) {
-                try {
+         if (sessionStorage.getItem('cart')) {
+               try {
                     console.log(this.cart);
                     this.cart = JSON.parse(sessionStorage.getItem('cart'));
-                    console.log(this.cart);
-                } catch (e) {
-                    sessionStorage.removeItem('cart');
-                }
-                this.cart=sessionStorage.getItem('cart')
-                console.log(this.cart)
+                            console.log(this.cart);
+                        } catch (e) {
+                            sessionStorage.removeItem('cart');
+                        }
+                        this.cart=sessionStorage.getItem('cart')
+                        console.log(this.cart)
 
-            };
+                    }
+    },
+    mounted() {
         },
     methods: {
         productId(numero) {
@@ -55,12 +54,13 @@ const app = Vue.createApp({
                    alert("No stock");}
                    else{
                      ticket.stock--;
-                     console.log(this.cart);
+                    console.log(this.cart);
                      if(this.cart.some(prod=>prod.productId==ticket.productId)){
-                       ticket.quantity++;}
-                     else{ticket.quantity=1;
-                     this.cart.push(ticket);}
+                       ticket.quantity=ticket.quantity+this.passengers;}
+                     else{ticket.quantity=this.passengers;}
+                     ticket.clase=this.clase;
                 ticket.subtotal=ticket.quantity*ticket.price;
+                this.cart.push(ticket);
                 console.log(this.cart);
                 this.savingCart();}
             })

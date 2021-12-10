@@ -166,6 +166,24 @@ public class UserController {
 
     }
 
+    @PostMapping("/clients/current/add1toCart")//sirve para agregar de a 1 producto
+    public ResponseEntity<String> add1ProductToCart(Authentication authentication,@RequestParam Long userProductId){
+        User user=userRepo.findByEmail(authentication.getName()).orElse(null);
+        UserProduct productToAdd=salesRepo.findById(userProductId).orElse(null);
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+        if (productToAdd == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+       if(userService.add1ProductToCart(user,productToAdd)){
+           return new ResponseEntity<>("Agregado con exito",HttpStatus.CREATED);
+       }
+       return new ResponseEntity<>("Error",HttpStatus.BAD_REQUEST);
+   }
+
     @PostMapping("/clients/current/removeFromCart")  //sirve para eliminar producto de 1 en 1
     public ResponseEntity<String> removeProductFromCart(Authentication auth, @RequestParam Long userProductId) {
 

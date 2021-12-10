@@ -112,6 +112,16 @@ const app = Vue.createApp({
             window.location.reload()}
         }).catch(err=>console.log(err))
 },
+    addProduct(prod){
+        axios.post("/api/clients/current/add1toCart",`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
+        .then(resp=>{
+            let id=this.cart.findIndex(product=>product.id==prod.id);
+            console.log(id)
+            console.log(this.cart)
+             this.cart[id].quantity++;
+             this.savingCart();
+        })
+        },
 
     logout() {
       axios.post('/api/logout')
