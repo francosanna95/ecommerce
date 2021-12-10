@@ -10,6 +10,7 @@ const app = Vue.createApp({
       isPasswordVisible: false,
       cart:[],
       backCart:[],
+      totalPrice:0,
     }
   },
   created() {
@@ -61,8 +62,13 @@ const app = Vue.createApp({
       } else {
         return "password";
       }
-    }
+    },
+    totalPriceCalc(){
+    this.totalPrice=this.cart.reduce(acumulator,product=> acumulator+= product.quantity*product.finalPrice)
+    return this.cart}
+
   },
+
   methods: {
     savingCart(){
             const parsed = JSON.stringify(this.cart);
@@ -99,16 +105,22 @@ const app = Vue.createApp({
         .then(resp=>{ console.log(findProd)
                       this.cart[findProd].quantity--;
                       if(this.cart[findProd].quantity<=0){this.cart.splice(findProd,1)}
-                      this.savingCart();}).catch(err=>console.log(err))
+                      this.savingCart();
+                      if(this.cart.length==0){
+                         sessionStorage.removeItem('cart');}}).catch(err=>console.log(err))
+
                             //window.location.reload()})
        //                     }else{alert("no tenes este producto en tu carrito")}
    },
     removeAll(prod){
         axios.post('/api/clients/current/finalRemoveFromCart',`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
-        .then(resp=>{ if(this.cart.some(product=>product.productId==prod.id)){
-            let id=this.cart.findIndex(product=>product.productId==prod.id);
-            this.cart.splice(id,1);
+        .then(resp=>{ if(this.cart.some(product=>product.id==prod.id)){
+            let index=this.cart.findIndex(product=>product.id==prod.id);
+            console.log(index);
+            this.cart.splice(index,1);
             this.savingCart();
+            if(this.cart.length==0){
+              sessionStorage.removeItem('cart');}
             window.location.reload()}
         }).catch(err=>console.log(err))
 },
@@ -120,6 +132,7 @@ const app = Vue.createApp({
             console.log(this.cart)
              this.cart[id].quantity++;
              this.savingCart();
+
         })
         },
 
