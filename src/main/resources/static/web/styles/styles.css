@@ -7,7 +7,6 @@
     --extra-color: #731425;
 }
 
-
 /*generals*/
 * {
     padding: 0;
@@ -122,10 +121,14 @@ h5 {
     align-items: center; 
 }
 
-.containerHijo .card1 .video{
+.containerHijo .card1 .video {
     max-width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.containerHijo .card1 .imgAtencion img {
+    max-width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -468,6 +471,31 @@ td {
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
+
+/*formulario de contacto*/
+
+form input.contact {
+    padding: .5rem;
+    border-radius:10px;
+    border: none;
+    background-color: rgb(240, 238, 238);
+}
+
+textarea.form-control{
+    background-color: rgb(240, 238, 238);
+}
+
+/*perfil*/
+
+.perfilCaja{
+    background-color: var(--font-color-w);
+    padding: 3rem;
+}
+
+.perfilCaja img {
+    border-radius: 50%;
+}
+
 /*footer*/
 footer {
     background-color: var(--header-bg-color);

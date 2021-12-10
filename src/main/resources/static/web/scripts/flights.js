@@ -6,7 +6,7 @@ const app = Vue.createApp({
             ticket: true,
             cart:[],
             clase: "",
-            passengers: 1
+            passengers: 1,
         }
     },
 
@@ -25,7 +25,9 @@ const app = Vue.createApp({
     mounted() {
             if (sessionStorage.getItem('cart')) {
                 try {
+                    console.log(this.cart);
                     this.cart = JSON.parse(sessionStorage.getItem('cart'));
+                    console.log(this.cart);
                 } catch (e) {
                     sessionStorage.removeItem('cart');
                 }
@@ -47,10 +49,13 @@ const app = Vue.createApp({
         console.log(ticket.productId);
             axios.post("/api/clients/current/addToCart/ticket",`ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
             .then(resp=>{
+                ticket=resp.data;
+                console.log(ticket);
                 if(ticket.stock<=0){
                    alert("No stock");}
                    else{
                      ticket.stock--;
+                     console.log(this.cart);
                      if(this.cart.some(prod=>prod.productId==ticket.productId)){
                        ticket.quantity++;}
                      else{ticket.quantity=1;
