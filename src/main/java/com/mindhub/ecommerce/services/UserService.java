@@ -3,6 +3,7 @@ package com.mindhub.ecommerce.services;
 
 import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.UserDTO;
+import com.mindhub.ecommerce.dtos.UserProductDTO;
 import com.mindhub.ecommerce.models.*;
 
 import java.io.ByteArrayOutputStream;
@@ -21,7 +22,7 @@ public interface UserService {
 
     boolean addEventToClientCart(User user, Event event, Boolean isVip, Integer attendants);
 
-    boolean addTicketToClientCart(User user, Ticket ticket, String clase, Integer passengers);
+    UserProductDTO addTicketToClientCart(User user, Ticket ticket, String clase, Integer passengers);
 
     boolean addHotelToClientCart(User user, Hotel hotel, String arrivalDate, String departureDate, Integer nights, Integer passangers, String pension);
 

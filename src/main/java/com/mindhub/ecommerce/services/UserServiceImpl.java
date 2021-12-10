@@ -2,6 +2,7 @@ package com.mindhub.ecommerce.services;
 
 import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.UserDTO;
+import com.mindhub.ecommerce.dtos.UserProductDTO;
 import com.mindhub.ecommerce.email.EmailServiceImpl;
 import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.enums.TicketClass;
@@ -106,7 +107,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addTicketToClientCart(User user, Ticket ticket, String clase, Integer passangers) {
+    public UserProductDTO addTicketToClientCart(User user, Ticket ticket, String clase, Integer passangers) {
 
         try {
 // si el cliente ya tiene ese producto en el carrito simplemente actualizo la cantidad y el precio final
@@ -116,24 +117,26 @@ public class UserServiceImpl implements UserService {
                     ClientTicket ticketToCart = (ClientTicket) userProduct;
                     ticketToCart.setQuantity(userProduct.getQuantity() + passangers);
                     ticketToCart.setFinalPrice(ticket.getPrice());
+                    salesRepo.save(ticketToCart);
+                    UserProductDTO userProductDTO=new UserProductDTO(ticketToCart);
                     userRepo.save(user);
                     productRepo.save(ticket);
-                    return true;
+                    return userProductDTO;
                 }
             }
 //sino creo una nueva instancia de esa venta
 
-            ClientTicket clientTicket = new ClientTicket();
-            clientTicket.setClase(TicketClass.valueOf(clase));
-            clientTicket.setUser(user);
+            ClientTicket clientTicket = new ClientTicket(user,ticket,TicketClass.valueOf(clase));
             clientTicket.setQuantity(passangers);
-            clientTicket.setProduct(ticket);
             clientTicket.setFinalPrice(ticket.getPrice());
             int ticketStock = ticket.getStock();
             ticket.setStock(ticketStock - passangers);
+            user.getCurrentCart().add(clientTicket);
+            salesRepo.save(clientTicket);
+            UserProductDTO userProductDTO=new UserProductDTO(clientTicket);
             userRepo.save(user);
             productRepo.save(ticket);
-            return true;
+            return userProductDTO;
 
         } catch (Exception e) {
             throw e;
