@@ -36,18 +36,26 @@
           </div>
           <div class="d-flex flex-row">
             <div class="m-3 scale">
-              <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i> Home</a>
+              <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i>
+                <p class="d-flex d-none d-lg-block">Home</p>
+              </a>
             </div>
             <div class="m-3 scale">
               <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
-                  class="fal fa-user"></i> Log In</a>
+                  class="fal fa-user"></i>
+                <p class="d-flex d-none d-lg-block">Log In</p>
+              </a>
             </div>
             <div class="m-3 scale">
               <!-- Button trigger modal cart -->
-              <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i> Cart</a>
+              <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i>
+                <p class="d-flex d-none d-lg-block">Cart</p>
+              </a>
             </div>
             <div class="m-3 scale">
-              <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
+              <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i>
+                <p class="d-flex d-none d-lg-block">Help</p>
+              </a>
             </div>
           </div>
         </div>
@@ -81,10 +89,10 @@
             <i class="fal fa-hiking align-self-center"></i>
             <a class="box" href="./activities.html">Activities</a>
           </div>
-          <div class="d-flex flex-column scale">
+          <!--<div class="d-flex flex-column scale">
             <i class="fal fa-box-full align-self-center"></i>
             <a class="box" href="./combos.html">Packages</a>
-          </div>
+          </div>-->
         </div>
       </header>
       <main class="container">
@@ -163,10 +171,6 @@
           </div>
         </div>
         <!-- Main Content -->
-
-        <div>
-          ACA VA EL CARRUSEL DE TARJETAS CON DESTINOS
-        </div>
         <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
           <div class="cardDestino" v-for="hotel in hotels">
             <div class="imgDestino">
@@ -177,11 +181,9 @@
               </div>
             </div>
             <div class="contentDestino">
-              <h5 class="mt-2">{{hotel.productName}}</h5>
+              <h5 class="mt-2 fs-4">{{hotel.productName}}</h5>
               <div class="contenido">
-                <h5 class="text-dark">{{hotel.origin}}</h5>
-                <h5 class="text-dark"></h5>
-                <p class="">{{hotel.description}}</p>
+                <h5 class="text-dark">{{hotel.address}}</h5>
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
