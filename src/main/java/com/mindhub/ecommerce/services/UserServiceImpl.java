@@ -189,6 +189,30 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public boolean add1ProductToCart(User user, UserProduct toAdd) {
+        boolean success = false;
+        for (UserProduct userProduct : user.getCurrentCart()) {
+            if (userProduct.getId().equals(toAdd.getId())) {
+                int currentQuantity = userProduct.getQuantity();
+                userProduct.setQuantity(currentQuantity + 1); // actualizo la cantidad
+                userProduct.setFinalPrice(userProduct.getProduct().getPrice()); // actualizo el precio
+                success = true;
+                Product product = userProduct.getProduct(); // actualizo stock del producto
+                int currentStock = product.getStock();
+                product.setStock(currentStock - 1);
+                productRepo.save(product);
+                userRepo.save(user);
+                salesRepo.save(userProduct);
+                break;
+            }
+
+        }
+        if (success) return true;
+
+        return false;
+
+    }
 
     @Override
     public boolean removeProductFromCart(User user, UserProduct toDelete) {
