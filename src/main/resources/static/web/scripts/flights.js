@@ -29,7 +29,9 @@ const app = Vue.createApp({
                 } catch (e) {
                     sessionStorage.removeItem('cart');
                 }
+                this.cart=sessionStorage.getItem('cart')
                 console.log(this.cart)
+
             };
         },
     methods: {

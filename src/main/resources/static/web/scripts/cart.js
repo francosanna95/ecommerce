@@ -97,7 +97,7 @@ const app = Vue.createApp({
         axios.post('/api/clients/current/removeFromCart',`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
         .then(resp=>{if(this.cart.some(product=>product.productId==prod.id)){
             let findProd= this.cart.findIndex(product=>product.productId==prod.id);
-            }}).then(resp=>{console.log(this.findProd)//.quantity--;
+            }}).then(resp=>{console.log(this.cart[findProd])//.quantity--;
                             if(this.cart[this.findProd<=0]){this.cart.splice(this.findProd,1)}
                             this.savingCart();})
                             //window.location.reload()})
