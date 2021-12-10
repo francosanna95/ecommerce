@@ -33,24 +33,32 @@
                 <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
                     <div class="d-flex flex-row align-items-center">
                         <a href="./index.html">
-                          <img src="./assets/melba-logo-ps.png" class="logo
+                            <img src="./assets/melba-logo-ps.png" class="logo
                         d-flex d-none d-sm-block" alt="melba-logo"></a>
                         <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
-                      </div>
+                    </div>
                     <div class="d-flex flex-row">
                         <div class="m-3 scale">
-                            <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i> Home</a>
+                            <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i>
+                                <p class="d-flex d-none d-lg-block">Home</p>
+                            </a>
                         </div>
                         <div class="m-3 scale">
                             <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
-                                    class="fal fa-user"></i> Log In</a>
+                                    class="fal fa-user"></i>
+                                <p class="d-flex d-none d-lg-block">Log In</p>
+                            </a>
                         </div>
                         <div class="m-3 scale">
                             <!-- Button trigger modal cart -->
-                            <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i> Cart</a>
+                            <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i>
+                                <p class="d-flex d-none d-lg-block">Cart</p>
+                            </a>
                         </div>
                         <div class="m-3 scale">
-                            <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
+                            <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i>
+                                <p class="d-flex d-none d-lg-block">Help</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -85,10 +93,10 @@
                         <i class="fal fa-hiking align-self-center"></i>
                         <a class="box" href="./activities.html">Activities</a>
                     </div>
-                    <div class="d-flex flex-column scale">
+                    <!--<div class="d-flex flex-column scale">
                         <i class="fal fa-box-full align-self-center"></i>
                         <a class="box" href="./combos.html">Packages</a>
-                    </div>
+                    </div>-->
                 </div>
             </header>
             <main class="container">
@@ -171,10 +179,6 @@
                     </div>
                 </div>
                 <!-- Main Content -->
-
-                <div>
-                    ACA VA EL CARRUSEL DE TARJETAS CON DESTINOS
-                </div>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
                     <div class="cardDestino" v-for="ticket in tickets">
                         <div class="imgDestino">
@@ -185,13 +189,12 @@
                             </div>
                         </div>
                         <div class="contentDestino">
-                            <h5 class="mt-2 text-dark">{{ticket.arrivalLocation}},
+                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}},
                                 <small>{{ticket.departureLocation}}</small>
                             </h5>
                             <div class="contenido">
-                                <h6>From</h6>
-                                <h6 class="text-dark">Buenos Aires</h6>
-                                <p class="">{{ticket.description}}</p>
+                                <h6><strong>From: </strong>Buenos Aires</h6>
+                                <h6><strong>Agency: </strong>{{ticket.agencyName}}</h6>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
