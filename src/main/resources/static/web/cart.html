@@ -29,23 +29,32 @@
         <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
           <div class="d-flex flex-row align-items-center">
             <a href="#">
-            <img src="./assets/melba-logo-ps.png" class="logo
+              <img src="./assets/melba-logo-ps.png" class="logo
             d-flex d-none d-sm-block" alt="melba-logo"></a>
             <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
-        </div>
+          </div>
           <div class="d-flex flex-row">
             <div class="m-3 scale">
-              <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i> Home</a>
+              <a href="./index.html" class="linkCursor"><i class="fal fa-home-lg-alt"></i>
+                <p class="d-flex d-none d-lg-block">Home</p>
+              </a>
             </div>
             <div class="m-3 scale">
               <a class="linkCursor" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
-                  class="fal fa-user"></i> Log In</a>
+                  class="fal fa-user"></i>
+                <p class="d-flex d-none d-lg-block">Log In</p>
+              </a>
             </div>
             <div class="m-3 scale">
-              <a class="linkCursor" href="#"><i class="fal fa-luggage-cart"></i> Cart</a>
+              <!-- Button trigger modal cart -->
+              <a class="linkCursor" href="./cart.html"><i class="fal fa-luggage-cart"></i>
+                <p class="d-flex d-none d-lg-block">Cart</p>
+              </a>
             </div>
             <div class="m-3 scale">
-              <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i> Help</a>
+              <a href="./help.html" class="linkCursor"><i class="fal fa-question-square"></i>
+                <p class="d-flex d-none d-lg-block">Help</p>
+              </a>
             </div>
           </div>
         </div>
@@ -170,7 +179,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="prod in backCart">
+                <tr v-for="prod in cart">
                   <td><img class="imgTable"
                       src="https://pbs.twimg.com/profile_images/1409740934217142273/-RmOAoJG_400x400.jpg">{{prod.productName}}
                   </td>
@@ -180,17 +189,6 @@
                   <td>{{prod.agencyName}}</td>
                   <td>{{prod.subtotal}}</button></td>
                   <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
-                </tr>
-                <tr>
-                  <td><img class="imgTable"
-                      src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg">
-                    Walking</td>
-                  <td>Activity</td>
-                  <td><button type="button" class="btnCart">-</button> 1 <button type="button"
-                      class="btnCart">+</button></td>
-                  <td>Wild Travel</td>
-                  <td>$499</button></td>
-                  <td><button type="button" class="btn-close" aria-label="Close"></button></td>
                 </tr>
               </tbody>
             </table>

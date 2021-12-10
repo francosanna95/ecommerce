@@ -94,7 +94,7 @@ h5 {
     background-color: var(--header-bg-color);
 }
 .modal-body {
-    background-color: var(--form-bg-color);
+    background-color: var(--main-bg-color);
 }
 /*Card publicidad*/
 
@@ -311,15 +311,13 @@ div .imgDestino .idaYvuelta {
     background-color: #82838888;
     color: var(--font-color-w);
     border-radius: 30px;
-    text-align: center;
-    
+    text-align: center;  
 } 
 
 .contentDestino {
     width: 100%;
     height: 40%;
-    padding: .5rem;
-    
+    padding: .5rem;  
 }
 
 div .imgDestino:hover img{
@@ -433,13 +431,13 @@ td {
 
 #cartBtn {
     position: fixed;
-    bottom: 20px;
-    left: 30px;
+    bottom: 3rem;
+    left: 2rem;
     cursor: pointer;
     box-shadow: none!important;
 }
 #cartImg {
-    max-width: 150px;
+    max-width: 100px;
     z-index: -2;
 }
 .offcanvas {
@@ -471,7 +469,7 @@ td {
 .textDescription {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     overflow: hidden;
 }
 /*footer*/

@@ -137,30 +137,30 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/ticket")
-    public ResponseEntity<String> addTicketToCart(Authentication auth, @RequestParam Long ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
+    public ResponseEntity<UserProductDTO> addTicketToCart(Authentication auth, @RequestParam Long ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(ticketId).orElse(null);
 
         if (!(product instanceof Ticket)) {
-            return new ResponseEntity<>("Invalid ID for Ticket", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.BAD_REQUEST);
         }
 
         Ticket ticket = (Ticket) product;
 
         if (user == null) {
-            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
         if (ticket == null) {
-            return new ResponseEntity<String>("Ticket not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
+        }
+        UserProductDTO userProductDTO=userService.addTicketToClientCart(user, ticket, clase, passengers);
+
+        if (userProductDTO!=null) {
+            return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
 
-
-        if (userService.addTicketToClientCart(user, ticket, clase, passengers)) {
-            return new ResponseEntity<String>("Ticket booked succesfully", HttpStatus.CREATED);
-        }
-
-        return new ResponseEntity<String>("Ticket Booking unsuccesful", HttpStatus.CREATED);
+        return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
 
         //TODO
 
