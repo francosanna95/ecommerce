@@ -27,7 +27,8 @@ a, i {
     font-family: 'Dosis', sans-serif;
     font-size: 1.5rem;
     color: var(--font-color-w);
-    transition: all 0.9s;  
+    transition: all 0.3s;
+    cursor:pointer;
 }
 
 a:hover {
@@ -37,8 +38,8 @@ a:hover {
 .scale:hover a, .scale:hover i  {
 
     display: inline-block;
-    color: yellow;
-    transform: scale(1.3);
+    color: #36e179;
+    transform: scale(1.1);
 /*color: #36e179
 scale: 1.1 (es muy grande)
 pondria una transition ease para el crecimiento del icono
@@ -79,8 +80,8 @@ h5 {
     width: 100%;
 }
 .headerForm {
-    /*background-color: var(--main-bg-color);*/
-    background-image: url("https://res.cloudinary.com/melbastrips/image/upload/v1638901675/samples/Pngtree_color_travel_tourism_vacation_a2nfxv.jpg");
+    background-color: var(--main-bg-color);
+    /*background-image: url("https://res.cloudinary.com/melbastrips/image/upload/v1638901675/samples/Pngtree_color_travel_tourism_vacation_a2nfxv.jpg");*/
     
 }
 .formDiv {

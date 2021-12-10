@@ -128,9 +128,11 @@ public class UserServiceImpl implements UserService {
             clientTicket.setUser(user);
             clientTicket.setQuantity(passangers);
             clientTicket.setProduct(ticket);
-            clientTicket.setFinalPrice(ticket.getPrice());
+            clientTicket.setFinalPrice(ticket.getPrice()); // podria no estar chequear
             int ticketStock = ticket.getStock();
             ticket.setStock(ticketStock - passangers);
+            salesRepo.save(clientTicket);
+            user.getCurrentCart().add(clientTicket);
             userRepo.save(user);
             productRepo.save(ticket);
             return true;
@@ -161,6 +163,7 @@ public class UserServiceImpl implements UserService {
                     hotelToCart.setFinalPrice(hotel.getPrice());
                     int hotelStock = hotel.getStock();
                     hotel.setStock(hotelStock - passangers);
+                    //todo agregar salesRepo
                     userRepo.save(user);
                     productRepo.save(hotel);
                     return true;

@@ -11,6 +11,7 @@ public class ClientTicket extends UserProduct {
 
     private TicketClass ticketClass;
 
+
     public ClientTicket() {
     }
 

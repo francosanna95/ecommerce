@@ -1,10 +1,7 @@
 package com.mindhub.ecommerce.controllers;
 
 
-import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.*;
-import com.mindhub.ecommerce.email.EmailServiceImpl;
-import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
 import com.mindhub.ecommerce.repositories.SalesRepository;
@@ -16,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -180,7 +176,7 @@ public class UserController {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
         if (productToRemove == null) {
-            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Product not found", HttpStatus.NOT_FOUND);
         }
 
         if (userService.removeProductFromCart(user, productToRemove)) {
@@ -192,7 +188,7 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/clients/current/finalRemoveFromCart")  //sirve para eliminar definitivamente todo un producto
+    @PostMapping("/clients/current/finalRemoveFromCart")  //sirve para eliminar definitivamente todo un producto
     public ResponseEntity<String> finalRemoveFromCart(Authentication auth, @RequestParam Long userProductId) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
