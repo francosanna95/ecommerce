@@ -35,26 +35,29 @@
           </div>
           <div class="d-flex flex-row">
             <div class="m-3 scale d-flex align-items-center">
-                <a href="./index.html" class="linkCursor d-flex align-items-center"><i class="fal fa-home-lg-alt pe-1"></i>
-                    <p class="d-flex d-none d-lg-block m-0">Home</p>
-                </a>
+              <a href="./index.html" class="linkCursor d-flex align-items-center"><i
+                  class="fal fa-home-lg-alt pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Home</p>
+              </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
-                <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
-                        class="fal fa-user pe-1"></i>
-                    <p class="d-flex d-none d-lg-block m-0">Log In</p>
-                </a>
+              <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
+                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Log In</p>
+              </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
-                <!-- Button trigger modal cart -->
-                <a class="linkCursor d-flex align-items-center" href="./cart.html"><i class="fal fa-luggage-cart pe-1"></i>
-                    <p class="d-flex d-none d-lg-block m-0">Cart</p>
-                </a>
+              <!-- Button trigger modal cart -->
+              <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
+                  class="fal fa-luggage-cart pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Cart</p>
+              </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
-                <a href="./help.html" class="linkCursor d-flex align-items-center "><i class="fal fa-question-square pe-1"></i>
-                    <p class="d-flex d-none d-lg-block m-0">Help</p>
-                </a>
+              <a href="./help.html" class="linkCursor d-flex align-items-center "><i
+                  class="fal fa-question-square pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Help</p>
+              </a>
             </div>
           </div>
         </div>
@@ -63,7 +66,7 @@
             <div class="containerHijo">
               <div class="card1 mt-0 m-md-3">
                 <div class="imgAtencion">
-                  <img src="./assets/equipoAtencion.png" alt="imagen"> 
+                  <img src="./assets/equipoAtencion.png" alt="imagen">
                 </div>
               </div>
               <div class="card2 mt-0 mb-0">
@@ -161,7 +164,7 @@
                 </form>
               </div>
               <div class="modal-footer justify-content-center align-items-center">
-                <button  class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
+                <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
                   In</button>
                 <button type="button" class="btn btn-info">Sign Up</button>
               </div>
@@ -169,57 +172,109 @@
           </div>
         </div>
         <!-- Main Content -->
-        <div class="container">
-          <h3 class="text-center p-3">Need help</h3>
-          <div class=" container d-flex flex-wrap flex-column justify-content-center pt-2 p-2 w-50">
+        <div class="container d-flex flex flex-column justify-content-center">
+          <h3 class="text-center p-3">Need help?</h3>
+          <div class="container d-flex flex-wrap flex-column justify-content-center pt-2 p-2 w-75">
+            <div class="py-1 mb-2">
+              <p class="fs-4">We can solve your problems by:</p>
+              <h5><strong>Call Center:</strong> </h5>
+              <h5><i class="fal fa-phone-volume text-dark pe-1"></i>0810-220-1309</h5>
+            </div>
+            <div class="py-1 mb-2">
+              <h5><strong>Personally:</strong> </h5>
+              <h5><i class="fad fa-calendar-alt text-dark pe-1"></i><strong> Mon to Fri:</strong> 9hs to 19hs</h5>
+              <h5><i class="fad fa-calendar-star text-dark pe-1"></i><strong> Sat:</strong> 10hs to 17hs</h5>
+            </div>
             <div class="py-1">
-                <h4>Contact us at Call Center:</h4>
-                <h5><i class="fal fa-phone-volume text-dark pe-1"></i>0810-220-1309</h5>
-            </div>
-            <h4 class="pb-1">You can come to our office during business hours:</h4>
-            <div>
-                <h5><i class="fad fa-calendar-alt text-dark pe-1"></i><strong> Mon to Fri:</strong> 9hs to 19hs</h5>
-            </div>
-            <div>
-                <h5><i class="fad fa-calendar-star text-dark pe-1"></i><strong> Sat:</strong> 10hs to 17hs</h5>
+              <h5><strong>Or via Email:</strong> </h5>
+              <form class="m-sm-0 mx-md-4 mx-lg-5 p-lg-4 w-75">
+                <div class="d-flex w-100 py-2">
+                  <div class="form-outline w-50 pe-2">
+                    <label class="form-label" for="firstName" for="nombre">First Name</span></label>
+                    <input class="contact w-100 bg-segudary" type="text" id="firstName" class="w-100" placeholder="Ana"
+                      maxlength="30" required />
+                  </div>
+                  <div class="form-outline w-50 ps-2">
+                    <label class="form-label" for="lastName">Last Name</label>
+                    <input class="contact w-100" type="text" id="lastName" class="w-100" placeholder="Perez"
+                      maxlength="30" required />
+                  </div>
+                </div>
+                <div class="d-flex w-100 py-2">
+                  <div class="form-outline py-2 w-50 pe-2">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="contact w-100" type="email" id="email" class="w-100"
+                      placeholder="youremail@yourmail.com" maxlength="30" required />
+                  </div>
+                  <div class="form-outline py-2 w-50 ps-2">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="contact w-100" type="email" id="country" class="w-100" placeholder="Argentina"
+                      maxlength="30" required />
+                  </div>
+                </div>
+                <div class="form-outline py-2">
+                  <label class="form-label" for="comment">Leave us a comment</label>
+                  <textarea class="form-control" id="comment" rows="4" placeholder="CommentBox" maxlength="150"
+                    required></textarea>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary mt-3 mb-3 " href="mailto:wm25289@gmail.com">Send</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-        <div class="pt-3 pb-3">
-          <h3 class="text-center">Contact Form</h3> 
-        </div>
-        <div class="container d-flex justify-content-center">
-          <form class="m-sm-0 mx-md-4 mx-lg-5 p-lg-4 w-75">
-              <div class="d-flex w-100 py-2">
-                <div class="form-outline w-50 pe-2">
-                    <label class="form-label" for="firstName" for="nombre">First Name</span></label>
-                    <input class="contact w-100 bg-segudary" type="text" id="firstName" class="w-100" placeholder="Ana" maxlength="30"/>
-                </div>
-                <div class="form-outline w-50 ps-2">
-                    <label class="form-label" for="lastName">Last Name</label>
-                    <input class="contact w-100" type="text" id="lastName" class="w-100" placeholder="Perez" maxlength="30"/>
-                </div>
-              </div>
-              <div class="d-flex w-100 py-2">
-                <div class="form-outline py-2 w-50 pe-2">
-                    <label class="form-label" for="email">Email</label>
-                    <input class="contact w-100" type="email" id="email" class="w-100" placeholder="tuemail@tumail.com" maxlength="30"/>
-                </div>
-                <div class="form-outline py-2 w-50 ps-2">
-                    <label class="form-label" for="country">Country</label>
-                    <input class="contact w-100" type="email" id="country" class="w-100" placeholder="Argentina" maxlength="30"/>
-                </div>
-              </div>
-              <div class="form-outline py-2">
-                  <label class="form-label" for="comment">Leave us a comment</label>
-                  <textarea class="form-control" id="comment" rows="4" placeholder="" maxlength="150">Tell us how we can help you</textarea>
-              </div>
-              <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary mt-3 mb-3 " href="mailto:wm25289@gmail.com">Send</button>
-              </div>
-          </form>
-        </div>
+
       </main>
+      <!-- Cart btn N Cart offcanvas -->
+      <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight" id="cartBtn">
+        <a><span class="fal fa-luggage-cart"></span></a>
+      </div>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Your Cart</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <table class="table align-middle text-dark">
+            <thead class="table text-success p-2">
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Service Type</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Agency Name</th>
+                <th scope="col">Sub Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="prod in backCart">
+                <td><img class="imgTable" v-bind:src="prod.imgUrl">{{prod.productName}}
+                </td>
+                <td>{{prod.productType}}</td>
+                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
+                  <button type="button" class="btnCart">+</button>
+                </td>
+                <td>{{prod.agencyName}}</td>
+                <td>{{prod.subtotal}}</button></td>
+                <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
+              </tr>
+              <tr>
+                <td><img class="imgTable"
+                    src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg">
+                  Walking</td>
+                <td>Activity</td>
+                <td><button type="button" class="btnCart">-</button> 1 <button type="button" class="btnCart">+</button>
+                </td>
+                <td>Wild Travel</td>
+                <td>$499</button></td>
+                <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+              </tr>
+            </tbody>
+          </table>
+          <h4 class="d-flex align-self-center">Total $1498</h4>
+        </div>
+      </div>
       <footer>
         <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
           <div>
@@ -266,10 +321,8 @@
     </div>
   </div>
   <!-- Go to top animation -->
-  <div class="go-top-container">
-    <div class="go-top-button">
-      <i class="fas fa-chevron-up"></i>
-    </div>
+  <div class="top-btn-test d-flex d-none d-lg-block">
+    <a href="#"><span class="fas fa-chevron-up"></span></a>
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

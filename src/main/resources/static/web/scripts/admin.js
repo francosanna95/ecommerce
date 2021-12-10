@@ -28,20 +28,6 @@ const app = Vue.createApp({
   },
   methods: {
     newTicket(){
-        /*console.log(this.service)*/
-        console.log(this.price)
-        console.log(this.discountCode)
-        console.log(this.productName)
-        console.log(this.description)
-        console.log(this.stock)
-        console.log(this.imgUrl)
-        console.log(this.address)
-        console.log(this.departureDate)
-        console.log(this.arrivalDate)
-        console.log(this.departureLocation)
-        console.log(this.arrivalLocation)
-        console.log(this.agencyName)
-
         axios({
             method:'POST',
             url:`/api/products/tickets`,
@@ -61,6 +47,25 @@ const app = Vue.createApp({
             },
             headers: {'content-type': 'application/json'}
         })
+        .then(response => {
+            console.log(response);
+            swal({
+                title:"Done!",
+                text: "New Ticket Created",
+                buttons: "Got it",
+                icon: "success"
+              }).then((value) => {
+                if (value) {
+                    window.location.reload()
+                }
+              })
+            
+            //setTimeout(() => location.reload(), 2500 );
+        })
+        .catch(err => {
+            console.log(err);
+            swal('Error', 'Cannot create more flights', 'error');
+        })
     },
     newHotel(){
         axios({
@@ -78,6 +83,15 @@ const app = Vue.createApp({
                  "concierge": `${this.concierge}`,
                  "agencyName": `${this.agencyName}`
              }
+        })
+        .then(response => {
+            console.log(response);
+            swal('Approved', 'New Lodging created')
+            setTimeout(() => location.reload(), 2500 );
+        })
+        .catch(err => {
+            console.log(err);
+            swal('Error', 'Cannot create more lodging', 'error');
         })
     },
     newEvent(){
