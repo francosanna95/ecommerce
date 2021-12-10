@@ -33,8 +33,7 @@
                 <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
                     <div class="d-flex flex-row align-items-center">
                         <a href="#">
-                            <img src="./assets/melba-logo-ps.png" class="logo
-                        d-flex d-none d-sm-block" alt="melba-logo"></a>
+                            <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
                         <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
                     </div>
                     <div class="d-flex flex-row">
@@ -287,7 +286,8 @@
                         </div>
                         <div class="contentDestino">
                             <h5 class="mt-2 text-dark">{{ticket.arrivalLocation}},
-                                <small>{{ticket.departureLocation}}</small></h5>
+                                <small>{{ticket.departureLocation}}</small>
+                            </h5>
                             <div class="contenido">
                                 <h6><strong>From: </strong>Buenos Aires</h6>
                             </div>
@@ -372,6 +372,59 @@
                     </div>
                 </div>
             </main>
+            <!-- Cart btn N Cart offcanvas -->
+            <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn">
+                <a><span class="fal fa-luggage-cart"></span></a>
+            </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 id="offcanvasRightLabel">Your Cart</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <table class="table align-middle text-dark">
+                        <thead class="table text-success p-2">
+                            <tr>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Service Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Agency Name</th>
+                                <th scope="col">Sub Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="prod in backCart">
+                                <td><img class="imgTable" v-bind:src="prod.imgUrl">{{prod.productName}}
+                                </td>
+                                <td>{{prod.productType}}</td>
+                                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button>
+                                    {{prod.quantity}}
+                                    <button type="button" class="btnCart">+</button>
+                                </td>
+                                <td>{{prod.agencyName}}</td>
+                                <td>{{prod.subtotal}}</button></td>
+                                <td><button type="button" class="btn-close" aria-label="Close"
+                                        @click="removeAll(prod)"></button></td>
+                            </tr>
+                            <tr>
+                                <td><img class="imgTable"
+                                        src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg">
+                                    Walking</td>
+                                <td>Activity</td>
+                                <td><button type="button" class="btnCart">-</button> 1 <button type="button"
+                                        class="btnCart">+</button></td>
+                                <td>Wild Travel</td>
+                                <td>$499</button></td>
+                                <td><button type="button" class="btn-close" aria-label="Close"></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4 class="d-flex align-self-center">Total $1498</h4>
+                </div>
+            </div>
             <footer>
                 <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
                     <div>
@@ -420,10 +473,8 @@
         </div>
     </div>
     <!-- Go to top animation -->
-    <div class="go-top-container">
-        <div class="go-top-button">
-            <i class="fas fa-chevron-up"></i>
-        </div>
+    <div class="top-btn-test d-flex d-none d-lg-block">
+        <a href="#"><span class="fas fa-chevron-up"></span></a>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

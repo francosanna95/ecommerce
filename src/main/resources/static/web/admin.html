@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=h1, initial-scale=1.0">
   <title>Melba's Trips - Lodging</title>
   <link rel="icon" href="./assets/melba-logo-ps.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -31,7 +33,7 @@
           <div class="d-flex flex-row align-items-center">
             <a href="./index.html">
               <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
-            <!--<h1>Melba's Trips</h1>-->
+            <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
           </div>
           <div class="d-flex flex-row">
             <div class="m-3 scale">
@@ -62,22 +64,22 @@
 
         </div>
         <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
-          <div class="d-flex flex-column">
+          <div class="d-flex flex-column scale">
             <i class="fal fa-bed align-self-center"></i>
-            <a class="box" href="./lodging.html">Lodging</a>
+            <a class="box" href="lodging.html">Lodging</a>
           </div>
-          <div class="d-flex flex-column">
+          <div class="d-flex flex-column scale">
             <i class="fal fa-plane-alt align-self-center"></i>
             <a class="box" href="./flights.html">Flights</a>
           </div>
-          <div class="d-flex flex-column">
+          <div class="d-flex flex-column scale">
             <i class="fal fa-hiking align-self-center"></i>
-            <a class="box" href="./activities.html">Activities</a>
+            <a class="box" href="#">Activities</a>
           </div>
-          <!--<div class="d-flex flex-column">
-                        <i class="fal fa-box-full align-self-center"></i>
-                        <a class="box" href="./combos.html">Packages</a>
-                    </div>-->
+          <!--<div class="d-flex flex-column scale">
+            <i class="fal fa-box-full align-self-center"></i>
+            <a class="box" href="./combos.html">Packages</a>
+          </div>-->
         </div>
       </header>
       <main class="container">
@@ -209,7 +211,7 @@
                     </div>
                     <div>
                       <label for="agencyName">Agency Name</label>
-                      <input v-model="agencyName" type="text" class="form-control" id="agencyName" placeholder="End">
+                      <input v-model="agencyName" type="text" class="form-control" id="agencyName" placeholder="agency">
                     </div>
                     <div>
                       <label for="departureDate">Departure Date</label>
@@ -291,12 +293,12 @@
                   <div>
                     <p>Parking?</p>
                     <div class="form-check form-check-inline">
-                      <input v-model="parking" class="form-check-input" type="radio" name="inlineRadioOptions"
+                      <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking"
                         id="inlineParkingRadio1" value="true">
                       <label class="form-check-label" for="inlineParkingRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input v-model="parking" class="form-check-input" type="radio" name="inlineRadioOptions"
+                      <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking"
                         id="inlineParkingRadio2" value="false">
                       <label class="form-check-label" for="inlineParkingRadio2">No</label>
                     </div>
@@ -304,12 +306,12 @@
                   <div>
                     <p>Concierge?</p>
                     <div class="form-check form-check-inline">
-                      <input v-model="concierge" class="form-check-input" type="radio" name="inlineRadioOptions"
+                      <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge"
                         id="inlineConciergeRadio1" value="true">
                       <label class="form-check-label" for="inlineConciergeRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input v-model="concierge" class="form-check-input" type="radio" name="inlineRadioOptions"
+                      <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge"
                         id="inlineConciergeRadio2" value="false">
                       <label class="form-check-label" for="inlineConciergeRadio2">No</label>
                     </div>
@@ -317,7 +319,7 @@
                   <div>
                     <label for="lodgingAgencyName">Agency Name</label>
                     <input v-model="agencyName" type="text" class="form-control" id="lodgingAgencyName"
-                      placeholder="End">
+                      placeholder="agency">
                   </div>
                   <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
                     <button type="button"
@@ -341,11 +343,6 @@
               data-bs-parent="#accordionExample">
               <div v-on="newEvent" class="accordion-body">
                 <fieldset class="p-3">
-                  <div>
-                    <label for="eventName">Select a product name</label>
-                    <input v-model="productName" type="text" class="form-control" id="eventName" placeholder="name"
-                      minlength="3" maxlength="25" required>
-                  </div>
                   <!--<div>
                                 <label for="eventPoints">Select points amount</label>
                                 <input type="text" class="form-control" id="eventPoints" placeholder="points" minlength="3" maxlength="25" required>
@@ -359,6 +356,11 @@
                     <label for="eventDiscount">Select a discount code</label>
                     <input v-model="discountCode" type="text" class="form-control" id="eventDiscount"
                       placeholder="discount" minlength="3" maxlength="25" required>
+                  </div>
+                  <div>
+                    <label for="eventName">Select a product name</label>
+                    <input v-model="productName" type="text" class="form-control" id="eventName" placeholder="name"
+                      minlength="3" maxlength="25" required>
                   </div>
                   <div>
                     <label for="eventAddress">Select an address</label>
@@ -382,11 +384,12 @@
                   </div>
                   <div>
                     <label for="eventAgencyName">Agency Name</label>
-                    <input v-model="agencyName" type="text" class="form-control" id="eventAgencyName" placeholder="End">
+                    <input v-model="agencyName" type="text" class="form-control" id="eventAgencyName"
+                      placeholder="agency">
                   </div>
                   <div>
                     <label for="eventArtist">Artist</label>
-                    <input v-model="artist" type="text" class="form-control" id="eventArtist" placeholder="End">
+                    <input v-model="artist" type="text" class="form-control" id="eventArtist" placeholder="artist">
                   </div>
                   <div>
                     <p>VIP?</p>
@@ -461,10 +464,13 @@
     </div>
   </div>
   <!-- Go to top animation -->
-  <div class="go-top-container">
+  <!--<div class="go-top-container">
     <div class="go-top-button">
       <i class="fas fa-chevron-up"></i>
     </div>
+  </div>-->
+  <div class="top-btn-test d-flex d-none d-lg-block">
+    <a href="#"><span class="fas fa-chevron-up"></span></a>
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

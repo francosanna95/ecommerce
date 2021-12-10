@@ -401,8 +401,8 @@ td {
 }
 .imgTable {
     border-radius: 10px;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
 }
 .labelCode {
     border: 1px solid black;
@@ -435,13 +435,10 @@ td {
     cursor: pointer;
     box-shadow: none!important;
 }
-#cartImg {
-    max-width: 100px;
-    z-index: -2;
-}
+
 .offcanvas {
-    width: 30%;
-    height: 60%;
+    width: 40%;
+    height: 70%;
 }
 .offcanvas-header {
     background-color: var(--header-bg-color);
@@ -487,60 +484,64 @@ footer {
 .fa-linkedin-in {
     color: #0a66c2;
 }
+/*Test cart icon*/
+cart-btn-icon
+.cart-btn-icon {
+    position: fixed;
+    bottom: 1rem;
+    left: 2rem;
+    z-index: 10;
+}
+.cart-btn-icon a {
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    background-color: var(--extra-color);
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.cart-btn-icon a span {
+    color: var(--main-bg-color);
+    line-height: 2.5rem;
+    font-size: 1.5rem;
+}
+
 /*Animation*/
-.go-top-container {
+html {
+    scroll-behavior: smooth;
+}
+.top-btn-test {
     position: fixed;
     bottom: 3rem;
     right: 2rem;
-    width: 3rem;
-    height: 3rem;
-    z-index: -1;
-}
-.go-top-button {
-    width: 0rem;
-    height: 0rem;
-    background-color: var(--extra-color);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: .2s;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-.go-top-button i {
-    position: absolute;
-    font-size: 1.7rem;
-    top: 48%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    color: cornsilk;
-    transition: .2s;
-}
-.showButton {
     z-index: 10;
 }
-.showButton .go-top-button {
-    animation: popup .3s ease-in-out;
-    width: 3rem;
-    height: 3rem;
-    z-index: 11;
+.top-btn-test a {
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    background-color: var(--extra-color);
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
 }
-.showButton i {
-    transform: translate(-50%, -50%) scale(1);
-}
-@keyframes popup {
-    0% {
-        width: 0rem;
-        height: 0rem;
-    }
-    50% {
-        width: 3rem;
-        height: 3rem;
-    }
-    100% {
-        width: 3.5rem;
-        height: 3.5rem;
-    }
+.top-btn-test a span {
+    color: var(--main-bg-color);
+    line-height: 2.5rem;
+    font-size: 2rem;
 }
 
+@media all and (max-width: 775px) {
+    .offcanvas {
+        width: 100%;
+        height: 80%;
+    }
+    .cart-btn-icon {
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        z-index: 10;
+    }
+}
+    
