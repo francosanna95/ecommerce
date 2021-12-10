@@ -5,7 +5,8 @@ const app = Vue.createApp({
             events: [],
             event: true,
             vip: true,
-            personAmount: 1
+            personAmount: 1,
+            cart:[]
         }
     },
 
@@ -36,7 +37,36 @@ const app = Vue.createApp({
             } else {
                 return "No"
             }
-        }     
+        },
+        addToCart(ticket){
+          console.log(ticket.productId);
+          axios.post("/api/clients/current/addToCart/event",`eventId=${this.event.productId}&isVip=${true}&attendants=${this.personAmount}`)
+                       .then(resp => {
+                             ticket = resp.data;
+                             console.log(this.event);
+                             if (ticket.stock <= 0) {
+                                 alert("No stock");
+                             } else {
+                               ticket.stock--;
+                               console.log(this.cart);
+                               if (this.cart.some(prod => prod.id == event.productId)) {
+                                  let id = this.cart.findIndex(prod => prod.id == event.productId);
+                                  //actualizar cantidad en ese producto
+                                  this.cart[id].quantity+= this.personAmount;
+                               } else {
+                                 this.event.quantity = this.personAmount;
+                                 ticket.subtotal = this.event.quantity * this.event.price;
+                                 this.cart.push(this.event);
+                                 console.log(this.cart);
+                                 }
+                             this.savingCart();
+                    }})
+                    .catch(err=> console.log(err));
+        },
+         savingCart(){
+                    const parsed = JSON.stringify(this.cart);
+                    sessionStorage.setItem('cart', parsed);
+                },
     }, 
 
 })

@@ -20,7 +20,7 @@ public interface UserService {
 
     UserDTO getClientById(Long id);
 
-    boolean addEventToClientCart(User user, Event event, Boolean isVip, Integer attendants);
+    UserProductDTO addEventToClientCart(User user, Event event, Boolean isVip, Integer attendants);
 
     UserProductDTO addTicketToClientCart(User user, Ticket ticket, String clase, Integer passengers);
 

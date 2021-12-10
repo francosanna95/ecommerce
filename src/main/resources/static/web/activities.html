@@ -233,12 +233,12 @@
                     <h5 class="m-2">Do you wish VIP?</h5>
                     <div class="form-check form-check-inline">
                       <input v-model="vip" class="form-check-input" type="radio" name="radioOptionsVip" id="radio1Vip"
-                        value="vipTrue">
+                        value="true">
                       <label class="form-check-label" for="radio1Vip">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
                       <input v-model="vip" class="form-check-input" type="radio" name="radioOptionsVip" id="radio2Vip"
-                        value="vipFalse">
+                        value="false">
                       <label class="form-check-label" for="radio2Vip">No</label>
                     </div>
                   </div>
@@ -248,7 +248,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-buy">Add</button>
+                  <button type="button" class="btn btn-buy" @click.prevent="addToCart(event)">Add</button>
                 </div>
               </div>
             </div>
