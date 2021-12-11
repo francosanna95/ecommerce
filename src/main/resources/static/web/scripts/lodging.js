@@ -4,7 +4,10 @@ const app = Vue.createApp({
         return {
             hotels: [],
             hotel: true,
-            beds: 1
+            parking: false,
+            concierge: false,
+            beds: 1,
+            nights: 1
 
         }
     },
@@ -42,7 +45,7 @@ const app = Vue.createApp({
             } else {
                 return "No"
             }
-        }
+        },
         addToCart(hotel){
            console.log(hotel.productId);
            axios.post("/api/clients/current/addToCart/hotel",`hotelId=${hotel.productId}&arrivalDate=${this.clase}&passengers=${this.passengers}`)

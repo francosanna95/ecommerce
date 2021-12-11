@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addEventToClientCart(User user, Event event, Boolean isVip, Integer attendants) {
+    public UserProductDTO addEventToClientCart(User user, Event event, Boolean isVip, Integer attendants) {
 
         try {
 // si el cliente ya tiene ese producto en el carrito simplemente actualizo la cantidad y el precio final
@@ -79,11 +79,13 @@ public class UserServiceImpl implements UserService {
                     ClientEvent eventToCart = (ClientEvent) userProduct;
                     eventToCart.setQuantity(userProduct.getQuantity() + attendants);
                     eventToCart.setFinalPrice(event.getPrice());
+                    salesRepo.save(eventToCart);
                     int eventStock = event.getStock();
                     event.setStock(eventStock - attendants);
+                    UserProductDTO userProductDTO=new UserProductDTO(eventToCart);
                     userRepo.save(user);
                     productRepo.save(event);
-                    return true;
+                    return userProductDTO;
                 }
             }
 //sino creo una nueva instancia de esa venta
@@ -95,9 +97,11 @@ public class UserServiceImpl implements UserService {
             clientEvent.setFinalPrice(event.getPrice());
             int eventStock = event.getStock();
             event.setStock(eventStock - attendants);
+            salesRepo.save(clientEvent);
+            UserProductDTO userProductDTO=new UserProductDTO(clientEvent);
             userRepo.save(user);
             productRepo.save(event);
-            return true;
+            return userProductDTO;
 
         } catch (Exception e) {
             throw e;

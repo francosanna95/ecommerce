@@ -37,6 +37,7 @@ public class UserController {
 
     @Autowired
     private SalesRepository salesRepo;
+    private Object UserProductDTO;
 
     @GetMapping("/agencies")
     public Set<UserDTO> getAgencies() {
@@ -89,24 +90,22 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/event")
-    public ResponseEntity<String> addEventToCart(Authentication auth, @RequestParam Long eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
+    public ResponseEntity<UserProductDTO> addEventToCart(Authentication auth, @RequestParam Long eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(eventId).orElse(null);
         if (!(product instanceof Event)) {
-            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.BAD_REQUEST);
         }
 
         Event event = (Event) product;
         if (user == null) {
-            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
 
         }
-
-
         userService.addEventToClientCart(user, event, isVip, attendants);
 
         //TODO
-        return new ResponseEntity<String>("Event booked succesfully", HttpStatus.CREATED);
+        return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
     }
 
     @PostMapping("/clients/current/addToCart/hotel")

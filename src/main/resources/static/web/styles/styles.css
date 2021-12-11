@@ -79,8 +79,9 @@ h5 {
     width: 100%;
 }
 .headerForm {
-    background-color: var(--main-bg-color);
-    /*background-image: url("https://res.cloudinary.com/melbastrips/image/upload/v1638901675/samples/Pngtree_color_travel_tourism_vacation_a2nfxv.jpg");*/
+    min-height: 50vh;
+    /*background-color: var(--main-bg-color);*/
+    background-image: url("https://res.cloudinary.com/melbastrips/image/upload/v1638901675/samples/Pngtree_color_travel_tourism_vacation_a2nfxv.jpg");
     
 }
 .formDiv {
@@ -98,7 +99,7 @@ h5 {
 /*Card publicidad*/
 
 .containerPadre {
-    width: 1200px;
+    max-width: 1200px;
 }
 .containerHijo {
     position: relative;
@@ -106,14 +107,12 @@ h5 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 40px 0;
 }
 
 .containerHijo .card1 {
     position: relative;
-    width: 450px;
-    height: 250px;
-    margin: 20px;
+    width: 100%;
+    max-height: 50vh;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
     border-radius: 15px;
@@ -121,24 +120,29 @@ h5 {
     justify-content: center;
     align-items: center; 
 }
+.containerHijo .card1.mediana{
+    width: 450px;
+    min-height: 250px;
+}
 
-.containerHijo .card1 .video {
+ .containerHijo .card1 .video {
     max-width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.containerHijo .card1 .imgAtencion img {
+.containerHijo .card1.mediana .imgAtencion img {
     max-width: 100%;
 }
 
 @media (max-width: 500px) {
-    .containerHijo .card1 {
-        width: 300px;
-        background-size: 300px 250px;
+    .containerHijo .card1.mediana {
+        width: 290px;
+        height: 250px;
+        background-size: 290px 250px;
+        margin: 0;
     }
  }
-
 
 .containerHijo .card2 {
     position: relative;
@@ -324,11 +328,11 @@ div .imgDestino .idaYvuelta {
 }
 
 div .imgDestino:hover img{
-    transition: 1.5s ease;
     position: absolute;
-    top: 0;
+    bottom: 20%;
     height: 80%;
     z-index: 1;
+    transition: 1.5s ease;
     cursor:pointer
 
     /*
@@ -483,6 +487,7 @@ form input.contact {
 
 textarea.form-control{
     background-color: rgb(240, 238, 238);
+    max-height: 20vh;
 }
 
 /*perfil*/
