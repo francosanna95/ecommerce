@@ -539,6 +539,15 @@ cart-btn-icon
     line-height: 2.5rem;
     font-size: 1.5rem;
 }
+.cart-btn-icon a span {
+    color: var(--main-bg-color);
+    line-height: .8rem;
+    font-size: 1.1rem;
+}
+.badge {
+    font-family: 'Dosis', sans-serif;
+}
+
 /*form posts*/
 .form-admin {
     margin-left: 1rem;

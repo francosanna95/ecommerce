@@ -159,23 +159,34 @@
                             <div class="modal-body">
                                 <form class="d-flex justify-content-center align-items-center">
                                     <fieldset>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h5>Role</h5>
+                                            <select v-model="roleUser"
+                                                class="form-control form-control-sm selectClassModal m-2"
+                                                aria-label="Default select example">
+                                                <optgroup label="Roles...">
+                                                    <option value="client">Client</option>
+                                                    <option value="agency">Agency</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingFirstRegister"
+                                            <input v-model="firstName" type="text" class="form-control" id="floatingFirstRegister"
                                                 placeholder="first_name" minlength="3" maxlength="25" required>
                                             <label for="floatingFirstRegister">First Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingLastRegister"
+                                            <input v-model="lastName" type="text" class="form-control" id="floatingLastRegister"
                                                 placeholder="last_name" minlength="3" maxlength="25" required>
                                             <label for="floatingLastRegister">Last Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingEmailRegister"
+                                            <input v-model="email" type="email" class="form-control" id="floatingEmailRegister"
                                                 placeholder="name@example.com" minlength="7" maxlength="40" required>
                                             <label for="floatingEmailRegister">Email Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" id="floatingPasswordRegister"
+                                            <input v-model="password" type="password" class="form-control" id="floatingPasswordRegister"
                                                 placeholder="password" minlength="6" maxlength="25" required>
                                             <label for="floatingPasswordRegister">Password</label>
                                         </div>
@@ -372,54 +383,46 @@
             <!-- Cart btn N Cart offcanvas -->
             <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn">
-                <a><span class="fal fa-luggage-cart"></span></a>
+                <a class="position-relative"><span class="fal fa-luggage-cart"><span
+                            class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{totalProductsInCart()}}
+                            <span class="visually-hidden">unread messages</span></span></a>
             </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
-                    <h5 id="offcanvasRightLabel">Your Cart</h5>
+                    <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+                            aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <table class="table align-middle text-dark">
-                        <thead class="table text-success p-2">
+                    <div class="tableContainer d-flex flex-column justify-content-center">
+                        <table class="table align-middle text-dark">
+                            <thead class="table text-success">
                             <tr>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Service Type</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Agency Name</th>
+                                <th scope="col">Unit Price</th>
                                 <th scope="col">Sub Total</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="prod in backCart">
-                                <td><img class="imgTable" v-bind:src="prod.imgUrl">{{prod.productName}}
-                                </td>
+                            </thead>
+                            <tbody>
+                            <tr v-for="prod in cart">
+                                <td>{{prod.productName}}</td>
                                 <td>{{prod.productType}}</td>
-                                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button>
-                                    {{prod.quantity}}
-                                    <button type="button" class="btnCart">+</button>
+                                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
+                                    <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                                 </td>
-                                <td>{{prod.agencyName}}</td>
-                                <td>{{prod.subtotal}}</button></td>
-                                <td><button type="button" class="btn-close" aria-label="Close"
-                                        @click="removeAll(prod)"></button></td>
+                                <td>{{prod.finalPrice}}</td>
+                                <td>{{prod.quantity*prod.finalPrice}}</button></td>
+                                <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
                             </tr>
-                            <tr>
-                                <td><img class="imgTable"
-                                        src="https://previews.123rf.com/images/maridav/maridav1208/maridav120800017/14902198-caminata-en-la-lluvia-caminante-caminando-en-la-ruta-del-bosque-de-pino-en-d%C3%ADa-de-lluvia-llevaba-gab.jpg">
-                                    Walking</td>
-                                <td>Activity</td>
-                                <td><button type="button" class="btnCart">-</button> 1 <button type="button"
-                                        class="btnCart">+</button></td>
-                                <td>Wild Travel</td>
-                                <td>$499</button></td>
-                                <td><button type="button" class="btn-close" aria-label="Close"></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h4 class="d-flex align-self-center">Total $1498</h4>
+                            </tbody>
+                        </table>
+                        <h4 class="d-flex align-self-center">Total ${{totalPriceCalc()}}</h4>
+                    </div>
+                    <a type="button" class="btn btn-buy" href="./cart.html"><p class="d-flex m-0">Buy</p>
+                    </a>
                 </div>
             </div>
             <footer>
@@ -478,8 +481,8 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <script src="./scripts/animation.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/animation.js"></script>
 </body>
 
 </html>
