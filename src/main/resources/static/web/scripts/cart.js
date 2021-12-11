@@ -167,7 +167,6 @@ const app = Vue.createApp({
         return re.test(email);
       },
     },
-  })
     logout() {
       axios.post('/api/logout')
         .then(response => {
@@ -186,7 +185,6 @@ const app = Vue.createApp({
             console.log(res);
           })
         }
-  },
 })
 
 app.mount("#app")
