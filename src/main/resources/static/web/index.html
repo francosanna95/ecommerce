@@ -171,22 +171,22 @@
                                             </select>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingFirstRegister"
+                                            <input v-model="firstName" type="text" class="form-control" id="floatingFirstRegister"
                                                 placeholder="first_name" minlength="3" maxlength="25" required>
                                             <label for="floatingFirstRegister">First Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingLastRegister"
+                                            <input v-model="lastName" type="text" class="form-control" id="floatingLastRegister"
                                                 placeholder="last_name" minlength="3" maxlength="25" required>
                                             <label for="floatingLastRegister">Last Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingEmailRegister"
+                                            <input v-model="email" type="email" class="form-control" id="floatingEmailRegister"
                                                 placeholder="name@example.com" minlength="7" maxlength="40" required>
                                             <label for="floatingEmailRegister">Email Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" id="floatingPasswordRegister"
+                                            <input v-model="password" type="password" class="form-control" id="floatingPasswordRegister"
                                                 placeholder="password" minlength="6" maxlength="25" required>
                                             <label for="floatingPasswordRegister">Password</label>
                                         </div>
