@@ -13,10 +13,15 @@ const app = Vue.createApp({
       filtradoHotel: "",
       filtradoEvent: "",
       filtradoTicket: "",
+
       email: "",
       password: "",
-      isPasswordVisible: false,
       cart:[]
+
+      firstName: "",
+      lastName: "",
+      roleUser: "",
+      isPasswordVisible: false
     }
   },
   created() {
@@ -37,6 +42,7 @@ const app = Vue.createApp({
       })
       .catch(error => {
         return error.message;
+
       })
 
     axios.get('/api/products/events')
