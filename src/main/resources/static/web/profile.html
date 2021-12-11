@@ -33,7 +33,7 @@
             d-flex d-none d-sm-block" alt="melba-logo"></a>
             <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
           </div>
-          <div class="d-flex flex-row">
+          <div class="d-flex flex-wrap justify-content-center flex-sm-row">
             <div class="m-3 scale d-flex align-items-center">
                 <a href="./index.html" class="linkCursor d-flex align-items-center"><i class="fal fa-home-lg-alt pe-1"></i>
                     <p class="d-flex d-none d-lg-block m-0">Home</p>
@@ -86,10 +86,6 @@
           <div class="d-flex flex-column scale">
             <i class="fal fa-hiking align-self-center"></i>
             <a class="box" href="activities.html">Activities</a>
-          </div>
-          <div class="d-flex flex-column scale">
-            <i class="fal fa-box-full align-self-center"></i>
-            <a class="box" href="./combos.html">Packages</a>
           </div>
         </div>
       </header>
@@ -176,19 +172,19 @@
               <div class="perfilCaja w-20%">
                   <img src="./assets/chicaMontania.jpg" alt="" class="imgCirculo logo">
                   <h3>User: </h3>
-                  <p>{{clients[0].fantasyName}}</p>
+                  <p>{{clients.fantasyName}}</p>
                   <a class="text-dark"href="help.html">Need help?</a> 
               </div>
               <div class="p-3 w-40% border">
                   <h3>Personal information</h3>
                   <h5 class="fw-bold">First Name</h5>
-                  <p class="ps-2">{{clients[0].firstName}}</p> 
+                  <p class="ps-2">{{clients.firstName}}</p> 
                   <h5 class="fw-bold">Last Name</h5>
-                  <p class="ps-2">{{clients[0].lastName}}</p>
+                  <p class="ps-2">{{clients.lastName}}</p>
                   <h5 class="fw-bold">Mail:</h5>
-                  <p class="ps-2">{{clients[0].email}}</p>
+                  <p class="ps-2">{{clients.email}}</p>
                   <h5 class="fw-bold">User Name</h5>
-                  <p class="ps-2">{{clients[0].fantasyName}}</p>  
+                  <p class="ps-2">{{clients.fantasyName}}</p>  
               </div>
               <div class="d-flex justify-content-center  flex-column align-items-center flex-wrap border w-40 p-md-3">
                   <form class="my-2 d-flex justifi-content-center">
@@ -204,7 +200,7 @@
                       <div class="form-outline d-flex flex-column">
                           <label class="form-label me-2" for="user" for="nombre">User Name</label>
                           <div>
-                            <input class="contact  bg-segudary " type="text" id="user" placeholder="Ani@yuyu.com" maxlength="30"/>
+                            <input class="contact  bg-segudary " type="text" id="user" placeholder="Ana33" maxlength="30"/>
                             <button type="button" class="btn btn-primary ms-2">add</button>
                           </div>
                       </div>
@@ -214,6 +210,41 @@
         <div class="d-flex justify-content-center mb-4">
           <button type="button" class="btn btn-primary ms-2">save</button>
         </div> <!--boton guardar cambios-->
+        <div class="accordion containerPadre d-flex justify-content-center min-vh-25" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item w-50">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              History purchase
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+              <table class="table align-middle text-dark">
+              <thead class="table text-success p-2">
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Service Type</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Unit Price</th>
+                  <th scope="col">Sub Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="prod in cart">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
       </main>
       <footer>
         <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
