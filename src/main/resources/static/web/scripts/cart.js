@@ -69,6 +69,15 @@ const app = Vue.createApp({
 
   },
   methods: {
+    totalProductsInCart() {
+                const array = this.cart
+                function reducer(previous, current, index, array) {
+                  const product = array[index];
+                  const returns = previous + (parseInt(product.quantity));
+                  return returns;
+                }
+                return array.reduce(reducer, 0);
+    },
     totalPriceCalc() {
           const array = this.cart
           function reducer(previous, current, index, array) {
@@ -119,7 +128,7 @@ const app = Vue.createApp({
 
                             //window.location.reload()})
        //                     }else{alert("no tenes este producto en tu carrito")}
-   },
+    },
     removeAll(prod){
         axios.post('/api/clients/current/finalRemoveFromCart',`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
         .then(resp=>{ if(this.cart.some(product=>product.id==prod.id)){
@@ -132,7 +141,7 @@ const app = Vue.createApp({
            // window.location.reload()
             }
         }).catch(err=>console.log(err))
-},
+    },
     addProduct(prod){
         axios.post("/api/clients/current/add1toCart",`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
         .then(resp=>{
@@ -143,7 +152,7 @@ const app = Vue.createApp({
              this.savingCart();
 
         })
-        },
+    },
 
     logout() {
       axios.post('/api/logout')
