@@ -65,8 +65,6 @@ const app = Vue.createApp({
         }
       }
     },
-
-  },
   methods: {
     totalProductsInCart() {
                 const array = this.cart
