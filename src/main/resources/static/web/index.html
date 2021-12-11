@@ -159,6 +159,17 @@
                             <div class="modal-body">
                                 <form class="d-flex justify-content-center align-items-center">
                                     <fieldset>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <h5>Role</h5>
+                                            <select v-model="roleUser"
+                                                class="form-control form-control-sm selectClassModal m-2"
+                                                aria-label="Default select example">
+                                                <optgroup label="Roles...">
+                                                    <option value="client">Client</option>
+                                                    <option value="agency">Agency</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingFirstRegister"
                                                 placeholder="first_name" minlength="3" maxlength="25" required>
@@ -372,7 +383,10 @@
             <!-- Cart btn N Cart offcanvas -->
             <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn">
-                <a><span class="fal fa-luggage-cart"></span></a>
+                <a class="position-relative"><span class="fal fa-luggage-cart"><span
+                            class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            10
+                            <span class="visually-hidden">unread messages</span></span></a>
             </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                 aria-labelledby="offcanvasRightLabel">

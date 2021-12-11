@@ -13,8 +13,13 @@ const app = Vue.createApp({
       filtradoHotel: "",
       filtradoEvent: "",
       filtradoTicket: "",
+
       email: "",
       password: "",
+
+      firstName: "",
+      lastName: "",
+      roleUser: "",
       isPasswordVisible: false
     }
   },
