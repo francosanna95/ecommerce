@@ -129,6 +129,7 @@ public class UserServiceImpl implements UserService {
                 }
             }
 //sino creo una nueva instancia de esa venta
+
             ClientTicket clientTicket = new ClientTicket(user,ticket,TicketClass.valueOf(clase));
             clientTicket.setQuantity(passangers);
             clientTicket.setFinalPrice(ticket.getPrice());
@@ -148,11 +149,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean addHotelToClientCart(User user, Hotel hotel, String arrivalDate, String departureDate, Integer
-            nights, Integer passangers, String pension) {
-        LocalDateTime arrival = LocalDateTime.parse(arrivalDate, DateTimeFormatter.ISO_DATE_TIME);
-        LocalDateTime departure = LocalDateTime.parse(departureDate, DateTimeFormatter.ISO_DATE_TIME);
-        Pension pensionChoice = Pension.valueOf(pension);
+    public UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers) {
+    // comento esto porque no estamos implementado fechas aún.
+    //    LocalDateTime arrival = LocalDateTime.parse(arrivalDate, DateTimeFormatter.ISO_DATE_TIME);
+    //    LocalDateTime departure = LocalDateTime.parse(departureDate, DateTimeFormatter.ISO_DATE_TIME);
+    //    Pension pensionChoice = Pension.valueOf(pension);
 
         // si el cliente ya tiene ese producto en el carrito simplemente actualizo la cantidad y el precio final
 
@@ -160,32 +161,38 @@ public class UserServiceImpl implements UserService {
             for (UserProduct userProduct : user.getCurrentCart()) {
                 if (Objects.equals(userProduct.getProduct().getProductId(), hotel.getProductId())) {
                     ClientHotel hotelToCart = (ClientHotel) userProduct;
-                    hotelToCart.setPension(pensionChoice);
+            //       aún no estamos implementado pensiones
+            //        hotelToCart.setPension(pensionChoice);
                     hotelToCart.setUser(user);
-                    hotelToCart.setQuantity(passangers);
+                    hotelToCart.setQuantity(userProduct.getQuantity()+ passangers*nights);
                     hotelToCart.setProduct(hotel);
                     hotelToCart.setFinalPrice(hotel.getPrice());
                     int hotelStock = hotel.getStock();
-                    hotel.setStock(hotelStock - passangers);
-                    //todo agregar salesRepo
+                    hotel.setStock(hotelStock - passangers*nights);
+                    salesRepo.save(hotelToCart);
+                    UserProductDTO userProductDTO=new UserProductDTO(hotelToCart);
                     userRepo.save(user);
                     productRepo.save(hotel);
-                    return true;
+                    return userProductDTO;
                 }
             }
             //sino creo una nueva instancia de esa venta
 
             ClientHotel clientHotel = new ClientHotel();
-            clientHotel.setPension(pensionChoice);
+            //aún no estamos usando pensiones
+            //clientHotel.setPension(pensionChoice);
             clientHotel.setUser(user);
-            clientHotel.setQuantity(passangers);
+            clientHotel.setQuantity(passangers*nights);
             clientHotel.setProduct(hotel);
+            clientHotel.setNights(nights);
             clientHotel.setFinalPrice(hotel.getPrice());
             int hotelStock = hotel.getStock();
-            hotel.setStock(hotelStock - passangers);
+            hotel.setStock(hotelStock - passangers*nights);
+            salesRepo.save(clientHotel);
+            UserProductDTO userProductDTO=new UserProductDTO(clientHotel);
             userRepo.save(user);
             productRepo.save(hotel);
-            return true;
+            return userProductDTO;
         } catch (Exception e) {
             throw e;
         }
