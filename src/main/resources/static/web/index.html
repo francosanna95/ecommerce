@@ -70,14 +70,15 @@
                         <form class="d-flex flex-column align-items-center">
                             <div class="d-flex flex-column flex-lg-row">
                                 <div class="input-group d-flex flex-wrap m-2">
-                                    <span class="input-group-text">My destination is...</span>
+                                    <span class="input-group-text d-none d-sm-block">My destination is...</span>
                                     <input type="search" class="form-control" placeholder="From..." v-model="filtrado">
                                 </div>
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">I'd like to see...</span>
+                                    <span class="input-group-text d-none d-sm-block">I'd like to see...</span>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         v-model="productToFilter">
                                         <optgroup label="The best on...">
+                                            <option value="" selected disabled>The best on...</option>
                                             <option value="events">EVENTS</option>
                                             <option value="tickets">TICKETS</option>
                                             <option value="activities">ACTIVITIES</option>
