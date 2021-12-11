@@ -114,12 +114,12 @@
                                     <fieldset>
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInputLogIn"
-                                                placeholder="name@example.com">
+                                                placeholder="name@example.com" v-model="email">
                                             <label for="floatingInputLogIn">Email Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type="password" class="form-control" id="floatingPasswordLogIn"
-                                                placeholder="password">
+                                                placeholder="password" v-model="password">
                                             <label for="floatingPasswordLogIn">Password</label>
                                         </div>
                                     </fieldset>
@@ -128,7 +128,7 @@
                             <div class="modal-footer justify-content-center align-items-center">
                                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
                                     data-bs-toggle="modal">Register</button>
-                                <button type="button" class="btn btn-info">Log In</button>
+                                <button type="button" class="btn btn-info" @click="login">Log In</button>
                             </div>
                         </div>
                     </div>
@@ -382,7 +382,7 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <script src="./scripts/animation.js"></script>
+<!--    <script src="./scripts/animation.js"></script>-->
     <script src="./scripts/flights.js"></script>
 </body>
 
