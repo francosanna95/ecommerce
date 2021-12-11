@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Set;
 
 public interface UserService {
-    boolean createUser(String firstName, String lastName, String email, String password);
+    boolean createUser(String firstName, String lastName, String email, String password,String rol);
 
     boolean createAgency(String fantasyName, String email, String password, String imgUrl, String address);
 
