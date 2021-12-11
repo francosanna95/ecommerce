@@ -168,6 +168,26 @@ const app = Vue.createApp({
       },
     },
   })
+    logout() {
+      axios.post('/api/logout')
+        .then(response => {
+        })
+        .catch(error => {
+          console.log('Error', error.message);
+        })
+    },
+    validEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+     payAll() {
+          console.log("pagando")
+          axios.post("https://mh-homebanking.herokuapp.com/api/transactions/cardPayment?amount=10&description=this is a card payment&cvv=255&thruDate=a&email=melba@mindhub.com", { headers: { 'content-type': 'application/x-www-form-urlencoded' } }).then(res => {
+            console.log(res);
+          })
+        }
+  },
+})
 
 app.mount("#app")
 
