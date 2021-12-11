@@ -588,6 +588,21 @@ html {
     font-size: 2rem;
 }
 
+/*stilos accordion*/
+
+.accordion-collapse.collapse.show {
+    /*background-image: url(../assets/avionPng.png); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    background-color: var(--main-bg-color);
+}
+
+.accordion-button, .table.align-middle, .accordion-body {
+    
+    background-color: var(--main-bg-color);
+}
+
 @media all and (max-width: 775px) {
     .offcanvas {
         width: 100%;
@@ -598,6 +613,10 @@ html {
         bottom: 15px;
         left: 15px;
         z-index: 10;
+    }
+
+    div.headerForm.movilBanerNone {
+        display: none!important; /*Esta el important de prueba para ver banner d-none*/
     }
 }
     

@@ -61,16 +61,16 @@
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
           <div class="container d-flex justify-content-center">
             <div class="containerHijo ">
-              <div class="card1 mt-0 m-md-3 mediana">
+              <div class="card1">
                 <div class="imgAtencion">
                   <img src="./assets/equipoAtencion.png" alt="imagen">
                 </div>
               </div>
-              <div class="card2 mt-0 mb-0">
+             <!-- <div class="card2 mt-0 mb-0">
                 <div class="imgPlublicidad">
                   <img src="./assets/atencionCliente.png" alt="imagen">
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
           </div>
         </div>
       </header>
-      <main class="container min-vh-75">
+      <main class="container min-vh-100">
         <!-- Modal log in/register -->
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
           aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
@@ -210,8 +210,8 @@
         <div class="d-flex justify-content-center mb-4">
           <button type="button" class="btn btn-primary ms-2">save</button>
         </div> <!--boton guardar cambios-->
-        <div class="accordion containerPadre d-flex justify-content-center min-vh-25" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item w-50">
+        <div class="accordion d-flex justify-content-center" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item  w-lg-75">
           <h2 class="accordion-header" id="panelsStayOpen-headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
               History purchase
@@ -226,18 +226,16 @@
                   <th scope="col">Service Type</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Unit Price</th>
-                  <th scope="col">Sub Total</th>
+                  <th scope="col">Total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="prod in cart">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <tr>
+                  <td>event</td>
+                  <td>vip</td>
+                  <td>25000</td>
+                  <td>12500</td>
+                  <td>25000</td>
                 </tr>
               </tbody>
             </table>
