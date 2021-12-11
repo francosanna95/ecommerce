@@ -64,17 +64,17 @@
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
           <div class="container d-flex justify-content-center">
             <div class="containerHijo" v-for="hotel in hotels.slice(0,1)">
-              <div class="card1 mt-0 m-md-3">
+              <div class="card1">
                 <video class="video" autoplay muted loop>
                   <source src="./assets/hotelsVideo.mp4" type="video/mp4">
                 </video>
               </div>
-              <div class="card2 mt-0 mb-0 ">
+             <!-- <div class="card2 mt-0 mb-0 ">
                 <div class="imgPlublicidad">
                   <img :src="hotel.imgUrl" alt="imagen">
                   <div class="viajeCliente">Hot Trip</div>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -173,6 +173,7 @@
           </div>
         </div>
         <!-- Main Content -->
+        <h2 class="text-center my-4">The best hotels</h2>
         <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
           <div class="cardDestino" v-for="hotel in hotels">
             <div class="imgDestino">

@@ -60,10 +60,10 @@
         </div>
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
           <div class="container d-flex justify-content-center">
-            <div class="containerHijo">
-              <div class="card1 mt-0 m-md-3">
+            <div class="containerHijo ">
+              <div class="card1 mt-0 m-md-3 mediana">
                 <div class="imgAtencion">
-                  <img src="./assets/equipoAtencion.png" alt="imagen"> 
+                  <img src="./assets/equipoAtencion.png" alt="imagen">
                 </div>
               </div>
               <div class="card2 mt-0 mb-0">
@@ -172,31 +172,62 @@
         <div class="pt-3 pb-3">
           <h2 class="text-center">My profile</h2> 
         </div>
-        <div class="container d-flex justify-content-center flex-column align-items-center  min-vh-75">
-          <div class="container vw-75">
-              <a href=""></a>
-              <a href=""></a>
-              <div class="d-flex align-items-center justify-content-around w-100 my-5">
-                  <div class="perfilCaja">
-                      <img src="./assets/chicaAndes.jpg" alt="" class="imgCirculo logo">
-                      <h3>Nombre y Apellido:</h3>
-                      <p>Wilson Martinez</p>
-                      <h3>Usuario: </h3>
-                      <p>Wilson000 o correo</p>
-
-                      <a href="help.html">¿Necesitas Ayuda?</a> 
-                  </div>
-                  <div>
-                    <h2>Datos Personales</h2>
-                    <h3>Celular:</h3>
-                    <p></p>
-                    <h3>Mail:</h3>
-                    <p></p>
-                    <h3>Direccion:</h3>
-                    <p></p>
-                  </div>
-              </div>
+        <div class="container d-flex justify-content-center flex-column align-items-center">
+              <div class="d-flex align-items-center justify-content-around w-100 my-5 p-3">
+                <div class="w-100 d-flex justify-content-center p-2">
+                    <div class="perfilCaja">
+                        <img src="./assets/chicaMontania.jpg" alt="" class="imgCirculo logo">
+                        <h3>Usuario: </h3>
+                        <p>Melba000 o correo</p>
+                        <a class="text-dark"href="help.html">¿Necesitas Ayuda?</a> 
+                    </div>
+                    <div class=" border  h-100">
+                      <h2>Personal information</h2>
+                      <h4>First Name</h4>
+                      <p></p> 
+                      <h4>Last Name</h4>
+                      <p></p>
+                      <h4>Mail:</h4>
+                      <p></p>
+                      <h4>User Name</h4>
+                      p 
+                      <h4>Address:</h4>
+                      <p></p> 
+                      <h4>password</h4>
+                      <p>****</p>  
+                    </div>
+                </div>
           </div>
+          <div class="d-flex justify-content-center align-items-center flex-wrap border w-50">
+                    <form class="my-2 d-flex justifi-content-center w-20">
+                          <div class="form-outline d-flex justify-content-center align-items-center">
+                              <label class="form-label me-2" for="email" for="nombre">Email</label>
+                              <input class="contact  bg-segudary " type="text" id="email" class="w-100" placeholder="Ani@yuyu.com" maxlength="30"/>
+                              <button type="button" class="btn btn-primary ms-2">add</button>
+                          </div>
+                    </form>
+                    <form class="my-2 w-20 d-flex" >
+                        <div class="form-outline d-flex">
+                            <label class="form-label w-100" for="userName" for="nombre">User Name
+                            <input class="contact  bg-segudary" type="text" id="userName" class="w-100" placeholder="fx23" maxlength="30"/>
+                            <button type="button" class="btn btn-primary ms-2" class="w-100">add</button>
+                        </div>
+                    </form>
+                    <form class="my-2 w-100 d-flex">
+                        <div class="form-outline d-flex justify-content-center align-items-center">
+                            <label class="form-label me-2" for="address" for="nombre">Address</label>
+                            <input class="contact  bg-segudary" type="text" id="address" class="w-100" placeholder="Argentina" maxlength="30"/>
+                            <button type="button" class="btn btn-primary ms-2">add</button>
+                        </div>
+                    </form>
+                    <form class="my-2 w-100 d-flex">
+                          <div class="form-outline d-flex justify-content-center align-items-center">
+                              <label class="form-label me-2" for="passwor" for="nombre">Password</label>
+                              <input class="contact  bg-segudary me-1" type="text" id="password" class="w-100" placeholder="**25" maxlength="30"/>
+                              <button type="button" class="btn btn-primary ms-2">add</button>
+                          </div>
+                    </form>
+              </div>
         </div>
       </main>
       <footer>
@@ -257,5 +288,4 @@
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./scripts/animation.js"></script>
 </body>
-
 </html>
