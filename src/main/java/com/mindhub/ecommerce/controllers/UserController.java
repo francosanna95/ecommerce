@@ -61,31 +61,32 @@ public class UserController {
 
         if (userService.createAgency(fantasyName, email, password, imgUrl, address)) {
             return new ResponseEntity<String>("Agency created succesfully", HttpStatus.CREATED);
-
         }
-        return new ResponseEntity<>("Something went wrong, please contact our help desk", HttpStatus.CONFLICT);
 
+        return new ResponseEntity<>("Something went wrong, please contact our help desk", HttpStatus.CONFLICT);
     }
 
     @PostMapping("/clients/new")
-    public ResponseEntity<String> createClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<String> createClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password, @RequestParam String rol) {
         //TODO Chequear que el mail no exista en la base de datos
-
         if (userRepo.existsByEmail(email)) {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
-
         }
+
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank()) {
             return new ResponseEntity<>("No parameter can be blank", HttpStatus.FORBIDDEN);
         }
 
-        if (userService.createUser(firstName, lastName, email, password)) {
+        if (userService.createUser(firstName, lastName, email, password, rol)) {
             return new ResponseEntity<String>("Client created succesfully", HttpStatus.CREATED);
-
         }
+
         return new ResponseEntity<>("Something went wrong, please contact our help desk", HttpStatus.CONFLICT);
+    }
 
-
+    @GetMapping("/clients/current")
+    public UserDTO getCurrentClient(Authentication auth) {
+        return new UserDTO(userRepo.findByEmail(auth.getName()).orElse(null));
     }
 
     @GetMapping("/clients/{id}")
@@ -94,7 +95,8 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/event")
-    public ResponseEntity<UserProductDTO> addEventToCart(Authentication auth, @RequestParam Long eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
+    public ResponseEntity<UserProductDTO> addEventToCart(Authentication auth, @RequestParam Long
+            eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(eventId).orElse(null);
         if (!(product instanceof Event)) {
@@ -262,6 +264,10 @@ public class UserController {
     @PatchMapping("/client/current/modify")
     public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password){
     //TODO MODIFY CLIENT
+
+
+
+
 
 
 

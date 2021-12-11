@@ -39,8 +39,10 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean createUser(String firstName, String lastName, String email, String password) {
-        User user = new User(firstName, lastName, email, passwordEncoder.encode(password), UserRole.CLIENT);
+    public boolean createUser(String firstName, String lastName, String email, String password, String rol) {
+
+        UserRole userRole = UserRole.valueOf(rol.toUpperCase());
+        User user = new User(firstName, lastName, email, passwordEncoder.encode(password), userRole);
         userRepo.save(user);
         return true;
     }

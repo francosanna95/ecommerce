@@ -7,7 +7,7 @@ const app = Vue.createApp({
     },
 
     created() {
-        axios.get('/api/clients')
+        axios.get('/api/clients/current')
         .then(response => {
             console.log(response.data)
             this.clients = response.data

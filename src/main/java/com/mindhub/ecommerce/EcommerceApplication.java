@@ -115,32 +115,32 @@ public class EcommerceApplication {
             userRepo.save(clientRicardo);
 
 
-        //    ClientHotel melbaHotel = new ClientHotel(clientMelba, hospedaje, LocalDateTime.now(), LocalDateTime.now().plusDays(5), 5);
-        //    melbaHotel.setPension(Pension.BREAKFAST_BUFFET);
-        //    melbaHotel.setQuantity(2);
-        //    melbaHotel.setFinalPrice(hospedaje.getPrice());
+//            ClientHotel melbaHotel = new ClientHotel(clientMelba, hospedaje, LocalDateTime.now(), LocalDateTime.now().plusDays(5), 5);
+//            melbaHotel.setPension(Pension.BREAKFAST_BUFFET);
+//            melbaHotel.setQuantity(2);
+//            melbaHotel.setFinalPrice(hospedaje.getPrice());
             Ticket ticket = new Ticket(2000, 15000D, "10", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638981253/Services/Flies/arquitectura_gaudi_sag_fam_valery_egonov_portada_z78brl.jpg", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Madrid", "Barcelona");
             productRepo.save(ticket);
             ticket = new Ticket(2000, 18000D, "20", "95700 Roissy-en-France, Francia", agencyAndamio, "Vuelo a Paris", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638821033/Services/Flies/kateryna-t-RkyYEVHrRbo-unsplash_wzahhy.jpg", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Anywhere", "Paris");
             productRepo.save(ticket);
             ticket = new Ticket(2000, 20000D, "30", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638817782/Services/Flies/Machu_Picchu_Per%C3%BA_xker0x.jpg", LocalDateTime.now().plusDays(10), LocalDateTime.now().plusDays(11), "Buenos Aires", "Machu Pichu");
             productRepo.save(ticket);
-        //    ClientTicket cl = new ClientTicket(clientMelba, ticket, TicketClass.FIRST);
-        //    cl.setQuantity(2);
-
-            // cl.setUser(clientMelba);
-        //    cl.setUserHistory(clientMelba);
-        //    cl.setFinalPrice(ticket.getPrice());
-        //    salesRepos.save(cl);
-        //    salesRepos.save(melbaHotel);
-
-        //    ClientEvent melbaConcert = new ClientEvent(clientMelba, concierto, true);
-        //    melbaConcert.setQuantity(1);
+//            ClientTicket cl = new ClientTicket(clientMelba, ticket, TicketClass.FIRST);
+//            cl.setQuantity(2);
+//
+//            // cl.setUser(clientMelba);
+//            cl.setUserHistory(clientMelba);
+//            cl.setFinalPrice(ticket.getPrice());
+  //         salesRepos.save(cl);
+//            salesRepos.save(melbaHotel);
+//
+//            ClientEvent melbaConcert = new ClientEvent(clientMelba, concierto, true);
+//            melbaConcert.setQuantity(1);
 
             //melbaConcert.setUser(clientMelba);
-        //    melbaConcert.setUserHistory(clientMelba);
-        //    melbaConcert.setFinalPrice(concierto.getPrice());
-        //    salesRepos.save(melbaConcert);
+//            melbaConcert.setUserHistory(clientMelba);
+//            melbaConcert.setFinalPrice(concierto.getPrice());
+//            salesRepos.save(melbaConcert);
 
             ClientHotel ricardoHotel = new ClientHotel(clientRicardo, hospedaje2, LocalDateTime.now().plusDays(5), LocalDateTime.now().plusDays(7), 2);
             ricardoHotel.setPension(Pension.BREAKFAST_BUFFET);
