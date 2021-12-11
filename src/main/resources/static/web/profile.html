@@ -60,10 +60,10 @@
         </div>
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
           <div class="container d-flex justify-content-center">
-            <div class="containerHijo">
-              <div class="card1 mt-0 m-md-3">
+            <div class="containerHijo ">
+              <div class="card1 mt-0 m-md-3 mediana">
                 <div class="imgAtencion">
-                  <img src="./assets/equipoAtencion.png" alt="imagen"> 
+                  <img src="./assets/equipoAtencion.png" alt="imagen">
                 </div>
               </div>
               <div class="card2 mt-0 mb-0">
@@ -93,7 +93,7 @@
           </div>
         </div>
       </header>
-      <main class="container">
+      <main class="container min-vh-75">
         <!-- Modal log in/register -->
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
           aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
@@ -172,32 +172,48 @@
         <div class="pt-3 pb-3">
           <h2 class="text-center">My profile</h2> 
         </div>
-        <div class="container d-flex justify-content-center flex-column align-items-center  min-vh-75">
-          <div class="container vw-75">
-              <a href=""></a>
-              <a href=""></a>
-              <div class="d-flex align-items-center justify-content-around w-100 my-5">
-                  <div class="perfilCaja">
-                      <img src="./assets/chicaAndes.jpg" alt="" class="imgCirculo logo">
-                      <h3>Nombre y Apellido:</h3>
-                      <p>Wilson Martinez</p>
-                      <h3>Usuario: </h3>
-                      <p>Wilson000 o correo</p>
-
-                      <a href="help.html">¿Necesitas Ayuda?</a> 
-                  </div>
-                  <div>
-                    <h2>Datos Personales</h2>
-                    <h3>Celular:</h3>
-                    <p></p>
-                    <h3>Mail:</h3>
-                    <p></p>
-                    <h3>Direccion:</h3>
-                    <p></p>
-                  </div>
+        <div class="container d-flex justify-content-center min-vh-75 mb-4 flex-wrap">
+              <div class="perfilCaja w-20%">
+                  <img src="./assets/chicaMontania.jpg" alt="" class="imgCirculo logo">
+                  <h3>User: </h3>
+                  <p>{{clients[0].fantasyName}}</p>
+                  <a class="text-dark"href="help.html">Need help?</a> 
               </div>
-          </div>
+              <div class="p-3 w-40% border">
+                  <h3>Personal information</h3>
+                  <h5 class="fw-bold">First Name</h5>
+                  <p class="ps-2">{{clients[0].firstName}}</p> 
+                  <h5 class="fw-bold">Last Name</h5>
+                  <p class="ps-2">{{clients[0].lastName}}</p>
+                  <h5 class="fw-bold">Mail:</h5>
+                  <p class="ps-2">{{clients[0].email}}</p>
+                  <h5 class="fw-bold">User Name</h5>
+                  <p class="ps-2">{{clients[0].fantasyName}}</p>  
+              </div>
+              <div class="d-flex justify-content-center  flex-column align-items-center flex-wrap border w-40 p-md-3">
+                  <form class="my-2 d-flex justifi-content-center">
+                      <div class="form-outline d-flex flex-column">
+                          <label class="form-label me-2" for="email" for="nombre">Email</label>
+                          <div>
+                            <input class="contact  bg-segudary " type="email" id="email" placeholder="Ani@yuyu.com" maxlength="30"/>
+                            <button type="button" class="btn btn-primary ms-2">add</button>
+                          </div>
+                      </div>
+                  </form>
+                  <form class="my-2 d-flex justifi-content-center">
+                      <div class="form-outline d-flex flex-column">
+                          <label class="form-label me-2" for="user" for="nombre">User Name</label>
+                          <div>
+                            <input class="contact  bg-segudary " type="text" id="user" placeholder="Ani@yuyu.com" maxlength="30"/>
+                            <button type="button" class="btn btn-primary ms-2">add</button>
+                          </div>
+                      </div>
+                  </form>
+            </div>
         </div>
+        <div class="d-flex justify-content-center mb-4">
+          <button type="button" class="btn btn-primary ms-2">save</button>
+        </div> <!--boton guardar cambios-->
       </main>
       <footer>
         <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
@@ -256,6 +272,6 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./scripts/animation.js"></script>
+  <script src="./scripts/profile.js"></script>
 </body>
-
 </html>
