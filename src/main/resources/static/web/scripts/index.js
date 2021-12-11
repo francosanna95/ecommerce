@@ -16,7 +16,7 @@ const app = Vue.createApp({
 
       email: "",
       password: "",
-      cart:[]
+      cart:[],
 
       firstName: "",
       lastName: "",
