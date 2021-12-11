@@ -163,6 +163,15 @@ const app = Vue.createApp({
 
                 })
         },
+        logout() {
+              axios.post('/api/logout')
+                .then(response => {
+                })
+                .catch(error => {
+                  console.log('Error', error.message);
+                })
+
+        }
 
     },
 
