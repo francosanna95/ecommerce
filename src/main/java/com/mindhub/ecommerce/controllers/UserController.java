@@ -1,7 +1,10 @@
 package com.mindhub.ecommerce.controllers;
 
 
+import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.*;
+import com.mindhub.ecommerce.email.EmailServiceImpl;
+import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
 import com.mindhub.ecommerce.repositories.SalesRepository;
@@ -109,44 +112,45 @@ public class UserController {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
 
         }
-        userService.addEventToClientCart(user, event, isVip, attendants);
+        UserProductDTO userProductDTO=userService.addEventToClientCart(user, event, isVip, attendants);
+
+        if (userProductDTO!=null) {
+            return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
+        }
 
         //TODO
         return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
     }
 
     @PostMapping("/clients/current/addToCart/hotel")
-    public ResponseEntity<String> addHotelToCart(Authentication auth, @RequestParam Long
-            hotelId, @RequestParam String arrivalDate, @RequestParam String departureDate, @RequestParam Integer
-                                                         nights, @RequestParam Integer passangers, @RequestParam String pension) {
+    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId,@RequestParam Integer nights, @RequestParam Integer passangers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(hotelId).orElse(null);
         if (!(product instanceof Hotel)) {
-            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.BAD_REQUEST);
         }
 
         Hotel hotel = (Hotel) product;
         if (user == null) {
-            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
 
         }
         if (hotel == null) {
-            return new ResponseEntity<String>("Hotel not found", HttpStatus.NOT_FOUND);
-
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
+        UserProductDTO userProductDTO= userService.addHotelToClientCart(user, hotel, nights, passangers);
         //TODO
-        if (userService.addHotelToClientCart(user, hotel, arrivalDate, departureDate, nights, passangers, pension)) {
-            return new ResponseEntity<String>("Hotel booked succesfully", HttpStatus.CREATED);
+        if (userProductDTO!=null) {
+            return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
-        return new ResponseEntity<String>("Hotel Booking unsuccessful", HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
 
 
     }
 
     @PostMapping("/clients/current/addToCart/ticket")
-    public ResponseEntity<UserProductDTO> addTicketToCart(Authentication auth, @RequestParam Long
-            ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
+    public ResponseEntity<UserProductDTO> addTicketToCart(Authentication auth, @RequestParam Long ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(ticketId).orElse(null);
@@ -163,9 +167,9 @@ public class UserController {
         if (ticket == null) {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
-        UserProductDTO userProductDTO = userService.addTicketToClientCart(user, ticket, clase, passengers);
+        UserProductDTO userProductDTO=userService.addTicketToClientCart(user, ticket, clase, passengers);
 
-        if (userProductDTO != null) {
+        if (userProductDTO!=null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
 
@@ -176,9 +180,9 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/add1toCart")//sirve para agregar de a 1 producto
-    public ResponseEntity<String> add1ProductToCart(Authentication authentication, @RequestParam Long userProductId) {
-        User user = userRepo.findByEmail(authentication.getName()).orElse(null);
-        UserProduct productToAdd = salesRepo.findById(userProductId).orElse(null);
+    public ResponseEntity<String> add1ProductToCart(Authentication authentication,@RequestParam Long userProductId){
+        User user=userRepo.findByEmail(authentication.getName()).orElse(null);
+        UserProduct productToAdd=salesRepo.findById(userProductId).orElse(null);
 
         if (user == null) {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
@@ -187,11 +191,11 @@ public class UserController {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
 
-        if (userService.add1ProductToCart(user, productToAdd)) {
-            return new ResponseEntity<>("Agregado con exito", HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
-    }
+       if(userService.add1ProductToCart(user,productToAdd)){
+           return new ResponseEntity<>("Agregado con exito",HttpStatus.CREATED);
+       }
+       return new ResponseEntity<>("Error",HttpStatus.BAD_REQUEST);
+   }
 
     @PostMapping("/clients/current/removeFromCart")  //sirve para eliminar producto de 1 en 1
     public ResponseEntity<String> removeProductFromCart(Authentication auth, @RequestParam Long userProductId) {
@@ -203,7 +207,7 @@ public class UserController {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
         if (productToRemove == null) {
-            return new ResponseEntity<String>("Product not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
 
         if (userService.removeProductFromCart(user, productToRemove)) {
@@ -262,9 +266,12 @@ public class UserController {
     }
 
     @PatchMapping("/client/current/modify")
-    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String
-            firstName, @RequestParam String lastName, @RequestParam String password) {
-        //TODO MODIFY CLIENT
+    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password){
+    //TODO MODIFY CLIENT
+
+
+
+
 
 
         return new ResponseEntity<String>("XXXXXXXXXXXXXXXXXXXXXXXXXXX", HttpStatus.NOT_FOUND);
