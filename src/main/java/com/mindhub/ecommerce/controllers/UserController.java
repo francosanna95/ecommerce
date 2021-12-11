@@ -106,35 +106,39 @@ public class UserController {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
 
         }
-        userService.addEventToClientCart(user, event, isVip, attendants);
+        UserProductDTO userProductDTO=userService.addEventToClientCart(user, event, isVip, attendants);
+
+        if (userProductDTO!=null) {
+            return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
+        }
 
         //TODO
         return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
     }
 
     @PostMapping("/clients/current/addToCart/hotel")
-    public ResponseEntity<String> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam String arrivalDate, @RequestParam String departureDate, @RequestParam Integer nights, @RequestParam Integer passangers, @RequestParam String pension) {
+    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId,@RequestParam Integer nights, @RequestParam Integer passangers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(hotelId).orElse(null);
         if (!(product instanceof Hotel)) {
-            return new ResponseEntity<>("Invalid ID for EVENT", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.BAD_REQUEST);
         }
 
         Hotel hotel = (Hotel) product;
         if (user == null) {
-            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
 
         }
         if (hotel == null) {
-            return new ResponseEntity<String>("Hotel not found", HttpStatus.NOT_FOUND);
-
+            return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
+        UserProductDTO userProductDTO= userService.addHotelToClientCart(user, hotel, nights, passangers);
         //TODO
-        if (userService.addHotelToClientCart(user, hotel, arrivalDate, departureDate, nights, passangers, pension)) {
-            return new ResponseEntity<String>("Hotel booked succesfully", HttpStatus.CREATED);
+        if (userProductDTO!=null) {
+            return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
-        return new ResponseEntity<String>("Hotel Booking unsuccessful", HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
 
 
     }

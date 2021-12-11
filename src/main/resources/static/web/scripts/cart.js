@@ -103,7 +103,7 @@ const app = Vue.createApp({
         //if(this.cart.some(product=>product.productId==prod.id)){
         console.log(prod);
         console.log(typeof prod.id)
-            let findProd=this.cart.findIndex(product=>product.productId==prod.productId);
+            let findProd=this.cart.findIndex(product=>product.id==prod.id);
             console.log(findProd);
         axios.post("/api/clients/current/removeFromCart",`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
         .then(resp=>{ console.log(findProd)
@@ -125,7 +125,8 @@ const app = Vue.createApp({
             this.savingCart();
             if(this.cart.length==0){
               sessionStorage.removeItem('cart');}
-            window.location.reload()}
+           // window.location.reload()
+            }
         }).catch(err=>console.log(err))
 },
     addProduct(prod){
