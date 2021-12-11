@@ -7,7 +7,8 @@ const app = Vue.createApp({
             parking: false,
             concierge: false,
             beds: 1,
-            nights: 1
+            nights: 1,
+            cart:[]
 
         }
     },
@@ -45,14 +46,15 @@ const app = Vue.createApp({
             } else {
                 return "No"
             }
+
         },
         addToCart(hotel){
            console.log(hotel.productId);
-           axios.post("/api/clients/current/addToCart/hotel",`hotelId=${hotel.productId}&arrivalDate=${this.clase}&passengers=${this.passengers}`)
+           axios.post("/api/clients/current/addToCart/hotel",`hotelId=${hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
            .then(resp => {
                 hotel = resp.data;
                 console.log(hotel);
-                if (ticket.stock <= 0) {
+                if (hotel.stock <= 0) {
                    alert("No stock");
                    } else {
                          hotel.stock--;
@@ -60,11 +62,11 @@ const app = Vue.createApp({
                          if (this.cart.some(prod => prod.id == hotel.id)) {
                             let id = this.cart.findIndex(prod => prod.id == hotel.id);
                             //actualizar cantidad en ese producto
-                            this.cart[id].quantity= hotel.quantity;
+                            this.cart[id].quantity+= this.beds*this.nights;
                             } else {
-                              ticket.quantity = this.passengers;
-                              ticket.clase = this.clase;
-                              ticket.subtotal = hotel.quantity * hotel.price;
+                              hotel.quantity = this.beds*this.nights;
+                              hotel.clase = this.clase;
+                              hotel.subtotal = hotel.quantity * hotel.price;
                               this.cart.push(hotel);
                               console.log(this.cart);
                               }
@@ -72,7 +74,10 @@ const app = Vue.createApp({
                    }})
                    .catch(err=> console.log(err));
         },
-
+         savingCart(){
+            const parsed = JSON.stringify(this.cart);
+            sessionStorage.setItem('cart', parsed);
+         },
     }, 
 
 })
