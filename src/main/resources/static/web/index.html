@@ -36,7 +36,7 @@
                             <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
                         <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
                     </div>
-                    <div class="d-flex flex-row">
+                    <div class="d-flex flex-wrap justify-content-center flex-sm-row">
                         <div class="m-3 scale d-flex align-items-center">
                             <a href="./index.html" class="linkCursor d-flex align-items-center"><i
                                     class="fal fa-home-lg-alt pe-1"></i>
@@ -64,12 +64,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center p-5">
+                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center p-sm-3">
                     <div class="d-flex flex-column formDiv">
-                        <h2 class="align-self-center">Lodging with flexible booking</h2>
+                        <h4 class="align-self-center">Lodging with flexible booking</h4>
                         <form class="d-flex flex-column align-items-center">
-                            <div class="d-flex flex-row">
-                                <div class="input-group m-2">
+                            <div class="d-flex flex-column flex-lg-row">
+                                <div class="input-group d-flex flex-wrap m-2">
                                     <span class="input-group-text">My destination is...</span>
                                     <input type="search" class="form-control" placeholder="From..." v-model="filtrado">
                                 </div>
@@ -202,9 +202,9 @@
                     </div>
                 </div>
                 <!-- Main Content -->
-                <div class="container d-flex ">
+                <div class="d-flex ">
                     <div class="containerPadre">
-                        <div class="containerHijo" v-for="ticket in tickets.slice(1,2)">
+                        <div class="containerHijo index" v-for="ticket in tickets.slice(1,2)">
                             <div class="card1 mediana">
                                 <video class="video" autoplay muted loop>
                                     <source src="./assets/videoIndex2.mp4" type="video/mp4">
@@ -219,7 +219,7 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="text-center">The best promotions and the best service</h3>
+                <h3 class="text-center pt-3">The best promotions and the best service</h3>
                 <div class="containerDestino">
                     <div class="containerDestinoHijo">
                         <div class="cardDestino">

@@ -135,12 +135,18 @@ h5 {
     max-width: 100%;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .containerHijo .card1.mediana {
         width: 290px;
         height: 250px;
         background-size: 290px 250px;
         margin: 0;
+    }
+ }
+
+ @media (max-width: 420px) {
+    .containerHijo.index {
+        display: none;
     }
  }
 
