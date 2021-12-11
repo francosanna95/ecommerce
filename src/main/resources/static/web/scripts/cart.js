@@ -63,6 +63,10 @@ const app = Vue.createApp({
         return "password";
       }
     },
+    totalPriceCalc(){
+    this.totalPrice=this.cart.reduce(acumulator,product=> acumulator+= product.quantity*product.finalPrice)
+    return this.cart}
+
   },
   methods: {
     totalPriceCalc() {

@@ -81,7 +81,7 @@ const app = Vue.createApp({
         return
       } else {
         this.validMailLogIn = true
-      }
+      } 
 
       axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
         .then(response => {

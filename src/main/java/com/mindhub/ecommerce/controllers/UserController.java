@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -84,13 +85,19 @@ public class UserController {
 
     }
 
+    @GetMapping("/clients/current")
+    public UserDTO getCurrentClient(Authentication auth) {
+        return new UserDTO(userRepo.findByEmail(auth.getName()).orElse(null));
+    }
+
     @GetMapping("/clients/{id}")
     public UserDTO getClient(@PathVariable Long id) {
         return userService.getClientById(id);
     }
 
     @PostMapping("/clients/current/addToCart/event")
-    public ResponseEntity<UserProductDTO> addEventToCart(Authentication auth, @RequestParam Long eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
+    public ResponseEntity<UserProductDTO> addEventToCart(Authentication auth, @RequestParam Long
+            eventId, @RequestParam Boolean isVip, @RequestParam Integer attendants) {
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(eventId).orElse(null);
         if (!(product instanceof Event)) {
@@ -109,7 +116,9 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/hotel")
-    public ResponseEntity<String> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam String arrivalDate, @RequestParam String departureDate, @RequestParam Integer nights, @RequestParam Integer passangers, @RequestParam String pension) {
+    public ResponseEntity<String> addHotelToCart(Authentication auth, @RequestParam Long
+            hotelId, @RequestParam String arrivalDate, @RequestParam String departureDate, @RequestParam Integer
+                                                         nights, @RequestParam Integer passangers, @RequestParam String pension) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(hotelId).orElse(null);
@@ -136,7 +145,8 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/ticket")
-    public ResponseEntity<UserProductDTO> addTicketToCart(Authentication auth, @RequestParam Long ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
+    public ResponseEntity<UserProductDTO> addTicketToCart(Authentication auth, @RequestParam Long
+            ticketId, @RequestParam String clase, @RequestParam Integer passengers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(ticketId).orElse(null);
@@ -153,9 +163,9 @@ public class UserController {
         if (ticket == null) {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
-        UserProductDTO userProductDTO=userService.addTicketToClientCart(user, ticket, clase, passengers);
+        UserProductDTO userProductDTO = userService.addTicketToClientCart(user, ticket, clase, passengers);
 
-        if (userProductDTO!=null) {
+        if (userProductDTO != null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
 
@@ -166,9 +176,9 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/add1toCart")//sirve para agregar de a 1 producto
-    public ResponseEntity<String> add1ProductToCart(Authentication authentication,@RequestParam Long userProductId){
-        User user=userRepo.findByEmail(authentication.getName()).orElse(null);
-        UserProduct productToAdd=salesRepo.findById(userProductId).orElse(null);
+    public ResponseEntity<String> add1ProductToCart(Authentication authentication, @RequestParam Long userProductId) {
+        User user = userRepo.findByEmail(authentication.getName()).orElse(null);
+        UserProduct productToAdd = salesRepo.findById(userProductId).orElse(null);
 
         if (user == null) {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
@@ -177,11 +187,11 @@ public class UserController {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
 
-       if(userService.add1ProductToCart(user,productToAdd)){
-           return new ResponseEntity<>("Agregado con exito",HttpStatus.CREATED);
-       }
-       return new ResponseEntity<>("Error",HttpStatus.BAD_REQUEST);
-   }
+        if (userService.add1ProductToCart(user, productToAdd)) {
+            return new ResponseEntity<>("Agregado con exito", HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+    }
 
     @PostMapping("/clients/current/removeFromCart")  //sirve para eliminar producto de 1 en 1
     public ResponseEntity<String> removeProductFromCart(Authentication auth, @RequestParam Long userProductId) {
@@ -252,12 +262,9 @@ public class UserController {
     }
 
     @PatchMapping("/client/current/modify")
-    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password){
-    //TODO MODIFY CLIENT
-
-
-
-
+    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String
+            firstName, @RequestParam String lastName, @RequestParam String password) {
+        //TODO MODIFY CLIENT
 
 
         return new ResponseEntity<String>("XXXXXXXXXXXXXXXXXXXXXXXXXXX", HttpStatus.NOT_FOUND);
