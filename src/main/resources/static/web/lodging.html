@@ -41,9 +41,21 @@
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
+              <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
+                  class="fal fa-cogs pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Admin</p>
+              </a>
+            </div>
+            <div class="m-3 scale d-flex align-items-center">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
+              </a>
+            </div>
+            <div class="m-3 scale d-flex align-items-center">
+              <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
+                  class="fal fa-user pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Profile</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
@@ -54,11 +66,16 @@
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
+              <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
+              </a>
+            </div>
+            <!-- Baneado el help por tema de espacio
+            <div class="m-3 scale d-flex align-items-center">
               <a href="./help.html" class="linkCursor d-flex align-items-center "><i
                   class="fal fa-question-square pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Help</p>
               </a>
-            </div>
+            </div>-->
           </div>
         </div>
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
@@ -173,7 +190,7 @@
           </div>
         </div>
         <!-- Main Content -->
-        <h2 class="text-center my-4">The best hotels</h2>
+        <h2 class="text-center my-4">Best lodging</h2>
         <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
           <div class="cardDestino" v-for="hotel in hotels">
             <div class="imgDestino">

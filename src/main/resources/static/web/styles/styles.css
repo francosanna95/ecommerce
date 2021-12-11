@@ -506,6 +506,14 @@ textarea.form-control{
 .perfilCaja img {
     border-radius: 50%;
 }
+/*collapse for profile n logout*/
+.collapseOption {
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif;
+    color: var(--font-color-w); 
+    font-size: .8rem;
+}
+
 
 /*footer*/
 footer {

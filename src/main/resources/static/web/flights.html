@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 <!-- Main Content -->
-                <h2 class="text-center my-4">The best flights</h2>
+                <h2 class="text-center my-4">Best flights</h2>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
                     <div class="cardDestino" v-for="ticket in tickets">
                         <div class="imgDestino">
@@ -188,11 +188,10 @@
                             </div>
                         </div>
                         <div class="contentDestino">
-                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}},
-                                <small>{{ticket.departureLocation}}</small>
+                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}}
                             </h5>
                             <div class="contenido">
-                                <h6><strong>From: </strong>Buenos Aires</h6>
+                                <h6><strong>From: </strong>{{ticket.departureLocation}}</h6>
                                 <h6><strong>Agency: </strong>{{ticket.agencyName}}</h6>
                             </div>
                         </div>
