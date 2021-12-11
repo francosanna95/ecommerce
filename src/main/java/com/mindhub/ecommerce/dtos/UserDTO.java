@@ -13,7 +13,6 @@ public class UserDTO {
     private String lastName;
     private String fantasyName;
     private String email;
-    private String password;
     private String address;
     private String bankAccountNumber;
     private String imgUrl;
@@ -32,7 +31,6 @@ public class UserDTO {
         this.historyCart = client.getShoppingHistory().stream().map(UserProductDTO::new).collect(Collectors.toList());
         this.email = client.getEmail();
         this.id = client.getId();
-        this.password = client.getPassword();
         this.address = client.getAddress();
         this.bankAccountNumber = client.getBankAccountNumber();
     }
@@ -91,14 +89,6 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAddress() {
