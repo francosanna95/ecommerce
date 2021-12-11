@@ -86,12 +86,22 @@ const app = Vue.createApp({
         })
         .then(response => {
             console.log(response);
-            swal('Approved', 'New Lodging created')
-            setTimeout(() => location.reload(), 2500 );
+            swal({
+                title:"Done!",
+                text: "New Lodging Created",
+                buttons: "Got it",
+                icon: "success"
+              }).then((value) => {
+                if (value) {
+                    window.location.reload()
+                }
+              })
+            
+            //setTimeout(() => location.reload(), 2500 );
         })
         .catch(err => {
             console.log(err);
-            swal('Error', 'Cannot create more lodging', 'error');
+            swal('Error', 'Cannot create more flights', 'error');
         })
     },
     newEvent(){
@@ -110,6 +120,25 @@ const app = Vue.createApp({
                 "artist": `${this.artist}`,
                 "vip": `${this.vip}`
             }
+        })
+        .then(response => {
+            console.log(response);
+            swal({
+                title:"Done!",
+                text: "New Event Created",
+                buttons: "Got it",
+                icon: "success"
+              }).then((value) => {
+                if (value) {
+                    window.location.reload()
+                }
+              })
+            
+            //setTimeout(() => location.reload(), 2500 );
+        })
+        .catch(err => {
+            console.log(err);
+            swal('Error', 'Cannot create more flights', 'error');
         })
     },
     logout() {

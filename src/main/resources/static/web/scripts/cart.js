@@ -58,36 +58,62 @@ const app = Vue.createApp({
   },
   computed: {
     showPassword() {
-        if (this.isPasswordVisible) {
-          return "text";
-        } else {
-          return "password";
-        }
+      if (this.isPasswordVisible) {
+        return "text";
+      } else {
+        return "password";
       }
-    },
+    }
+  },
   methods: {
+    payAll(e) {
+      console.log(e);
+      console.log("pagando")
+      axios.post("https://mh-homebanking.herokuapp.com/api/transactions/cardPayment?amount=10&description=thispayment&cvv=255&thruDate=a&email=melba@mindhub.com", { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+        .then(res => {
+          console.log(res);
+          if (res.status == 202) {
+            this.finalPurchase()
+          } else {
+            //alerta con el error
+          }
+        })
+
+    },
+    finalPurchase() {
+      console.log("ENTRANDO A FINAL PURCHASE");
+      axios.post("/api/client/current/endPurchase")
+        .then(response => {
+          console.log(response);
+          if (response.status == 200) {
+            console.log(response);
+            sessionStorage.removeItem('cart'); //alerta de exito
+          }
+
+        })
+    },
     totalProductsInCart() {
-                const array = this.cart
-                function reducer(previous, current, index, array) {
-                  const product = array[index];
-                  const returns = previous + (parseInt(product.quantity));
-                  return returns;
-                }
-                return array.reduce(reducer, 0);
+      const array = this.cart
+      function reducer(previous, current, index, array) {
+        const product = array[index];
+        const returns = previous + (parseInt(product.quantity));
+        return returns;
+      }
+      return array.reduce(reducer, 0);
     },
     totalPriceCalc() {
-          const array = this.cart
-          function reducer(previous, current, index, array) {
-            const product = array[index];
-            const returns = previous + (product.finalPrice*product.quantity);
-            return returns;
-          }
-          return array.reduce(reducer, 0);
-        },
-    savingCart(){
-            const parsed = JSON.stringify(this.cart);
-            sessionStorage.setItem('cart', parsed);
-        },
+      const array = this.cart
+      function reducer(previous, current, index, array) {
+        const product = array[index];
+        const returns = previous + (product.finalPrice * product.quantity);
+        return returns;
+      }
+      return array.reduce(reducer, 0);
+    },
+    savingCart() {
+      const parsed = JSON.stringify(this.cart);
+      sessionStorage.setItem('cart', parsed);
+    },
     login(e) {
       if (e) {
         e.preventDefault()
@@ -99,74 +125,63 @@ const app = Vue.createApp({
         this.validMailLogIn = true
       }
 
-        axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-          .then(response => {
-            console.log(response)
-            window.location.href = "./index.html"
-          })
-          .catch(error => {
-            console.log(error.response.status)
-            console.log(error.response.data)
-          })
-      },
-      removeOne(prod) {
-        //if(this.cart.some(product=>product.productId==prod.id)){
-        console.log(prod);
-        console.log(typeof prod.id)
-        let findProd = this.cart.findIndex(product => product.id == prod.id);
-        console.log(findProd);
-        axios.post("/api/clients/current/removeFromCart", `userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-          .then(resp => {
-            console.log(findProd)
-            this.cart[findProd].quantity--;
-            if (this.cart[findProd].quantity <= 0) { this.cart.splice(findProd, 1) }
+      axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+        .then(response => {
+          console.log(response)
+          window.location.href = "./index.html"
+        })
+        .catch(error => {
+          console.log(error.response.status)
+          console.log(error.response.data)
+        })
+    },
+    removeOne(prod) {
+      //if(this.cart.some(product=>product.productId==prod.id)){
+      console.log(prod);
+      console.log(typeof prod.id)
+      let findProd = this.cart.findIndex(product => product.id == prod.id);
+      console.log(findProd);
+      axios.post("/api/clients/current/removeFromCart", `userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+        .then(resp => {
+          console.log(findProd)
+          this.cart[findProd].quantity--;
+          if (this.cart[findProd].quantity <= 0) { this.cart.splice(findProd, 1) }
+          this.savingCart();
+          if (this.cart.length == 0) {
+            sessionStorage.removeItem('cart');
+          }
+        }).catch(err => console.log(err))
+
+      //window.location.reload()})
+      //                     }else{alert("no tenes este producto en tu carrito")}
+    },
+    removeAll(prod) {
+      axios.post('/api/clients/current/finalRemoveFromCart', `userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+        .then(resp => {
+          if (this.cart.some(product => product.id == prod.id)) {
+            let index = this.cart.findIndex(product => product.id == prod.id);
+            console.log(index);
+            this.cart.splice(index, 1);
             this.savingCart();
             if (this.cart.length == 0) {
               sessionStorage.removeItem('cart');
             }
-          }).catch(err => console.log(err))
-
-                            //window.location.reload()})
-       //                     }else{alert("no tenes este producto en tu carrito")}
+            // window.location.reload()
+          }
+        }).catch(err => console.log(err))
     },
-    removeAll(prod){
-        axios.post('/api/clients/current/finalRemoveFromCart',`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
-        .then(resp=>{ if(this.cart.some(product=>product.id==prod.id)){
-            let index=this.cart.findIndex(product=>product.id==prod.id);
-            console.log(index);
-            this.cart.splice(index,1);
-            this.savingCart();
-            if(this.cart.length==0){
-              sessionStorage.removeItem('cart');}
-           // window.location.reload()
-            }
-        }).catch(err=>console.log(err))
-    },
-    addProduct(prod){
-        axios.post("/api/clients/current/add1toCart",`userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' }})
-        .then(resp=>{
-            let id=this.cart.findIndex(product=>product.id==prod.id);
-            console.log(id)
-            console.log(this.cart)
-            this.cart[id].quantity++;
-            this.savingCart();
+    addProduct(prod) {
+      axios.post("/api/clients/current/add1toCart", `userProductId=${prod.id}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+        .then(resp => {
+          let id = this.cart.findIndex(product => product.id == prod.id);
+          console.log(id)
+          console.log(this.cart)
+          this.cart[id].quantity++;
+          this.savingCart();
 
         })
     },
 
-      logout() {
-        axios.post('/api/logout')
-          .then(response => {
-          })
-          .catch(error => {
-            console.log('Error', error.message);
-          })
-      },
-      validEmail(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-      },
-    },
     logout() {
       axios.post('/api/logout')
         .then(response => {
@@ -179,12 +194,22 @@ const app = Vue.createApp({
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-     payAll() {
-          console.log("pagando")
-          axios.post("https://mh-homebanking.herokuapp.com/api/transactions/cardPayment?amount=10&description=this is a card payment&cvv=255&thruDate=a&email=melba@mindhub.com", { headers: { 'content-type': 'application/x-www-form-urlencoded' } }).then(res => {
-            console.log(res);
-          })
-        }
+  },
+  logout() {
+    axios.post('/api/logout')
+      .then(response => {
+      })
+      .catch(error => {
+        console.log('Error', error.message);
+      })
+  },
+  validEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
 })
 
 app.mount("#app")
+
+

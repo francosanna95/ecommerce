@@ -18,9 +18,7 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -84,7 +82,7 @@ public class UserServiceImpl implements UserService {
                     salesRepo.save(eventToCart);
                     int eventStock = event.getStock();
                     event.setStock(eventStock - attendants);
-                    UserProductDTO userProductDTO=new UserProductDTO(eventToCart);
+                    UserProductDTO userProductDTO = new UserProductDTO(eventToCart);
                     userRepo.save(user);
                     productRepo.save(event);
                     return userProductDTO;
@@ -100,7 +98,7 @@ public class UserServiceImpl implements UserService {
             int eventStock = event.getStock();
             event.setStock(eventStock - attendants);
             salesRepo.save(clientEvent);
-            UserProductDTO userProductDTO=new UserProductDTO(clientEvent);
+            UserProductDTO userProductDTO = new UserProductDTO(clientEvent);
             userRepo.save(user);
             productRepo.save(event);
             return userProductDTO;
@@ -124,7 +122,7 @@ public class UserServiceImpl implements UserService {
                     ticketToCart.setQuantity(userProduct.getQuantity() + passangers);
                     ticketToCart.setFinalPrice(ticket.getPrice());
                     salesRepo.save(ticketToCart);
-                    UserProductDTO userProductDTO=new UserProductDTO(ticketToCart);
+                    UserProductDTO userProductDTO = new UserProductDTO(ticketToCart);
                     userRepo.save(user);
                     productRepo.save(ticket);
                     return userProductDTO;
@@ -132,14 +130,14 @@ public class UserServiceImpl implements UserService {
             }
 //sino creo una nueva instancia de esa venta
 
-            ClientTicket clientTicket = new ClientTicket(user,ticket,TicketClass.valueOf(clase));
+            ClientTicket clientTicket = new ClientTicket(user, ticket, TicketClass.valueOf(clase));
             clientTicket.setQuantity(passangers);
             clientTicket.setFinalPrice(ticket.getPrice());
             int ticketStock = ticket.getStock();
             ticket.setStock(ticketStock - passangers);
             user.getCurrentCart().add(clientTicket);
             salesRepo.save(clientTicket);
-            UserProductDTO userProductDTO=new UserProductDTO(clientTicket);
+            UserProductDTO userProductDTO = new UserProductDTO(clientTicket);
             userRepo.save(user);
             productRepo.save(ticket);
             return userProductDTO;
@@ -152,10 +150,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers) {
-    // comento esto porque no estamos implementado fechas aún.
-    //    LocalDateTime arrival = LocalDateTime.parse(arrivalDate, DateTimeFormatter.ISO_DATE_TIME);
-    //    LocalDateTime departure = LocalDateTime.parse(departureDate, DateTimeFormatter.ISO_DATE_TIME);
-    //    Pension pensionChoice = Pension.valueOf(pension);
+        // comento esto porque no estamos implementado fechas aún.
+        //    LocalDateTime arrival = LocalDateTime.parse(arrivalDate, DateTimeFormatter.ISO_DATE_TIME);
+        //    LocalDateTime departure = LocalDateTime.parse(departureDate, DateTimeFormatter.ISO_DATE_TIME);
+        //    Pension pensionChoice = Pension.valueOf(pension);
 
         // si el cliente ya tiene ese producto en el carrito simplemente actualizo la cantidad y el precio final
 
@@ -163,16 +161,16 @@ public class UserServiceImpl implements UserService {
             for (UserProduct userProduct : user.getCurrentCart()) {
                 if (Objects.equals(userProduct.getProduct().getProductId(), hotel.getProductId())) {
                     ClientHotel hotelToCart = (ClientHotel) userProduct;
-            //       aún no estamos implementado pensiones
-            //        hotelToCart.setPension(pensionChoice);
+                    //       aún no estamos implementado pensiones
+                    //        hotelToCart.setPension(pensionChoice);
                     hotelToCart.setUser(user);
-                    hotelToCart.setQuantity(userProduct.getQuantity()+ passangers*nights);
+                    hotelToCart.setQuantity(userProduct.getQuantity() + passangers * nights);
                     hotelToCart.setProduct(hotel);
                     hotelToCart.setFinalPrice(hotel.getPrice());
                     int hotelStock = hotel.getStock();
-                    hotel.setStock(hotelStock - passangers*nights);
+                    hotel.setStock(hotelStock - passangers * nights);
                     salesRepo.save(hotelToCart);
-                    UserProductDTO userProductDTO=new UserProductDTO(hotelToCart);
+                    UserProductDTO userProductDTO = new UserProductDTO(hotelToCart);
                     userRepo.save(user);
                     productRepo.save(hotel);
                     return userProductDTO;
@@ -184,14 +182,14 @@ public class UserServiceImpl implements UserService {
             //aún no estamos usando pensiones
             //clientHotel.setPension(pensionChoice);
             clientHotel.setUser(user);
-            clientHotel.setQuantity(passangers*nights);
+            clientHotel.setQuantity(passangers * nights);
             clientHotel.setProduct(hotel);
             clientHotel.setNights(nights);
             clientHotel.setFinalPrice(hotel.getPrice());
             int hotelStock = hotel.getStock();
-            hotel.setStock(hotelStock - passangers*nights);
+            hotel.setStock(hotelStock - passangers * nights);
             salesRepo.save(clientHotel);
-            UserProductDTO userProductDTO=new UserProductDTO(clientHotel);
+            UserProductDTO userProductDTO = new UserProductDTO(clientHotel);
             userRepo.save(user);
             productRepo.save(hotel);
             return userProductDTO;
@@ -267,6 +265,29 @@ public class UserServiceImpl implements UserService {
     public boolean sendInvoice(User user, byte[] bytes) {
         String email = emailServiceImpl.createEmail(user.getFirstName(), user.getLastName());
         emailServiceImpl.send(user.getEmail(), email, bytes);
+        return true;
+    }
+
+    @Override
+    public boolean createHistoryCart(User user) {
+        List<UserProduct> aux = user.getCurrentCart();
+
+        for (int i = 0; i < aux.size(); i++) {
+            UserProduct auxSale = new UserProduct();
+            auxSale.setUserHistory(user);
+            auxSale.setQuantity(aux.get(i).getQuantity());
+            auxSale.setProduct(aux.get(i).getProduct());
+            auxSale.setFinalPrice(aux.get(i).getFinalPrice());
+            salesRepo.save(auxSale);
+            userRepo.save(user);
+        }
+
+
+
+        for (int i = 0; i < aux.size(); i++) {
+           salesRepo.delete(aux.get(i));
+        }
+
         return true;
     }
 

@@ -175,6 +175,8 @@ public class UserController {
 
     }
 
+   // @PostMapping("/clients/current/sendToHistoryCart")//envía un producto del carrito al history Cart
+   // public ResponseEntity<String>
     @PostMapping("/clients/current/add1toCart")//sirve para agregar de a 1 producto
     public ResponseEntity<String> add1ProductToCart(Authentication authentication,@RequestParam Long userProductId){
         User user=userRepo.findByEmail(authentication.getName()).orElse(null);
@@ -276,4 +278,25 @@ public class UserController {
 
         return new ResponseEntity<String>("XXXXXXXXXXXXXXXXXXXXXXXXXXX", HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping("/client/current/endPurchase")
+    public ResponseEntity<String> endPurchase(Authentication auth){
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        if (userService.createHistoryCart(user)){
+         return new ResponseEntity<String>("Shopping history successful", HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity<String>("Something wrong happened", HttpStatus.NOT_FOUND);
+
+    }
+
+
+
+
 }

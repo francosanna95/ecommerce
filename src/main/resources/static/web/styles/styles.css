@@ -125,7 +125,7 @@ h5 {
     min-height: 250px;
 }
 
- .containerHijo .card1 .video {
+.containerHijo .card1 .video, .containerHijo .card1 img  {
     max-width: 100%;
     height: 100%;
     object-fit: cover;
@@ -354,7 +354,7 @@ div .imgDestino:hover img{
     width: 100%;
     height: 20%;
     padding: .5rem;
-    border-top: 1px solid rgb(107, 105, 105);
+    border-top: 1.5px solid rgb(107, 105, 105);
 }
 
 .contentDestino h2 {
@@ -588,6 +588,21 @@ html {
     font-size: 2rem;
 }
 
+/*stilos accordion*/
+
+.accordion-collapse.collapse.show {
+    /*background-image: url(../assets/avionPng.png); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    background-color: var(--main-bg-color);
+}
+
+.accordion-button, .table.align-middle, .accordion-body {
+    
+    background-color: var(--main-bg-color);
+}
+
 @media all and (max-width: 775px) {
     .offcanvas {
         width: 100%;
@@ -598,6 +613,14 @@ html {
         bottom: 15px;
         left: 15px;
         z-index: 10;
+    }
+
+    div.headerForm.movilBanerNone {
+        display: none!important;
+    }
+
+    .headerInfo.lineaDiv {
+        border-top: 2.2px solid rgb(136, 134, 134);
     }
 }
     

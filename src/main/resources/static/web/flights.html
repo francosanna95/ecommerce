@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
+                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center movilBanerNone">
                     <div class="container d-flex justify-content-center">
                         <div class="containerHijo" v-for="ticket in tickets.slice(0,1)">
                             <div class="card1">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
+                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4 lineaDiv">
                     <div class="d-flex flex-column scale">
                         <i class="fal fa-bed align-self-center"></i>
                         <a class="box" href="./lodging.html">Lodging</a>
@@ -114,12 +114,12 @@
                                     <fieldset>
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingInputLogIn"
-                                                placeholder="name@example.com">
+                                                placeholder="name@example.com" v-model="email">
                                             <label for="floatingInputLogIn">Email Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input type="password" class="form-control" id="floatingPasswordLogIn"
-                                                placeholder="password">
+                                                placeholder="password" v-model="password">
                                             <label for="floatingPasswordLogIn">Password</label>
                                         </div>
                                     </fieldset>
@@ -128,7 +128,7 @@
                             <div class="modal-footer justify-content-center align-items-center">
                                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
                                     data-bs-toggle="modal">Register</button>
-                                <button type="button" class="btn btn-info">Log In</button>
+                                <button type="button" class="btn btn-info" @click="login">Log In</button>
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 <!-- Main Content -->
-                <h2 class="text-center my-4">The best flights</h2>
+                <h2 class="text-center my-4">Best flights</h2>
                 <div class="containerDestinoHijo d-flex justify-content-center flex-wrap min-vh-100">
                     <div class="cardDestino" v-for="ticket in tickets">
                         <div class="imgDestino">
@@ -188,11 +188,10 @@
                             </div>
                         </div>
                         <div class="contentDestino">
-                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}},
-                                <small>{{ticket.departureLocation}}</small>
+                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}}
                             </h5>
                             <div class="contenido">
-                                <h6><strong>From: </strong>Buenos Aires</h6>
+                                <h6><strong>From: </strong>{{ticket.departureLocation}}</h6>
                                 <h6><strong>Agency: </strong>{{ticket.agencyName}}</h6>
                             </div>
                         </div>
@@ -382,6 +381,7 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
+<!--    <script src="./scripts/animation.js"></script>-->
     <script src="./scripts/flights.js"></script>
 </body>
 
