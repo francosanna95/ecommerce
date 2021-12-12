@@ -40,7 +40,7 @@ const app = Vue.createApp({
   },
   computed: {
   },
-  created: {
+  created() {
     axios.get("/api/clients/current")
       .then(response => {
         console.log(response.data)
@@ -53,7 +53,8 @@ const app = Vue.createApp({
           this.isAdmin = true;
         }
       })
-  },
+  }
+  ,
   methods: {
     newTicket() {
       axios({
@@ -124,8 +125,6 @@ const app = Vue.createApp({
               window.location.reload()
             }
           })
-
-          //setTimeout(() => location.reload(), 2500 );
         })
         .catch(err => {
           console.log(err);

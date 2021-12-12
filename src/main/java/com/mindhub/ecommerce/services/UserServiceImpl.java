@@ -283,12 +283,25 @@ public class UserServiceImpl implements UserService {
         }
 
 
-
         for (int i = 0; i < aux.size(); i++) {
-           salesRepo.delete(aux.get(i));
+            salesRepo.delete(aux.get(i));
         }
 
         return true;
+    }
+
+    @Override
+    public boolean sendHelpMesagge(String firstName, String lastName, String email, String country, String comment) {
+        try {
+            String message = "First name: " + firstName + '\n' + "Last name: " + lastName + '\n' + "Country: " + country + '\n' + "Comment: " + comment;
+            emailServiceImpl.sendHelpMessage("mhbrothers2025@gmail.com", message);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+
     }
 
 

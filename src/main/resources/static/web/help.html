@@ -204,33 +204,33 @@
                   <div class="form-outline w-50 pe-2">
                     <label class="form-label" for="firstName" for="nombre">First Name</span></label>
                     <input class="contact w-100 bg-segudary" type="text" id="firstName" class="w-100" placeholder="Ana"
-                      maxlength="30" required />
+                      maxlength="30" required v-model="firstName">
                   </div>
                   <div class="form-outline w-50 ps-2">
                     <label class="form-label" for="lastName">Last Name</label>
                     <input class="contact w-100" type="text" id="lastName" class="w-100" placeholder="Perez"
-                      maxlength="30" required />
+                      maxlength="30" required v-model="lastName">
                   </div>
                 </div>
                 <div class="d-flex w-100 py-2">
                   <div class="form-outline py-2 w-50 pe-2">
                     <label class="form-label" for="email">Email</label>
                     <input class="contact w-100" type="email" id="email" class="w-100"
-                      placeholder="youremail@yourmail.com" maxlength="30" required />
+                      placeholder="youremail@yourmail.com" maxlength="30" required v-model="email">
                   </div>
                   <div class="form-outline py-2 w-50 ps-2">
                     <label class="form-label" for="country">Country</label>
                     <input class="contact w-100" type="email" id="country" class="w-100" placeholder="Argentina"
-                      maxlength="30" required />
+                      maxlength="30" required v-model="country">
                   </div>
                 </div>
                 <div class="form-outline py-2">
                   <label class="form-label" for="comment">Leave us a comment</label>
                   <textarea class="form-control" id="comment" rows="4" placeholder="CommentBox" maxlength="150"
-                    required></textarea>
+                    required v-model="message"></textarea>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button type="button" class="btn btn-primary mt-3 mb-3 " href="mailto:wm2528@gmail.com">Send</button>
+                  <button type="button" class="btn btn-primary mt-3 mb-3 " @click="sendMessage">Send</button>
                 </div>
               </form>
             </div>
@@ -335,6 +335,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./scripts/help.js"></script>
 </body>

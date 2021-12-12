@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Melba's Trips - Flies</title>
+    <title>Melba's Trips - Flight tickets</title>
     <link rel="icon" href="./assets/melba-logo-ps.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
@@ -51,7 +51,7 @@
                         </div>
                         <div class="m-3 scale d-flex align-items-center">
                             <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                               data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
                             </a>
                         </div>
@@ -69,7 +69,9 @@
                             </a>
                         </div>
                         <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
-                            <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
+                            <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-sign-out-alt pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Log Out</p>
                             </a>
                         </div>
                         <!-- Baneado el help por tema de espacio
@@ -120,7 +122,7 @@
             <main class="container">
                 <!-- Modal log in/register -->
                 <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
-                    aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
+                    aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1" ref="loginModal">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <!-- Here a v-model -->
@@ -295,7 +297,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-buy"
+                                <button type="button" class="btn btn-buy" data-bs-dismiss="modal"
                                     @click.prevent="addToCart(ticket)">Add</button>
                             </div>
                         </div>
@@ -305,12 +307,14 @@
         </main>
         <!-- Cart btn N Cart offcanvas -->
         <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
-        <a class="position-relative"><span class="fal fa-luggage-cart"><span class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
-           {{totalProductsInCart()}}
-          </span></span></a>
-      </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  v-if="isAdmin || isClient">
+            aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
+            <a class="position-relative"><span class="fal fa-luggage-cart"><span
+                        class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{totalProductsInCart()}}
+                    </span></span></a>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+            v-if="isAdmin || isClient">
             <div class="offcanvas-header">
                 <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -320,30 +324,33 @@
                 <div class="tableContainer d-flex flex-column justify-content-center">
                     <table class="table align-middle text-dark">
                         <thead class="table text-success">
-                        <tr>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Service Type</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Sub Total</th>
-                        </tr>
+                            <tr>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Service Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Sub Total</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="prod in cart">
-                            <td>{{prod.productName}}</td>
-                            <td>{{prod.productType}}</td>
-                            <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
-                                <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
-                            </td>
-                            <td>${{prod.finalPrice}}</td>
-                            <td>${{prod.quantity*prod.finalPrice}}</button></td>
-                            <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
-                        </tr>
+                            <tr v-for="prod in cart">
+                                <td>{{prod.productName}}</td>
+                                <td>{{prod.productType}}</td>
+                                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button>
+                                    {{prod.quantity}}
+                                    <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
+                                </td>
+                                <td>${{prod.finalPrice}}</td>
+                                <td>${{prod.quantity*prod.finalPrice}}</button></td>
+                                <td><button type="button" class="btn-close" aria-label="Close"
+                                        @click="removeAll(prod)"></button></td>
+                            </tr>
                         </tbody>
                     </table>
                     <h4 class="d-flex align-self-center">Total ${{totalPriceCalc()}}</h4>
                 </div>
-                <a type="button" class="btn btn-buy" href="./cart.html"><p class="d-flex m-0">Buy</p>
+                <a type="button" class="btn btn-buy" href="./cart.html">
+                    <p class="d-flex m-0">Buy</p>
                 </a>
             </div>
         </div>
@@ -400,6 +407,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="https://unpkg.com/vue@next"></script>
     <script src="./scripts/flights.js"></script>
 </body>
