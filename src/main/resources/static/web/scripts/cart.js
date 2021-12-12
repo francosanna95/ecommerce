@@ -17,7 +17,7 @@ const app = Vue.createApp({
       roleUser: "",
       isPasswordVisible: false,
       isAdmin: false,
-      isClient: false
+      isClient: false,
 
       isPasswordVisible: false,
       cart: [],

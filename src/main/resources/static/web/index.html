@@ -615,7 +615,7 @@
                 <a class="position-relative"><span class="fal fa-luggage-cart"><span
                             class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {{totalProductsInCart()}}
-                            <span class="visually-hidden">unread messages</span></span></a>
+                            </span></span></a>
             </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" v-if="isAdmin || isClient">
                 <div class="offcanvas-header">
@@ -642,8 +642,8 @@
                                 <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
                                     <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                                 </td>
-                                <td>{{prod.finalPrice}}</td>
-                                <td>{{prod.quantity*prod.finalPrice}}</button></td>
+                                <td>${{prod.finalPrice}}</td>
+                                <td>${{prod.quantity*prod.finalPrice}}</button></td>
                                 <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
                             </tr>
                             </tbody>
