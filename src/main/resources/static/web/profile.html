@@ -186,81 +186,86 @@
         <div class="pt-3 pb-3">
           <h2 class="text-center">My profile</h2> 
         </div>
-        <div class="container d-flex justify-content-center min-vh-75 mb-4 flex-wrap">
-              <div class="perfilCaja w-20%">
-                  <img src="./assets/chicaMontania.jpg" alt="" class="imgCirculo logo">
-                  <h3>User: </h3>
-                  <p>{{clients.fantasyName}}</p>
-                  <a class="text-dark"href="help.html">Need help?</a>  
+        <div class="container d-flex flex-column">
+          <div class="container d-flex justify-content-center flex-wrap p-0">
+              <div class="w-75 d-flex justify-content-between flex-wrap border">
+                <div class="perfilCaja">
+                    <img src="./assets/chicaMontania.jpg" alt="" class="imgCirculo logo">
+                    <h3>User: </h3>
+                    <p>{{currentUser.fantasyName}}</p>
+                    <a class="text-dark"href="help.html">Need help?</a>
+                </div>
+                <div class="p-2 d-flex flex-column justify-content-center">
+                    <h3>Personal information</h3>
+                    <h5 class="fw-bold">First Name</h5>
+                    <p class="ps-2">{{currentUser.firstName}}</p>
+                    <h5 class="fw-bold">Last Name</h5>
+                    <p class="ps-2">{{currentUser.lastName}}</p>
+                    <h5 class="fw-bold">Mail:</h5>
+                    <p class="ps-2">{{currentUser.email}}</p>
+                    <h5 class="fw-bold">User Name</h5>
+                    <p class="ps-2">{{currentUser.fantasyName}}</p>
+                </div>
+                <div class="d-flex justify-content-between  flex-column align-items-center flex-wrap  p-md-3">
+                    <h3>Modify data</h3>
+                    <form class="my-2 d-flex justifi-content-center">
+                        <div class="form-outline d-flex flex-column">
+                            <label class="form-label me-2" for="email" for="nombre">Email</label>
+                            <div>
+                              <input class="contact  bg-segudary " type="email" id="email" placeholder="Ani@yuyu.com" maxlength="30"/>
+                              <button type="button" class="btn btn-primary ms-2">add</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="my-2 d-flex justifi-content-center">
+                        <div class="form-outline d-flex flex-column">
+                            <label class="form-label me-2" for="user" for="nombre">User Name</label>
+                            <div>
+                              <input class="contact  bg-segudary " type="text" id="user" placeholder="Ana33" maxlength="30"/>
+                              <button type="button" class="btn btn-primary ms-2">add</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-center mt-4">
+                      <button type="button" class="btn btn-primary my-2">save</button>
+                    </div> <!--boton guardar cambios-->
+                  </div>
               </div>
-              <div class="p-3 w-40% border">
-                  <h3>Personal information</h3>
-                  <h5 class="fw-bold">First Name</h5>
-                  <p class="ps-2">{{clients.firstName}}</p> 
-                  <h5 class="fw-bold">Last Name</h5>
-                  <p class="ps-2">{{clients.lastName}}</p>
-                  <h5 class="fw-bold">Mail:</h5>
-                  <p class="ps-2">{{clients.email}}</p>
-                  <h5 class="fw-bold">User Name</h5>
-                  <p class="ps-2">{{clients.fantasyName}}</p>  
-              </div>
-              <div class="d-flex justify-content-center  flex-column align-items-center flex-wrap border w-40 p-md-3">
-                  <form class="my-2 d-flex justifi-content-center">
-                      <div class="form-outline d-flex flex-column">
-                          <label class="form-label me-2" for="email" for="nombre">Email</label>
-                          <div>
-                            <input class="contact  bg-segudary " type="email" id="email" placeholder="Ani@yuyu.com" maxlength="30"/>
-                            <button type="button" class="btn btn-primary ms-2">add</button>
-                          </div>
-                      </div>
-                  </form>
-                  <form class="my-2 d-flex justifi-content-center">
-                      <div class="form-outline d-flex flex-column">
-                          <label class="form-label me-2" for="user" for="nombre">User Name</label>
-                          <div>
-                            <input class="contact  bg-segudary " type="text" id="user" placeholder="Ana33" maxlength="30"/>
-                            <button type="button" class="btn btn-primary ms-2">add</button>
-                          </div>
-                      </div>
-                  </form>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center mb-4">
-          <button type="button" class="btn btn-primary ms-2">save</button>
-        </div> <!--boton guardar cambios-->
-        <div class="accordion d-flex justify-content-center" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item  w-lg-75">
-          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-              History purchase
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-            <div class="accordion-body">
-              <table class="table align-middle text-dark">
-              <thead class="table text-success p-2">
-                <tr>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Service Type</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Unit Price</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>event</td>
-                  <td>vip</td>
-                  <td>25000</td>
-                  <td>12500</td>
-                  <td>25000</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
           </div>
-        </div>
-      </div>
+          <div class="accordion d-flex justify-content-center w-100" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item w-75">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                  History purchase
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <table class="table align-middle text-dark">
+                  <thead class="table text-success p-2">
+                    <tr>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Service Type</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col" class="d-none d-sm-blocl">Unit Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>event</td>
+                      <td>vip</td>
+                      <td>25000</td>
+                      <td class="d-none d-sm-blocl">12500</td>
+                      <td>25000</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+        </div><!--cierre acordeon-->
+      </div><!--Cierre container perfir-->
       </main>
       <footer>
         <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
