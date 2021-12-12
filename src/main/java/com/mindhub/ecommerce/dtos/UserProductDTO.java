@@ -26,6 +26,7 @@ public class UserProductDTO {
         this.finalPrice = product.getPrice();
         this.imgUrl = product.getImgUrl();
 
+
         if (product instanceof Event) {
             this.productType = "EVENT";
         } else if (product instanceof Hotel) {
@@ -114,5 +115,14 @@ public class UserProductDTO {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Details of purchase N°" + id +
+                '\n' +"Product name: "+ productName  + ". Service Type:" + productType +
+                '\n' +"Quantity: "+ quantity + ". Product unit price: $" + productPrice +
+                '\n' + "Product discount: " + disscountCode + '%' + " | Final price: $" + finalPrice;
+
     }
 }

@@ -8,7 +8,6 @@ const app = Vue.createApp({
             cart: [],
             currentUser: [],
 
-
             firstName: "",
             lastName: "",
             roleUser: "",
@@ -65,16 +64,20 @@ const app = Vue.createApp({
     },
 
 })
+app.mount("#app")
+
 var myWidget = cloudinary.createUploadWidget({
-    cloudName: 'melbastrips', 
+    cloudName: 'melbastrips',
     uploadPreset: 'testing',
-    folder: 'Profiles'}, (error, result) => { 
-      if (!error && result && result.event === "success") { 
-        console.log('Done! Here is the image info: ', result.info); 
+    folder: 'Profiles'}, (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log('Done! Here is the image info: ', result.info);
       }
     }
   )
-  
+
 document.getElementById("upload_widget").addEventListener("click", function(){
     myWidget.open();
 }, false);
+
+

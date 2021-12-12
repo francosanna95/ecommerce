@@ -7,8 +7,6 @@ const app = Vue.createApp({
             cart: [],
             clase: "",
             passengers: 1,
-            departureDate: "",
-            arrivalDate: "",
             email: "",
             password: "",
             cart: [],
@@ -97,31 +95,53 @@ const app = Vue.createApp({
             return array.reduce(reducer, 0);
         },
         addToCart(ticket) {
-            console.log(ticket.productId);
-            axios.post("/api/clients/current/addToCart/ticket", `ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
-                .then(resp => {
-                    ticket = resp.data;
-                    console.log(ticket);
-                    if (ticket.stock <= 0) {
-                        alert("No stock");
-                    } else {
-                        ticket.stock--;
-                        console.log(this.cart);
-                        if (this.cart.some(prod => prod.id == ticket.id)) {
-                            let id = this.cart.findIndex(prod => prod.id == ticket.id);
-                            //actualizar cantidad en ese producto
-                            this.cart[id].quantity = ticket.quantity;
-                        } else {
-                            ticket.quantity = this.passengers;
-                            ticket.clase = this.clase;
-                            ticket.subtotal = ticket.quantity * ticket.price;
-                            this.cart.push(ticket);
-                            console.log(this.cart);
-                        }
-                        this.savingCart();
+            if (!(this.isAdmin || this.isClient)) {
+                swal("Please Log in or Sign Up to proceed with your purchase!", {
+                    title: "It seems that you are not logged in",
+                    buttons: ["Maybe next time!", "I want to Log In!"],
+                    icon: "info"
+                }).then(res => {
+                    if (res) {
+                        this.$refs.loginModal.modal("toggle")
+                        this.$refs.loginModal.style.display = "block"
                     }
                 })
-                .catch(err => console.log(err));
+            } else {
+                axios.post("/api/clients/current/addToCart/ticket", `ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
+                    .then(resp => {
+                        ticket = resp.data;
+                        console.log(ticket);
+                        if (ticket.stock <= 0) {
+                            alert("No stock");
+                        } else {
+                            ticket.stock--;
+                            console.log(this.cart);
+                            if (this.cart.some(prod => prod.id == ticket.id)) {
+                                let id = this.cart.findIndex(prod => prod.id == ticket.id);
+                                //actualizar cantidad en ese producto
+                                this.cart[id].quantity = ticket.quantity;
+                            } else {
+                                ticket.quantity = this.passengers;
+                                ticket.clase = this.clase;
+                                ticket.subtotal = ticket.quantity * ticket.price;
+                                this.cart.push(ticket);
+                                console.log(this.cart);
+                            }
+                            this.savingCart();
+                        }
+                    })
+                    .catch(err => console.log(err));
+                swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
+                    buttons: ["Great!", "Take me to my cart"],
+                    icon: "info"
+                })
+                    .then(res => {
+                        if (res) {
+                           window.location.href = "./cart.html"
+                        }
+                    })
+            }
+
         },
         deleteCartObject(ticket) {
             if (this.cart.some(prod => prod.productId == ticket.productId)) {

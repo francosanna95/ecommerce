@@ -86,7 +86,12 @@ public class UserController {
 
     @GetMapping("/clients/current")
     public UserDTO getCurrentClient(Authentication auth) {
-        return new UserDTO(userRepo.findByEmail(auth.getName()).orElse(null));
+        try {
+            return new UserDTO(userRepo.findByEmail(auth.getName()).orElse(null));
+
+        } catch (NullPointerException nullPointerException) {
+            return null;
+        }
     }
 
     @GetMapping("/clients/{id}")
@@ -108,9 +113,9 @@ public class UserController {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
 
         }
-        UserProductDTO userProductDTO=userService.addEventToClientCart(user, event, isVip, attendants);
+        UserProductDTO userProductDTO = userService.addEventToClientCart(user, event, isVip, attendants);
 
-        if (userProductDTO!=null) {
+        if (userProductDTO != null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
 
@@ -119,7 +124,7 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/hotel")
-    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId,@RequestParam Integer nights, @RequestParam Integer passangers) {
+    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam Integer nights, @RequestParam Integer passangers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(hotelId).orElse(null);
@@ -135,9 +140,9 @@ public class UserController {
         if (hotel == null) {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
-        UserProductDTO userProductDTO= userService.addHotelToClientCart(user, hotel, nights, passangers);
+        UserProductDTO userProductDTO = userService.addHotelToClientCart(user, hotel, nights, passangers);
         //TODO
-        if (userProductDTO!=null) {
+        if (userProductDTO != null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
         return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.CREATED);
@@ -163,9 +168,9 @@ public class UserController {
         if (ticket == null) {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
-        UserProductDTO userProductDTO=userService.addTicketToClientCart(user, ticket, clase, passengers);
+        UserProductDTO userProductDTO = userService.addTicketToClientCart(user, ticket, clase, passengers);
 
-        if (userProductDTO!=null) {
+        if (userProductDTO != null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);
         }
 
@@ -175,12 +180,12 @@ public class UserController {
 
     }
 
-   // @PostMapping("/clients/current/sendToHistoryCart")//envía un producto del carrito al history Cart
-   // public ResponseEntity<String>
+    // @PostMapping("/clients/current/sendToHistoryCart")//envía un producto del carrito al history Cart
+    // public ResponseEntity<String>
     @PostMapping("/clients/current/add1toCart")//sirve para agregar de a 1 producto
-    public ResponseEntity<String> add1ProductToCart(Authentication authentication,@RequestParam Long userProductId){
-        User user=userRepo.findByEmail(authentication.getName()).orElse(null);
-        UserProduct productToAdd=salesRepo.findById(userProductId).orElse(null);
+    public ResponseEntity<String> add1ProductToCart(Authentication authentication, @RequestParam Long userProductId) {
+        User user = userRepo.findByEmail(authentication.getName()).orElse(null);
+        UserProduct productToAdd = salesRepo.findById(userProductId).orElse(null);
 
         if (user == null) {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
@@ -189,11 +194,11 @@ public class UserController {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
 
-       if(userService.add1ProductToCart(user,productToAdd)){
-           return new ResponseEntity<>("Agregado con exito",HttpStatus.CREATED);
-       }
-       return new ResponseEntity<>("Error",HttpStatus.BAD_REQUEST);
-   }
+        if (userService.add1ProductToCart(user, productToAdd)) {
+            return new ResponseEntity<>("Agregado con exito", HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+    }
 
     @PostMapping("/clients/current/removeFromCart")  //sirve para eliminar producto de 1 en 1
     public ResponseEntity<String> removeProductFromCart(Authentication auth, @RequestParam Long userProductId) {
@@ -259,36 +264,33 @@ public class UserController {
 
         return new ResponseEntity<String>("Something wrong happened", HttpStatus.BAD_REQUEST);
 
-        //TODO
 
     }
 
-    @PatchMapping("/client/current/modify")
-    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password){
-    //TODO MODIFY CLIENT
-
-
-
-
-
-
-
-
+    @PatchMapping("/clients/current/modify")
+    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password) {
+        //TODO MODIFY CLIENT
 
 
         return new ResponseEntity<String>("XXXXXXXXXXXXXXXXXXXXXXXXXXX", HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/client/current/endPurchase")
-    public ResponseEntity<String> endPurchase(Authentication auth){
+    @PostMapping("/clients/current/endPurchase")
+    public ResponseEntity<String> endPurchase(Authentication auth, HttpServletResponse response) throws IOException {
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
 
         if (user == null) {
             return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
         }
+        Set<UserProductDTO> shoppingBag = user.getCurrentCart().stream().map(UserProductDTO::new).collect(Collectors.toSet());
 
-        if (userService.createHistoryCart(user)){
-         return new ResponseEntity<String>("Shopping history successful", HttpStatus.OK);
+        ByteArrayOutputStream outPutStream = pdfServiceImpl.generatePDF(response, user, shoppingBag);
+        byte[] bytes = outPutStream.toByteArray();
+
+        userService.sendInvoice(user, bytes);
+
+        if (userService.createHistoryCart(user)) {
+            return new ResponseEntity<String>("Shopping history successful", HttpStatus.OK);
 
         }
 
@@ -296,7 +298,16 @@ public class UserController {
 
     }
 
+    @PostMapping("/help")
+    public ResponseEntity<String> helpMessage(String firstName, String lastName, String email, String country, String comment) {
 
+        if (userService.sendHelpMesagge(firstName, lastName, email, country, comment)) {
+            return new ResponseEntity<String>("Thanks for your contact, we will contact you as soon as possible", HttpStatus.OK);
+
+        }
+        return new ResponseEntity<String>("Something wrong happened", HttpStatus.NOT_FOUND);
+
+    }
 
 
 }

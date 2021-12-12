@@ -29,7 +29,6 @@ const app = Vue.createApp({
 
     axios.get("/api/clients/current")
       .then(response => {
-        console.log(response.data)
         this.currentUser = response.data
         if (response.data.role == "CLIENT") {
           this.isClient = true;
@@ -87,8 +86,11 @@ const app = Vue.createApp({
   },
   methods: {
     payAll(e) {
-      console.log(e);
-      console.log("pagando")
+      swal({
+        title: "We are processing your purchase, this may take a few moments...",
+        buttons: "OK!",
+        icon: "success"
+      })
       axios.post("https://mh-homebanking.herokuapp.com/api/transactions/cardPayment?amount=10&description=thispayment&cvv=255&thruDate=a&email=melba@mindhub.com", { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
         .then(res => {
           console.log(res);
@@ -98,16 +100,30 @@ const app = Vue.createApp({
             //alerta con el error
           }
         })
+        .catch(response => {
+          swal("Mmm...", {
+            title: "Something went wron with the details you provided us, please retry.",
+            buttons: "OK!",
+            icon: "error"
+          })
+        })
 
     },
     finalPurchase() {
-      console.log("ENTRANDO A FINAL PURCHASE");
-      axios.post("/api/client/current/endPurchase")
-        .then(response => {
-          console.log(response);
+      axios.post("/api/clients/current/endPurchase")
+        .then(response => {         
           if (response.status == 200) {
-            console.log(response);
-            sessionStorage.removeItem('cart'); //alerta de exito
+           sessionStorage.removeItem('cart'); //alerta de exito
+            swal("We have sent you an email with your invoice and the details of your purchase", {
+              title: "Thanks for buying with us!",
+              buttons: "OK!",
+              icon: "success"
+            })
+              .then((e) => {
+                if (e) {
+                  window.location.href = "./profile.html"
+                }
+              })
           }
 
         })
