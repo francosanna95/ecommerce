@@ -343,7 +343,8 @@ div .imgDestino:hover img{
     height: 80%;
     z-index: 1;
     transition: 1.5s ease;
-    cursor:pointer
+    cursor: pointer;
+
 
     /*
     en mi vista el alto queda un poco pasando la linea...en 71% calza perfecto
@@ -627,6 +628,9 @@ html {
         border-top: 2.2px solid rgb(136, 134, 134);
     }
 
+    .estiloHelp, .estiloHelp form {
+        width: 100%!important;
+    }
 
 }
     
