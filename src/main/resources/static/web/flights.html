@@ -51,7 +51,7 @@
                         </div>
                         <div class="m-3 scale d-flex align-items-center">
                             <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                               data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
                             </a>
                         </div>
@@ -254,36 +254,41 @@
                                     <h5 class="m-2">From: {{ticket.departureLocation}}</h5>
                                     <h5 class="m-2">To: {{ticket.arrivalLocation}}</h5>
                                 </div>
-                                <div class="d-flex flex-row justify-content-center align-items-center m-2">
-                                    <h5>Select your class</h5>
-                                    <select v-model="clase" class="form-control form-control-sm selectClassModal m-2"
-                                        aria-label="Default select example">
-                                        <optgroup label="Class...">
-                                            <option value="FIRST">First</option>
-                                            <option value="PREMIUM">Premium</option>
-                                            <option value="BUSINESS">Business</option>
-                                            <option value="ECONOMIC">Economic</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="d-flex flex-row justify-content-center align-items-center m-2">
-                                    <h5>Select tickets amount</h5>
-                                    <select v-model="passengers"
-                                        class="form-control form-control-sm selectClassModal m-2"
-                                        aria-label="Default select example">
-                                        <optgroup label="Amount...">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                            <option value="5">Five</option>
-                                        </optgroup>
-                                    </select>
+                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                    <div class="d-flex flex-row justify-content-center align-items-center m-2">
+                                        <h5>Class</h5>
+                                        <select v-model="clase" class="form-control form-control-sm selectClassModal m-2"
+                                            aria-label="Default select example">
+                                            <optgroup label="Class...">
+                                                <option value="FIRST">First</option>
+                                                <option value="PREMIUM">Premium</option>
+                                                <option value="BUSINESS">Business</option>
+                                                <option value="ECONOMIC">Economic</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex flex-row justify-content-center align-items-center m-2">
+                                        <h5>Tickets</h5>
+                                        <select v-model="passengers"
+                                            class="form-control form-control-sm selectClassModal m-2"
+                                            aria-label="Default select example">
+                                            <optgroup label="Amount...">
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                                <option value="4">Four</option>
+                                                <option value="5">Five</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">Dates</span>
-                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
-                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                                    <span class="input-group-text">Departure Date</span>
+                                    <input v-model="departureDate" type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
+                                </div>
+                                <div class="input-group m-2">
+                                    <span class="input-group-text">Arrival Date</span>
+                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control" placeholder="End">
                                 </div>
                                 <h5 v-if="clase === 'FIRST'">Price: <span class="text-danger">${{ticket.price *
                                         1.5 * passengers}}</span></h5>
@@ -307,6 +312,12 @@
         </main>
         <!-- Cart btn N Cart offcanvas -->
         <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
+        <a class="position-relative"><span class="fal fa-luggage-cart"><span class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
+           {{totalProductsInCart()}}
+          </span></span></a>
+      </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  v-if="isAdmin || isClient">
             aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
             <a class="position-relative"><span class="fal fa-luggage-cart"><span
                         class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">

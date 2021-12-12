@@ -8,6 +8,8 @@ const app = Vue.createApp({
             cart: [],
             clase: "",
             passengers: 1,
+            departureDate: "",
+            arrivalDate: "",
             email: "",
             password: "",
             cart: [],

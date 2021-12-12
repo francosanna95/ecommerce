@@ -84,7 +84,7 @@
                 <div class="headerForm d-flex flex-column justify-content-evenly align-items-center p-sm-3">
                     <div class="d-flex flex-column formDiv">
                         <h4 class="align-self-center">Lodging with flexible booking</h4>
-                        <form class="d-flex flex-column align-items-center">
+                        <form class="d-flex flex-column align-items-center" id="buscar">
                             <div class="d-flex flex-column flex-lg-row">
                                 <div class="input-group d-flex flex-wrap m-2">
                                     <span class="input-group-text d-none d-sm-block">My destination is...</span>
@@ -110,7 +110,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4 lineaDiv">
+                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4  mb-3 lineaDiv">
                     <div class="d-flex flex-column scale">
                         <i class="fal fa-bed align-self-center"></i>
                         <a class="box" href="./lodging.html">Lodging</a>
@@ -303,7 +303,7 @@
                 </div>
                 <!--Cards Vuelos-->
                 <h3 class="text-center m-3" id="tickets">The best flights</h3>
-                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap" v-if="filteredTickets.length > 0">
                     <div class="cardDestino" v-for="ticket in filteredTickets">
                         <div class="imgDestino">
                             <img :src="ticket.imgUrl" alt="">
@@ -334,6 +334,13 @@
                         <div class="oferta">
                             <img :src="'./assets/'+ ticket.disscountCode +'.png'" alt="">
                         </div>
+                    </div>
+                </div>
+                <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
+                     <div class="cardDestino sinProductoIndex p-0">
+                        <img src="./assets/caraTriste.png" alt="imagen">
+                        <h4 class="mb-0">Not available</h4> 
+                        <a href="flights.html" class=" mt-1 btn btn-primary btn-buy pt-1">see available</a>
                     </div>
                 </div>
                 <!-- Modal info tarjeta para carrito -->
@@ -407,7 +414,7 @@
                 </div>
                 <!--Cards Events-->
                 <h3 class="text-center m-3" id="events">The most desired events</h3>
-                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap" v-if="filteredEvents.length > 0">
                     <div class="cardDestino" v-for=" event in filteredEvents">
                         <div class="imgDestino">
                             <img :src="event.imgUrl" alt="">
@@ -437,6 +444,14 @@
                             <img :src="'./assets/'+ event.disscountCode +'.png'" alt="img">
                         </div>
                     </div>
+                </div>
+                <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
+                     <div class="cardDestino sinProductoIndex p-0">
+                        <img src="./assets/caraTriste.png" alt="imagen">
+                        <h4 class="mb-0">Not available</h4> 
+                        <a href="activities.html" class=" mt-1 btn btn-primary btn-buy pt-1">see available</a>
+                    </div>
+                </div>
                     <!-- Modal info tarjeta para carrito -->
                     <div class="modal fade" id="modalEvent" data-bs-keyboard="false" tabindex="-1"
                          aria-labelledby="labelEvent" aria-hidden="true">
@@ -489,10 +504,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <!--Cards lodging-->
                 <h3 class="text-center m-3" id="hotels">The best hotels</h3>
-                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap" v-if="filteredHotels.length > 0">
                     <div class="cardDestino" v-for="hotel in filteredHotels">
                         <div class="imgDestino">
                             <img :src="hotel.imgUrl" alt="imagen">
@@ -521,8 +535,15 @@
                         <div class="oferta">
                             <img :src="'./assets/'+ hotel.disscountCode +'.png'" alt="sale">
                         </div>
+                    </div><!--aqui termina el div con v-for-->
+                </div> 
+                <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
+                     <div class="cardDestino sinProductoIndex p-0">
+                        <img src="./assets/caraTriste.png" alt="imagen">
+                        <h4 class="mb-0">Not available</h4> 
+                        <a href="lodging.html" class=" mt-1 btn btn-primary btn-buy pt-1">see available</a>
                     </div>
-                    <!--aqui termina el div con v-for-->
+                </div>
                     <!-- Modal info tarjeta para carrito -->
                     <div class="modal fade" id="modalHotel" data-bs-keyboard="false" tabindex="-1"
                          aria-labelledby="labelProduct" aria-hidden="true">
@@ -605,8 +626,6 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
 
             </main>
             <!-- Cart btn N Cart offcanvas -->
