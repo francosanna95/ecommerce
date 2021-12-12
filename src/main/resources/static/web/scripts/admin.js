@@ -40,7 +40,7 @@ const app = Vue.createApp({
   },
   computed: {
   },
-  created: {
+  created() {
     axios.get("/api/clients/current")
       .then(response => {
         console.log(response.data)
@@ -186,5 +186,3 @@ const app = Vue.createApp({
   },
 })
 app.mount("#app")
-
-
