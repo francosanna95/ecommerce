@@ -39,4 +39,9 @@ public class ClientEvent extends UserProduct {
         }
 
     }
+
+    @Override //TODO for PDF
+    public String toString() {
+        return super.toString();
+    }
 }
