@@ -8,7 +8,6 @@ const app = Vue.createApp({
             cart: [],
             currentUser: [],
 
-
             firstName: "",
             lastName: "",
             roleUser: "",

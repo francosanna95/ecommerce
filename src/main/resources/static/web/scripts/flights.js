@@ -1,4 +1,3 @@
-
 const app = Vue.createApp({
 
     data() {
@@ -8,8 +7,6 @@ const app = Vue.createApp({
             cart: [],
             clase: "",
             passengers: 1,
-            departureDate: "",
-            arrivalDate: "",
             email: "",
             password: "",
             cart: [],
@@ -105,11 +102,8 @@ const app = Vue.createApp({
                     icon: "info"
                 }).then(res => {
                     if (res) {
-                        console.log(this.$refs.loginModal);
-                        console.log(this.$refs.loginModal.modal);
-                        console.log($("#exampleModalToggle"));
-                        // this.$refs.loginModal.modal("toggle")
-                        // this.$refs.loginModal.style.display = "block"
+                        this.$refs.loginModal.modal("toggle")
+                        this.$refs.loginModal.style.display = "block"
                     }
                 })
             } else {
@@ -143,7 +137,7 @@ const app = Vue.createApp({
                 })
                     .then(res => {
                         if (res) {
-                            window.location.href = "./cart.html"
+                           window.location.href = "./cart.html"
                         }
                     })
             }
