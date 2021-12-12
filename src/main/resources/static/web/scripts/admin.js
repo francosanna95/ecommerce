@@ -186,3 +186,54 @@ const app = Vue.createApp({
   },
 })
 app.mount("#app")
+
+var myWidgetTicket = cloudinary.createUploadWidget({
+  cloudName: 'melbastrips', 
+  uploadPreset: 'testing',
+  folder: 'Flies'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info);
+      console.log(result);
+    }
+  }
+)
+
+document.getElementById("upload_widget_ticket").addEventListener("click", function(){
+  myWidgetTicket.open();
+}, false);
+
+//hasta aca seria la funcion para guardar en la carpeta Flies del cloudinary
+
+var myWidgetLodging = cloudinary.createUploadWidget({
+  cloudName: 'melbastrips', 
+  uploadPreset: 'testing',
+  folder: 'Lodging'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info);
+      console.log(result); 
+    }
+  }
+)
+
+document.getElementById("upload_widget_lodging").addEventListener("click", function(){
+  myWidgetLodging.open();
+}, false);
+
+//hasta aca seria la funcion para guardar en la carpeta Lodging del cloudinary
+
+var myWidgetEvent = cloudinary.createUploadWidget({
+  cloudName: 'melbastrips', 
+  uploadPreset: 'testing',
+  folder: 'Activities'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+      console.log(result);
+    }
+  }
+)
+
+document.getElementById("upload_widget_event").addEventListener("click", function(){
+  myWidgetEvent.open();
+}, false);
+
+//hasta aca seria la funcion para guardar en la carpeta Activities del cloudinary

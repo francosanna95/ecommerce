@@ -32,47 +32,49 @@
             <header class="d-flex flex-column justify-content-center">
                 <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
                     <div class="d-flex flex-row align-items-center">
-                      <a href="./index.html">
-                        <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
-                      <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
+                        <a href="./index.html">
+                            <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
+                        <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
                     </div>
                     <div class="d-flex flex-wrap justify-content-center flex-sm-row">
-                      <div class="m-3 scale d-flex align-items-center">
-                        <a href="./index.html" class="linkCursor d-flex align-items-center"><i
-                            class="fal fa-home-lg-alt pe-1"></i>
-                          <p class="d-flex d-none d-lg-block m-0">Home</p>
-                        </a>
-                      </div>
-                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
-                        <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
-                            class="fal fa-cogs pe-1"></i>
-                          <p class="d-flex d-none d-lg-block m-0">Admin</p>
-                        </a>
-                      </div>
-                      <div class="m-3 scale d-flex align-items-center">
-                        <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                          data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
-                          <p class="d-flex d-none d-lg-block m-0">Log In</p>
-                        </a>
-                      </div>
-                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
-                        <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
-                            class="fal fa-user pe-1"></i>
-                          <p class="d-flex d-none d-lg-block m-0">Profile</p>
-                        </a>
-                      </div>
-                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
-                        <!-- Button trigger modal cart -->
-                        <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
-                            class="fal fa-luggage-cart pe-1"></i>
-                          <p class="d-flex d-none d-lg-block m-0">Cart</p>
-                        </a>
-                      </div>
-                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
-                        <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
-                        </a>
-                      </div>
-                      <!-- Baneado el help por tema de espacio
+                        <div class="m-3 scale d-flex align-items-center">
+                            <a href="./index.html" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-home-lg-alt pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Home</p>
+                            </a>
+                        </div>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
+                            <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-cogs pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Admin</p>
+                            </a>
+                        </div>
+                        <div class="m-3 scale d-flex align-items-center">
+                            <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Log In</p>
+                            </a>
+                        </div>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                            <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-user pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Profile</p>
+                            </a>
+                        </div>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                            <!-- Button trigger modal cart -->
+                            <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
+                                    class="fal fa-luggage-cart pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Cart</p>
+                            </a>
+                        </div>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                            <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-sign-out-alt pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Log Out</p>
+                            </a>
+                        </div>
+                        <!-- Baneado el help por tema de espacio
                       <div class="m-3 scale d-flex align-items-center">
                         <a href="./help.html" class="linkCursor d-flex align-items-center "><i
                             class="fal fa-question-square pe-1"></i>
@@ -80,7 +82,7 @@
                         </a>
                       </div>-->
                     </div>
-                  </div>    
+                </div>
                 <div class="headerForm d-flex flex-column justify-content-evenly align-items-center p-sm-3">
                     <div class="d-flex flex-column formDiv">
                         <h4 class="align-self-center">Lodging with flexible booking</h4>
@@ -110,7 +112,8 @@
                         </form>
                     </div>
                 </div>
-                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4  mb-3 lineaDiv">
+                <div
+                    class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4  mb-3 lineaDiv">
                     <div class="d-flex flex-column scale">
                         <i class="fal fa-bed align-self-center"></i>
                         <a class="box" href="./lodging.html">Lodging</a>
@@ -189,23 +192,27 @@
                                             </select>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input v-model="firstName" type="text" class="form-control" id="floatingFirstRegister"
-                                                placeholder="first_name" minlength="3" maxlength="25" required>
+                                            <input v-model="firstName" type="text" class="form-control"
+                                                id="floatingFirstRegister" placeholder="first_name" minlength="3"
+                                                maxlength="25" required>
                                             <label for="floatingFirstRegister">First Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input v-model="lastName" type="text" class="form-control" id="floatingLastRegister"
-                                                placeholder="last_name" minlength="3" maxlength="25" required>
+                                            <input v-model="lastName" type="text" class="form-control"
+                                                id="floatingLastRegister" placeholder="last_name" minlength="3"
+                                                maxlength="25" required>
                                             <label for="floatingLastRegister">Last Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input v-model="email" type="email" class="form-control" id="floatingEmailRegister"
-                                                placeholder="name@example.com" minlength="7" maxlength="40" required>
+                                            <input v-model="email" type="email" class="form-control"
+                                                id="floatingEmailRegister" placeholder="name@example.com" minlength="7"
+                                                maxlength="40" required>
                                             <label for="floatingEmailRegister">Email Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input v-model="password" type="password" class="form-control" id="floatingPasswordRegister"
-                                                placeholder="password" minlength="6" maxlength="25" required>
+                                            <input v-model="password" type="password" class="form-control"
+                                                id="floatingPasswordRegister" placeholder="password" minlength="6"
+                                                maxlength="25" required>
                                             <label for="floatingPasswordRegister">Password</label>
                                         </div>
                                     </fieldset>
@@ -223,7 +230,7 @@
                 <div class="d-flex ">
                     <div class="containerPadre">
                         <div class="containerHijo index" v-for="ticket in tickets.slice(1,2)">
-<!--                           duda... esto porq esta dentro de un v-for?-->
+                            <!--                           duda... esto porq esta dentro de un v-for?-->
                             <div class="card1 mediana">
                                 <video class="video" autoplay muted loop>
                                     <source src="./assets/videoIndex2.mp4" type="video/mp4">
@@ -303,7 +310,8 @@
                 </div>
                 <!--Cards Vuelos-->
                 <h3 class="text-center m-3" id="tickets">The best flights</h3>
-                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap" v-if="filteredTickets.length > 0">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap"
+                    v-if="filteredTickets.length > 0">
                     <div class="cardDestino" v-for="ticket in filteredTickets">
                         <div class="imgDestino">
                             <img :src="ticket.imgUrl" alt="">
@@ -327,7 +335,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary btn-buy" data-bs-toggle="modal"
-                                        data-bs-target="#modalProduct" @click="flyShow(ticket)">More</button>
+                                    data-bs-target="#modalProduct" @click="flyShow(ticket)">More</button>
                                 <!--<a @click.prevent="addToCart(ticket)"href="">Add</a>-->
                             </div>
                         </div>
@@ -337,21 +345,21 @@
                     </div>
                 </div>
                 <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
-                     <div class="cardDestino sinProductoIndex p-0">
+                    <div class="cardDestino sinProductoIndex p-0">
                         <img src="./assets/caraTriste.png" alt="imagen">
-                        <h4 class="mb-0">Not available</h4> 
+                        <h4 class="mb-0">Not available</h4>
                         <a href="flights.html" class=" mt-1 btn btn-primary btn-buy pt-1">see available</a>
                     </div>
                 </div>
                 <!-- Modal info tarjeta para carrito -->
                 <div class="modal fade" id="modalProduct" data-bs-keyboard="false" tabindex="-1"
-                     aria-labelledby="labelProduct" aria-hidden="true">
+                    aria-labelledby="labelProduct" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="labelProduct">Info</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center m-2">
@@ -366,7 +374,7 @@
                                 <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                     <h5>Select your class</h5>
                                     <select v-model="clase" class="form-control form-control-sm selectClassModal m-2"
-                                            aria-label="Default select example">
+                                        aria-label="Default select example">
                                         <optgroup label="Class...">
                                             <option value="FIRST">First</option>
                                             <option value="PREMIUM">Premium</option>
@@ -378,8 +386,8 @@
                                 <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                     <h5>Select tickets amount</h5>
                                     <select v-model="passengers"
-                                            class="form-control form-control-sm selectClassModal m-2"
-                                            aria-label="Default select example">
+                                        class="form-control form-control-sm selectClassModal m-2"
+                                        aria-label="Default select example">
                                         <optgroup label="Amount...">
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -407,14 +415,15 @@
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-buy"
-                                        @click.prevent="addTicket(ticket)">Add</button>
+                                    @click.prevent="addTicket(ticket)">Add</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--Cards Events-->
                 <h3 class="text-center m-3" id="events">The most desired events</h3>
-                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap" v-if="filteredEvents.length > 0">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap"
+                    v-if="filteredEvents.length > 0">
                     <div class="cardDestino" v-for=" event in filteredEvents">
                         <div class="imgDestino">
                             <img :src="event.imgUrl" alt="">
@@ -436,8 +445,8 @@
                                 <h4 class="spanRojo">${{event.price}}</h4>
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-buy" data-bs-toggle="modal" data-bs-target="#modalEvent"
-                                        @click="activityShow(event)">More</button>
+                                <button class="btn btn-primary btn-buy" data-bs-toggle="modal"
+                                    data-bs-target="#modalEvent" @click="activityShow(event)">More</button>
                             </div>
                         </div>
                         <div class="oferta">
@@ -446,67 +455,72 @@
                     </div>
                 </div>
                 <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
-                     <div class="cardDestino sinProductoIndex p-0">
+                    <div class="cardDestino sinProductoIndex p-0">
                         <img src="./assets/caraTriste.png" alt="imagen">
-                        <h4 class="mb-0">Not available</h4> 
+                        <h4 class="mb-0">Not available</h4>
                         <a href="activities.html" class=" mt-1 btn btn-primary btn-buy pt-1">see available</a>
                     </div>
                 </div>
-                    <!-- Modal info tarjeta para carrito -->
-                    <div class="modal fade" id="modalEvent" data-bs-keyboard="false" tabindex="-1"
-                         aria-labelledby="labelEvent" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="labelEvent">Info</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Modal info tarjeta para carrito -->
+                <div class="modal fade" id="modalEvent" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="labelEvent" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="labelEvent">Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                <div class="d-flex flex-column justify-content-center align-items-center m-2">
+                                    <h4 class="modal-title">{{ticket.productName}}</h4>
+                                    <img v-bind:src="ticket.imgUrl" class="modalImg">
+                                    <h5>{{ticket.description}}</h5>
+                                    <h5>Agency: {{ticket.agencyName}}</h5>
                                 </div>
-                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                                    <div class="d-flex flex-column justify-content-center align-items-center m-2">
-                                        <h4 class="modal-title">{{ticket.productName}}</h4>
-                                        <img v-bind:src="ticket.imgUrl" class="modalImg">
-                                        <h5>{{ticket.description}}</h5>
-                                        <h5>Agency: {{ticket.agencyName}}</h5>
-                                    </div>
-                                    <div class="d-flex flex-row justify-content-center align-items-center m-2">
-                                        <h5>Persons amount</h5>
-                                        <select v-model="personAmount" class="form-control form-control-sm selectClassModal m-2"
-                                                aria-label="Default select example">
-                                            <optgroup label="Amount...">
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                                <option value="4">Four</option>
-                                                <option value="5">Five</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div v-if="event.vip == true" class="d-flex flex-row justify-content-center align-items-center m-2">
-                                        <h5 class="m-2">Do you wish VIP?</h5>
-                                        <div class="form-check form-check-inline">
-                                            <input v-model="vip" class="form-check-input" type="radio" name="radioOptionsVip" id="radio1Vip"
-                                                   value="true">
-                                            <label class="form-check-label" for="radio1Vip">Yes</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input v-model="vip" class="form-check-input" type="radio" name="radioOptionsVip" id="radio2Vip"
-                                                   value="false">
-                                            <label class="form-check-label" for="radio2Vip">No</label>
-                                        </div>
-                                    </div>
-                                    <h5 v-if="vip == 'vipTrue'">Price: <span class="text-danger">${{ticket.price * 1.15 *personAmount}}</span></h5>
-                                    <h5 v-else>Price: <span class="text-danger">${{ticket.price * personAmount}}</span></h5>
+                                <div class="d-flex flex-row justify-content-center align-items-center m-2">
+                                    <h5>Persons amount</h5>
+                                    <select v-model="personAmount"
+                                        class="form-control form-control-sm selectClassModal m-2"
+                                        aria-label="Default select example">
+                                        <optgroup label="Amount...">
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                            <option value="4">Four</option>
+                                            <option value="5">Five</option>
+                                        </optgroup>
+                                    </select>
                                 </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-buy" @click.prevent="addEvent(ticket)">Add</button>
+                                <div v-if="event.vip == true"
+                                    class="d-flex flex-row justify-content-center align-items-center m-2">
+                                    <h5 class="m-2">Do you wish VIP?</h5>
+                                    <div class="form-check form-check-inline">
+                                        <input v-model="vip" class="form-check-input" type="radio"
+                                            name="radioOptionsVip" id="radio1Vip" value="true">
+                                        <label class="form-check-label" for="radio1Vip">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input v-model="vip" class="form-check-input" type="radio"
+                                            name="radioOptionsVip" id="radio2Vip" value="false">
+                                        <label class="form-check-label" for="radio2Vip">No</label>
+                                    </div>
                                 </div>
+                                <h5 v-if="vip == 'vipTrue'">Price: <span class="text-danger">${{ticket.price * 1.15
+                                        *personAmount}}</span></h5>
+                                <h5 v-else>Price: <span class="text-danger">${{ticket.price * personAmount}}</span></h5>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-buy" @click.prevent="addEvent(ticket)">Add</button>
                             </div>
                         </div>
                     </div>
+                </div>
                 <!--Cards lodging-->
                 <h3 class="text-center m-3" id="hotels">The best hotels</h3>
-                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap" v-if="filteredHotels.length > 0">
+                <div class="containerDestinoHijo d-flex justify-content-center flex-wrap"
+                    v-if="filteredHotels.length > 0">
                     <div class="cardDestino" v-for="hotel in filteredHotels">
                         <div class="imgDestino">
                             <img :src="hotel.imgUrl" alt="imagen">
@@ -528,41 +542,44 @@
                                 <h4 class="spanRojo">${{hotel.price}}</h4>
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-buy" data-bs-toggle="modal" data-bs-target="#modalHotel"
-                                        @click="hotelShow(hotel)">More</button>
+                                <button class="btn btn-primary btn-buy" data-bs-toggle="modal"
+                                    data-bs-target="#modalHotel" @click="hotelShow(hotel)">More</button>
                             </div>
                         </div>
                         <div class="oferta">
                             <img :src="'./assets/'+ hotel.disscountCode +'.png'" alt="sale">
                         </div>
-                    </div><!--aqui termina el div con v-for-->
-                </div> 
+                    </div>
+                    <!--aqui termina el div con v-for-->
+                </div>
                 <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
-                     <div class="cardDestino sinProductoIndex p-0">
+                    <div class="cardDestino sinProductoIndex p-0">
                         <img src="./assets/caraTriste.png" alt="imagen">
-                        <h4 class="mb-0">Not available</h4> 
+                        <h4 class="mb-0">Not available</h4>
                         <a href="lodging.html" class=" mt-1 btn btn-primary btn-buy pt-1">see available</a>
                     </div>
                 </div>
-                    <!-- Modal info tarjeta para carrito -->
-                    <div class="modal fade" id="modalHotel" data-bs-keyboard="false" tabindex="-1"
-                         aria-labelledby="labelProduct" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="labelHotel">Info</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Modal info tarjeta para carrito -->
+                <div class="modal fade" id="modalHotel" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="labelProduct" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="labelHotel">Info</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                <div class="d-flex flex-column justify-content-center align-items-center m-2">
+                                    <h4 class="modal-title">{{hotel.productName}}</h4>
+                                    <img v-bind:src="hotel.imgUrl" class="modalImg">
+                                    <h5>{{hotel.description}}</h5>
                                 </div>
-                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                                    <div class="d-flex flex-column justify-content-center align-items-center m-2">
-                                        <h4 class="modal-title">{{hotel.productName}}</h4>
-                                        <img v-bind:src="hotel.imgUrl" class="modalImg">
-                                        <h5>{{hotel.description}}</h5>
-                                    </div>
+                                <div class="d-flex flex-row justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center">
-                                        <h5>Beds amount</h5>
+                                        <h5>Beds</h5>
                                         <select v-model="beds" class="form-control form-control-sm selectClassModal m-2"
-                                                aria-label="Default select example">
+                                            aria-label="Default select example">
                                             <optgroup label="Amount...">
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -573,9 +590,10 @@
                                         </select>
                                     </div>
                                     <div class="d-flex flex-row justify-content-center align-items-center m-2">
-                                        <h5>Nights amount</h5>
-                                        <select v-model="nights" class="form-control form-control-sm selectClassModal m-2"
-                                                aria-label="Default select example">
+                                        <h5>Nights</h5>
+                                        <select v-model="nights"
+                                            class="form-control form-control-sm selectClassModal m-2"
+                                            aria-label="Default select example">
                                             <optgroup label="Amount...">
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -585,47 +603,63 @@
                                             </optgroup>
                                         </select>
                                     </div>
-                                    <div class="input-group m-2">
-                                        <span class="input-group-text">Arrival Date</span>
-                                        <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
-                                    </div>
-                                    <div v-if="hotel.parking == true"
-                                         class="d-flex flex-row justify-content-center align-items-center m-2">
-                                        <h5 class="m-2">Do you wish parking?</h5>
-                                        <div class="form-check form-check-inline">
-                                            <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking" id="radio1Parking"
-                                                   value="option1">
-                                            <label class="form-check-label" for="radio1Parking">Yes</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking" id="radio2Parking"
-                                                   value="option2">
-                                            <label class="form-check-label" for="radio2Parking">No</label>
-                                        </div>
-                                    </div>
-                                    <div v-if="hotel.concierge == true"
-                                         class="d-flex flex-row justify-content-center align-items-center m-2">
-                                        <h5 class="m-2">Do you wish concierge?</h5>
-                                        <div class="form-check form-check-inline">
-                                            <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge" id="radio1Concierge"
-                                                   value="option1">
-                                            <label class="form-check-label" for="radio1Concierge">Yes</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge" id="radio2Concierge"
-                                                   value="option2">
-                                            <label class="form-check-label" for="radio2Concierge">No</label>
-                                        </div>
-                                    </div>
-                                    <h5>Price: <span class="text-danger">${{hotel.price * beds}}</span></h5>
                                 </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-buy" @click="addHotel(hotel)">Add</button>
+                                <div class="input-group m-2 w-75">
+                                    <span class="input-group-text">Departure Date</span>
+                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
                                 </div>
+                                <div class="input-group m-2 w-75">
+                                    <span class="input-group-text">Arrival Date</span>
+                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                                </div>
+                                <div v-if="hotel.parking == true"
+                                    class="d-flex flex-row justify-content-center align-items-center m-2">
+                                    <h5 class="m-2">Parking? (5% extra)</h5>
+                                    <div class="form-check form-check-inline">
+                                        <input v-model="parking" class="form-check-input" type="radio"
+                                            name="radioOptionsParking" id="radio1Parking" value="option1">
+                                        <label class="form-check-label" for="radio1Parking">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input v-model="parking" class="form-check-input" type="radio"
+                                            name="radioOptionsParking" id="radio2Parking" value="option2">
+                                        <label class="form-check-label" for="radio2Parking">No</label>
+                                    </div>
+                                </div>
+                                <div v-if="hotel.concierge == true"
+                                    class="d-flex flex-row justify-content-center align-items-center m-2">
+                                    <h5 class="m-2">Concierge? (No charges)</h5>
+                                    <div class="form-check form-check-inline">
+                                        <input v-model="concierge" class="form-check-input" type="radio"
+                                            name="radioOptionsConcierge" id="radio1Concierge" value="option1">
+                                        <label class="form-check-label" for="radio1Concierge">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input v-model="concierge" class="form-check-input" type="radio"
+                                            name="radioOptionsConcierge" id="radio2Concierge" value="option2">
+                                        <label class="form-check-label" for="radio2Concierge">No</label>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <h5>Includes</h5>
+                                    <select v-model="includes" class="form-control form-control-sm selectClassModal m-2"
+                                        aria-label="Default select example">
+                                        <optgroup label="Includes...">
+                                            <option value="ALL_INCLUSIVE">All Inclusive</option>
+                                            <option value="BREAKFAST_BUFFET">Breakfast Buffet</option>
+                                            <option value="JUST_DINNER">Just Dinner</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <h5>Price: <span class="text-danger">${{hotel.price * beds}}</span></h5>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-buy" @click="addHotel(hotel)">Add</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
             </main>
             <!-- Cart btn N Cart offcanvas -->
@@ -634,42 +668,46 @@
                 <a class="position-relative"><span class="fal fa-luggage-cart"><span
                             class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {{totalProductsInCart()}}
-                            </span></span></a>
+                        </span></span></a>
             </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" v-if="isAdmin || isClient">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+                v-if="isAdmin || isClient">
                 <div class="offcanvas-header">
                     <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
+                        aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <div class="tableContainer d-flex flex-column justify-content-center">
                         <table class="table align-middle text-dark">
                             <thead class="table text-success">
-                            <tr>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Service Type</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Unit Price</th>
-                                <th scope="col">Sub Total</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Service Type</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Sub Total</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="prod in cart">
-                                <td>{{prod.productName}}</td>
-                                <td>{{prod.productType}}</td>
-                                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
-                                    <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
-                                </td>
-                                <td>${{prod.finalPrice}}</td>
-                                <td>${{prod.quantity*prod.finalPrice}}</button></td>
-                                <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
-                            </tr>
+                                <tr v-for="prod in cart">
+                                    <td>{{prod.productName}}</td>
+                                    <td>{{prod.productType}}</td>
+                                    <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button>
+                                        {{prod.quantity}}
+                                        <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
+                                    </td>
+                                    <td>${{prod.finalPrice}}</td>
+                                    <td>${{prod.quantity*prod.finalPrice}}</button></td>
+                                    <td><button type="button" class="btn-close" aria-label="Close"
+                                            @click="removeAll(prod)"></button></td>
+                                </tr>
                             </tbody>
                         </table>
                         <h4 class="d-flex align-self-center">Total ${{totalPriceCalc()}}</h4>
                     </div>
-                    <a type="button" class="btn btn-buy" href="./cart.html"><p class="d-flex m-0">Buy</p>
+                    <a type="button" class="btn btn-buy" href="./cart.html">
+                        <p class="d-flex m-0">Buy</p>
                     </a>
                 </div>
             </div>
