@@ -13,12 +13,12 @@ public class UserDTO {
     private String lastName;
     private String fantasyName;
     private String email;
-    private String password;
     private String address;
     private String bankAccountNumber;
     private String imgUrl;
     private List<UserProductDTO> cart = new ArrayList();
     private List<UserProductDTO> historyCart = new ArrayList();
+    private String role;
 
     public UserDTO() {
     }
@@ -32,9 +32,9 @@ public class UserDTO {
         this.historyCart = client.getShoppingHistory().stream().map(UserProductDTO::new).collect(Collectors.toList());
         this.email = client.getEmail();
         this.id = client.getId();
-        this.password = client.getPassword();
         this.address = client.getAddress();
         this.bankAccountNumber = client.getBankAccountNumber();
+        this.role = client.getUserRole().toString();
     }
 
     public String getFirstName() {
@@ -93,14 +93,6 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -123,5 +115,13 @@ public class UserDTO {
 
     public void setHistoryCart(List<UserProductDTO> historyCart) {
         this.historyCart = historyCart;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

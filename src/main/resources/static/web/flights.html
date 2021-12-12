@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="app">
+<body id="app" v-cloak>
     <div>
         <!--<div class="animation" ref="animation">
             Animation Div
@@ -38,30 +38,50 @@
                     </div>
                     <div class="d-flex flex-wrap justify-content-center flex-sm-row">
                         <div class="m-3 scale d-flex align-items-center">
-                            <a href="./index.html" class="linkCursor d-flex align-items-center"><i class="fal fa-home-lg-alt pe-1"></i>
+                            <a href="./index.html" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-home-lg-alt pe-1"></i>
                                 <p class="d-flex d-none d-lg-block m-0">Home</p>
                             </a>
                         </div>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
+                            <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-cogs pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Admin</p>
+                            </a>
+                        </div>
                         <div class="m-3 scale d-flex align-items-center">
-                            <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalToggle"><i
-                                    class="fal fa-user pe-1"></i>
+                            <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
+                               data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
                             </a>
                         </div>
-                        <div class="m-3 scale d-flex align-items-center">
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                            <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
+                                    class="fal fa-user pe-1"></i>
+                                <p class="d-flex d-none d-lg-block m-0">Profile</p>
+                            </a>
+                        </div>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
                             <!-- Button trigger modal cart -->
-                            <a class="linkCursor d-flex align-items-center" href="./cart.html"><i class="fal fa-luggage-cart pe-1"></i>
+                            <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
+                                    class="fal fa-luggage-cart pe-1"></i>
                                 <p class="d-flex d-none d-lg-block m-0">Cart</p>
                             </a>
                         </div>
-                        <div class="m-3 scale d-flex align-items-center">
-                            <a href="./help.html" class="linkCursor d-flex align-items-center "><i class="fal fa-question-square pe-1"></i>
-                                <p class="d-flex d-none d-lg-block m-0">Help</p>
+                        <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                            <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
                             </a>
                         </div>
+                        <!-- Baneado el help por tema de espacio
+                        <div class="m-3 scale d-flex align-items-center">
+                          <a href="./help.html" class="linkCursor d-flex align-items-center "><i
+                              class="fal fa-question-square pe-1"></i>
+                            <p class="d-flex d-none d-lg-block m-0">Help</p>
+                          </a>
+                        </div>-->
                     </div>
                 </div>
-                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
+                <div class="headerForm d-flex flex-column justify-content-evenly align-items-center movilBanerNone">
                     <div class="container d-flex justify-content-center">
                         <div class="containerHijo" v-for="ticket in tickets.slice(0,1)">
                             <div class="card1">
@@ -78,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4">
+                <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4 lineaDiv">
                     <div class="d-flex flex-column scale">
                         <i class="fal fa-bed align-self-center"></i>
                         <a class="box" href="./lodging.html">Lodging</a>
@@ -285,12 +305,12 @@
         </main>
         <!-- Cart btn N Cart offcanvas -->
         <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight" id="cartBtn">
+        aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
         <a class="position-relative"><span class="fal fa-luggage-cart"><span class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
            {{totalProductsInCart()}}
           <span class="visually-hidden">unread messages</span></span></a>
       </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  v-if="isAdmin || isClient">
             <div class="offcanvas-header">
                 <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -381,7 +401,6 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
-<!--    <script src="./scripts/animation.js"></script>-->
     <script src="./scripts/flights.js"></script>
 </body>
 

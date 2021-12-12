@@ -31,4 +31,6 @@ public interface UserService {
     boolean add1ProductToCart(User user,UserProduct toAdd);
 
     boolean sendInvoice(User user, byte[] bytes);
+
+    boolean createHistoryCart(User user);
 }
