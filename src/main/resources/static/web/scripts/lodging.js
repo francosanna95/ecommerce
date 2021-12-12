@@ -94,7 +94,21 @@ const app = Vue.createApp({
 
         },
         addToCart(hotel) {
-            console.log(hotel.productId);
+            if (!(this.isAdmin || this.isClient)) {
+                swal("Please Log in or Sign Up to proceed with your purchase!", {
+                    title: "It seems that you are not logged in",
+                    buttons: ["Maybe next time!", "I want to Log In!"],
+                    icon: "info"
+                }).then(res => {
+                    if (res) {
+                        console.log(this.$refs.loginModal);
+                        console.log(this.$refs.loginModal.modal);
+                        console.log($("#exampleModalToggle"));
+                        this.$refs.loginModal.modal("toggle")
+                        this.$refs.loginModal.style.display = "block"
+                    }
+                })
+            } else {
             axios.post("/api/clients/current/addToCart/hotel", `hotelId=${hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
                 .then(resp => {
                     hotel = resp.data;
@@ -119,6 +133,7 @@ const app = Vue.createApp({
                     }
                 })
                 .catch(err => console.log(err));
+            }
         },
         savingCart() {
             const parsed = JSON.stringify(this.cart);

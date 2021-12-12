@@ -13,7 +13,14 @@ const app = Vue.createApp({
             roleUser: "",
             isPasswordVisible: false,
             isAdmin: false,
-            isClient: false
+            isClient: false,
+
+            firstName: "",
+            lastName:"",
+            email:"",
+            country:"", 
+            message:""
+
         }
     },
     created() {
@@ -133,6 +140,19 @@ const app = Vue.createApp({
                     console.log('Error', error.message);
                 })
         },
+
+        sendMessage(){
+            console.log(this.message);
+            console.log(typeof this.message);
+            axios.post('/api/help', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&country=${this.country}&comment=${this.message}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+            .then(response=>{
+                swal("We will contact you as soon as possible", {
+                    title: "Thanks for getting in touch with us!",
+                    buttons: "OK!",
+                    icon: "success"
+                  })                    
+            })
+        }
     },
 })
 const verAppVue = app.mount("#app")

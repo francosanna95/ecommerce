@@ -33,4 +33,6 @@ public interface UserService {
     boolean sendInvoice(User user, byte[] bytes);
 
     boolean createHistoryCart(User user);
+
+    boolean sendHelpMesagge(String firstName, String lastName, String email, String country, String comment);
 }

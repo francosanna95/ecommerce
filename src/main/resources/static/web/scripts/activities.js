@@ -87,31 +87,46 @@ const app = Vue.createApp({
             }
         },
         addToCart(ticket) {
-            console.log(ticket.productId);
-            axios.post("/api/clients/current/addToCart/event", `eventId=${this.event.productId}&isVip=${true}&attendants=${this.personAmount}`)
-                .then(resp => {
-                    ticket = resp.data;
-                    console.log(ticket);
-                    if (ticket.stock <= 0) {
-                        alert("No stock");
-                    } else {
-                        ticket.stock--;
-                        console.log(this.cart);
-                        if (this.cart.some(prod => prod.id == ticket.id)) {
-                            let id = this.cart.findIndex(prod => prod.id == ticket.id);
-                            console.log(id);
-                            //actualizar cantidad en ese producto
-                            this.cart[id].quantity = this.cart[id].quantity + this.personAmount;
-                        } else {
-                            this.event.quantity = this.personAmount;
-                            ticket.subtotal = this.event.quantity * this.event.price;
-                            this.cart.push(ticket);
-                            console.log(this.cart);
-                        }
-                        this.savingCart();
+            if (!(this.isAdmin || this.isClient)) {
+                swal("Please Log in or Sign Up to proceed with your purchase!", {
+                    title: "It seems that you are not logged in",
+                    buttons: ["Maybe next time!", "I want to Log In!"],
+                    icon: "info"
+                }).then(res => {
+                    if (res) {
+                        console.log(this.$refs.loginModal);
+                        console.log(this.$refs.loginModal.modal);
+                        console.log($("#exampleModalToggle"));
+                        this.$refs.loginModal.modal("toggle")
+                        this.$refs.loginModal.style.display = "block"
                     }
                 })
-                .catch(err => console.log(err));
+            } else {
+                axios.post("/api/clients/current/addToCart/event", `eventId=${this.event.productId}&isVip=${true}&attendants=${this.personAmount}`)
+                    .then(resp => {
+                        ticket = resp.data;
+                        console.log(ticket);
+                        if (ticket.stock <= 0) {
+                            alert("No stock");
+                        } else {
+                            ticket.stock--;
+                            console.log(this.cart);
+                            if (this.cart.some(prod => prod.id == ticket.id)) {
+                                let id = this.cart.findIndex(prod => prod.id == ticket.id);
+                                console.log(id);
+                                //actualizar cantidad en ese producto
+                                this.cart[id].quantity = this.cart[id].quantity + this.personAmount;
+                            } else {
+                                this.event.quantity = this.personAmount;
+                                ticket.subtotal = this.event.quantity * this.event.price;
+                                this.cart.push(ticket);
+                                console.log(this.cart);
+                            }
+                            this.savingCart();
+                        }
+                    })
+                    .catch(err => console.log(err));
+            }
         },
         savingCart() {
             const parsed = JSON.stringify(this.cart);
