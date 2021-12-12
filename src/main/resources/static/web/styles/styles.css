@@ -486,7 +486,6 @@ td {
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
-
 /*formulario de contacto*/
 
 form input.contact {
@@ -545,11 +544,7 @@ cart-btn-icon
     border-radius: 10px;
     cursor: pointer;
 }
-.cart-btn-icon a span {
-    color: var(--header-bg-color);
-    line-height: 2.5rem;
-    font-size: 1.5rem;
-}
+
 .cart-btn-icon a span {
     color: var(--main-bg-color);
     line-height: .8rem;

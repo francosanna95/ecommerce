@@ -9,6 +9,7 @@ const app = Vue.createApp({
             concierge: false,
             beds: 1,
             nights: 1,
+            includes: "",
             cart: [],
 
             email: "",

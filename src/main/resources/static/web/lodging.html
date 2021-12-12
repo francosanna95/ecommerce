@@ -36,37 +36,37 @@
           <div class="d-flex flex-wrap justify-content-center flex-sm-row">
             <div class="m-3 scale d-flex align-items-center">
               <a href="./index.html" class="linkCursor d-flex align-items-center"><i
-                      class="fal fa-home-lg-alt pe-1"></i>
+                  class="fal fa-home-lg-alt pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Home</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
-              <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
-                      class="fal fa-cogs pe-1"></i>
+              <a href="./admin.html" class="linkCursor d-flex align-items-center"><i class="fal fa-cogs pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
-              <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
-                      class="fal fa-user pe-1"></i>
+              <a href="./profile.html" class="linkCursor d-flex align-items-center"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Profile</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
               <!-- Button trigger modal cart -->
               <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
-                      class="fal fa-luggage-cart pe-1"></i>
+                  class="fal fa-luggage-cart pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Cart</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
-              <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
+              <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i
+                  class="fal fa-sign-out-alt pe-1"></i>
+                <p class="d-flex d-none d-lg-block m-0">Log Out</p>
               </a>
             </div>
             <!-- Baneado el help por tema de espacio
@@ -86,7 +86,7 @@
                   <source src="./assets/hotelsVideo.mp4" type="video/mp4">
                 </video>
               </div>
-             <!-- <div class="card2 mt-0 mb-0 ">
+              <!-- <div class="card2 mt-0 mb-0 ">
                 <div class="imgPlublicidad">
                   <img :src="hotel.imgUrl" alt="imagen">
                   <div class="viajeCliente">Hot Trip</div>
@@ -129,11 +129,13 @@
                 <form class="d-flex justify-content-center align-items-center">
                   <fieldset>
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com" v-model="email">
+                      <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com"
+                        v-model="email">
                       <label for="floatingInputLogIn">Email Address</label>
                     </div>
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password" v-model="password">
+                      <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password"
+                        v-model="password">
                       <label for="floatingPasswordLogIn">Password</label>
                     </div>
                   </fieldset>
@@ -226,75 +228,94 @@
             aria-labelledby="labelProduct" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header">
+                <!--<div class="modal-header">
                   <h5 class="modal-title" id="labelProduct">Info</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                </div>-->
                 <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                   <div class="d-flex flex-column justify-content-center align-items-center m-2">
                     <h4 class="modal-title">{{hotel.productName}}</h4>
                     <img v-bind:src="hotel.imgUrl" class="modalImg">
-                    <h5>{{hotel.description}}</h5>
+                    <h5 class="fs-5">{{hotel.description}}</h5>
                   </div>
                   <div class="d-flex flex-row justify-content-center align-items-center">
-                    <h5>Beds amount</h5>
-                    <select v-model="beds" class="form-control form-control-sm selectClassModal m-2"
-                      aria-label="Default select example">
-                      <optgroup label="Amount...">
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
-                      </optgroup>
-                    </select>
+                    <div class="d-flex flex-row justify-content-center align-items-center">
+                      <h5>Beds</h5>
+                      <select v-model="beds" class="form-control form-control-sm selectClassModal m-2"
+                        aria-label="Default select example">
+                        <optgroup label="Amount...">
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                          <option value="4">Four</option>
+                          <option value="5">Five</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center align-items-center m-2">
+                      <h5>Nights</h5>
+                      <select v-model="nights" class="form-control form-control-sm selectClassModal m-2"
+                        aria-label="Default select example">
+                        <optgroup label="Amount...">
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                          <option value="4">Four</option>
+                          <option value="5">Five</option>
+                        </optgroup>
+                      </select>
+                    </div>
                   </div>
-                  <div class="d-flex flex-row justify-content-center align-items-center m-2">
-                    <h5>Nights amount</h5>
-                    <select v-model="nights" class="form-control form-control-sm selectClassModal m-2"
-                      aria-label="Default select example">
-                      <optgroup label="Amount...">
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
-                      </optgroup>
-                    </select>
+                  <div class="input-group m-2 w-75">
+                    <span class="input-group-text">Departure Date</span>
+                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
                   </div>
-                  <div class="input-group m-2">
+                  <div class="input-group m-2 w-75">
                     <span class="input-group-text">Arrival Date</span>
                     <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
-                </div>
+                  </div>
                   <div v-if="hotel.parking == true"
                     class="d-flex flex-row justify-content-center align-items-center m-2">
-                    <h5 class="m-2">Would you like to add parking service? 5% extra</h5>
+                    <h5 class="m-2">Parking? (5% extra)</h5>
                     <div class="form-check form-check-inline">
-                      <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking" id="radio1Parking"
-                        value="option1">
+                      <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking"
+                        id="radio1Parking" value="option1">
                       <label class="form-check-label" for="radio1Parking">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking" id="radio2Parking"
-                        value="option2">
+                      <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking"
+                        id="radio2Parking" value="option2">
                       <label class="form-check-label" for="radio2Parking">No</label>
                     </div>
                   </div>
                   <div v-if="hotel.concierge == true"
                     class="d-flex flex-row justify-content-center align-items-center m-2">
-                    <h5 class="m-2">Would you like to add concierge service out of charge?</h5>
+                    <h5 class="m-2">Concierge? (No charges)</h5>
                     <div class="form-check form-check-inline">
-                      <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge" id="radio1Concierge"
-                        value="option1">
+                      <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge"
+                        id="radio1Concierge" value="option1">
                       <label class="form-check-label" for="radio1Concierge">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge" id="radio2Concierge"
-                        value="option2">
+                      <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge"
+                        id="radio2Concierge" value="option2">
                       <label class="form-check-label" for="radio2Concierge">No</label>
                     </div>
                   </div>
-                  <h5>Price: <span class="text-danger">${{hotel.price * beds}}</span> <h6>(final price upon charges)</h6></h5>
+                  <div class="d-flex flex-row align-items-center">
+                    <h5>Includes</h5>
+                    <select v-model="includes" class="form-control form-control-sm selectClassModal m-2"
+                      aria-label="Default select example">
+                      <optgroup label="Includes...">
+                        <option value="ALL_INCLUSIVE">All Inclusive</option>
+                        <option value="BREAKFAST_BUFFET">Breakfast Buffet</option>
+                        <option value="JUST_DINNER">Just Dinner</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <h5>Price: <span class="text-danger">${{hotel.price * beds}}</span>
+                    <h6>(final price upon charges)</h6>
+                  </h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
@@ -308,44 +329,46 @@
       <!-- Cart btn N Cart offcanvas -->
       <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
-        <a class="position-relative"><span class="fal fa-luggage-cart"><span class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
-             {{totalProductsInCart()}}
-          </span></span></a>
+        <a class="position-relative"><span class="fal fa-luggage-cart"><span
+              class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              {{totalProductsInCart()}}
+            </span></span></a>
       </div>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  v-if="isAdmin || isClient">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+        v-if="isAdmin || isClient">
         <div class="offcanvas-header">
           <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                  aria-label="Close"></button>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <div class="tableContainer d-flex flex-column justify-content-center">
             <table class="table align-middle text-dark">
               <thead class="table text-success">
-              <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Service Type</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Sub Total</th>
-              </tr>
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Service Type</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Unit Price</th>
+                  <th scope="col">Sub Total</th>
+                </tr>
               </thead>
               <tbody>
-              <tr v-for="prod in cart">
-                <td>{{prod.productName}}</td>
-                <td>{{prod.productType}}</td>
-                <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
-                  <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
-                </td>
-                <td>${{prod.finalPrice}}</td>
-                <td>${{prod.quantity*prod.finalPrice}}</button></td>
-                <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
-              </tr>
+                <tr v-for="prod in cart">
+                  <td>{{prod.productName}}</td>
+                  <td>{{prod.productType}}</td>
+                  <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
+                    <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
+                  </td>
+                  <td>${{prod.finalPrice}}</td>
+                  <td>${{prod.quantity*prod.finalPrice}}</button></td>
+                  <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
+                </tr>
               </tbody>
             </table>
             <h4 class="d-flex align-self-center">Total ${{totalPriceCalc()}}</h4>
           </div>
-          <a type="button" class="btn btn-buy" href="./cart.html"><p class="d-flex m-0">Buy</p>
+          <a type="button" class="btn btn-buy" href="./cart.html">
+            <p class="d-flex m-0">Buy</p>
           </a>
         </div>
       </div>
