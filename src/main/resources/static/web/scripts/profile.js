@@ -2,7 +2,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            clients: [],
+            clients: []
         }
     },
 
@@ -17,9 +17,8 @@ const app = Vue.createApp({
         })
     },
     methods: {
-        
+
     }, 
 
 })
 
-const verAppVue = app.mount("#app") 
