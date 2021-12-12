@@ -268,7 +268,7 @@
                 </div>
                   <div v-if="hotel.parking == true"
                     class="d-flex flex-row justify-content-center align-items-center m-2">
-                    <h5 class="m-2">Do you wish parking?</h5>
+                    <h5 class="m-2">Would you like to add parking service? 5% extra</h5>
                     <div class="form-check form-check-inline">
                       <input v-model="parking" class="form-check-input" type="radio" name="radioOptionsParking" id="radio1Parking"
                         value="option1">
@@ -282,7 +282,7 @@
                   </div>
                   <div v-if="hotel.concierge == true"
                     class="d-flex flex-row justify-content-center align-items-center m-2">
-                    <h5 class="m-2">Do you wish concierge?</h5>
+                    <h5 class="m-2">Would you like to add concierge service out of charge?</h5>
                     <div class="form-check form-check-inline">
                       <input v-model="concierge" class="form-check-input" type="radio" name="radioOptionsConcierge" id="radio1Concierge"
                         value="option1">
@@ -294,7 +294,7 @@
                       <label class="form-check-label" for="radio2Concierge">No</label>
                     </div>
                   </div>
-                  <h5>Price: <span class="text-danger">${{hotel.price * beds}}</span></h5>
+                  <h5>Price: <span class="text-danger">${{hotel.price * beds}}</span> <h6>(final price upon charges)</h6></h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
