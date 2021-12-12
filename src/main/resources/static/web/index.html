@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="app">
+<body id="app" v-cloak>
     <div>
         <!--<div class="animation" ref="animation">
             Animation Div
@@ -32,38 +32,55 @@
             <header class="d-flex flex-column justify-content-center">
                 <div class="headerAccess d-flex flex-row justify-content-evenly align-items-center">
                     <div class="d-flex flex-row align-items-center">
-                        <a href="#">
-                            <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
-                        <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
+                      <a href="./index.html">
+                        <img src="./assets/melba-logo-ps.png" class="logo" alt="melba-logo"></a>
+                      <h1 class="ms-2 d-flex d-none d-lg-block">Melba's Trips</h1>
                     </div>
                     <div class="d-flex flex-wrap justify-content-center flex-sm-row">
-                        <div class="m-3 scale d-flex align-items-center">
-                            <a href="./index.html" class="linkCursor d-flex align-items-center"><i
-                                    class="fal fa-home-lg-alt pe-1"></i>
-                                <p class="d-flex d-none d-lg-block m-0">Home</p>
-                            </a>
-                        </div>
-                        <div class="m-3 scale d-flex align-items-center">
-                            <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
-                                <p class="d-flex d-none d-lg-block m-0">Log In</p>
-                            </a>
-                        </div>
-                        <div class="m-3 scale d-flex align-items-center">
-                            <!-- Button trigger modal cart -->
-                            <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
-                                    class="fal fa-luggage-cart pe-1"></i>
-                                <p class="d-flex d-none d-lg-block m-0">Cart</p>
-                            </a>
-                        </div>
-                        <div class="m-3 scale d-flex align-items-center">
-                            <a href="./help.html" class="linkCursor d-flex align-items-center "><i
-                                    class="fal fa-question-square pe-1"></i>
-                                <p class="d-flex d-none d-lg-block m-0">Help</p>
-                            </a>
-                        </div>
+                      <div class="m-3 scale d-flex align-items-center">
+                        <a href="./index.html" class="linkCursor d-flex align-items-center"><i
+                            class="fal fa-home-lg-alt pe-1"></i>
+                          <p class="d-flex d-none d-lg-block m-0">Home</p>
+                        </a>
+                      </div>
+                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
+                        <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
+                            class="fal fa-cogs pe-1"></i>
+                          <p class="d-flex d-none d-lg-block m-0">Admin</p>
+                        </a>
+                      </div>
+                      <div class="m-3 scale d-flex align-items-center">
+                        <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
+                          data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                          <p class="d-flex d-none d-lg-block m-0">Log In</p>
+                        </a>
+                      </div>
+                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                        <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
+                            class="fal fa-user pe-1"></i>
+                          <p class="d-flex d-none d-lg-block m-0">Profile</p>
+                        </a>
+                      </div>
+                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                        <!-- Button trigger modal cart -->
+                        <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
+                            class="fal fa-luggage-cart pe-1"></i>
+                          <p class="d-flex d-none d-lg-block m-0">Cart</p>
+                        </a>
+                      </div>
+                      <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
+                        <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
+                        </a>
+                      </div>
+                      <!-- Baneado el help por tema de espacio
+                      <div class="m-3 scale d-flex align-items-center">
+                        <a href="./help.html" class="linkCursor d-flex align-items-center "><i
+                            class="fal fa-question-square pe-1"></i>
+                          <p class="d-flex d-none d-lg-block m-0">Help</p>
+                        </a>
+                      </div>-->
                     </div>
-                </div>
+                  </div>    
                 <div class="headerForm d-flex flex-column justify-content-evenly align-items-center p-sm-3">
                     <div class="d-flex flex-column formDiv">
                         <h4 class="align-self-center">Lodging with flexible booking</h4>
@@ -81,7 +98,7 @@
                                             <option value="" selected disabled>The best on...</option>
                                             <option value="events">EVENTS</option>
                                             <option value="tickets">TICKETS</option>
-                                            <option value="activities">ACTIVITIES</option>
+                                            <option value="hotels">HOTELS</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -206,6 +223,7 @@
                 <div class="d-flex ">
                     <div class="containerPadre">
                         <div class="containerHijo index" v-for="ticket in tickets.slice(1,2)">
+<!--                           duda... esto porq esta dentro de un v-for?-->
                             <div class="card1 mediana">
                                 <video class="video" autoplay muted loop>
                                     <source src="./assets/videoIndex2.mp4" type="video/mp4">
@@ -229,8 +247,8 @@
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Best Destination</h3>
-                                    <h4 class="text-white">Travel on vacation</h4>
+                                    <h3>Best Destinations</h3>
+                                    <h4 class="text-white">Find your next trip with us!</h4>
                                 </div>
                                 <div class="estrellas">
                                     <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
@@ -249,8 +267,8 @@
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Best Event</h3>
-                                    <h4 class="text-white">Fun on vacation</h4>
+                                    <h3>Best Events</h3>
+                                    <h4 class="text-white">Full expertise in large events</h4>
                                 </div>
                                 <div class="estrellas">
                                     <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
@@ -269,8 +287,8 @@
                             </div>
                             <div class="content">
                                 <div class="contentBx">
-                                    <h3>Best HOTEL</h3>
-                                    <h4 class="text-white">Luxury and relax</h4>
+                                    <h3>Best HOTELs</h3>
+                                    <h4 class="text-white">Luxury and relax worldwide</h4>
                                 </div>
                                 <div class="estrellas">
                                     <i class="fa fa-star spanAmarillo" aria-hidden="true"></i>
@@ -593,13 +611,13 @@
             </main>
             <!-- Cart btn N Cart offcanvas -->
             <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn">
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
                 <a class="position-relative"><span class="fal fa-luggage-cart"><span
                             class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {{totalProductsInCart()}}
                             <span class="visually-hidden">unread messages</span></span></a>
             </div>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" v-if="isAdmin || isClient">
                 <div class="offcanvas-header">
                     <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -693,7 +711,6 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="./scripts/index.js"></script>
-    <script src="./scripts/animation.js"></script>
 </body>
 
 </html>

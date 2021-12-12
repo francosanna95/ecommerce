@@ -18,6 +18,7 @@ public class UserDTO {
     private String imgUrl;
     private List<UserProductDTO> cart = new ArrayList();
     private List<UserProductDTO> historyCart = new ArrayList();
+    private String role;
 
     public UserDTO() {
     }
@@ -33,6 +34,7 @@ public class UserDTO {
         this.id = client.getId();
         this.address = client.getAddress();
         this.bankAccountNumber = client.getBankAccountNumber();
+        this.role = client.getUserRole().toString();
     }
 
     public String getFirstName() {
@@ -113,5 +115,13 @@ public class UserDTO {
 
     public void setHistoryCart(List<UserProductDTO> historyCart) {
         this.historyCart = historyCart;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -5,8 +5,20 @@ const app = Vue.createApp({
       hotels: [],
       tickets: [],
       events: [],
+
       email: "",
       password: "",
+      cart: [],
+      currentUser: [],
+
+
+      firstName: "",
+      lastName: "",
+      roleUser: "",
+      isPasswordVisible: false,
+      isAdmin: false,
+      isClient: false
+
       isPasswordVisible: false,
       cart: [],
       backCart: [],
@@ -14,13 +26,21 @@ const app = Vue.createApp({
     }
   },
   created() {
-    axios.get('/api/clients/4')
-      .then(
-        resp => {
-          this.backCart = resp.data.cart;
-          console.log(this.backCart)
+
+    axios.get("/api/clients/current")
+      .then(response => {
+        console.log(response.data)
+        this.currentUser = response.data
+        if (response.data.role == "CLIENT") {
+          this.isClient = true;
+          this.isAdmin = false;
+        } else if (response.data.role == "AGENCY") {
+          this.isClient = false;
+          this.isAdmin = true;
         }
-      )
+      })
+
+
     axios.get('/api/products/hotels')
       .then(response => {
         this.hotels = response.data;
@@ -128,7 +148,7 @@ const app = Vue.createApp({
       axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
         .then(response => {
           console.log(response)
-          window.location.href = "./index.html"
+          window.location.reload()
         })
         .catch(error => {
           console.log(error.response.status)
@@ -185,6 +205,11 @@ const app = Vue.createApp({
     logout() {
       axios.post('/api/logout')
         .then(response => {
+          sessionStorage.removeItem('cart'); //alerta de exito
+          console.log("loged out!");
+          this.isClient = false;
+          this.isAdmin = false;
+          window.location.reload();
         })
         .catch(error => {
           console.log('Error', error.message);
@@ -194,20 +219,7 @@ const app = Vue.createApp({
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-  },
-  logout() {
-    axios.post('/api/logout')
-      .then(response => {
-      })
-      .catch(error => {
-        console.log('Error', error.message);
-      })
-  },
-  validEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
   }
-
 })
 
 app.mount("#app")

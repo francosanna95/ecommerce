@@ -19,7 +19,7 @@
 
 </head>
 
-<body id="app">
+<body id="app" v-cloak>
   <div>
     <!--<div class="animation" ref="animation">
             Animation Div
@@ -36,36 +36,36 @@
           <div class="d-flex flex-wrap justify-content-center flex-sm-row">
             <div class="m-3 scale d-flex align-items-center">
               <a href="./index.html" class="linkCursor d-flex align-items-center"><i
-                  class="fal fa-home-lg-alt pe-1"></i>
+                      class="fal fa-home-lg-alt pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Home</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
               <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
-                  class="fal fa-cogs pe-1"></i>
+                      class="fal fa-cogs pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
+                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
               <a href="./profile.html" class="linkCursor d-flex align-items-center"><i
-                  class="fal fa-user pe-1"></i>
+                      class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Profile</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
               <!-- Button trigger modal cart -->
               <a class="linkCursor d-flex align-items-center" href="./cart.html"><i
-                  class="fal fa-luggage-cart pe-1"></i>
+                      class="fal fa-luggage-cart pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Cart</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center" v-if="isAdmin || isClient">
               <a href="#" @click="logout" class="linkCursor d-flex align-items-center"><i class="fal fa-sign-out-alt pe-1"></i><p class="d-flex d-none d-lg-block m-0">Log Out</p>
               </a>
             </div>
@@ -129,11 +129,11 @@
                 <form class="d-flex justify-content-center align-items-center">
                   <fieldset>
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com">
+                      <input type="email" class="form-control" id="floatingInputLogIn" placeholder="name@example.com" v-model="email">
                       <label for="floatingInputLogIn">Email Address</label>
                     </div>
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password">
+                      <input type="password" class="form-control" id="floatingPasswordLogIn" placeholder="password" v-model="password">
                       <label for="floatingPasswordLogIn">Password</label>
                     </div>
                   </fieldset>
@@ -142,7 +142,7 @@
               <div class="modal-footer justify-content-center align-items-center">
                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle2"
                   data-bs-toggle="modal">Register</button>
-                <button type="button" class="btn btn-info">Log In</button>
+                <button type="button" class="btn btn-info" @click="login">Log In</button>
               </div>
             </div>
           </div>
@@ -307,12 +307,12 @@
       </main>
       <!-- Cart btn N Cart offcanvas -->
       <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight" id="cartBtn">
+        aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
         <a class="position-relative"><span class="fal fa-luggage-cart"><span class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
              {{totalProductsInCart()}}
           <span class="visually-hidden">unread messages</span></span></a>
       </div>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  v-if="isAdmin || isClient">
         <div class="offcanvas-header">
           <h5 id="offcanvasRightLabel">Your Cart ( {{totalProductsInCart()}} )</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -403,7 +403,6 @@
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/vue@next"></script>
-  <script src="./scripts/animation.js"></script>
   <script src="./scripts/lodging.js"></script>
 </body>
 

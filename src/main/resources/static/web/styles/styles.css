@@ -14,6 +14,10 @@
     box-sizing: border-box;
 }
 
+[v-cloak] {
+    display: none !important;
+}
+
 .mainDiv {
     background-color: var(--main-bg-color);
 }
@@ -622,5 +626,7 @@ html {
     .headerInfo.lineaDiv {
         border-top: 2.2px solid rgb(136, 134, 134);
     }
+
+
 }
     
