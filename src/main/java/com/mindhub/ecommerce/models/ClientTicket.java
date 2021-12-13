@@ -51,7 +51,13 @@ public class ClientTicket extends UserProduct {
                 break;
         }
 
-        super.setFinalPrice(finalPrice*quantity); // si es vip tiene un recargo del 20%
+        super.setFinalPrice(finalPrice * quantity); // si es vip tiene un recargo del 20%
 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                '\n' + "Ticket class: " + ticketClass;
     }
 }

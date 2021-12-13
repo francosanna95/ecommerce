@@ -193,25 +193,24 @@
             <table class="table align-middle text-dark">
               <thead class="table text-success p-2">
                 <tr>
-                  <th scope="col" class="d-none d-sm-block"></th>
+                  <th scope="col">Product Id</th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Service Type</th>
                   <th scope="col">Amount</th>
-                  <th scope="col" class="d-none d-sm-block">Unit Price</th>
+                  <th scope="col">Unit Price</th>
                   <th scope="col">Sub Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="prod in cart">
-                  <td class="d-none d-sm-block"><img class="imgTable"
-                      src="prod.imgUrl">
+                  <td>{{prod.id}}
                   </td>
                   <td>{{prod.productName}}</td>
                   <td>{{prod.productType}}</td>
                   <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
                     <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                   </td>
-                  <td class="d-none d-sm-block">${{prod.finalPrice}}</td>
+                  <td>${{prod.finalPrice}}</td>
                   <td>${{prod.quantity*prod.finalPrice}}</button></td>
                   <td class="p-0"><button type="button" class="btn-close p-0" aria-label="Close" @click="removeAll(prod)"></button></td>
                 </tr>
@@ -255,7 +254,7 @@
       </main>
       <!-- Cart btn N Cart offcanvas -->
       <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
+        aria-controls="offcanvasRight" id="cartBtn">
         <a class="position-relative"><span class="fal fa-luggage-cart"><span
               class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {{totalProductsInCart()}}</span></span></a>
