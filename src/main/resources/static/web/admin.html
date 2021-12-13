@@ -80,7 +80,7 @@
             </div>-->
           </div>
         </div>
-        <div class="headerForm d-flex flex-column justify-content-evenly align-items-center">
+        <div class="headerForm d-flex flex-column justify-content-evenly align-items-center movilBanerNone">
 
         </div>
         <div class="headerInfo d-flex flex-row justify-content-evenly align-items-center col-8 p-4 lineaDiv">
@@ -102,7 +102,8 @@
           </div>-->
         </div>
       </header>
-      <main class="container">
+      <main class="container p-0">
+        <h3 class="text-center my-3">Admin: {{currentUser.firstName}} {{currentUser.lastName}}</h3>
         <!-- Modal log in/register -->
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
           aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
@@ -195,12 +196,12 @@
                     <div class="d-flex flex-row">
                       <div class="d-flex flex-row align-items-center m-1 p-1">
                         <label for="flyPrice" class=" d-inline-block">Price</label>
-                        <input v-model="price" type="number" class="form-control form-admin ms-auto me-2 w-50" id="flyPrice"
+                        <input v-model="price" type="number" class="form-control form-admin ms-auto me-2 p-2 p-sm-1" id="flyPrice"
                           placeholder="price" minlength="3" maxlength="25" required v-model="price">
                       </div>
                       <div class="d-flex flex-row align-items-center  m-1 p-1">
                         <label for="flyStock">Stock</label>
-                        <input v-model="stock" type="number" class="form-control form-admin ms-auto me-2 w-50" id="flyStock"
+                        <input v-model="stock" type="number" class="form-control form-admin ms-auto me-2 p-2 p-sm-1" id="flyStock"
                           placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
                       </div>
                     </div>
@@ -270,7 +271,7 @@
                     </div>
                   </div>
                 </fieldset>
-                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
+                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-sm-3 ">
                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3"
                     data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-info d-flex align-self-center justify-content-center col-3"
@@ -296,12 +297,12 @@
                     <div class="d-flex flex-row">
                       <div class="d-flex flex-row align-items-center m-1 p-1">
                         <label for="hotelPrice" class=" d-inline-block">Price</label>
-                        <input v-model="price" type="number" class="form-control form-admin ms-auto me-2"
+                        <input v-model="price" type="number" class="form-control form-admin ms-auto me-2 p-2 p-sm-1"
                           id="hotelPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
                       </div>
                       <div class="d-flex flex-row align-items-center  m-1 p-1">
                         <label for="hotelStock">Stock</label>
-                        <input v-model="stock" type="number" class="form-control form-admin ms-auto me-2"
+                        <input v-model="stock" type="number" class="form-control form-admin ms-auto me-2 p-2 p-sm-1"
                           id="hotelStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
                       </div>
                     </div>
@@ -388,7 +389,7 @@
                     </div>
                   </div>
                 </fieldset>
-                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
+                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-sm-3">
                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3"
                     data-bs-dismiss="modal">Close</button>
                   <button @click="newHotel()" type="submit"
@@ -407,18 +408,18 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
               data-bs-parent="#accordionExample">
-              <div v-on="newEvent" class="accordion-body">
+              <div v-on="newEvent" class="accordion-body p-0">
                 <fieldset class="d-flex flex-row flex-wrap justify-content-evenly p-3">
                   <div class="d-flex flex-column">
                     <div class="d-flex flex-row">
                       <div class="d-flex flex-row align-items-center m-1 p-1">
                         <label for="eventPrice" class=" d-inline-block">Price</label>
-                        <input v-model="price" type="number" class="form-control form-admin ms-auto me-2"
+                        <input v-model="price" type="number" class="form-control form-admin ms-auto me-2 p-2 p-sm-1"
                           id="eventPrice" placeholder="price" minlength="3" maxlength="25" required v-model="price">
                       </div>
                       <div class="d-flex flex-row align-items-center  m-1 p-1">
                         <label for="eventStock">Stock</label>
-                        <input v-model="stock" type="number" class="form-control form-admin ms-auto me-2"
+                        <input v-model="stock" type="number" class="form-control form-admin ms-auto me-2 p-2 p-sm-1"
                           id="eventStock" placeholder="stock" minlength="3" maxlength="25" required v-model="stock">
                       </div>
                     </div>
@@ -486,7 +487,7 @@
                     </div>
                   </div>
                 </fieldset>
-                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-3">
+                <div class="modal-footer divForm d-flex align-self-center justify-content-center m-sm-3">
                   <button type="button" class="btn btn-secondary d-flex align-self-center justify-content-center col-3"
                     data-bs-dismiss="modal">Close</button>
                   <button @click="newEvent()" type="submit"
