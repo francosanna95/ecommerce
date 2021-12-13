@@ -227,11 +227,14 @@
                             </div>
                         </div>
                         <div class="contentDestino">
-                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}}
+                            <h5 class="mt-2 text-dark fs-4">{{ticket.productName}}
                             </h5>
                             <div class="contenido">
-                                <h6><strong>From: </strong>{{ticket.departureLocation}}</h6>
-                                <h6><strong>Agency: </strong>{{ticket.agencyName}}</h6>
+                                <p class="m-0"><strong>From: </strong> {{ticket.departureLocation}}</p>
+                                <p class="m-0"><strong>to: </strong>{{ticket.arrivalLocation}}</p>
+                            </div>
+                            <div class="contenido">
+                                <p class="m-0">{{ticket.description}}</p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
