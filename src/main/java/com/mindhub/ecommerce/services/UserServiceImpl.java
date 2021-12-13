@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
         UserRole userRole = UserRole.valueOf(rol.toUpperCase());
         User user = new User(firstName, lastName, email, passwordEncoder.encode(password), userRole);
+        user.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1639364009/Profiles/default_profile_picture.jpg");
         userRepo.save(user);
         return true;
     }

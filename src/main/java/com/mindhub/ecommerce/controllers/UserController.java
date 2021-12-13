@@ -67,8 +67,7 @@ public class UserController {
     }
 
     @PostMapping("/clients/new")
-    public ResponseEntity<String> createClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password, @RequestParam String rol) {
-        //TODO Chequear que el mail no exista en la base de datos
+    public ResponseEntity<String> createClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password, @RequestParam String role) {
         if (userRepo.existsByEmail(email)) {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
@@ -77,7 +76,7 @@ public class UserController {
             return new ResponseEntity<>("No parameter can be blank", HttpStatus.FORBIDDEN);
         }
 
-        if (userService.createUser(firstName, lastName, email, password, rol)) {
+        if (userService.createUser(firstName, lastName, email, password, role)) {
             return new ResponseEntity<String>("Client created succesfully", HttpStatus.CREATED);
         }
 
