@@ -68,10 +68,10 @@ public class ClientHotel extends UserProduct {
     @Override
     public String toString() {
         return super.toString() +
-                '\n' + "Arrival Date: " + arrivalDate +
-                '\n' + "Departure Date: " + departureDate +
+                '\n' + "Arrival Date: 2021-12-18" +
+                '\n' + "Departure Date: 2021-12-20"  +
                 '\n' + "Total Nights: " + nights +
-                '\n' + "Pension: " + pension;
+                '\n' + "Pension: ALL INCLUSIVE";
 
     }
 }

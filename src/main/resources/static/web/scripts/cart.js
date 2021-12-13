@@ -93,7 +93,6 @@ const app = Vue.createApp({
     payAll(e) {
       swal({
         title: "We are processing your purchase, this may take a few moments...",
-        buttons: "OK!",
         icon: "success"
       })
       axios.post(`https://mh-homebanking.herokuapp.com/api/transactions/cardPayment?amount=${this.totalPriceCalc()}&description=Melba%Trips%Purchasing&cvv=${this.cvv}&thruDate=${this.expirationDate}&email=${this.currentUser.email}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })

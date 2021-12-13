@@ -117,13 +117,13 @@ public class EcommerceApplication {
             productRepo.save(hospedaje);
             salesRepos.save(offeredProduct3);
 
-            Hotel hospedaje5 = new Hotel(500, 3500D, "30", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The Abu Dhabi Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
+            Hotel hospedaje5 = new Hotel(500, 3500D, "30", "Abu Dhabi, UAE ", agencyAndamio, "The Abu Dhabi Edition", "Luxury in Abu Dhabi for young talented people", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct5 = new UserProduct(agencyBabel, hospedaje5);
             hospedaje5.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Lodging/roberto-nickson-emqnSQwQQDo-unsplash_laca9v.jpg");
             productRepo.save(hospedaje5);
             salesRepos.save(offeredProduct5);
 
-            Hotel hospedaje6 = new Hotel(500, 3500D, "20", "av. de Fransesc Cambó, 14, 08003, Barcelona, España", agencyAndamio, "The New York Edition", "Vas a quedar BarceLove pipicucu", 500, "IMG-URL", true, true, 200, null);
+            Hotel hospedaje6 = new Hotel(500, 3500D, "20", "New York, USA", agencyAndamio, "The New York Edition", "Visit the capital of Jazz and Luxe", 500, "IMG-URL", true, true, 200, null);
             UserProduct offeredProduct6 = new UserProduct(agencyBabel, hospedaje6);
             hospedaje6.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821029/Services/Lodging/hotel1_qvgxv4.jpg");
             productRepo.save(hospedaje6);
@@ -137,7 +137,7 @@ public class EcommerceApplication {
             salesRepos.save(offeredProduct4);
 
             User clientMelba = new User("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("melba123!"), UserRole.CLIENT);
-            clientMelba.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713199/Ecommerce/profile_pics/melba_CL.jpg");
+            clientMelba.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1639364009/Profiles/default_profile_picture.jpg");
             clientMelba.setBankAccountNumber("VIN-003");
             userRepo.save(clientMelba);
 
