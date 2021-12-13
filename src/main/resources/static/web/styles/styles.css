@@ -53,6 +53,9 @@ h2 {
     color: var(--font-color-b);
     font-family: 'Poppins', sans-serif;
 }
+h3 {
+    font-family: 'Poppins', sans-serif;
+}
 h5 {
     font-family: 'Dosis', sans-serif;
     font-size: 1.3rem;
@@ -623,5 +626,9 @@ html {
         width: 100%!important;
     }
 
+    .modalImg {
+        width: 85%;
+    }
+    
 }
     

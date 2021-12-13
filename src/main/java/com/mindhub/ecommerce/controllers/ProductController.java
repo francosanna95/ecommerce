@@ -106,7 +106,7 @@ public class ProductController {
         }
 
         if (productService.createTicket(ticketDTO,agency)) {
-            return new ResponseEntity<>("Ticked creado", HttpStatus.ACCEPTED);
+            return new ResponseEntity<>("Ticked created", HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("Creation ticket error, please contact our Help Desk",HttpStatus.NOT_ACCEPTABLE);
     }

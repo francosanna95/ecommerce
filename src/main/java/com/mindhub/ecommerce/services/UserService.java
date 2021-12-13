@@ -4,6 +4,7 @@ package com.mindhub.ecommerce.services;
 import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.dtos.UserProductDTO;
+import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.models.*;
 
 import java.io.ByteArrayOutputStream;

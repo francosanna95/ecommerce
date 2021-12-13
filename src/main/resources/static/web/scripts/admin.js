@@ -68,8 +68,8 @@ const app = Vue.createApp({
           "stock": `${this.stock}`,
           "imgUrl": `${this.imgUrl}`,
           "address": `${this.address}`,
-          "departureTime": `${this.departureDate}` + "T10:11:30",
-          "arrivalTime": `${this.arrivalDate}` + "T10:11:30",
+          "departureTime": `${this.departureDate}`,
+          "arrivalTime": `${this.arrivalDate}`,
           "departureLocation": `${this.departureLocation}`,
           "arrivalLocation": `${this.arrivalLocation}`,
           "agencyName": `${this.agencyName}`
@@ -92,8 +92,8 @@ const app = Vue.createApp({
           //setTimeout(() => location.reload(), 2500 );
         })
         .catch(err => {
-          console.log(err);
-          swal('Error', 'Cannot create more flights', 'error');
+          console.log(err.response.data);
+          swal('Error', err.response.data, 'error');
         })
     },
     newHotel() {
@@ -190,7 +190,8 @@ const app = Vue.createApp({
           console.log("loged out!");
           this.isClient = false;
           this.isAdmin = false;
-          window.location.reload();
+          window.location.href = '/web/index.html';
+          //window.location.reload();
         })
         .catch(error => {
           console.log('Error', error.message);

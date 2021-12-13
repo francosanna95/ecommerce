@@ -227,11 +227,14 @@
                             </div>
                         </div>
                         <div class="contentDestino">
-                            <h5 class="mt-2 text-dark fs-4">{{ticket.arrivalLocation}}
+                            <h5 class="mt-2 text-dark fs-4">{{ticket.productName}}
                             </h5>
                             <div class="contenido">
-                                <h6><strong>From: </strong>{{ticket.departureLocation}}</h6>
-                                <h6><strong>Agency: </strong>{{ticket.agencyName}}</h6>
+                                <p class="m-0"><strong>From: </strong> {{ticket.departureLocation}}</p>
+                                <p class="m-0"><strong>to: </strong>{{ticket.arrivalLocation}}</p>
+                            </div>
+                            <div class="contenido">
+                                <p class="m-0">{{ticket.description}}</p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center lineaDiv p-2">
@@ -256,22 +259,34 @@
                     aria-labelledby="labelProduct" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <!--<div class="modal-header">
                                 <h5 class="modal-title" id="labelProduct">Info</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
+                            </div>-->
                             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center m-2">
                                     <h4 class="modal-title">{{ticket.productName}}</h4>
                                     <img v-bind:src="ticket.imgUrl" class="modalImg">
-                                    <h5>{{ticket.description}}</h5>
+                                    <h5 class="modalDescrip">{{ticket.description}}</h5>
                                 </div>
                                 <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                     <h5 class="m-2">From: {{ticket.departureLocation}}</h5>
                                     <h5 class="m-2">To: {{ticket.arrivalLocation}}</h5>
                                 </div>
-                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-inline-flex">
+                                    <div class="input-group m-2 w-50">
+                                        <span class="input-group-text ">Dep.</span>
+                                        <input v-model="departureDate" type="date" aria-label="dateFrom"
+                                            class="form-control" placeholder="Start">
+                                    </div>
+                                    <div class="input-group m-2 w-50">
+                                        <span class="input-group-text">Arr.</span>
+                                        <input v-model="arrivalDate" type="date" aria-label="dateTo"
+                                            class="form-control" placeholder="End">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                         <h5>Class</h5>
                                         <select v-model="clase"
@@ -300,16 +315,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">Departure Date</span>
-                                    <input v-model="departureDate" type="date" aria-label="dateFrom"
-                                        class="form-control" placeholder="Start">
-                                </div>
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">Arrival Date</span>
-                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control"
-                                        placeholder="End">
-                                </div>
+
                                 <h5 v-if="clase === 'FIRST'">Price: <span class="text-danger">${{ticket.price *
                                         1.5 * passengers}}</span></h5>
                                 <h5 v-if="clase === 'PREMIUM'">Price: <span class="text-danger">${{ticket.price *
@@ -322,7 +328,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-buy" data-bs-dismiss="modal"
+                                <button type="button" class="btn btn-buy bg-warning" data-bs-dismiss="modal"
                                     @click.prevent="addToCart(ticket)">Add</button>
                             </div>
                         </div>
@@ -338,11 +344,10 @@
                         {{totalProductsInCart()}}
                     </span></span></a>
         </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
-            v-if="isAdmin || isClient">
+        <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
             aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
             <a class="position-relative"><span class="fal fa-luggage-cart"><span
-                        class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
                         {{totalProductsInCart()}}
                     </span></span></a>
         </div>

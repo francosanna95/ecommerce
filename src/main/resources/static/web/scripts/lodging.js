@@ -126,7 +126,7 @@ const app = Vue.createApp({
                                 console.log(this.cart);
                             }
                             this.savingCart();
-                            swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
+                            swal(`We just added your hotel to your cart!`, {
                                 buttons: ["Great!", "Take me to my cart"],
                                 icon: "success"
                             })
@@ -182,7 +182,15 @@ const app = Vue.createApp({
                     console.log(this.cart)
                     this.cart[id].quantity++;
                     this.savingCart();
-
+                    swal(`We just added your hotel  to your cart!`, {
+                        buttons: ["Great!", "Take me to my cart"],
+                        icon: "success"
+                    })
+                        .then(res => {
+                            if (res) {
+                                window.location.href = "./cart.html"
+                            }
+                        })
                 })
         },
         login(e) {
@@ -208,7 +216,8 @@ const app = Vue.createApp({
                     console.log("loged out!");
                     this.isClient = false;
                     this.isAdmin = false;
-                    window.location.reload();
+                    window.location.href = '/web/index.html';
+                    //window.location.reload();
                 })
                 .catch(error => {
                     console.log('Error', error.message);

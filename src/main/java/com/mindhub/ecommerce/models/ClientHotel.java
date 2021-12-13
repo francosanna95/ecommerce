@@ -31,6 +31,7 @@ public class ClientHotel extends UserProduct {
     public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
+
     public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
@@ -38,6 +39,7 @@ public class ClientHotel extends UserProduct {
     public LocalDateTime getDepartureDate() {
         return departureDate;
     }
+
     public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
@@ -45,6 +47,7 @@ public class ClientHotel extends UserProduct {
     public Integer getNights() {
         return nights;
     }
+
     public void setNights(Integer nights) {
         this.nights = nights;
     }
@@ -52,15 +55,23 @@ public class ClientHotel extends UserProduct {
     public Pension getPension() {
         return pension;
     }
+
     public void setPension(Pension pension) {
         this.pension = pension;
     }
 
     @Override
     public void setFinalPrice(Double finalPrice) {
-
-        super.setFinalPrice(finalPrice* quantity * nights); // si es vip tiene un recargo del 20%
+        super.setFinalPrice(finalPrice * quantity * nights);
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                '\n' + "Arrival Date: 2021-12-18" +
+                '\n' + "Departure Date: 2021-12-20"  +
+                '\n' + "Total Nights: " + nights +
+                '\n' + "Pension: ALL INCLUSIVE";
 
+    }
 }
