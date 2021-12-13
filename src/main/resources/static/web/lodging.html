@@ -247,6 +247,17 @@
                     <img v-bind:src="hotel.imgUrl" class="modalImg">
                     <h5 class="fs-5">{{hotel.description}}</h5>
                   </div>
+                  <div class="d-inline-flex">
+                    <div class="input-group m-2 w-50">
+                      <span class="input-group-text ">Dep.</span>
+                      <input v-model="departureDate" type="date" aria-label="dateFrom" class="form-control"
+                        placeholder="Start">
+                    </div>
+                    <div class="input-group m-2 w-50">
+                      <span class="input-group-text">Arr.</span>
+                      <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                    </div>
+                  </div>
                   <div class="bedsNights d-flex flex-column justify-content-center align-items-center">
                     <div class="d-flex flex-row justify-content-center align-items-center">
                       <h5>Beds</h5>
@@ -274,16 +285,7 @@
                         </optgroup>
                       </select>
                     </div>
-                  </div>
-                  <div class="input-group m-2">
-                    <span class="input-group-text">Departure</span>
-                    <input v-model="departureDate" type="date" aria-label="dateFrom" class="form-control"
-                      placeholder="Start">
-                  </div>
-                  <div class="input-group m-2">
-                    <span class="input-group-text">Arrival</span>
-                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control" placeholder="End">
-                  </div>
+                  </div>                  
                   <div v-if="hotel.parking == true"
                     class="d-flex flex-row justify-content-center align-items-center m-2">
                     <h5 class="m-2">Parking? (5% extra)</h5>

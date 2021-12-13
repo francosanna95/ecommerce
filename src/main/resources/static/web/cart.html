@@ -19,7 +19,7 @@
 
 </head>
 
-<body >
+<body>
   <div id="app" v-cloak>
     <!--<div class="animation" ref="animation">
             Animation Div
@@ -45,7 +45,7 @@
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center"  v-if="!(isAdmin || isClient)">
+            <div class="m-3 scale d-flex align-items-center" v-if="!(isAdmin || isClient)">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
@@ -195,24 +195,24 @@
                 <tr>
                   <th scope="col">Product Id</th>
                   <th scope="col">Product Name</th>
-                  <th scope="col" class="d-none d-md-block">Service Type</th>
+                  <th scope="col">Service Type</th>
                   <th scope="col">Amount</th>
-                  <th scope="col" class="d-none d-md-block">Unit Price</th>
+                  <th scope="col">Unit Price</th>
                   <th scope="col">Sub Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="prod in cart">
-                  <td>{{prod.id}}
-                  </td>
+                  <td>{{prod.id}} </td>
                   <td>{{prod.productName}}</td>
-                  <td class="d-none d-md-block">{{prod.productType}}</td>
+                  <td>{{prod.productType}}</td>
                   <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
                     <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                   </td>
-                  <td class="d-none d-md-block">${{prod.finalPrice}}</td>
+                  <td>${{prod.finalPrice}}</td>
                   <td>${{prod.quantity*prod.finalPrice}}</button></td>
-                  <td class="p-0"><button type="button" class="btn-close p-0" aria-label="Close" @click="removeAll(prod)"></button></td>
+                  <td class="p-0"><button type="button" class="btn-close p-0" aria-label="Close"
+                      @click="removeAll(prod)"></button></td>
                 </tr>
               </tbody>
             </table>
@@ -226,17 +226,20 @@
                 </div>
                 <div class="d-flex flex-wrap w-100 flex-sm-row">
                   <div class="form-floating m-3 col-10 col-sm-6">
-                    <input type="text" class="form-control" id="floatingInputCard" placeholder="cardNumber" v-model="cardNumber">
+                    <input type="text" class="form-control" id="floatingInputCard" placeholder="cardNumber"
+                      v-model="cardNumber">
                     <label for="floatingInputCard">Card Number</label>
                   </div>
                   <div class="form-floating m-3 col-10 col-sm-4">
-                    <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration" v-model="expirationDate">
+                    <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration"
+                      v-model="expirationDate">
                     <label for="floatingInputExpiration">Expiration</label>
                   </div>
                 </div>
                 <div class="d-flex flex-wrap w-100 flex-sm-row">
                   <div class="form-floating m-3 col-10 col-sm-6">
-                    <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname" v-model="fullName">
+                    <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname"
+                      v-model="fullName">
                     <label for="floatingInputFullname">Cardholder Name</label>
                   </div>
                   <div class="form-floating m-3 col-10 col-sm-4">

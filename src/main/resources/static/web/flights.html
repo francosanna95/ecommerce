@@ -274,6 +274,18 @@
                                     <h5 class="m-2">From: {{ticket.departureLocation}}</h5>
                                     <h5 class="m-2">To: {{ticket.arrivalLocation}}</h5>
                                 </div>
+                                <div class="d-inline-flex">
+                                    <div class="input-group m-2 w-50">
+                                        <span class="input-group-text ">Dep.</span>
+                                        <input v-model="departureDate" type="date" aria-label="dateFrom"
+                                            class="form-control" placeholder="Start">
+                                    </div>
+                                    <div class="input-group m-2 w-50">
+                                        <span class="input-group-text">Arr.</span>
+                                        <input v-model="arrivalDate" type="date" aria-label="dateTo"
+                                            class="form-control" placeholder="End">
+                                    </div>
+                                </div>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                         <h5>Class</h5>
@@ -303,16 +315,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">Departure</span>
-                                    <input v-model="departureDate" type="date" aria-label="dateFrom"
-                                        class="form-control" placeholder="Start">
-                                </div>
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">Arrival</span>
-                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control"
-                                        placeholder="End">
-                                </div>
+
                                 <h5 v-if="clase === 'FIRST'">Price: <span class="text-danger">${{ticket.price *
                                         1.5 * passengers}}</span></h5>
                                 <h5 v-if="clase === 'PREMIUM'">Price: <span class="text-danger">${{ticket.price *
@@ -341,12 +344,12 @@
                         {{totalProductsInCart()}}
                     </span></span></a>
         </div>
-        <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas"
-             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
+        <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
             <a class="position-relative"><span class="fal fa-luggage-cart"><span
-                    class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                            {{totalProductsInCart()}}
-                        </span></span></a>
+                        class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                        {{totalProductsInCart()}}
+                    </span></span></a>
         </div>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
             v-if="isAdmin || isClient">
