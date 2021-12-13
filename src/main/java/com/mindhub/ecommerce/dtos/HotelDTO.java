@@ -16,13 +16,11 @@ public class HotelDTO extends ProductDTO{
         Hotel hotel = (Hotel) product;
         this.parking = hotel.getParking();
         this.concierge = hotel.getConcierge();
-
     }
 
     public Boolean getParking() {
         return parking;
     }
-
     public void setParking(Boolean parking) {
         this.parking = parking;
     }
@@ -30,12 +28,8 @@ public class HotelDTO extends ProductDTO{
     public Boolean getConcierge() {
         return concierge;
     }
-
     public void setConcierge(Boolean concierge) {
         this.concierge = concierge;
     }
-
-
-
 
 }

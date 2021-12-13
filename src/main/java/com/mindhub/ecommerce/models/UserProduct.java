@@ -1,6 +1,7 @@
 package com.mindhub.ecommerce.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mindhub.ecommerce.enums.Pension;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
