@@ -23,7 +23,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
         auth.userDetailsService(email -> {
             com.mindhub.ecommerce.models.User user = userRepository.findByEmail(email).orElse(null);
             if (user != null) {
-                if (user.getEmail().equals("melbas.trips@gmail.com")) {
+                if (user.getUserRole().toString().equals("AGENCY")) {
                     return new User(user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList("ADMIN"));
                 }
                 return new User(user.getEmail(), user.getPassword(), AuthorityUtils.createAuthorityList("CLIENT"));

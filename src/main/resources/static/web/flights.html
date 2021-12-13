@@ -22,8 +22,8 @@
 
 </head>
 
-<body id="app" v-cloak>
-    <div>
+<body>
+    <div id="app" v-cloak>
         <!--<div class="animation" ref="animation">
             Animation Div
         </div>-->
@@ -51,7 +51,7 @@
                         </div>
                         <div class="m-3 scale d-flex align-items-center" v-if="!(isAdmin || isClient)">
                             <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
-                               data-bs-target="#exampleModalToggle" ref="loginModal"><i class="fal fa-user pe-1"></i>
+                                data-bs-target="#exampleModalToggle" ref="loginModal"><i class="fal fa-user pe-1"></i>
                                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
                             </a>
                         </div>
@@ -122,7 +122,7 @@
             <main class="container">
                 <!-- Modal log in/register -->
                 <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
-                    aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1" >
+                    aria-labelledby="exampleModalToggleLabelToggle" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <!-- Here a v-model -->
@@ -168,24 +168,41 @@
                                 <form class="d-flex justify-content-center align-items-center">
                                     <fieldset>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingFirstRegister"
-                                                placeholder="first_name" minlength="3" maxlength="25" required>
+                                            <input v-model="firstName" type="text" class="form-control"
+                                                id="floatingFirstRegister" placeholder="first_name" minlength="3"
+                                                maxlength="25" required>
                                             <label for="floatingFirstRegister">First Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingLastRegister"
-                                                placeholder="last_name" minlength="3" maxlength="25" required>
+                                            <input v-model="lastName" type="text" class="form-control"
+                                                id="floatingLastRegister" placeholder="last_name" minlength="3"
+                                                maxlength="25" required>
                                             <label for="floatingLastRegister">Last Name</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingEmailRegister"
-                                                placeholder="name@example.com" minlength="7" maxlength="40" required>
+                                            <input v-model="email" type="email" class="form-control"
+                                                id="floatingEmailRegister" placeholder="name@example.com" minlength="7"
+                                                maxlength="40" required>
                                             <label for="floatingEmailRegister">Email Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" id="floatingPasswordRegister"
-                                                placeholder="password" minlength="6" maxlength="25" required>
+                                            <input v-model="password" type="password" class="form-control"
+                                                id="floatingPasswordRegister" placeholder="password" minlength="6"
+                                                maxlength="25" required>
                                             <label for="floatingPasswordRegister">Password</label>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="userRole" id="AGENCY"
+                                                    value="AGENCY" v-model="roleUser" required>
+                                                <label class="form-check-label" for="AGENCY">Agency</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="userRole" id="CLIENT"
+                                                    value="CLIENT" v-model="roleUser" required>
+                                                <label class="form-check-label" for="CLIENT">Client</label>
+                                            </div>
+
                                         </div>
                                     </fieldset>
                                 </form>
@@ -193,7 +210,7 @@
                             <div class="modal-footer justify-content-center align-items-center">
                                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle"
                                     data-bs-toggle="modal">Back to Log In</button>
-                                <button type="button" class="btn btn-info">Sign Up</button>
+                                <button type="button" class="btn btn-info" @click="signUp">Sign Up</button>
                             </div>
                         </div>
                     </div>
@@ -257,7 +274,8 @@
                                 <div class="d-flex flex-row justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                         <h5>Class</h5>
-                                        <select v-model="clase" class="form-control form-control-sm selectClassModal m-2"
+                                        <select v-model="clase"
+                                            class="form-control form-control-sm selectClassModal m-2"
                                             aria-label="Default select example">
                                             <optgroup label="Class...">
                                                 <option value="FIRST">First</option>
@@ -284,11 +302,13 @@
                                 </div>
                                 <div class="input-group m-2">
                                     <span class="input-group-text">Departure Date</span>
-                                    <input v-model="departureDate" type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
+                                    <input v-model="departureDate" type="date" aria-label="dateFrom"
+                                        class="form-control" placeholder="Start">
                                 </div>
                                 <div class="input-group m-2">
                                     <span class="input-group-text">Arrival Date</span>
-                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control"
+                                        placeholder="End">
                                 </div>
                                 <h5 v-if="clase === 'FIRST'">Price: <span class="text-danger">${{ticket.price *
                                         1.5 * passengers}}</span></h5>
@@ -312,12 +332,14 @@
         </main>
         <!-- Cart btn N Cart offcanvas -->
         <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
-        <a class="position-relative"><span class="fal fa-luggage-cart"><span class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
-           {{totalProductsInCart()}}
-          </span></span></a>
-      </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"  v-if="isAdmin || isClient">
+            aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
+            <a class="position-relative"><span class="fal fa-luggage-cart"><span
+                        class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                        {{totalProductsInCart()}}
+                    </span></span></a>
+        </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+            v-if="isAdmin || isClient">
             aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
             <a class="position-relative"><span class="fal fa-luggage-cart"><span
                         class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">

@@ -22,8 +22,8 @@
 
 </head>
 
-<body id="app" v-cloak>
-    <div>
+<body>
+    <div id="app" v-cloak>
         <!--<div class="animation" ref="animation">
             Animation Div
         </div>-->
@@ -173,17 +173,6 @@
                             <div class="modal-body">
                                 <form class="d-flex justify-content-center align-items-center">
                                     <fieldset>
-                                        <div class="d-flex flex-row align-items-center">
-                                            <h5>Role</h5>
-                                            <select v-model="roleUser"
-                                                class="form-control form-control-sm selectClassModal m-2"
-                                                aria-label="Default select example">
-                                                <optgroup label="Roles...">
-                                                    <option value="client">Client</option>
-                                                    <option value="agency">Agency</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
                                         <div class="form-floating mb-3">
                                             <input v-model="firstName" type="text" class="form-control"
                                                 id="floatingFirstRegister" placeholder="first_name" minlength="3"
@@ -208,13 +197,26 @@
                                                 maxlength="25" required>
                                             <label for="floatingPasswordRegister">Password</label>
                                         </div>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="userRole" id="AGENCY"
+                                                    value="AGENCY" v-model="roleUser" required>
+                                                <label class="form-check-label" for="AGENCY">Agency</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="userRole" id="CLIENT"
+                                                    value="CLIENT" v-model="roleUser" required>
+                                                <label class="form-check-label" for="CLIENT">Client</label>
+                                            </div>
+
+                                        </div>
                                     </fieldset>
                                 </form>
                             </div>
                             <div class="modal-footer justify-content-center align-items-center">
                                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle"
                                     data-bs-toggle="modal">Back to Log In</button>
-                                <button type="button" class="btn btn-info">Sign Up</button>
+                                <button type="button" class="btn btn-info" @click="signUp">Sign Up</button>
                             </div>
                         </div>
                     </div>
@@ -340,15 +342,16 @@
                 <div v-else class="containerDestinoHijo d-flex justify-content-center flex-wrap p-2">
                     <div class="cardDestino sinProductoIndex p-0 d-flex flex-column">
                         <div class="imgDestino">
-                            <img src="./assets/avionPng.png" alt="imagen">
+                            <img src="./assets/ticket-not-found.gif" alt="imagen">
                         </div>
                         <div class="contentDestino d-flex flex-column justify-content-center">
                             <h4>Upss</h4>
-                            <h6 class="mb-0">That destination is not available now</h6>
-                            <small>Look for other excellent options</small>
+                            <h6 class="mb-0">It seems that we don't have any service related to your search</h6>
+                            <small>Anyway, check the link below to find some other destinations that you may
+                                like!</small>
                         </div>
                         <div class="d-flex justify-content-center align-items-center lineaDiv p-2">
-                            <a href="flights.html" class=" mt-1 btn btn-primary btn-buy pt-1">Look</a>
+                            <a href="./flights.html" class=" mt-1 btn btn-primary btn-buy pt-1">Take a chance!</a>
                         </div>
                     </div>
                 </div>
@@ -733,41 +736,38 @@
                 </div>
             </div>
             <footer>
-                <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom">
+                <div class="footer-box-1 d-flex flex-wrap flex-row justify-content-evenly pt-2 border-bottom pb-5">
                     <div>
-                        <h5>About Us</h5>
-                        <h6><a class="box" href="#">Who are we?</a></h6>
-                        <h6><a class="box" href="#">Banking promo</a></h6>
+                        <h5 class="text-center">About Us</h5>
+                        <div class="d-flex justify-content-center" id="socialShare">
+                            <a class="facebook m-2 text-center" href="https://www.facebook.com/"><i
+                                    class="fab fa-facebook-square"></i></a>
+                            <a class="instagram m-2 text-center" href="https://www.instagram.com/"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="twitter m-2 text-center" href="https://www.twitter.com/"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="linkedin m-2 text-center" href="https://www.linkedin.com/"><i
+                                    class="fab fa-linkedin-in text-center"></i></a>
+                        </div>
                     </div>
                     <div>
-                        <h5>Safe and Secure</h5>
-                        <h6><a class="box" href="#">Terms and conditions</a></h6>
-                        <h6><a class="box" href="#">Privacy policy</a></h6>
-                        <h6><a class="box" href="#">FAQs</a></h6>
+                        <h5 class="text-center">Contact us</h5>
+                        <div>
+                            <h5 class="text-center"><i class="fal fa-phone-volume"></i><strong> Call Center:</strong>
+                                0810-220-1309</h5>
+                        </div>
+                        <div>
+                            <h5 class="text-center"><i class="fad fa-calendar-alt"></i><strong> Mon to Fri:</strong> 9hs
+                                to 19hs</h5>
+                        </div>
+                        <div>
+                            <h5 class="text-center"><i class="fad fa-calendar-star"></i><strong> Sat:</strong> 10hs to
+                                17hs</h5>
+                        </div>
                     </div>
                     <div>
-                        <h5>Contact</h5>
-                        <h6><a class="box" href="#">Help</a></h6>
-                        <h6><a class="box" href="#">Contact Form</a></h6>
-                    </div>
-                </div>
-                <div
-                    class="footer-box-2 d-flex flex-wrap flex-column justify-content-center align-items-center pt-2 p-2 border-bottom">
-                    <div class="d-flex justify-content-center" id="socialShare">
-                        <a class="facebook m-2" href="https://www.facebook.com/"><i
-                                class="fab fa-facebook-square"></i></a>
-                        <a class="instagram m-2" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        <a class="twitter m-2" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                        <a class="linkedin m-2" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div>
-                        <h5><i class="fal fa-phone-volume"></i><strong> Call Center:</strong> 0810-220-1309</h5>
-                    </div>
-                    <div>
-                        <h5><i class="fad fa-calendar-alt"></i><strong> Mon to Fri:</strong> 9hs to 19hs</h5>
-                    </div>
-                    <div>
-                        <h5><i class="fad fa-calendar-star"></i><strong> Sat:</strong> 10hs to 17hs</h5>
+                        <h5 class="text-center">Help</h5>
+                        <h6><a class="box" href="./help.html">Contact Form</a></h6>
                     </div>
                 </div>
                 <div
