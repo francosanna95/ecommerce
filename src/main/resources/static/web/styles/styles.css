@@ -263,6 +263,10 @@ div .imgBx img {
     transition: bottom 0.5;
 }
 
+.cardDestino .sinProductoIndex img{
+    width: 5rem;
+}
+
 .containerDestinoHijo .cardDestino:hover .content {
     bottom: 0px;
 
@@ -344,7 +348,6 @@ div .imgDestino:hover img{
     z-index: 1;
     transition: 1.5s ease;
     cursor: pointer;
-
 
     /*
     en mi vista el alto queda un poco pasando la linea...en 71% calza perfecto
