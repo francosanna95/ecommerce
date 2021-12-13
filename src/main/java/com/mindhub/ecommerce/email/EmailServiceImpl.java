@@ -29,6 +29,7 @@ public class EmailServiceImpl implements EmailService {
     @Async
     public void send(String to, String email, byte[] bytes) {
         try {
+
             MimeBodyPart textBodyPart = new MimeBodyPart();
             textBodyPart.setText(email,"UTF-8","html");
 

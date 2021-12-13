@@ -64,3 +64,4 @@ const app = Vue.createApp({
     },
 
 })
+const verAppVue = app.mount("#app") 

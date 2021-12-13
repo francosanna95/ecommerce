@@ -180,8 +180,6 @@ public class UserController {
 
     }
 
-    // @PostMapping("/clients/current/sendToHistoryCart")//envía un producto del carrito al history Cart
-    // public ResponseEntity<String>
     @PostMapping("/clients/current/add1toCart")//sirve para agregar de a 1 producto
     public ResponseEntity<String> add1ProductToCart(Authentication authentication, @RequestParam Long userProductId) {
         User user = userRepo.findByEmail(authentication.getName()).orElse(null);
