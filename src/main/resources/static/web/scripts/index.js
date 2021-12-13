@@ -141,85 +141,118 @@ const app = Vue.createApp({
       console.log(this.ticket)
     },
     addTicket(ticket) {
-      console.log(ticket.productId);
-      axios.post("/api/clients/current/addToCart/ticket", `ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
-        .then(resp => {
-          ticket = resp.data;
-          console.log(ticket);
-          if (ticket.stock <= 0) {
-            alert("No stock");
-          } else {
-            ticket.stock--;
-            console.log(this.cart);
-            if (this.cart.some(prod => prod.id == ticket.id)) {
-              let id = this.cart.findIndex(prod => prod.id == ticket.id);
-              //actualizar cantidad en ese producto
-              this.cart[id].quantity = ticket.quantity;
-            } else {
-              ticket.quantity = this.passengers;
-              ticket.clase = this.clase;
-              ticket.subtotal = ticket.quantity * ticket.price;
-              this.cart.push(ticket);
-              console.log(this.cart);
-            }
-            this.savingCart();
+      if (!(this.isAdmin || this.isClient)) {
+        swal("Please Log in or Sign Up to proceed with your purchase!", {
+          title: "It seems that you are not logged in",
+          buttons: ["Maybe next time!", "I want to Log In!"],
+          icon: "info"
+        }).then(res => {
+          if (res) {
+            this.$refs.loginModal.click();
           }
         })
-        .catch(err => console.log(err));
+      } else {
+        axios.post("/api/clients/current/addToCart/ticket", `ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
+          .then(resp => {
+            ticket = resp.data;
+            console.log(ticket);
+            if (ticket.stock <= 0) {
+              alert("No stock");
+            } else {
+              ticket.stock--;
+              console.log(this.cart);
+              if (this.cart.some(prod => prod.id == ticket.id)) {
+                let id = this.cart.findIndex(prod => prod.id == ticket.id);
+                //actualizar cantidad en ese producto
+                this.cart[id].quantity = ticket.quantity;
+              } else {
+                ticket.quantity = this.passengers;
+                ticket.clase = this.clase;
+                ticket.subtotal = ticket.quantity * ticket.price;
+                this.cart.push(ticket);
+                console.log(this.cart);
+              }
+              this.savingCart();
+            }
+          })
+          .catch(err => console.log(err));
+      }
     },
     addEvent(ticket) {
-      console.log(ticket.productId);
-      axios.post("/api/clients/current/addToCart/event", `eventId=${this.ticket.productId}&isVip=${true}&attendants=${this.personAmount}`)
-        .then(resp => {
-          ticket = resp.data;
-          console.log(ticket);
-          if (ticket.stock <= 0) {
-            alert("No stock");
-          } else {
-            ticket.stock--;
-            console.log(this.cart);
-            if (this.cart.some(prod => prod.id == ticket.id)) {
-              let id = this.cart.findIndex(prod => prod.id == ticket.id);
-              console.log(id);
-              //actualizar cantidad en ese producto
-              this.cart[id].quantity = this.cart[id].quantity + this.personAmount;
-            } else {
-              this.event.quantity = this.personAmount;
-              ticket.subtotal = this.event.quantity * this.event.price;
-              this.cart.push(ticket);
-              console.log(this.cart);
-            }
-            this.savingCart();
+      if (!(this.isAdmin || this.isClient)) {
+        swal("Please Log in or Sign Up to proceed with your purchase!", {
+          title: "It seems that you are not logged in",
+          buttons: ["Maybe next time!", "I want to Log In!"],
+          icon: "info"
+        }).then(res => {
+          if (res) {
+            this.$refs.loginModal.click();
           }
         })
-        .catch(err => console.log(err));
+      } else {
+        axios.post("/api/clients/current/addToCart/event", `eventId=${this.ticket.productId}&isVip=${true}&attendants=${this.personAmount}`)
+          .then(resp => {
+            ticket = resp.data;
+            console.log(ticket);
+            if (ticket.stock <= 0) {
+              alert("No stock");
+            } else {
+              ticket.stock--;
+              console.log(this.cart);
+              if (this.cart.some(prod => prod.id == ticket.id)) {
+                let id = this.cart.findIndex(prod => prod.id == ticket.id);
+                console.log(id);
+                //actualizar cantidad en ese producto
+                this.cart[id].quantity = this.cart[id].quantity + this.personAmount;
+              } else {
+                this.event.quantity = this.personAmount;
+                ticket.subtotal = this.event.quantity * this.event.price;
+                this.cart.push(ticket);
+                console.log(this.cart);
+              }
+              this.savingCart();
+            }
+          })
+          .catch(err => console.log(err));
+      }
     },
     addHotel(hotel) {
-      console.log(hotel.productId);
-      axios.post("/api/clients/current/addToCart/hotel", `hotelId=${this.hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
-        .then(resp => {
-          hotel = resp.data;
-          console.log(hotel);
-          if (hotel.stock <= 0) {
-            alert("No stock");
-          } else {
-            hotel.stock--;
-            console.log(this.cart);
-            if (this.cart.some(prod => prod.id == hotel.id)) {
-              let id = this.cart.findIndex(prod => prod.id == hotel.id);
-              //actualizar cantidad en ese producto
-              this.cart[id].quantity += this.beds * this.nights;
-            } else {
-              hotel.quantity = this.beds * this.nights;
-              hotel.clase = this.clase;
-              hotel.subtotal = hotel.quantity * hotel.price;
-              this.cart.push(hotel);
-              console.log(this.cart);
-            }
-            this.savingCart();
+      if (!(this.isAdmin || this.isClient)) {
+        swal("Please Log in or Sign Up to proceed with your purchase!", {
+          title: "It seems that you are not logged in",
+          buttons: ["Maybe next time!", "I want to Log In!"],
+          icon: "info"
+        }).then(res => {
+          if (res) {
+            this.$refs.loginModal.click();
           }
         })
-        .catch(err => console.log(err));
+      } else {
+        axios.post("/api/clients/current/addToCart/hotel", `hotelId=${this.hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
+          .then(resp => {
+            hotel = resp.data;
+            console.log(hotel);
+            if (hotel.stock <= 0) {
+              alert("No stock");
+            } else {
+              hotel.stock--;
+              console.log(this.cart);
+              if (this.cart.some(prod => prod.id == hotel.id)) {
+                let id = this.cart.findIndex(prod => prod.id == hotel.id);
+                //actualizar cantidad en ese producto
+                this.cart[id].quantity += this.beds * this.nights;
+              } else {
+                hotel.quantity = this.beds * this.nights;
+                hotel.clase = this.clase;
+                hotel.subtotal = hotel.quantity * hotel.price;
+                this.cart.push(hotel);
+                console.log(this.cart);
+              }
+              this.savingCart();
+            }
+          })
+          .catch(err => console.log(err));
+      }
     },
     totalProductsInCart() {
       const array = this.cart

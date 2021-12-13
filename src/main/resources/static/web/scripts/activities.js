@@ -94,12 +94,8 @@ const app = Vue.createApp({
                     icon: "info"
                 }).then(res => {
                     if (res) {
-                    //     console.log(this.$refs.loginModal);
-                    //     console.log(this.$refs.loginModal.modal);
-                    //     console.log($("#exampleModalToggle"));
-                    //     this.$refs.loginModal.modal("toggle")
-                    //     this.$refs.loginModal.style.display = "block"
-                    // }
+                    this.$refs.loginModal.click();               
+                    }
                 })
             } else {
                 axios.post("/api/clients/current/addToCart/event", `eventId=${this.event.productId}&isVip=${true}&attendants=${this.personAmount}`)

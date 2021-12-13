@@ -102,8 +102,7 @@ const app = Vue.createApp({
                     icon: "info"
                 }).then(res => {
                     if (res) {
-                        // this.$refs.loginModal.modal("toggle")
-                        // this.$refs.loginModal.style.display = "block"
+                        this.$refs.loginModal.click();               
                     }
                 })
             } else {
