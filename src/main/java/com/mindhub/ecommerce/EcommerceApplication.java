@@ -66,11 +66,35 @@ public class EcommerceApplication {
             concierto.setUser(agencyAndamio);
             concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1639269839/Services/Activities/dsc7317s_tftu8v.jpg");
             productRepo.save(concierto);
-            UserProduct offeredProduct = new UserProduct(); //Al instanciarlos como UserProduct se persisten también en la tabla User_Product,
-            // sino, si lo instanciamos como ClientEvent o ClientTicket o HotelTicket se guardan en las tablas de SoldEvents,SoldHotels o SoldTickets
+            UserProduct offeredProduct = new UserProduct();
             offeredProduct.setProduct(concierto);
             offeredProduct.setUser(agencyAndamio);
             salesRepos.save(offeredProduct);
+
+            concierto = new Event(100, 2500D, "10", "Barcelona, Spain", agencyAndamio, "Sagrada Familia Tour", "Full day tour in Gaudi best piece of Barcelona", 1000, "https://res.cloudinary.com/melbastrips/image/upload/v1638981253/Services/Flies/arquitectura_gaudi_sag_fam_valery_egonov_portada_z78brl.jpg", "Gaudi", true);
+            concierto.setUser(agencyAndamio);
+            productRepo.save(concierto);
+            offeredProduct = new UserProduct();
+            offeredProduct.setProduct(concierto);
+            offeredProduct.setUser(agencyAndamio);
+            salesRepos.save(offeredProduct);
+
+            concierto = new Event(100, 2500D, "10", "El Cairo, Egypt", agencyAndamio, "Pyramids from the inside!", "Keops tour in El Cairo", 1000, "https://res.cloudinary.com/melbastrips/image/upload/v1638821028/Services/Flies/thais-cordeiro-MUDP2jIK0IY-unsplash_f3rurz.jpg", "Pharaons", true);
+            concierto.setUser(agencyAndamio);
+            productRepo.save(concierto);
+            offeredProduct = new UserProduct();
+            offeredProduct.setProduct(concierto);
+            offeredProduct.setUser(agencyAndamio);
+            salesRepos.save(offeredProduct);
+            concierto = new Event(100, 2500D, "10", "Paris, France", agencyAndamio, "Romantic dinner", "The one and only Paris spirit", 1000, "https://res.cloudinary.com/melbastrips/image/upload/v1638821033/Services/Flies/kateryna-t-RkyYEVHrRbo-unsplash_wzahhy.jpg", "Edith Piaf Band", true);
+            concierto.setUser(agencyAndamio);
+            productRepo.save(concierto);
+            offeredProduct = new UserProduct();
+            offeredProduct.setProduct(concierto);
+            offeredProduct.setUser(agencyAndamio);
+            salesRepos.save(offeredProduct);
+
+
 
             //Creación de producto ofrecido por agencia Número 2
             Hotel hotel2 = new Hotel(100, 2500D, "5", "2901 Collins Ave, Miami Beach, FL 33140, Estados Unidos", agencyAndamio, "The Miami Beach Edition", "The Miami Beach EDITION is a boutique, design hotel with modern rooms and luxury amenities", 500, "IMG-URL", true, true, 200, null);
@@ -156,6 +180,37 @@ public class EcommerceApplication {
             ricardoHotel.setFinalPrice(hospedaje2.getPrice());
             salesRepos.save(ricardoHotel);
 
+
+            hotel2 = new Hotel(100, 2500D, "10", "Miami Beach, FL 5687, Estados Unidos", agencyAndamio, "The Miami Inn", "The Miami Inn is the best family hotel of west coast", 500, "https://res.cloudinary.com/melbastrips/image/upload/v1639410607/Services/Lodging/National-Hotel-Miami-Beach1-1440x9000-21e1555d5056a36_21e15694-5056-a36a-0bf4df38f82f15b6_w5nsdj.jpg", true, true, 200, null);
+            offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+            productRepo.save(hotel2);
+            salesRepos.save(offeredProduct2);
+
+            hotel2 = new Hotel(100, 2500D, "10", "Barcelona, Spain", agencyAndamio, "The Grand Palace", "Life expierence in hospitality in Barcelona, Spain", 500, "https://res.cloudinary.com/melbastrips/image/upload/v1639410792/Services/Lodging/50514363-Arts_20hotel_20-_20april_202018_2020_nhrqrg.jpg", true, true, 200, null);
+            offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+            productRepo.save(hotel2);
+            salesRepos.save(offeredProduct2);
+
+            hotel2 = new Hotel(100, 2500D, "10", "Buenos Aires, Argentina", agencyAndamio, "The Tango II", "Your place to rest while you are in Buenos Aires", 500, "https://res.cloudinary.com/melbastrips/image/upload/v1639410913/Services/Lodging/ExteriorDay-AlvearPalaceHotel-BuenosAires-CRHotel_fbhizg.jpg", true, true, 200, null);
+            offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+            productRepo.save(hotel2);
+            salesRepos.save(offeredProduct2);
+
+            hotel2 = new Hotel(100, 2500D, "10", "Barcelona, Spain", agencyAndamio, "The W", "The place for your everlasting memories in Barcelona", 500, "https://res.cloudinary.com/melbastrips/image/upload/v1639410790/Services/Lodging/Hotel-Barcelona-1882_2019_el-cel-4-Hotel1882-00168_tvlyas.jpg", true, true, 200, null);
+            offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+            productRepo.save(hotel2);
+            salesRepos.save(offeredProduct2);
+
+            hotel2 = new Hotel(100, 2500D, "10", "El Cairo, Egypt", agencyAndamio, "Ramses Inn", "Visit El Cairo and feel Egypt", 500, "https://res.cloudinary.com/melbastrips/image/upload/v1639411004/Services/Lodging/marriott-mena-house-cairo_mfembv.jpg", true, true, 200, null);
+            offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+            productRepo.save(hotel2);
+
+            hotel2 = new Hotel(100, 2500D, "10", "London, UK", agencyAndamio, "The London Edition", "Luxury Hotel in London, UK", 500, "https://res.cloudinary.com/melbastrips/image/upload/v1639411090/Services/Lodging/roomservice.jpg_je7nej.jpg", true, true, 200, null);
+            offeredProduct2 = new UserProduct(agencyAndamio, hotel2);
+            productRepo.save(hotel2);
+
+
+            salesRepos.save(offeredProduct2);
             userRepo.save(clientMelba);
             userRepo.save(clientRicardo);
             userRepo.save(agencyAndamio);
