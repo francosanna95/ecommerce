@@ -124,7 +124,7 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/hotel")
-    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam Integer nights, @RequestParam Integer passangers, @RequestParam String pension) {
+    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam Integer nights, @RequestParam Integer passangers) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(hotelId).orElse(null);
@@ -140,7 +140,7 @@ public class UserController {
         if (hotel == null) {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
-        UserProductDTO userProductDTO = userService.addHotelToClientCart(user, hotel, nights, passangers,pension);
+        UserProductDTO userProductDTO = userService.addHotelToClientCart(user, hotel, nights, passangers);
         //TODO
         if (userProductDTO != null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);

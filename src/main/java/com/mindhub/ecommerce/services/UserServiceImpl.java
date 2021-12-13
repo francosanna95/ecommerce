@@ -150,18 +150,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers,String pension) {
+    public UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers) {
         // comento esto porque no estamos implementado fechas aún.
         //    LocalDateTime arrival = LocalDateTime.parse(arrivalDate, DateTimeFormatter.ISO_DATE_TIME);
         //    LocalDateTime departure = LocalDateTime.parse(departureDate, DateTimeFormatter.ISO_DATE_TIME);
+        //    Pension pensionChoice = Pension.valueOf(pension);
 
         // si el cliente ya tiene ese producto en el carrito simplemente actualizo la cantidad y el precio final
+
         try {
             for (UserProduct userProduct : user.getCurrentCart()) {
                 if (Objects.equals(userProduct.getProduct().getProductId(), hotel.getProductId())) {
                     ClientHotel hotelToCart = (ClientHotel) userProduct;
                     //       aún no estamos implementado pensiones
-                    hotelToCart.setPension(Pension.valueOf(pension));
+                    //        hotelToCart.setPension(pensionChoice);
                     hotelToCart.setUser(user);
                     hotelToCart.setQuantity(userProduct.getQuantity() + passangers * nights);
                     hotelToCart.setProduct(hotel);
@@ -170,7 +172,6 @@ public class UserServiceImpl implements UserService {
                     hotel.setStock(hotelStock - passangers * nights);
                     salesRepo.save(hotelToCart);
                     UserProductDTO userProductDTO = new UserProductDTO(hotelToCart);
-                    userProductDTO.setPension(Pension.valueOf(pension));
                     userRepo.save(user);
                     productRepo.save(hotel);
                     return userProductDTO;
@@ -180,7 +181,7 @@ public class UserServiceImpl implements UserService {
 
             ClientHotel clientHotel = new ClientHotel();
             //aún no estamos usando pensiones
-            clientHotel.setPension(Pension.valueOf(pension));
+            //clientHotel.setPension(pensionChoice);
             clientHotel.setUser(user);
             clientHotel.setQuantity(passangers * nights);
             clientHotel.setProduct(hotel);
@@ -190,7 +191,6 @@ public class UserServiceImpl implements UserService {
             hotel.setStock(hotelStock - passangers * nights);
             salesRepo.save(clientHotel);
             UserProductDTO userProductDTO = new UserProductDTO(clientHotel);
-            userProductDTO.setPension(Pension.valueOf(pension));
             userRepo.save(user);
             productRepo.save(hotel);
             return userProductDTO;

@@ -25,7 +25,7 @@ public interface UserService {
 
     UserProductDTO addTicketToClientCart(User user, Ticket ticket, String clase, Integer passengers);
 
-    UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers, String pension);
+    UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers);
 
     boolean removeProductFromCart(User user, UserProduct toDelete);
 
