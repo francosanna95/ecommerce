@@ -173,6 +173,15 @@ const app = Vue.createApp({
                 console.log(this.cart);
               }
               this.savingCart();
+              swal(`We just added your ticket to your cart!`, {
+                buttons: ["Great!", "Take me to my cart"],
+                icon: "success"
+            })
+                .then(res => {
+                    if (res) {
+                        window.location.href = "./cart.html"
+                    }
+                })
             }
           })
           .catch(err => console.log(err));
@@ -211,6 +220,15 @@ const app = Vue.createApp({
                 console.log(this.cart);
               }
               this.savingCart();
+              swal(`We just added your event to your cart!`, {
+                buttons: ["Great!", "Take me to my cart"],
+                icon: "success"
+            })
+                .then(res => {
+                    if (res) {
+                        window.location.href = "./cart.html"
+                    }
+                })
             }
           })
           .catch(err => console.log(err));
@@ -249,6 +267,15 @@ const app = Vue.createApp({
                 console.log(this.cart);
               }
               this.savingCart();
+              swal(`We just added your hotel to your cart!`, {
+                buttons: ["Great!", "Take me to my cart"],
+                icon: "success"
+            })
+                .then(res => {
+                    if (res) {
+                        window.location.href = "./cart.html"
+                    }
+                })
             }
           })
           .catch(err => console.log(err));
@@ -285,12 +312,15 @@ const app = Vue.createApp({
 
       axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
         .then(response => {
-          console.log(response)
           window.location.reload()
         })
         .catch(error => {
-          console.log(error.response.status)
-          console.log(error.response.data)
+                   swal({
+                      title: "Something went wrong!",
+                      text: "Wrong email or password, please check your credentials.",
+                      buttons: "Got it!",
+                      icon: "error"
+                    })
         })
     },
     logout() {
@@ -358,7 +388,15 @@ const app = Vue.createApp({
           console.log(this.cart)
           this.cart[id].quantity++;
           this.savingCart();
-
+          swal(`We just added your product to your cart!`, {
+            buttons: ["Great!", "Take me to my cart"],
+            icon: "success"
+        })
+            .then(res => {
+                if (res) {
+                    window.location.href = "./cart.html"
+                }
+            })
         })
     },
     signUp() {

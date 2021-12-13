@@ -121,7 +121,7 @@ const app = Vue.createApp({
                             this.savingCart();
                             swal(`We just added your event to your cart!`, {
                                 buttons: ["Great!", "Take me to my cart"],
-                                icon: "sucess"
+                                icon: "success"
                             })
                                 .then(res => {
                                     if (res) {

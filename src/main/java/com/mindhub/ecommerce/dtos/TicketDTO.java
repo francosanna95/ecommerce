@@ -18,8 +18,8 @@ public class TicketDTO extends ProductDTO{
         Ticket ticket = (Ticket) product;
         this.departureLocation=ticket.getDepartureLocation();
         this.arrivalLocation=ticket.getArrivalLocation();
-        this.departureTime = ticket.getDepartureTime().toString();
-        this.arrivalTime = ticket.getArrivalTime().toString();
+        this.departureTime = ticket.getDepartureTime();
+        this.arrivalTime = ticket.getArrivalTime();
     }
 
     public String getDepartureTime() {return departureTime;}
