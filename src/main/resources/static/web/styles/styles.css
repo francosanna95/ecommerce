@@ -623,5 +623,9 @@ html {
         width: 100%!important;
     }
 
+    .modalImg {
+        width: 85%;
+    }
+    
 }
     

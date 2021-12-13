@@ -195,9 +195,9 @@
                 <tr>
                   <th scope="col">Product Id</th>
                   <th scope="col">Product Name</th>
-                  <th scope="col">Service Type</th>
+                  <th scope="col" class="d-none d-md-block">Service Type</th>
                   <th scope="col">Amount</th>
-                  <th scope="col">Unit Price</th>
+                  <th scope="col" class="d-none d-md-block">Unit Price</th>
                   <th scope="col">Sub Total</th>
                 </tr>
               </thead>
@@ -206,11 +206,11 @@
                   <td>{{prod.id}}
                   </td>
                   <td>{{prod.productName}}</td>
-                  <td>{{prod.productType}}</td>
+                  <td class="d-none d-md-block">{{prod.productType}}</td>
                   <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
                     <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                   </td>
-                  <td>${{prod.finalPrice}}</td>
+                  <td class="d-none d-md-block">${{prod.finalPrice}}</td>
                   <td>${{prod.quantity*prod.finalPrice}}</button></td>
                   <td class="p-0"><button type="button" class="btn-close p-0" aria-label="Close" @click="removeAll(prod)"></button></td>
                 </tr>
