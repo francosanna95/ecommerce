@@ -259,22 +259,22 @@
                     aria-labelledby="labelProduct" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <!--<div class="modal-header">
                                 <h5 class="modal-title" id="labelProduct">Info</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
+                            </div>-->
                             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center m-2">
                                     <h4 class="modal-title">{{ticket.productName}}</h4>
                                     <img v-bind:src="ticket.imgUrl" class="modalImg">
-                                    <h5>{{ticket.description}}</h5>
+                                    <h5 class="modalDescrip">{{ticket.description}}</h5>
                                 </div>
                                 <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                     <h5 class="m-2">From: {{ticket.departureLocation}}</h5>
                                     <h5 class="m-2">To: {{ticket.arrivalLocation}}</h5>
                                 </div>
-                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                         <h5>Class</h5>
                                         <select v-model="clase"
@@ -304,12 +304,12 @@
                                     </div>
                                 </div>
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">Departure Date</span>
+                                    <span class="input-group-text">Departure</span>
                                     <input v-model="departureDate" type="date" aria-label="dateFrom"
                                         class="form-control" placeholder="Start">
                                 </div>
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">Arrival Date</span>
+                                    <span class="input-group-text">Arrival</span>
                                     <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control"
                                         placeholder="End">
                                 </div>
@@ -325,7 +325,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-buy" data-bs-dismiss="modal"
+                                <button type="button" class="btn btn-buy bg-warning" data-bs-dismiss="modal"
                                     @click.prevent="addToCart(ticket)">Add</button>
                             </div>
                         </div>

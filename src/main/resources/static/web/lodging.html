@@ -247,7 +247,7 @@
                     <img v-bind:src="hotel.imgUrl" class="modalImg">
                     <h5 class="fs-5">{{hotel.description}}</h5>
                   </div>
-                  <div class="d-flex flex-row justify-content-center align-items-center">
+                  <div class="bedsNights d-flex flex-column justify-content-center align-items-center">
                     <div class="d-flex flex-row justify-content-center align-items-center">
                       <h5>Beds</h5>
                       <select v-model="beds" class="form-control form-control-sm selectClassModal m-2"
@@ -275,13 +275,14 @@
                       </select>
                     </div>
                   </div>
-                  <div class="input-group m-2 w-75">
-                    <span class="input-group-text">Departure Date</span>
-                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
+                  <div class="input-group m-2">
+                    <span class="input-group-text">Departure</span>
+                    <input v-model="departureDate" type="date" aria-label="dateFrom" class="form-control"
+                      placeholder="Start">
                   </div>
-                  <div class="input-group m-2 w-75">
-                    <span class="input-group-text">Arrival Date</span>
-                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                  <div class="input-group m-2">
+                    <span class="input-group-text">Arrival</span>
+                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control" placeholder="End">
                   </div>
                   <div v-if="hotel.parking == true"
                     class="d-flex flex-row justify-content-center align-items-center m-2">
@@ -328,7 +329,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-buy" @click="addToCart(hotel)">Add</button>
+                  <button type="button" class="btn btn-buy bg-warning" @click="addToCart(hotel)">Add</button>
                 </div>
               </div>
             </div>

@@ -363,11 +363,11 @@
                     aria-labelledby="labelProduct" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <!--<div class="modal-header">
                                 <h5 class="modal-title" id="labelProduct">Info</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
+                            </div>-->
                             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center m-2">
                                     <h4 class="modal-title">{{ticket.productName}}</h4>
@@ -379,7 +379,7 @@
                                     <h5 class="m-2">To: {{ticket.arrivalLocation}}</h5>
                                 </div>
 
-                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center m-2">
                                         <h5>Class</h5>
                                         <select v-model="clase"
@@ -409,9 +409,14 @@
                                     </div>
                                 </div>
                                 <div class="input-group m-2">
-                                    <span class="input-group-text">Dates</span>
-                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
-                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                                    <span class="input-group-text">Departure</span>
+                                    <input v-model="departureDate" type="date" aria-label="dateFrom"
+                                        class="form-control" placeholder="Start">
+                                </div>
+                                <div class="input-group m-2">
+                                    <span class="input-group-text">Arrival</span>
+                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control"
+                                        placeholder="End">
                                 </div>
                                 <h5 v-if="clase === 'FIRST'">Price: <span class="text-danger">${{ticket.price *
                                         1.5 * passengers}}</span></h5>
@@ -425,7 +430,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-buy"
+                                <button type="button" class="btn btn-buy bg-warning"
                                     @click.prevent="addTicket(ticket)">Add</button>
                             </div>
                         </div>
@@ -484,11 +489,11 @@
                     aria-labelledby="labelEvent" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <!--<div class="modal-header">
                                 <h5 class="modal-title" id="labelEvent">Info</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
+                            </div>-->
                             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center m-2">
                                     <h4 class="modal-title">{{ticket.productName}}</h4>
@@ -530,7 +535,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-buy" @click.prevent="addEvent(ticket)">Add</button>
+                                <button type="button" class="btn btn-buy bg-warning" @click.prevent="addEvent(ticket)">Add</button>
                             </div>
                         </div>
                     </div>
@@ -590,18 +595,18 @@
                     aria-labelledby="labelProduct" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <!--<div class="modal-header">
                                 <h5 class="modal-title" id="labelHotel">Info</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
+                            </div>-->
                             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                 <div class="d-flex flex-column justify-content-center align-items-center m-2">
                                     <h4 class="modal-title">{{hotel.productName}}</h4>
                                     <img v-bind:src="hotel.imgUrl" class="modalImg">
                                     <h5>{{hotel.description}}</h5>
                                 </div>
-                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="d-flex flex-row justify-content-center align-items-center">
                                         <h5>Beds</h5>
                                         <select v-model="beds" class="form-control form-control-sm selectClassModal m-2"
@@ -630,13 +635,15 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="input-group m-2 w-75">
-                                    <span class="input-group-text">Departure Date</span>
-                                    <input type="date" aria-label="dateFrom" class="form-control" placeholder="Start">
+                                <div class="input-group m-2">
+                                    <span class="input-group-text">Departure</span>
+                                    <input v-model="departureDate" type="date" aria-label="dateFrom"
+                                        class="form-control" placeholder="Start">
                                 </div>
-                                <div class="input-group m-2 w-75">
-                                    <span class="input-group-text">Arrival Date</span>
-                                    <input type="date" aria-label="dateTo" class="form-control" placeholder="End">
+                                <div class="input-group m-2">
+                                    <span class="input-group-text">Arrival</span>
+                                    <input v-model="arrivalDate" type="date" aria-label="dateTo" class="form-control"
+                                        placeholder="End">
                                 </div>
                                 <div v-if="hotel.parking == true"
                                     class="d-flex flex-row justify-content-center align-items-center m-2">
@@ -681,7 +688,7 @@
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="button" class="btn btn-buy" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-buy" @click="addHotel(hotel)">Add</button>
+                                <button type="button" class="btn btn-buy bg-warning" @click="addHotel(hotel)">Add</button>
                             </div>
                         </div>
                     </div>
