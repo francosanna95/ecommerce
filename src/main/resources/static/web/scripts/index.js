@@ -13,6 +13,7 @@ const app = Vue.createApp({
       filtradoHotel: "",
       filtradoEvent: "",
       filtradoTicket: "",
+      includes:"",
 
       clase: "",
       passengers: 1,

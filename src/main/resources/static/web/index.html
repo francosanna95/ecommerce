@@ -83,7 +83,7 @@
                             <div class="d-flex flex-column flex-lg-row">
                                 <div class="input-group d-flex flex-wrap m-2">
                                     <span class="input-group-text d-none d-sm-block">My destination is...</span>
-                                    <input type="search" class="form-control" placeholder="From..." v-model="filtrado">
+                                    <input type="search" class="form-control" placeholder="To..." v-model="filtrado">
                                 </div>
                                 <div class="input-group m-2">
                                     <span class="input-group-text d-none d-sm-block">I'd like to see...</span>
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="m-2">
-                                <a type="button" class="btn btn-warning btnSearch" @click="filter"
+                                <a type="button" class="btn btn-warning btnSearch" @click="filter()"
                                     :href="filteredRef"><i class="fas fa-search-location"></i> Filter</a>
                             </div>
                         </form>

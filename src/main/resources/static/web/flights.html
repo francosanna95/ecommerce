@@ -341,13 +341,12 @@
                         {{totalProductsInCart()}}
                     </span></span></a>
         </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
-            v-if="isAdmin || isClient">
-            aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
+        <div class="cart-btn-icon d-flex d-none d-md-block" data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="cartBtn" v-if="isAdmin || isClient">
             <a class="position-relative"><span class="fal fa-luggage-cart"><span
-                        class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{totalProductsInCart()}}
-                    </span></span></a>
+                    class="position-absolute spanCart top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                            {{totalProductsInCart()}}
+                        </span></span></a>
         </div>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
             v-if="isAdmin || isClient">
