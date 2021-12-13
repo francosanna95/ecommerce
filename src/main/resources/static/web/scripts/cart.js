@@ -229,7 +229,8 @@ const app = Vue.createApp({
           console.log("loged out!");
           this.isClient = false;
           this.isAdmin = false;
-          window.location.reload();
+          window.location.href = '/web/index.html';
+          //window.location.reload();
         })
         .catch(error => {
           console.log('Error', error.message);
