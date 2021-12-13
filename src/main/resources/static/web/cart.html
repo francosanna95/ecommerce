@@ -194,17 +194,17 @@
             <table class="table align-middle text-dark">
               <thead class="table text-success p-2">
                 <tr>
-                  <th scope="col"></th>
+                  <th scope="col" class="d-none d-sm-block"></th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Service Type</th>
                   <th scope="col">Amount</th>
-                  <th scope="col">Unit Price</th>
+                  <th scope="col" class="d-none d-sm-block">Unit Price</th>
                   <th scope="col">Sub Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="prod in cart">
-                  <td><img class="imgTable"
+                  <td class="d-none d-sm-block"><img class="imgTable"
                       src="prod.imgUrl">
                   </td>
                   <td>{{prod.productName}}</td>
@@ -212,9 +212,9 @@
                   <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
                     <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                   </td>
-                  <td>${{prod.finalPrice}}</td>
+                  <td class="d-none d-sm-block">${{prod.finalPrice}}</td>
                   <td>${{prod.quantity*prod.finalPrice}}</button></td>
-                  <td><button type="button" class="btn-close" aria-label="Close" @click="removeAll(prod)"></button></td>
+                  <td class="p-0"><button type="button" class="btn-close p-0" aria-label="Close" @click="removeAll(prod)"></button></td>
                 </tr>
               </tbody>
             </table>
@@ -226,22 +226,22 @@
                 <div class="m-3 text-primary paymentTitle">
                   <h4 class="payTitle d-flex justify-content-center">Payment Information</h4>
                 </div>
-                <div class="d-flex flex-row">
-                  <div class="form-floating m-3 col-6">
+                <div class="d-flex flex-wrap w-100 flex-sm-row">
+                  <div class="form-floating m-3 col-10 col-sm-6">
                     <input type="number" class="form-control" id="floatingInputCard" placeholder="cardNumber">
                     <label for="floatingInputCard">Card Number</label>
                   </div>
-                  <div class="form-floating m-3 col-4">
+                  <div class="form-floating m-3 col-10 col-sm-4">
                     <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration">
                     <label for="floatingInputExpiration">Expiration</label>
                   </div>
                 </div>
-                <div class="d-flex flex-row">
-                  <div class="form-floating m-3 col-6">
+                <div class="d-flex flex-wrap w-100 flex-sm-row">
+                  <div class="form-floating m-3 col-10 col-sm-6">
                     <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname">
                     <label for="floatingInputFullname">Cardholder Name</label>
                   </div>
-                  <div class="form-floating m-3 col-4">
+                  <div class="form-floating m-3 col-10 col-sm-4">
                     <input type="number" class="form-control" id="floatingInputCvv" placeholder="cardCvv">
                     <label for="floatingInputCvv">Cvv</label>
                   </div>
