@@ -107,7 +107,7 @@ const app = Vue.createApp({
         })
         .catch(response => {
           swal(response.response.data, {
-            title: "Something went wron with the details you provided us, please retry.",
+            title: "Something went wrong with the details you provided us, please retry.",
             buttons: "OK!",
             icon: "error"
           })
