@@ -35,12 +35,13 @@
           <div class="d-flex flex-wrap justify-content-center flex-sm-row">
             <div class="m-3 scale d-flex align-items-center">
               <a href="./index.html" class="linkCursor d-flex align-items-center"><i
-                  class="fal fa-home-lg-alt pe-1"></i>
+                      class="fal fa-home-lg-alt pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Home</p>
               </a>
             </div>
             <div class="m-3 scale d-flex align-items-center" v-if="isAdmin">
-              <a href="./admin.html" class="linkCursor d-flex align-items-center"><i class="fal fa-cogs pe-1"></i>
+              <a href="./admin.html" class="linkCursor d-flex align-items-center"><i
+                      class="fal fa-cogs pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
@@ -76,17 +77,15 @@
           </div>
         </div>
         <div class="headerForm d-flex flex-column justify-content-evenly align-items-center movilBanerNone">
-          <div class="container d-flex justify-content-center">
-            <div class="containerHijo">
-              <div class="card1">
-                <img src="./assets/equipoAtencion.png" alt="img">
-              </div>
-              <!--<div class="card2 mt-0 mb-0">
-                        <div class="imgPlublicidad">
-                            <img :src="ticket.imgUrl" alt="imagen">
-                            <div class="viajeCliente">Hot Trip</div>
-                        </div>
-                    </div>-->
+            <div class="container d-flex justify-content-center">
+                <div class="containerHijo">
+                    <div class="card1">
+                      <div class="video">
+                        <video class="video" autoplay muted loop>
+                          <source src="./assets/eventoVideo.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -182,11 +181,11 @@
         </div>
         <!-- Main Content -->
         <div class="pt-3 pb-3">
-          <h2 class="text-center">My profile</h2>
+          <h2 class="text-center">My profile</h2> 
         </div>
         <div class="container d-flex flex-column">
           <div class="container d-flex justify-content-center flex-wrap p-0">
-              <div class="w-75 d-flex justify-content-between flex-wrap border">
+              <div class="w-75 perfilAncho d-flex justify-content-between flex-wrap border">
                 <div class="perfilCaja">
                     <img src="./assets/chicaMontania.jpg" alt="img" class="imgCirculo logo">
                     <h3>User: </h3>
@@ -194,7 +193,7 @@
                     <a class="text-dark"href="help.html">Need help?</a>
                     <div>
                       <button id="upload_widget" class="cloudinary-button">Upload files</button>
-                    </div>
+                    </div>        
                 </div>
                 <div class="p-2 d-flex flex-column justify-content-center">
                     <h3>Personal information</h3>
@@ -233,7 +232,7 @@
                   </div>
               </div>
           </div>
-          <div class="accordion d-flex justify-content-center w-100" id="accordionPanelsStayOpenExample">
+          <div class="accordion d-flex justify-content-center w-100 mb-3" id="accordionPanelsStayOpenExample">
             <div class="accordion-item w-75">
               <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">

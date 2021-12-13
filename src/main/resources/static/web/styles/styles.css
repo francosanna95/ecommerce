@@ -593,16 +593,9 @@ html {
 
 /*stilos accordion*/
 
-.accordion-collapse.collapse.show {
-    /*background-image: url(../assets/avionPng.png); 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;*/
-    background-color: var(--main-bg-color);
-}
+.accordion-collapse.collapse.show, .accordion-button,
+ .table.align-middle, .accordion-body {
 
-.accordion-button, .table.align-middle, .accordion-body {
-    
     background-color: var(--main-bg-color);
 }
 
@@ -626,7 +619,7 @@ html {
         border-top: 2.2px solid rgb(136, 134, 134);
     }
 
-    .estiloHelp, .estiloHelp form {
+    .estiloHelp, .estiloHelp form, div.accordion-item, div.perfilAncho {
         width: 100%!important;
     }
 
