@@ -94,7 +94,7 @@ const app = Vue.createApp({
                     icon: "info"
                 }).then(res => {
                     if (res) {
-                    this.$refs.loginModal.click();               
+                        this.$refs.loginModal.click();
                     }
                 })
             } else {
@@ -119,7 +119,17 @@ const app = Vue.createApp({
                                 console.log(this.cart);
                             }
                             this.savingCart();
+                            swal(`We just added your event to your cart!`, {
+                                buttons: ["Great!", "Take me to my cart"],
+                                icon: "sucess"
+                            })
+                                .then(res => {
+                                    if (res) {
+                                        window.location.href = "./cart.html"
+                                    }
+                                })
                         }
+
                     })
                     .catch(err => console.log(err));
             }

@@ -45,7 +45,7 @@
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center" v-if="!(isAdmin || isClient)">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>

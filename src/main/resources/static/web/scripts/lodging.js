@@ -101,34 +101,43 @@ const app = Vue.createApp({
                     icon: "info"
                 }).then(res => {
                     if (res) {
-                        this.$refs.loginModal.click();               
+                        this.$refs.loginModal.click();
                     }
                 })
             } else {
-            axios.post("/api/clients/current/addToCart/hotel", `hotelId=${hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
-                .then(resp => {
-                    hotel = resp.data;
-                    console.log(hotel);
-                    if (hotel.stock <= 0) {
-                        alert("No stock");
-                    } else {
-                        hotel.stock--;
-                        console.log(this.cart);
-                        if (this.cart.some(prod => prod.id == hotel.id)) {
-                            let id = this.cart.findIndex(prod => prod.id == hotel.id);
-                            //actualizar cantidad en ese producto
-                            this.cart[id].quantity += this.beds * this.nights;
+                axios.post("/api/clients/current/addToCart/hotel", `hotelId=${hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
+                    .then(resp => {
+                        hotel = resp.data;
+                        console.log(hotel);
+                        if (hotel.stock <= 0) {
+                            alert("No stock");
                         } else {
-                            hotel.quantity = this.beds * this.nights;
-                            hotel.clase = this.clase;
-                            hotel.subtotal = hotel.quantity * hotel.price;
-                            this.cart.push(hotel);
+                            hotel.stock--;
                             console.log(this.cart);
+                            if (this.cart.some(prod => prod.id == hotel.id)) {
+                                let id = this.cart.findIndex(prod => prod.id == hotel.id);
+                                //actualizar cantidad en ese producto
+                                this.cart[id].quantity += this.beds * this.nights;
+                            } else {
+                                hotel.quantity = this.beds * this.nights;
+                                hotel.clase = this.clase;
+                                hotel.subtotal = hotel.quantity * hotel.price;
+                                this.cart.push(hotel);
+                                console.log(this.cart);
+                            }
+                            this.savingCart();
+                            swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
+                                buttons: ["Great!", "Take me to my cart"],
+                                icon: "success"
+                            })
+                                .then(res => {
+                                    if (res) {
+                                        window.location.href = "./cart.html"
+                                    }
+                                })
                         }
-                        this.savingCart();
-                    }
-                })
-                .catch(err => console.log(err));
+                    })
+                    .catch(err => console.log(err));
             }
         },
         savingCart() {

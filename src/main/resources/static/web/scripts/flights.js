@@ -102,7 +102,7 @@ const app = Vue.createApp({
                     icon: "info"
                 }).then(res => {
                     if (res) {
-                        this.$refs.loginModal.click();               
+                        this.$refs.loginModal.click();
                     }
                 })
             } else {
@@ -127,18 +127,19 @@ const app = Vue.createApp({
                                 console.log(this.cart);
                             }
                             this.savingCart();
+                            swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
+                                buttons: ["Great!", "Take me to my cart"],
+                                icon: "success"
+                            })
+                                .then(res => {
+                                    if (res) {
+                                        window.location.href = "./cart.html"
+                                    }
+                                })
                         }
                     })
                     .catch(err => console.log(err));
-                swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
-                    buttons: ["Great!", "Take me to my cart"],
-                    icon: "info"
-                })
-                    .then(res => {
-                        if (res) {
-                           window.location.href = "./cart.html"
-                        }
-                    })
+
             }
 
         },

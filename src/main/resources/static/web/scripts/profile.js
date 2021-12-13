@@ -37,7 +37,6 @@ const app = Vue.createApp({
                 e.preventDefault()
             }
 
-
             axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
                     console.log(response)
@@ -61,6 +60,42 @@ const app = Vue.createApp({
                     console.log('Error', error.message);
                 })
         },
+        getImgUrl() {
+            var myWidget = cloudinary.createUploadWidget({
+                cloudName: 'melbastrips',
+                uploadPreset: 'testing',
+                folder: 'Services'
+            }, (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log('Done! Here is the image info: ', result.info);
+                    console.log(result.info.secure_url);
+                    this.updateProfileImg(result.info.secure_url)
+                }
+            }
+            )
+
+
+            myWidget.open();
+
+
+        },
+        updateProfileImg(imgUrl) {
+            axios.patch("/api/clients/current/updatePicture", `imgUrl=${imgUrl}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(res => {
+                    if (res.status == 200) {
+                        swal(`We just updated your profile pic!`, {
+                            buttons: "Great!",
+                            icon: "success"
+                        })
+                            .then(res => {
+                                if (res) {
+                                    window.location.reload()
+                                }
+                            })
+                    }
+                })
+
+        }
     },
 
 })
@@ -69,14 +104,15 @@ app.mount("#app")
 var myWidget = cloudinary.createUploadWidget({
     cloudName: 'melbastrips',
     uploadPreset: 'testing',
-    folder: 'Profiles'}, (error, result) => {
-      if (!error && result && result.event === "success") {
+    folder: 'Profiles'
+}, (error, result) => {
+    if (!error && result && result.event === "success") {
         console.log('Done! Here is the image info: ', result.info);
-      }
     }
-  )
+}
+)
 
-document.getElementById("upload_widget").addEventListener("click", function(){
+document.getElementById("upload_widget").addEventListener("click", function () {
     myWidget.open();
 }, false);
 

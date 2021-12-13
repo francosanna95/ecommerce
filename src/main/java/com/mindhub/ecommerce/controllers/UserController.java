@@ -265,12 +265,17 @@ public class UserController {
 
     }
 
-    @PatchMapping("/clients/current/modify")
-    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password) {
+    @PatchMapping("/clients/current/updatePicture")
+    public ResponseEntity<String> modifyUserDetails(Authentication auth, @RequestParam String imgUrl) {
         //TODO MODIFY CLIENT
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        if (user != null) {
+            if (userService.updatePic(user, imgUrl))
+                return new ResponseEntity<String>("We just updated your picture", HttpStatus.OK);
+        }
 
 
-        return new ResponseEntity<String>("XXXXXXXXXXXXXXXXXXXXXXXXXXX", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<String>("Something went wrong", HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/clients/current/endPurchase")

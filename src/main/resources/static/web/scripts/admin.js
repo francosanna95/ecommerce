@@ -168,7 +168,22 @@ const app = Vue.createApp({
           swal('Error', 'Cannot create more flights', 'error');
         })
     },
+    getImgUrl() {
+      var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'melbastrips',
+        uploadPreset: 'testing',
+        folder: 'Profiles'
+      }, (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log('Done! Here is the image info: ', result.info);
+          console.log(result.info.secure_url);
+          this.updateProfileImg(result.info.secure_url)
+        }
+      })
+      myWidget.open();
 
+
+    },
     logout() {
       axios.post('/api/logout')
         .then(response => {
@@ -187,51 +202,54 @@ const app = Vue.createApp({
 app.mount("#app")
 
 var myWidgetTicket = cloudinary.createUploadWidget({
-  cloudName: 'melbastrips', 
+  cloudName: 'melbastrips',
   uploadPreset: 'testing',
-  folder: 'Flies'}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info);
-      console.log(result);
-    }
+  folder: 'Flies'
+}, (error, result) => {
+  if (!error && result && result.event === "success") {
+    console.log('Done! Here is the image info: ', result.info);
+    console.log(result);
   }
+}
 )
 
-document.getElementById("upload_widget_ticket").addEventListener("click", function(){
+document.getElementById("upload_widget_ticket").addEventListener("click", function () {
   myWidgetTicket.open();
 }, false);
 
 //hasta aca seria la funcion para guardar en la carpeta Flies del cloudinary
 
 var myWidgetLodging = cloudinary.createUploadWidget({
-  cloudName: 'melbastrips', 
+  cloudName: 'melbastrips',
   uploadPreset: 'testing',
-  folder: 'Lodging'}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info);
-      console.log(result); 
-    }
+  folder: 'Lodging'
+}, (error, result) => {
+  if (!error && result && result.event === "success") {
+    console.log('Done! Here is the image info: ', result.info);
+    console.log(result);
   }
+}
 )
 
-document.getElementById("upload_widget_lodging").addEventListener("click", function(){
+document.getElementById("upload_widget_lodging").addEventListener("click", function () {
   myWidgetLodging.open();
 }, false);
 
 //hasta aca seria la funcion para guardar en la carpeta Lodging del cloudinary
 
 var myWidgetEvent = cloudinary.createUploadWidget({
-  cloudName: 'melbastrips', 
+  cloudName: 'melbastrips',
   uploadPreset: 'testing',
-  folder: 'Activities'}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info); 
-      console.log(result);
-    }
+  folder: 'Activities'
+}, (error, result) => {
+  if (!error && result && result.event === "success") {
+    console.log('Done! Here is the image info: ', result.info);
+    console.log(result);
   }
+}
 )
 
-document.getElementById("upload_widget_event").addEventListener("click", function(){
+document.getElementById("upload_widget_event").addEventListener("click", function () {
   myWidgetEvent.open();
 }, false);
 

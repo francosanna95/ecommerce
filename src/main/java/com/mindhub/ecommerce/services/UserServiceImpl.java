@@ -304,5 +304,17 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public boolean updatePic(User user, String imgUrl) {
+        try {
+            user.setImgUrl(imgUrl);
+            userRepo.save(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
 
 }

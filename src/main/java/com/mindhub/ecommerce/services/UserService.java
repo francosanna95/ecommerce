@@ -35,4 +35,6 @@ public interface UserService {
     boolean createHistoryCart(User user);
 
     boolean sendHelpMesagge(String firstName, String lastName, String email, String country, String comment);
+
+    boolean updatePic(User user, String imgUrl);
 }
