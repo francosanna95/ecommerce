@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "tickets")
 public class Ticket extends Product {
 
-    private LocalDateTime departureTime;
-    private LocalDateTime arrivalTime;
+    private String departureTime;
+    private String arrivalTime;
     private String departureLocation;
     private String arrivalLocation;
 
@@ -20,7 +20,7 @@ public class Ticket extends Product {
 
     }
 
-    public Ticket(Integer points, Double price, String disscountCode, String address, User user, String name, String description, Integer stock, String imgUrl, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureLocation, String arrivalLocation) {
+    public Ticket(Integer points, Double price, String disscountCode, String address, User user, String name, String description, Integer stock, String imgUrl, String departureTime, String arrivalTime, String departureLocation, String arrivalLocation) {
         super(points, price, disscountCode, address, user, name, description, stock, imgUrl);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
@@ -32,25 +32,25 @@ public class Ticket extends Product {
     //Constructor para generar un Producto a partir del Controlador con el RequestBody viniendo desde el Front y recibiendolo como DTO
     public Ticket(TicketDTO ticketDTO) {
         super(ticketDTO.getPoints(), ticketDTO.getPrice(), ticketDTO.getDisscountCode(), ticketDTO.getAddress(), ticketDTO.getProductName(), ticketDTO.getDescription(), ticketDTO.getStock(), ticketDTO.getImgUrl());
-        this.departureTime = LocalDateTime.parse(ticketDTO.getDepartureTime(), DateTimeFormatter.ISO_DATE_TIME);
-        this.arrivalTime = LocalDateTime.parse(ticketDTO.getArrivalTime(), DateTimeFormatter.ISO_DATE_TIME);
+        this.departureTime = ticketDTO.getDepartureTime();
+        this.arrivalTime = ticketDTO.getArrivalTime();
         this.departureLocation = ticketDTO.getDepartureLocation();
         this.arrivalLocation = ticketDTO.getArrivalLocation();
     }
 
-    public LocalDateTime getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalDateTime departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
-    public LocalDateTime getArrivalTime() {
+    public String getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(LocalDateTime arrivalTime) {
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

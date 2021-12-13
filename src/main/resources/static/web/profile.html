@@ -194,7 +194,8 @@
                         <div class="perfilCaja">
                             <img :src="currentUser.imgUrl" alt="img" class="imgCirculo logo">
                             <div class="my-3">
-                                <button id="upload_widget" class="btn btn-primary mx-auto" @click="getImgUrl">Update photo
+                                <button id="upload_widget" class="btn btn-primary mx-auto" @click="getImgUrl">Update
+                                    photo
                                 </button>
                             </div>
                             <a class="text-dark" href="./help.html"><p class="fs-6">Extra help?</p></a>
@@ -238,7 +239,8 @@
                         <!--              </div>-->
                         <!--            </div>-->
                     </div>
-                    <div class="accordion d-flex justify-content-center w-100 mb-3" id="accordionPanelsStayOpenExample">
+                    <div class="accordion d-flex justify-content-center w-100 mb-3" id="accordionPanelsStayOpenExample"
+                         v-if="currentUser.historyCart && currentUser.historyCart.length>0">
                         <div class="accordion-item w-75">
                             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -273,8 +275,14 @@
                                         </tbody>
                                     </table>
                                 </div>
+
                             </div>
+
                         </div>
+                    </div>
+                    <div class="w-50 my-5" v-else>
+                        <p class="fs-5">You havent bought anything yet...You may want to chek our products and services on
+                            <a href="./index.html">our home page</a></p>
                     </div>
                     <!--cierre acordeon-->
                 </div>

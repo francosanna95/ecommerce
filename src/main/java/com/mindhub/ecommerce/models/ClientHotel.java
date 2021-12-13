@@ -62,8 +62,7 @@ public class ClientHotel extends UserProduct {
 
     @Override
     public void setFinalPrice(Double finalPrice) {
-
-        super.setFinalPrice(finalPrice * quantity * nights); // si es vip tiene un recargo del 20%
+        super.setFinalPrice(finalPrice * quantity * nights);
     }
 
     @Override
