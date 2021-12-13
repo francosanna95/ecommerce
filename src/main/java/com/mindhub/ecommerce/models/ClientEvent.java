@@ -3,14 +3,15 @@ package com.mindhub.ecommerce.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="sold_events")
+@Table(name = "sold_events")
 public class ClientEvent extends UserProduct {
 
     private Boolean isVip;
 
-    public ClientEvent(){
+    public ClientEvent() {
 
     }
+
     public ClientEvent(Boolean isVip) {
         this.isVip = isVip;
     }
@@ -25,6 +26,7 @@ public class ClientEvent extends UserProduct {
     public Boolean getVip() {
         return isVip;
     }
+
     public void setVip(Boolean vip) {
         isVip = vip;
     }
@@ -32,16 +34,17 @@ public class ClientEvent extends UserProduct {
 
     @Override
     public void setFinalPrice(Double finalPrice) {
-        if (this.isVip){
-            super.setFinalPrice(finalPrice*1.2*quantity); // si es vip tiene un recargo del 20%
+        if (this.isVip) {
+            super.setFinalPrice(finalPrice * 1.2 * quantity); // si es vip tiene un recargo del 20%
         } else {
-            super.setFinalPrice(finalPrice*quantity);
+            super.setFinalPrice(finalPrice * quantity);
         }
 
     }
 
-    @Override //TODO for PDF
+    @Override
     public String toString() {
-        return super.toString();
+        return super.toString() +
+                '\n' + "VIP Acces: " + (isVip ? "Yes" : "No");
     }
 }

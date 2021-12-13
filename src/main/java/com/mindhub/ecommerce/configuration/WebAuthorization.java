@@ -1,6 +1,7 @@
 package com.mindhub.ecommerce.configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,8 +18,14 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/styles/**","/scripts/**","/web/**").permitAll();
-                //.antMatchers("/web/flies.html").hasAnyAuthority("ADMIN,CLIENT");
+                .antMatchers("/web/styles/**","/web/scripts/**","/web/assets/**","/web/index.html","/web/help.html","/web/lodging.html","/web/activities.html","/web/flights.html").permitAll()
+                .antMatchers("/api/products/**","/api/clients/new").permitAll()
+                .antMatchers("/web/**").hasAnyAuthority("ADMIN,CLIENT")
+                .antMatchers("/api/clients/current/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/**").hasAuthority("CLIENT")
+                .antMatchers("/api/**", "/web/**").authenticated()
+                .anyRequest().denyAll();
+
 
         http.formLogin()
                 .usernameParameter("email")
@@ -34,8 +41,12 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 
         // if user is not authenticated, just send an authentication failure response
-        http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
-
+        http.exceptionHandling().
+                authenticationEntryPoint((req, res, exc) -> {
+                    if (req.getRequestURI().contains("/web")) {
+                        res.sendRedirect("/web/index.html");
+                    }
+                });
         // if login is successful, just clear the flags asking for authentication
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
 

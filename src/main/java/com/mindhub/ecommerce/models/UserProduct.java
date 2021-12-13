@@ -3,6 +3,7 @@ package com.mindhub.ecommerce.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -29,6 +30,7 @@ public class UserProduct {
     @JoinColumn(name = "product_id")
     protected Product product;
     protected Double finalPrice;
+    protected LocalDateTime purchaseDate;
 
     public UserProduct() {
     }
@@ -36,6 +38,7 @@ public class UserProduct {
     public UserProduct(User user, Product product) {
         this.user = user;
         this.product = product;
+        this.purchaseDate = LocalDateTime.now();
     }
 
 
@@ -84,6 +87,14 @@ public class UserProduct {
         return finalPrice;
     }
 
+    public LocalDateTime getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(LocalDateTime purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
     public void setFinalPrice(Double finalPrice) {
         double disscount = Double.parseDouble(product.getDisscountCode()) / 100;
         if (disscount > 0) {
@@ -91,5 +102,14 @@ public class UserProduct {
         } else {
             this.finalPrice = finalPrice;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Details of purchase N°" + id +
+                '\n' + "Product name: " + product.getName() +
+                '\n' + "Quantity: " + quantity + ". Product unit price: $" + product.getPrice() +
+                '\n' + "Product discount: " + product.getDisscountCode() + '%' + " | Final price: $" + getFinalPrice() +
+                '\n' + "Ticket class: " + product.getDescription();
     }
 }

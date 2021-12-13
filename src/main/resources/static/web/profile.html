@@ -18,8 +18,8 @@
   <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
-<body id="app" v-cloak>
-  <div>
+<body>
+  <div id="app" v-cloak>
 
     <div class="mainDiv d-flex flex-column" ref="mainDiv">
       <!--Main Div-->
@@ -42,7 +42,7 @@
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center"  v-if="!(isAdmin || isClient)">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
@@ -167,7 +167,7 @@
               <div class="modal-footer justify-content-center align-items-center">
                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
                   In</button>
-                <button type="button" class="btn btn-info">Sign Up</button>
+                <button type="button" class="btn btn-info" @click="signUp">Sign Up</button>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@
         </div>
         <div class="container d-flex flex-column">
           <div class="container d-flex justify-content-center flex-wrap p-0">
-            <div class="w-75 perfilAncho d-flex justify-content-between flex-wrap border">
+            <div class="w-75 perfilAncho d-flex justify-content-evenly flex-wrap border">
               <div class="perfilCaja">
                 <img :src="currentUser.imgUrl" alt="img" class="imgCirculo logo">
                 <h3>User: </h3>
@@ -199,33 +199,33 @@
                 <h5 class="fw-bold">User Name</h5>
                 <p class="ps-2">{{currentUser.fantasyName}}</p>
               </div>
-              <div class="d-flex justify-content-between  flex-column align-items-center flex-wrap  p-md-3">
-                <h3>Modify data</h3>
-                <form class="my-2 d-flex justifi-content-center">
-                  <div class="form-outline d-flex flex-column">
-                    <label class="form-label me-2" for="email" for="nombre">Email</label>
-                    <div>
-                      <input class="contact  bg-segudary " type="email" id="email" placeholder="Ani@yuyu.com"
-                        maxlength="30" />
-                      <button type="button" class="btn btn-primary ms-2">add</button>
-                    </div>
-                  </div>
-                </form>
-                <form class="my-2 d-flex justifi-content-center">
-                  <div class="form-outline d-flex flex-column">
-                    <label class="form-label me-2" for="user" for="nombre">User Name</label>
-                    <div>
-                      <input class="contact  bg-segudary " type="text" id="user" placeholder="Ana33" maxlength="30" />
-                      <button type="button" class="btn btn-primary ms-2">add</button>
-                    </div>
-                  </div>
-                </form>
-                <div class="d-flex justify-content-center mt-4">
-                  <button type="button" class="btn btn-primary my-2">save</button>
-                </div>
-                <!--boton guardar cambios-->
-              </div>
-            </div>
+<!--              <div class="d-flex justify-content-between  flex-column align-items-center flex-wrap  p-md-3">-->
+<!--                <h3>Modify data</h3>-->
+<!--                <form class="my-2 d-flex justifi-content-center">-->
+<!--                  <div class="form-outline d-flex flex-column">-->
+<!--                    <label class="form-label me-2" for="email" for="nombre">Email</label>-->
+<!--                    <div>-->
+<!--                      <input class="contact  bg-segudary " type="email" id="email" placeholder="Ani@yuyu.com"-->
+<!--                        maxlength="30" />-->
+<!--                      <button type="button" class="btn btn-primary ms-2">add</button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--                <form class="my-2 d-flex justifi-content-center">-->
+<!--                  <div class="form-outline d-flex flex-column">-->
+<!--                    <label class="form-label me-2" for="user" for="nombre">User Name</label>-->
+<!--                    <div>-->
+<!--                      <input class="contact  bg-segudary " type="text" id="user" placeholder="Ana33" maxlength="30" />-->
+<!--                      <button type="button" class="btn btn-primary ms-2">add</button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--                <div class="d-flex justify-content-center mt-4">-->
+<!--                  <button type="button" class="btn btn-primary my-2">save</button>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;boton guardar cambios&ndash;&gt;-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <div class="accordion d-flex justify-content-center w-100 mb-3" id="accordionPanelsStayOpenExample">
             <div class="accordion-item w-75">

@@ -176,8 +176,7 @@ const app = Vue.createApp({
       }, (error, result) => {
         if (!error && result && result.event === "success") {
           console.log('Done! Here is the image info: ', result.info);
-          console.log(result.info.secure_url);
-          this.updateProfileImg(result.info.secure_url)
+          this.imgUrl = result.info.secure_url
         }
       })
       myWidget.open();
@@ -231,26 +230,3 @@ var myWidgetLodging = cloudinary.createUploadWidget({
 }
 )
 
-document.getElementById("upload_widget_lodging").addEventListener("click", function () {
-  myWidgetLodging.open();
-}, false);
-
-//hasta aca seria la funcion para guardar en la carpeta Lodging del cloudinary
-
-var myWidgetEvent = cloudinary.createUploadWidget({
-  cloudName: 'melbastrips',
-  uploadPreset: 'testing',
-  folder: 'Activities'
-}, (error, result) => {
-  if (!error && result && result.event === "success") {
-    console.log('Done! Here is the image info: ', result.info);
-    console.log(result);
-  }
-}
-)
-
-document.getElementById("upload_widget_event").addEventListener("click", function () {
-  myWidgetEvent.open();
-}, false);
-
-//hasta aca seria la funcion para guardar en la carpeta Activities del cloudinary

@@ -2,24 +2,20 @@ const app = Vue.createApp({
     data() {
         return {
             cart: [],
-            email: "",
             password: "",
             cart: [],
             currentUser: [],
 
-
-            firstName: "",
-            lastName: "",
             roleUser: "",
             isPasswordVisible: false,
             isAdmin: false,
             isClient: false,
 
             firstName: "",
-            lastName:"",
-            email:"",
-            country:"", 
-            message:""
+            lastName: "",
+            email: "",
+            country: "",
+            message: ""
 
         }
     },
@@ -141,18 +137,51 @@ const app = Vue.createApp({
                 })
         },
 
-        sendMessage(){
+        sendMessage() {
             console.log(this.message);
             console.log(typeof this.message);
             axios.post('/api/help', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&country=${this.country}&comment=${this.message}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-            .then(response=>{
-                swal("We will contact you as soon as possible", {
-                    title: "Thanks for getting in touch with us!",
-                    buttons: "OK!",
-                    icon: "success"
-                  })                    
-            })
-        }
+                .then(response => {
+                    swal("We will contact you as soon as possible", {
+                        title: "Thanks for getting in touch with us!",
+                        buttons: "OK!",
+                        icon: "success"
+                    })
+                })
+        },
+        signUp() {
+            axios.post('/api/clients/new', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}&role=${this.roleUser}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(response => {
+                    swal({
+                        title: "Done!",
+                        text: "We will redirect you...",
+                        buttons: "Got it!",
+                        icon: "success"
+                    }).then(res => {
+                        if (res) {
+                            axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                                .then(response => {
+                                    console.log(response)
+                                    window.location.reload()
+                                })
+                                .catch(error => {
+                                    console.log(error.response.status)
+                                    console.log(error.response.data)
+                                })
+                        }
+                    })
+                })
+                .catch(error => {
+                    swal({
+                        title: "Mmm...",
+                        text: `${error.response.data}`,
+                        buttons: "Got it!",
+                        icon: "info"
+                    })
+
+                })
+        },
     },
+
 })
 const verAppVue = app.mount("#app")

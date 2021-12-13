@@ -21,8 +21,8 @@
 
 </head>
 
-<body id="app" v-cloak>
-  <div>
+<body>
+  <div id="app" v-cloak>
     <!--<div class="animation" ref="animation">
             Animation Div
         </div>-->
@@ -172,7 +172,7 @@
               <div class="modal-footer justify-content-center align-items-center">
                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
                   In</button>
-                <button type="button" class="btn btn-info">Sign Up</button>
+                <button type="button" class="btn btn-info" @click="signUp">Sign Up</button>
               </div>
             </div>
           </div>

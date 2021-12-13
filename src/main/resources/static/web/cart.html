@@ -19,8 +19,8 @@
 
 </head>
 
-<body id="app" v-cloak>
-  <div>
+<body >
+  <div id="app" v-cloak>
     <!--<div class="animation" ref="animation">
             Animation Div
         </div>-->
@@ -45,7 +45,7 @@
                 <p class="d-flex d-none d-lg-block m-0">Admin</p>
               </a>
             </div>
-            <div class="m-3 scale d-flex align-items-center">
+            <div class="m-3 scale d-flex align-items-center"  v-if="!(isAdmin || isClient)">
               <a class="linkCursor d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#exampleModalToggle"><i class="fal fa-user pe-1"></i>
                 <p class="d-flex d-none d-lg-block m-0">Log In</p>
@@ -181,38 +181,36 @@
               <div class="modal-footer justify-content-center align-items-center">
                 <button class="btn btn-warning" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to Log
                   In</button>
-                <button type="button" class="btn btn-info">Sign Up</button>
+                <button type="button" class="btn btn-info" @click="signUp">Sign Up</button>
               </div>
             </div>
           </div>
         </div>
         <!-- Main Content -->
-        <h2 class="text-center py-4">TOTAL PRODUCTS IN CART {{totalProductsInCart()}}</h2>
         <!--propiedades div de abajo container d-flex flex-row flex-wrap justify-content-evenly align-items-center-->
         <div class="cartContainer p-2">
           <div class="tableContainer d-flex flex-column justify-content-center">
             <table class="table align-middle text-dark">
               <thead class="table text-success p-2">
                 <tr>
-                  <th scope="col" class="d-none d-sm-block"></th>
+                  <th scope="col">Product Id</th>
                   <th scope="col">Product Name</th>
                   <th scope="col">Service Type</th>
                   <th scope="col">Amount</th>
-                  <th scope="col" class="d-none d-sm-block">Unit Price</th>
+                  <th scope="col">Unit Price</th>
                   <th scope="col">Sub Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="prod in cart">
-                  <td class="d-none d-sm-block"><img class="imgTable"
-                      src="prod.imgUrl">
+                  <td>{{prod.id}}
                   </td>
                   <td>{{prod.productName}}</td>
                   <td>{{prod.productType}}</td>
                   <td><button type="button" class="btnCart" @click="removeOne(prod)">-</button> {{prod.quantity}}
                     <button type="button" class="btnCart" @click="addProduct(prod)">+</button>
                   </td>
-                  <td class="d-none d-sm-block">${{prod.finalPrice}}</td>
+                  <td>${{prod.finalPrice}}</td>
                   <td>${{prod.quantity*prod.finalPrice}}</button></td>
                   <td class="p-0"><button type="button" class="btn-close p-0" aria-label="Close" @click="removeAll(prod)"></button></td>
                 </tr>
@@ -228,21 +226,21 @@
                 </div>
                 <div class="d-flex flex-wrap w-100 flex-sm-row">
                   <div class="form-floating m-3 col-10 col-sm-6">
-                    <input type="number" class="form-control" id="floatingInputCard" placeholder="cardNumber">
+                    <input type="number" class="form-control" id="floatingInputCard" placeholder="cardNumber" v-model="cardNumber">
                     <label for="floatingInputCard">Card Number</label>
                   </div>
                   <div class="form-floating m-3 col-10 col-sm-4">
-                    <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration">
+                    <input type="text" class="form-control" id="floatingInputExpiration" placeholder="cardExpiration" v-model="expirationDate">
                     <label for="floatingInputExpiration">Expiration</label>
                   </div>
                 </div>
                 <div class="d-flex flex-wrap w-100 flex-sm-row">
                   <div class="form-floating m-3 col-10 col-sm-6">
-                    <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname">
+                    <input type="text" class="form-control" id="floatingInputFullname" placeholder="cardFullname" v-model="fullName">
                     <label for="floatingInputFullname">Cardholder Name</label>
                   </div>
                   <div class="form-floating m-3 col-10 col-sm-4">
-                    <input type="number" class="form-control" id="floatingInputCvv" placeholder="cardCvv">
+                    <input type="number" class="form-control" id="floatingInputCvv" placeholder="cardCvv" v-model="cvv">
                     <label for="floatingInputCvv">Cvv</label>
                   </div>
                 </div>
@@ -294,7 +292,7 @@
             <h4 class="d-flex align-self-center">Total ${{totalPriceCalc()}}</h4>
           </div>
           <a type="button" class="btn btn-buy" href="./cart.html">
-            <p class="d-flex m-0">Buy</p>
+            <p class="d-flex m-0">Pay!</p>
           </a>
         </div>
       </div>

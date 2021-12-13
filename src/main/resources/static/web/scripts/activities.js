@@ -121,7 +121,7 @@ const app = Vue.createApp({
                             this.savingCart();
                             swal(`We just added your event to your cart!`, {
                                 buttons: ["Great!", "Take me to my cart"],
-                                icon: "sucess"
+                                icon: "success"
                             })
                                 .then(res => {
                                     if (res) {
@@ -206,6 +206,38 @@ const app = Vue.createApp({
                 })
                 .catch(error => {
                     console.log('Error', error.message);
+                })
+        },
+        signUp() {
+            axios.post('/api/clients/new', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}&role=${this.roleUser}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(response => {
+                    swal({
+                        title: "Done!",
+                        text: "We will redirect you...",
+                        buttons: "Got it!",
+                        icon: "success"
+                    }).then(res => {
+                        if (res) {
+                            axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                                .then(response => {
+                                    console.log(response)
+                                    window.location.reload()
+                                })
+                                .catch(error => {
+                                    console.log(error.response.status)
+                                    console.log(error.response.data)
+                                })
+                        }
+                    })
+                })
+                .catch(error => {
+                    swal({
+                        title: "Mmm...",
+                        text: `${error.response.data}`,
+                        buttons: "Got it!",
+                        icon: "info"
+                    })
+
                 })
         },
     },

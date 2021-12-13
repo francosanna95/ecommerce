@@ -31,6 +31,7 @@ public class ClientHotel extends UserProduct {
     public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
+
     public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
@@ -38,6 +39,7 @@ public class ClientHotel extends UserProduct {
     public LocalDateTime getDepartureDate() {
         return departureDate;
     }
+
     public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
@@ -45,6 +47,7 @@ public class ClientHotel extends UserProduct {
     public Integer getNights() {
         return nights;
     }
+
     public void setNights(Integer nights) {
         this.nights = nights;
     }
@@ -52,6 +55,7 @@ public class ClientHotel extends UserProduct {
     public Pension getPension() {
         return pension;
     }
+
     public void setPension(Pension pension) {
         this.pension = pension;
     }
@@ -59,8 +63,16 @@ public class ClientHotel extends UserProduct {
     @Override
     public void setFinalPrice(Double finalPrice) {
 
-        super.setFinalPrice(finalPrice* quantity * nights); // si es vip tiene un recargo del 20%
+        super.setFinalPrice(finalPrice * quantity * nights); // si es vip tiene un recargo del 20%
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                '\n' + "Arrival Date: " + arrivalDate +
+                '\n' + "Departure Date: " + departureDate +
+                '\n' + "Total Nights: " + nights +
+                '\n' + "Pension: " + pension;
 
+    }
 }
