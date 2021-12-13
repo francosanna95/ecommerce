@@ -1,5 +1,6 @@
 package com.mindhub.ecommerce.dtos;
 
+import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.models.*;
 
 public class UserProductDTO {
@@ -13,6 +14,7 @@ public class UserProductDTO {
     private String productType;
     private Double finalPrice;
     private String imgUrl;
+    private Pension pension;
 
     public UserProductDTO(UserProduct userProduct) {
         Product product = userProduct.getProduct();
@@ -115,6 +117,14 @@ public class UserProductDTO {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Pension getPension() {
+        return pension;
+    }
+
+    public void setPension(Pension pension) {
+        this.pension = pension;
     }
 
     @Override

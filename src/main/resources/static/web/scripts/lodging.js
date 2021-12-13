@@ -105,7 +105,7 @@ const app = Vue.createApp({
                     }
                 })
             } else {
-                axios.post("/api/clients/current/addToCart/hotel", `hotelId=${hotel.productId}&nights=${this.nights}&passangers=${this.beds}`)
+                axios.post("/api/clients/current/addToCart/hotel", `hotelId=${hotel.productId}&nights=${this.nights}&passangers=${this.beds}&pension=${this.includes}`)
                     .then(resp => {
                         hotel = resp.data;
                         console.log(hotel);
@@ -126,7 +126,8 @@ const app = Vue.createApp({
                                 console.log(this.cart);
                             }
                             this.savingCart();
-                            swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
+                            //`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`(preguntar despues)
+                            swal(`We just added a ticket to '${hotel.productName}' to your cart!`, {
                                 buttons: ["Great!", "Take me to my cart"],
                                 icon: "success"
                             })

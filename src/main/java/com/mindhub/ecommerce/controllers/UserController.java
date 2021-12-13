@@ -4,6 +4,7 @@ package com.mindhub.ecommerce.controllers;
 import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.*;
 import com.mindhub.ecommerce.email.EmailServiceImpl;
+import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.enums.UserRole;
 import com.mindhub.ecommerce.models.*;
 import com.mindhub.ecommerce.repositories.ProductRepository;
@@ -123,7 +124,7 @@ public class UserController {
     }
 
     @PostMapping("/clients/current/addToCart/hotel")
-    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam Integer nights, @RequestParam Integer passangers) {
+    public ResponseEntity<UserProductDTO> addHotelToCart(Authentication auth, @RequestParam Long hotelId, @RequestParam Integer nights, @RequestParam Integer passangers, @RequestParam String pension) {
 
         User user = userRepo.findByEmail(auth.getName()).orElse(null);
         Product product = productRepo.findById(hotelId).orElse(null);
@@ -139,7 +140,7 @@ public class UserController {
         if (hotel == null) {
             return new ResponseEntity<UserProductDTO>((UserProductDTO) null, HttpStatus.NOT_FOUND);
         }
-        UserProductDTO userProductDTO = userService.addHotelToClientCart(user, hotel, nights, passangers);
+        UserProductDTO userProductDTO = userService.addHotelToClientCart(user, hotel, nights, passangers,pension);
         //TODO
         if (userProductDTO != null) {
             return new ResponseEntity<UserProductDTO>(userProductDTO, HttpStatus.CREATED);

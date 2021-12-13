@@ -273,7 +273,6 @@ const app = Vue.createApp({
       return array.reduce(reducer, 0);
     },
     login(e) {
-      log(e)
       if (e) {
         e.preventDefault()
       }

@@ -46,9 +46,4 @@ public class Hotel extends Product {
         this.concierge = concierge;
     }
 
-
-
-
-
-
 }

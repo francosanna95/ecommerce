@@ -58,8 +58,19 @@ public class ClientHotel extends UserProduct {
 
     @Override
     public void setFinalPrice(Double finalPrice) {
-
-        super.setFinalPrice(finalPrice* quantity * nights); // si es vip tiene un recargo del 20%
+        if(pension ==null) {
+            super.setFinalPrice(finalPrice * quantity * nights); // si es vip tiene un recargo del 20%
+        }
+        else{
+            switch(pension){
+                case JUST_DINNER:{super.setFinalPrice(finalPrice * quantity * nights + 800);
+                                  break;}
+                case BREAKFAST_BUFFET:{super.setFinalPrice(finalPrice * quantity * nights+ 1000);
+                                        break;}
+                case ALL_INCLUSIVE:{super.setFinalPrice(finalPrice * quantity * nights + 1500);
+                                    break;}
+            }
+        }
     }
 
 

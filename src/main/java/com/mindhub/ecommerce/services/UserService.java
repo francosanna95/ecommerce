@@ -4,6 +4,7 @@ package com.mindhub.ecommerce.services;
 import com.itextpdf.layout.Document;
 import com.mindhub.ecommerce.dtos.UserDTO;
 import com.mindhub.ecommerce.dtos.UserProductDTO;
+import com.mindhub.ecommerce.enums.Pension;
 import com.mindhub.ecommerce.models.*;
 
 import java.io.ByteArrayOutputStream;
@@ -24,7 +25,7 @@ public interface UserService {
 
     UserProductDTO addTicketToClientCart(User user, Ticket ticket, String clase, Integer passengers);
 
-    UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers);
+    UserProductDTO addHotelToClientCart(User user, Hotel hotel, Integer nights, Integer passangers, String pension);
 
     boolean removeProductFromCart(User user, UserProduct toDelete);
 
