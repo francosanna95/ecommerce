@@ -31,4 +31,10 @@ public interface UserService {
     boolean add1ProductToCart(User user,UserProduct toAdd);
 
     boolean sendInvoice(User user, byte[] bytes);
+
+    boolean createHistoryCart(User user);
+
+    boolean sendHelpMesagge(String firstName, String lastName, String email, String country, String comment);
+
+    boolean updatePic(User user, String imgUrl);
 }

@@ -29,13 +29,14 @@ public class EmailServiceImpl implements EmailService {
     @Async
     public void send(String to, String email, byte[] bytes) {
         try {
+
             MimeBodyPart textBodyPart = new MimeBodyPart();
             textBodyPart.setText(email,"UTF-8","html");
 
             DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
             MimeBodyPart pdfBodyPart = new MimeBodyPart();
             pdfBodyPart.setDataHandler(new DataHandler(dataSource));
-            pdfBodyPart.setFileName("tedt.pdf");
+            pdfBodyPart.setFileName("invoice.pdf");
 
             //construct the mime multi part
             MimeMultipart mimeMultipart = new MimeMultipart();
@@ -52,6 +53,24 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject("Your invoice!");
             helper.setFrom("mhbrothers2025@gmail.com");
             mimeMessage.setContent(mimeMultipart);
+            mailSender.send(mimeMessage);
+
+        } catch (MessagingException e) {
+            LOGGER.error("Failed to send email", e);
+            throw new IllegalStateException("failed to send email");
+        }
+    }
+
+    @Override
+    @Async
+    public void sendHelpMessage(String to, String email) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+            helper.setText(email, true);
+            helper.setTo(to);
+            helper.setSubject("Help Email");
+            helper.setFrom("mhbrothers2025@gmail.com");
             mailSender.send(mimeMessage);
 
         } catch (MessagingException e) {

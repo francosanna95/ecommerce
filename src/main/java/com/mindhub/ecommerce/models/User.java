@@ -53,7 +53,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.imgUrl = imgUrl;
-        this.fantasyName = fantasyName;
+        this.fantasyName = firstName + " " + lastName;
         this.userRole = userRole;
     }
 
@@ -163,6 +163,7 @@ public class User {
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
+
 
     @Override
     public String toString() {

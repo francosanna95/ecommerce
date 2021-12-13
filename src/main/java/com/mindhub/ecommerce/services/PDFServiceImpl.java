@@ -66,7 +66,8 @@ public class PDFServiceImpl implements PDFService {
         String imgFile = "https://res.cloudinary.com/melbastrips/image/upload/v1639001581/Profiles/melba-logo-ps_gk4bqz.png";
         ImageData data = ImageDataFactory.create(imgFile);
         Image img = new Image(data);
-        img.setMaxHeight(150);
+        img.setMaxHeight(125);
+        img.setMarginLeft(10f);
 
         table.setBackgroundColor(new DeviceRgb(5, 71, 105))
                 .setFontColor(new DeviceRgb(255, 255, 255));
@@ -95,7 +96,7 @@ public class PDFServiceImpl implements PDFService {
                 .add(new Paragraph("Account N°: "))
                 .setBorder(Border.NO_BORDER));
         clientTableInfo.addCell(new Cell()
-                .add(new Paragraph("XXXXXXXXXXXX"))
+                .add(new Paragraph(client.getBankAccountNumber()))
                 .setBorder(Border.NO_BORDER));
         clientTableInfo.addCell(new Cell()
                 .add(new Paragraph("Date: "))
@@ -105,34 +106,30 @@ public class PDFServiceImpl implements PDFService {
                 .setBorder(Border.NO_BORDER));
 
 
-        float itemInfoColWidth[] = {90f, 100f, 190f, 70f, 70f, 70f};
+        float itemInfoColWidth[] = {70f, 135f, 225f, 80f, 70f};
         Table dataTable = new Table(itemInfoColWidth);
         dataTable.setFontSize(10f);
 
         dataTable.addCell(new Cell()
                 .setBackgroundColor(new DeviceRgb(5, 71, 105))
                 .setFontColor(new DeviceRgb(255, 255, 255))
-                .add(new Paragraph("Date")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                .add(new Paragraph("Product Id")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
         dataTable.addCell(new Cell()
                 .setBackgroundColor(new DeviceRgb(5, 71, 105))
                 .setFontColor(new DeviceRgb(255, 255, 255))
-                .add(new Paragraph("Destination Account")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                .add(new Paragraph("Product Type")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
         dataTable.addCell(new Cell()
                 .setBackgroundColor(new DeviceRgb(5, 71, 105))
                 .setFontColor(new DeviceRgb(255, 255, 255))
-                .add(new Paragraph("Concept")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                .add(new Paragraph("Product Name")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
         dataTable.addCell(new Cell()
                 .setBackgroundColor(new DeviceRgb(5, 71, 105))
                 .setFontColor(new DeviceRgb(255, 255, 255))
-                .add(new Paragraph("Type")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                .add(new Paragraph("Quantity")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
         dataTable.addCell(new Cell()
                 .setBackgroundColor(new DeviceRgb(5, 71, 105))
                 .setFontColor(new DeviceRgb(255, 255, 255))
                 .add(new Paragraph("Amount")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
-        dataTable.addCell(new Cell()
-                .setBackgroundColor(new DeviceRgb(5, 71, 105))
-                .setFontColor(new DeviceRgb(255, 255, 255))
-                .add(new Paragraph("Balance")).setTextAlignment(TextAlignment.CENTER).setVerticalAlignment(VerticalAlignment.MIDDLE));
 
         document.add(table);
         document.add(new Paragraph("\n"));
@@ -144,15 +141,23 @@ public class PDFServiceImpl implements PDFService {
         for (UserProductDTO sale : sales) {
             dataTable.setFontSize(10f);
             dataTable.addCell(new Cell().add(new Paragraph(String.valueOf(sale.getId()))));
-            dataTable.addCell(new Cell().add(new Paragraph(sale.getProductName())));
             dataTable.addCell(new Cell().add(new Paragraph(sale.getProductType())));
+            dataTable.addCell(new Cell().add(new Paragraph(sale.getProductName())));
             dataTable.addCell(new Cell().add(new Paragraph(String.valueOf(sale.getQuantity()))));
-            dataTable.addCell(new Cell().add(new Paragraph("$" + sale.getProductPrice())));
             dataTable.addCell(new Cell().add(new Paragraph("$" + sale.getFinalPrice())));
             dataTable.startNewRow();
         }
 
         document.add(dataTable);
+        document.add(new Paragraph("\n"));
+        document.add(new Paragraph("PURCHASE DETAILS").setUnderline().setTextAlignment(TextAlignment.CENTER));
+
+        for (UserProductDTO sale : sales){
+            Paragraph p = new Paragraph();
+            p.add(sale.toString()).setItalic();
+            document.add(p);
+            document.add(new Paragraph("\n"));
+        }
         Table footer = new Table(1).useAllAvailableWidth();
 
 

@@ -45,18 +45,26 @@ public class EcommerceApplication {
             userRepo.save(agencyAndamio);
 
             //Creación de producto ofrecido por Agencia Número 1
-            Event concierto = new Event(100, 2500D, "30", "601 Biscayne Blvd, Miami, FL, Estados Unidos", agencyAndamio, "Maluma", "El mejor concierto de tu vida", 1000, "IMG-URL", "Maluma Fire Tour", true);
+            Event concierto = new Event(100, 2500D, "30", "601 Biscayne Blvd, Miami, FL, Estados Unidos", agencyAndamio, "Maluma", "Maluma concert for the fifth time in Miami BEACH. Meet friends and have fun!", 1000, "IMG-URL", "Maluma Fire Tour", true);
             concierto.setUser(agencyAndamio);
-            concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821034/Services/Activities/nicolas-flor-h5XPfJFQgFM-unsplash_iaz0jc.jpg");
+            concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1639269466/Services/Activities/images_fomtxb.jpg");
             productRepo.save(concierto);
 
-            concierto = new Event(100, 2500D, "20", "601 Biscayne Blvd, California, Estados Unidos", agencyAndamio, "David Guetta World Tour", "El mejor concierto de tu vida", 1000, "", "David Guetta", true);
+            concierto = new Event(100, 2500D, "20", "601 Biscayne Blvd, London, UK", agencyAndamio, "David Guetta World Tour", "David Guetta in one of the most impresive London Stadiums!", 1000, "", "David Guetta", true);
             concierto.setUser(agencyAndamio);
             concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821030/Services/Activities/pexels-tom-fisk-1692695_lwwuxu.jpg");
             productRepo.save(concierto);
-            concierto = new Event(100, 2500D, "10", "Bucharest, Romania", agencyAndamio, "Mountain long-hiking", "Hiking in the Carpats, Romania", 1000, "https://res.cloudinary.com/melbastrips/image/upload/v1638821029/Services/Activities/success-dhamala-JcZvtztsLm8-unsplash_per91e.jpg", "Hiking", true);
+            concierto = new Event(100, 2500D, "10", "Bucharest, Romania", agencyAndamio, "Mountain long-hiking", "Hiking in the Carpats with full guide. Two Days experience", 1000, "", "Nature way-out", true);
             concierto.setUser(agencyAndamio);
-            concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821029/Services/Activities/success-dhamala-JcZvtztsLm8-unsplash_per91e.jpg");
+            concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1638821028/Services/Activities/pexels-teddy-yang-2263436_ulze1q.jpg");
+            productRepo.save(concierto);
+            concierto = new Event(100, 2500D, "10", "Bucharest, Romania", agencyAndamio, "Visiting the 2nd largest world Building", "Visit the Palace of the Parliament for an amazing city day in Bucarest, Romania", 1000, "", "Romanian goverment tour", true);
+            concierto.setUser(agencyAndamio);
+            concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1639269698/Services/Activities/721412480f4b87d5bee3f92d70e90c35_t14550.jpg");
+            productRepo.save(concierto);
+            concierto = new Event(100, 2500D, "10", "Bucharest, Romania", agencyAndamio, "Romanian Country Side", "Three days excursion into the Romanian country side", 1000, "", "Romanian nature tour", true);
+            concierto.setUser(agencyAndamio);
+            concierto.setImgUrl("https://res.cloudinary.com/melbastrips/image/upload/v1639269839/Services/Activities/dsc7317s_tftu8v.jpg");
             productRepo.save(concierto);
             UserProduct offeredProduct = new UserProduct(); //Al instanciarlos como UserProduct se persisten también en la tabla User_Product,
             // sino, si lo instanciamos como ClientEvent o ClientTicket o HotelTicket se guardan en las tablas de SoldEvents,SoldHotels o SoldTickets

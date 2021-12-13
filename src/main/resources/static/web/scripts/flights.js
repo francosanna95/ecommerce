@@ -7,10 +7,18 @@ const app = Vue.createApp({
             cart: [],
             clase: "",
             passengers: 1,
-
             email: "",
             password: "",
+            cart: [],
             currentUser: [],
+
+
+            firstName: "",
+            lastName: "",
+            roleUser: "",
+            isPasswordVisible: false,
+            isAdmin: false,
+            isClient: false
         }
     },
 
@@ -19,6 +27,13 @@ const app = Vue.createApp({
             .then(response => {
                 console.log(response.data)
                 this.currentUser = response.data
+                if (response.data.role == "CLIENT") {
+                    this.isClient = true;
+                    this.isAdmin = false;
+                } else if (response.data.role == "AGENCY") {
+                    this.isClient = false;
+                    this.isAdmin = true;
+                }
             })
         axios.get('/api/products/tickets')
             .then(response => {
@@ -48,7 +63,7 @@ const app = Vue.createApp({
             axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
                     console.log(response)
-                   window.location.reload()
+                    window.location.reload()
                 })
                 .catch(error => {
                     console.log(error.response.status)
@@ -80,31 +95,53 @@ const app = Vue.createApp({
             return array.reduce(reducer, 0);
         },
         addToCart(ticket) {
-            console.log(ticket.productId);
-            axios.post("/api/clients/current/addToCart/ticket", `ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
-                .then(resp => {
-                    ticket = resp.data;
-                    console.log(ticket);
-                    if (ticket.stock <= 0) {
-                        alert("No stock");
-                    } else {
-                        ticket.stock--;
-                        console.log(this.cart);
-                        if (this.cart.some(prod => prod.id == ticket.id)) {
-                            let id = this.cart.findIndex(prod => prod.id == ticket.id);
-                            //actualizar cantidad en ese producto
-                            this.cart[id].quantity = ticket.quantity;
-                        } else {
-                            ticket.quantity = this.passengers;
-                            ticket.clase = this.clase;
-                            ticket.subtotal = ticket.quantity * ticket.price;
-                            this.cart.push(ticket);
-                            console.log(this.cart);
-                        }
-                        this.savingCart();
+            if (!(this.isAdmin || this.isClient)) {
+                swal("Please Log in or Sign Up to proceed with your purchase!", {
+                    title: "It seems that you are not logged in",
+                    buttons: ["Maybe next time!", "I want to Log In!"],
+                    icon: "info"
+                }).then(res => {
+                    if (res) {
+                        this.$refs.loginModal.click();
                     }
                 })
-                .catch(err => console.log(err));
+            } else {
+                axios.post("/api/clients/current/addToCart/ticket", `ticketId=${ticket.productId}&clase=${this.clase}&passengers=${this.passengers}`)
+                    .then(resp => {
+                        ticket = resp.data;
+                        console.log(ticket);
+                        if (ticket.stock <= 0) {
+                            alert("No stock");
+                        } else {
+                            ticket.stock--;
+                            console.log(this.cart);
+                            if (this.cart.some(prod => prod.id == ticket.id)) {
+                                let id = this.cart.findIndex(prod => prod.id == ticket.id);
+                                //actualizar cantidad en ese producto
+                                this.cart[id].quantity = ticket.quantity;
+                            } else {
+                                ticket.quantity = this.passengers;
+                                ticket.clase = this.clase;
+                                ticket.subtotal = ticket.quantity * ticket.price;
+                                this.cart.push(ticket);
+                                console.log(this.cart);
+                            }
+                            this.savingCart();
+                            swal(`We just added a ticket to '${ticket.arrivalLocation}' to your cart!`, {
+                                buttons: ["Great!", "Take me to my cart"],
+                                icon: "success"
+                            })
+                                .then(res => {
+                                    if (res) {
+                                        window.location.href = "./cart.html"
+                                    }
+                                })
+                        }
+                    })
+                    .catch(err => console.log(err));
+
+            }
+
         },
         deleteCartObject(ticket) {
             if (this.cart.some(prod => prod.productId == ticket.productId)) {
@@ -163,8 +200,55 @@ const app = Vue.createApp({
 
                 })
         },
+        logout() {
+            axios.post('/api/logout')
+                .then(response => {
+                    sessionStorage.removeItem('cart'); //alerta de exito
+                    console.log("loged out!");
+                    this.isClient = false;
+                    this.isAdmin = false;
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.log('Error', error.message);
+                })
+
+        },
+        signUp() {
+            axios.post('/api/clients/new', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}&role=${this.roleUser}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(response => {
+                    swal({
+                        title: "Done!",
+                        text: "We will redirect you...",
+                        buttons: "Got it!",
+                        icon: "success"
+                    }).then(res => {
+                        if (res) {
+                            axios.post('/api/login', `email=${this.email}&password=${this.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                                .then(response => {
+                                    console.log(response)
+                                    window.location.reload()
+                                })
+                                .catch(error => {
+                                    console.log(error.response.status)
+                                    console.log(error.response.data)
+                                })
+                        }
+                    })
+                })
+                .catch(error => {
+                    swal({
+                        title: "Mmm...",
+                        text: `${error.response.data}`,
+                        buttons: "Got it!",
+                        icon: "info"
+                    })
+
+                })
+        },
 
     },
+
 
 })
 

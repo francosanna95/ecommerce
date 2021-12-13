@@ -12,7 +12,7 @@ public class UserProductDTO {
     private String address;
     private String productType;
     private Double finalPrice;
-
+    private String imgUrl;
 
     public UserProductDTO(UserProduct userProduct) {
         Product product = userProduct.getProduct();
@@ -24,6 +24,8 @@ public class UserProductDTO {
         this.disscountCode = product.getDisscountCode();
         this.address = product.getAddress();
         this.finalPrice = product.getPrice();
+        this.imgUrl = product.getImgUrl();
+
 
         if (product instanceof Event) {
             this.productType = "EVENT";
@@ -105,5 +107,22 @@ public class UserProductDTO {
 
     public void setFinalPrice(Double finalPrice) {
         this.finalPrice = finalPrice;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Details of purchase N°" + id +
+                '\n' +"Product name: "+ productName  + ". Service Type:" + productType +
+                '\n' +"Quantity: "+ quantity + ". Product unit price: $" + productPrice +
+                '\n' + "Product discount: " + disscountCode + '%' + " | Final price: $" + finalPrice;
+
     }
 }
