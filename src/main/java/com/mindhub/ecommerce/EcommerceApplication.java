@@ -104,7 +104,7 @@ public class EcommerceApplication {
             salesRepos.save(offeredProduct2);
 
             ////Creación de Agencia
-            User agencyBabel = new User("Babel", "Viajes", "babel@agency.com", passwordEncoder.encode("12345678"), UserRole.AGENCY);
+                User agencyBabel = new User("Babel", "Viajes", "babel@agency.com", passwordEncoder.encode("12345678"), UserRole.AGENCY);
             agencyBabel.setBankAccountNumber("VIN-007");
             agencyBabel.setAddress("San Martín 1136 (Pasaje San Martín) Local 33, Mendoza");
             agencyBabel.setImgUrl("https://res.cloudinary.com/diyps0xa6/image/upload/v1638713829/Ecommerce/profile_pics/babel_AG.jpg");
@@ -151,11 +151,11 @@ public class EcommerceApplication {
 //            melbaHotel.setPension(Pension.BREAKFAST_BUFFET);
 //            melbaHotel.setQuantity(2);
 //            melbaHotel.setFinalPrice(hospedaje.getPrice());
-            Ticket ticket = new Ticket(2000, 15000D, "10", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638981253/Services/Flies/arquitectura_gaudi_sag_fam_valery_egonov_portada_z78brl.jpg", LocalDateTime.now().plusDays(10).toString(), LocalDateTime.now().plusDays(11).toString(), "Madrid", "Barcelona");
+            Ticket ticket = new Ticket(2000, 15000D, "10", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Flight to Barcelona", "The best option for bussiness travellers to Barcelona", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638981253/Services/Flies/arquitectura_gaudi_sag_fam_valery_egonov_portada_z78brl.jpg", LocalDateTime.now().plusDays(10).toString(), LocalDateTime.now().plusDays(11).toString(), "Anywhere", "Barcelona");
             productRepo.save(ticket);
-            ticket = new Ticket(2000, 18000D, "20", "95700 Roissy-en-France, Francia", agencyAndamio, "Vuelo a Paris", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638821033/Services/Flies/kateryna-t-RkyYEVHrRbo-unsplash_wzahhy.jpg", LocalDateTime.now().plusDays(10).toString(), LocalDateTime.now().plusDays(11).toString(), "Anywhere", "Paris");
+            ticket = new Ticket(2000, 18000D, "20", "95700 Roissy-en-France, Francia", agencyAndamio, "Flight to Paris", "Two tickets in one for Paris Lovers", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638821033/Services/Flies/kateryna-t-RkyYEVHrRbo-unsplash_wzahhy.jpg", LocalDateTime.now().plusDays(10).toString(), LocalDateTime.now().plusDays(11).toString(), "Anywhere", "Paris");
             productRepo.save(ticket);
-            ticket = new Ticket(2000, 20000D, "30", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Vuelo Barcelona - Madrid", "El vuelo más copado de tu laif", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638817782/Services/Flies/Machu_Picchu_Per%C3%BA_xker0x.jpg", LocalDateTime.now().plusDays(10).toString(), LocalDateTime.now().plusDays(11).toString(), "Buenos Aires", "Machu Pichu");
+            ticket = new Ticket(2000, 20000D, "30", "08820 El Prat de Llobregat, Barcelona, España", agencyAndamio, "Flight to Perú", "Adventure in Machu Pichu", 100, "https://res.cloudinary.com/melbastrips/image/upload/v1638817782/Services/Flies/Machu_Picchu_Per%C3%BA_xker0x.jpg", LocalDateTime.now().plusDays(10).toString(), LocalDateTime.now().plusDays(11).toString(), "Anywhere", "Machu Pichu");
             productRepo.save(ticket);
 //            ClientTicket cl = new ClientTicket(clientMelba, ticket, TicketClass.FIRST);
 //            cl.setQuantity(2);
